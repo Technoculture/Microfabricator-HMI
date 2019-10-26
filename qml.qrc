@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Checklist.qml</file>
+        <file>Drawer.qml</file>
+        <file>StatusBar.qml</file>
+        <file>Progress.qml</file>
+        <file>ExposureElapse.qml</file>
+        <file>UIStyle.qml</file>
+        <file>SplashScreen.qml</file>
+        <file>CheckListItem.qml</file>
     </qresource>
 </RCC>
