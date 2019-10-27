@@ -8,6 +8,5 @@
         <file>ExposureElapse.qml</file>
         <file>UIStyle.qml</file>
         <file>SplashScreen.qml</file>
-        <file>CheckListItem.qml</file>
     </qresource>
 </RCC>
