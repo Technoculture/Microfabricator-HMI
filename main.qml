@@ -23,31 +23,9 @@ Window {
 
     SplashScreen {  }
 
-    Item {
-        id: checking
-        anchors.fill: bgRect
-        state: "in"
-
-        Drawer {
-            id: drawer
-            anchors.fill: parent
-        }
-        Checklist {
-            id: checklist
-            anchors.fill: parent
-            onToggleDrawer: {
-                console.log(checkIndex + " : " + drawer.currentIndex)
-                if (drawer.state === "closed") { drawer.state = "open" }
-                else { if (drawer.currentIndex === checkIndex) { drawer.state = "closed" } }
-                drawer.currentIndex = checkIndex
-            }
-        }
-        MouseArea {
-            anchors.fill: drawer
-            onClicked: {
-                checklist.state === "in" ? checklist.state = "out" : checklist.state = "in"; console.log( checklist.state)
-            }
-        }
+    Checklist {
+        id: checklist
+        anchors.fill: parent
     }
 
     Item {
@@ -59,6 +37,7 @@ Window {
     }
 
     StatusBar {
+        visible: false
         anchors { bottom: bgRect.bottom; horizontalCenter: bgRect.horizontalCenter; bottomMargin: statusHeight/2 }
     }
 }

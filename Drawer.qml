@@ -9,7 +9,7 @@ Item {
     Rectangle {
         id: baseRect
         height: 290; width: 230
-        y: 95;
+        y: 95-84;
         color: style.bg_drawer
         opacity: 0.2
         state: 'closed'
@@ -22,8 +22,8 @@ Item {
         }
 
         states: [
-            State { name: "open";   PropertyChanges { target: baseRect; x: 522 } },
-            State { name: "closed"; PropertyChanges { target: baseRect; x: 305 } }
+            State { name: "open";   PropertyChanges { target: baseRect; x: 522-266 } },
+            State { name: "closed"; PropertyChanges { target: baseRect; x: 305-266 } }
         ]
     }
 

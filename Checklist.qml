@@ -2,11 +2,15 @@ import QtQuick 2.0
 import QtQuick.Controls 2.12
 
 Item {
-    signal toggleDrawer(int checkIndex)
+    id: root
     state: "in"
-//    property alias state:
 
     UIStyle { id: style }
+
+    MouseArea {
+        anchors.fill: headerRect
+        onClicked: { root.state === "in" ? root.state = "out" : root.state = "in" }
+    }
 
     Rectangle {
         id: baseRect
@@ -14,6 +18,8 @@ Item {
         x: 266;
         color: style.bg_checklist
         opacity: 0.9
+
+        Drawer { id: drawer }
     }
 
     Rectangle { // Header Box
@@ -50,7 +56,13 @@ Item {
             }
             MouseArea {
                 anchors.fill: parent    //onClicked: { console.log("List Item Clicked: " + name + " : " + status) }
-                onClicked: { listview.currentIndex = index; toggleDrawer(index) } // console.log(index);
+                onClicked: {
+                    listview.currentIndex = index;
+                    console.log(index + " : " + drawer.currentIndex) //DEBUG
+                    if (drawer.state === "closed") { drawer.state = "open" }
+                    else { if (drawer.currentIndex === index) { drawer.state = "closed" } }
+                    drawer.currentIndex = index
+                }
             }
         }
     }
