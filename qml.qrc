@@ -8,5 +8,8 @@
         <file>ExposureElapse.qml</file>
         <file>UIStyle.qml</file>
         <file>SplashScreen.qml</file>
+        <file>MainApp.qml</file>
+        <file>Assets/logo-small.png</file>
+        <file>Assets/logo.png</file>
     </qresource>
 </RCC>

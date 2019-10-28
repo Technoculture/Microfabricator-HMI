@@ -2,6 +2,10 @@ import QtQuick 2.0
 
 Item {
     // PUBLIC INTERFACE
+    signal expose
+    signal exposureComplete
+    signal openTray
+
     readonly property alias statusHeight: baseRect.height
     property alias state: _root.state
 
@@ -40,9 +44,12 @@ Item {
             switch(_stateIndex % 5){
             case 0: _root.state = 'waitingForChecks';    break;
             case 1: _root.state = 'readyToExpose';       break;
-            case 2: _root.state = 'pauseExposure';       break;
-            case 3: _root.state = 'openTray';            break;
-            case 4: _root.state = 'closeTray';           break;
+            case 2: _root.state = 'pauseExposure';
+                expose(); break;
+            case 3: _root.state = 'openTray';
+                exposureComplete(); break;
+            case 4: _root.state = 'closeTray';
+                openTray(); break;
             } //    console.log("stateIndex(" + _stateIndex%4 + ") -> " + root.state)
         }
     }
