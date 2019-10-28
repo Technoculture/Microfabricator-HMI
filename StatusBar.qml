@@ -37,11 +37,12 @@ Item {
         anchors.fill: baseRect
         onClicked: {
             _stateIndex++;
-            switch(_stateIndex%4){
+            switch(_stateIndex % 5){
             case 0: _root.state = 'waitingForChecks';    break;
             case 1: _root.state = 'readyToExpose';       break;
-            case 2: _root.state = 'openTray';            break;
-            case 3: _root.state = 'closeTray';           break;
+            case 2: _root.state = 'pauseExposure';       break;
+            case 3: _root.state = 'openTray';            break;
+            case 4: _root.state = 'closeTray';           break;
             } //    console.log("stateIndex(" + _stateIndex%4 + ") -> " + root.state)
         }
     }
@@ -52,6 +53,8 @@ Item {
             PropertyChanges { target: _root; _color: style.bg_statusbar; _text: "Waiting for checks" } },
         State { name: "readyToExpose";
             PropertyChanges { target: _root; _color: style.lightgreen;   _text: "Ready to expose" } },
+        State { name: "pauseExposure";
+            PropertyChanges { target: _root; _color: style.lightyellow;   _text: "Pause the exposure" } },
         State { name: "openTray";
             PropertyChanges { target: _root; _color: style.brightgreen;  _text: "Open Tray" } },
         State { name: "closeTray";

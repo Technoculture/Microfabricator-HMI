@@ -23,24 +23,40 @@ Window {
 
     SplashScreen {  }
 
-    Drawer {
-        id: drawer
+    Item {
+        id: checking
         anchors.fill: bgRect
-    }
+        state: "in"
 
-    Checklist {
-        anchors.fill: bgRect
-        onToggleDrawer: {
-            console.log(checkIndex + " : " + drawer.currentIndex)
-            if (drawer.state === "closed") { drawer.state = "open" }
-            else { if (drawer.currentIndex === checkIndex) { drawer.state = "closed" } }
-            drawer.currentIndex = checkIndex
+        Drawer {
+            id: drawer
+            anchors.fill: parent
+        }
+        Checklist {
+            id: checklist
+            anchors.fill: parent
+            onToggleDrawer: {
+                console.log(checkIndex + " : " + drawer.currentIndex)
+                if (drawer.state === "closed") { drawer.state = "open" }
+                else { if (drawer.currentIndex === checkIndex) { drawer.state = "closed" } }
+                drawer.currentIndex = checkIndex
+            }
+        }
+        MouseArea {
+            anchors.fill: drawer
+            onClicked: {
+                checklist.state === "in" ? checklist.state = "out" : checklist.state = "in"; console.log( checklist.state)
+            }
         }
     }
 
-    Progress {  }
-
-    ExposureElapse {  }
+    Item {
+        id: exposing
+        visible: false
+        anchors.fill: bgRect
+        Progress {  }
+        ExposureElapse {  }
+    }
 
     StatusBar {
         anchors { bottom: bgRect.bottom; horizontalCenter: bgRect.horizontalCenter; bottomMargin: statusHeight/2 }

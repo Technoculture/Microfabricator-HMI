@@ -3,25 +3,26 @@ import QtQuick.Controls 2.12
 
 Item {
     signal toggleDrawer(int checkIndex)
+    state: "in"
+//    property alias state:
 
     UIStyle { id: style }
 
     Rectangle {
         id: baseRect
         height: 312; width: 255
-        x: 266; y: 84
+        x: 266;
         color: style.bg_checklist
         opacity: 0.9
     }
 
-    Rectangle {
+    Rectangle { // Header Box
         id: headerRect
         anchors { top: baseRect.top; left: baseRect.left }
         opacity: 0.3
         color: "grey"; height: 40; width: baseRect.width
     }
-
-    Text {
+    Text { // Header
         anchors { verticalCenter: headerRect.verticalCenter; left: headerRect.left; leftMargin: 20 }
         text: "Header"
     }
@@ -53,7 +54,6 @@ Item {
             }
         }
     }
-
     ListModel {
         id: checksModel
         ListElement { name: "Light Engine";             status: "ok" }
@@ -79,4 +79,9 @@ Item {
             delegate: checkItem
         }
     }
+
+    states: [
+        State { name: "in"; PropertyChanges { target: baseRect; y: 84 } },
+        State { name: "out"; PropertyChanges { target: baseRect; y: 392 } }
+    ]
 }
