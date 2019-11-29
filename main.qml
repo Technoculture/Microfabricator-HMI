@@ -11,14 +11,14 @@ Window {
         id: bgRect
         width: 800; height: 480
         anchors.centerIn: parent
-        color: style.bg
+		color: style.black
     }
 
-    SplashScreen {
-        id: splashscreen
-        anchors.fill: bgRect;
-        onLoadMainApp: { splashscreen.visible = false; mainapp.visible = true }
-    }
+//    SplashScreen {
+//        id: splashscreen
+//        anchors.fill: bgRect;
+//        onLoadMainApp: { splashscreen.visible = false; mainapp.visible = true }
+//    }
 
-    MainApp { id: mainapp; anchors.fill: bgRect; visible: false }
+	MainApp { id: mainapp; anchors.fill: bgRect; visible: true }//false }
 }

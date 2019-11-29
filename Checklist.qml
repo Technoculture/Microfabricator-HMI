@@ -16,33 +16,35 @@ Item {
         id: baseRect
         height: 312; width: 255
         x: 266;
-        color: style.bg_checklist
-        opacity: 0.9
+
+		border.color: style.grey
+		border.width: 1
 
         Drawer { id: drawer }
     }
 
     Rectangle { // Header Box
         id: headerRect
-        anchors { top: baseRect.top; left: baseRect.left }
-        opacity: 0.3
-        color: "grey"; height: 40; width: baseRect.width
+		anchors { top: baseRect.top; left: baseRect.left; topMargin: 1; bottomMargin: 1; leftMargin: 1; rightMargin: 1 }
+		color: style.black; height: 40; width: baseRect.width - 2
     }
     Text { // Header
         anchors { verticalCenter: headerRect.verticalCenter; left: headerRect.left; leftMargin: 20 }
         text: "Header"
+		color: style.white
     }
 
     Component {
         id: checkItem
         Rectangle {
             id: baseRect
-            height: 40; width: parent.width
-            color: { status === "pending" ? "red" : style.lightgreen }
+			height: 40; width: parent.width - 2
+			color: { status === "pending" ? style.red : style.green }
+
             Rectangle { // Selected Highlight
                 anchors.fill: parent
-                color: { listview.currentIndex == index ? "black" : "" }
-                opacity: { listview.currentIndex == index ? 0.2 : 0 }
+				color: { listview.currentIndex == index ? style.white : "" }
+				opacity: { listview.currentIndex == index ? 0.6 : 0 }
             }
             Text {
                 id: checkItemStatus
@@ -81,12 +83,15 @@ Item {
     }
 
     ScrollView {
-        anchors { top: headerRect.bottom; bottom: baseRect.bottom; left: baseRect.left }
+		anchors { top: headerRect.bottom; bottom: baseRect.bottom; bottomMargin: 1; left: baseRect.left }
+
         width: baseRect.width
         clip: true
         ListView {
             id: listview
             anchors.fill: parent
+			leftMargin: 1
+			rightMargin: 1
             model: checksModel
             delegate: checkItem
         }

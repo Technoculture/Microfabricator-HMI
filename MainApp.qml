@@ -5,7 +5,7 @@ Item {
 
     Checklist {
         id: checklist
-        anchors.fill: parent
+		anchors.fill: parent
     }
 
     Item {

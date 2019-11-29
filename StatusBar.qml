@@ -57,15 +57,15 @@ Item {
     // STATE
     states: [
         State { name: "waitingForChecks";
-            PropertyChanges { target: _root; _color: style.bg_statusbar; _text: "Waiting for checks" } },
+			PropertyChanges { target: _root; _color: style.grey; _text: "Waiting for checks" } },
         State { name: "readyToExpose";
-            PropertyChanges { target: _root; _color: style.lightgreen;   _text: "Ready to expose" } },
+			PropertyChanges { target: _root; _color: style.green;   _text: "Ready to expose" } },
         State { name: "pauseExposure";
-            PropertyChanges { target: _root; _color: style.lightyellow;   _text: "Pause the exposure" } },
+			PropertyChanges { target: _root; _color: style.grey;   _text: "Pause the exposure" } },
         State { name: "openTray";
-            PropertyChanges { target: _root; _color: style.brightgreen;  _text: "Open Tray" } },
+			PropertyChanges { target: _root; _color: style.green;  _text: "Open Tray" } },
         State { name: "closeTray";
-            PropertyChanges { target: _root; _color: style.brightgreen;  _text: "Close Tray" } }
+			PropertyChanges { target: _root; _color: style.green;  _text: "Close Tray" } }
     ]
     // =============================================================================================
 }
