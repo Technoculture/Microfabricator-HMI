@@ -40,6 +40,7 @@ Item {
             x: 62
             y: 34
             text: qsTr("Check Box")
+            onCheckedChanged: console.log(checkBox.checked)
         }
 
 
