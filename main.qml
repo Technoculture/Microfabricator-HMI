@@ -11,7 +11,7 @@ Window {
         id: bgRect
         width: 800; height: 480
         anchors.centerIn: parent
-		color: style.black
+        color: style.grey
     }
 
 //    SplashScreen {

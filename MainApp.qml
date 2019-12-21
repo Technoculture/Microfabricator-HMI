@@ -6,6 +6,7 @@ Item {
     Checklist {
         id: checklist
 		anchors.fill: parent
+        onStateChanged: { if(exposing.state == "onscreen") { state = "off" } }
     }
 
     Item {
@@ -13,8 +14,8 @@ Item {
         anchors.fill: parent
         state: "offscreen"
 
-        Progress { id: progress }
-        ExposureElapse { id: exposureelapse }
+        Progress { id: progress; checklistState: checklist._state }
+        ExposureElapse { id: exposureelapse; checklistState: checklist._state }
 
         states: [
             State { name:  "onscreen"; PropertyChanges { target: exposing; visible: true } },

@@ -24,10 +24,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     ucSerial* uv_uc = new ucSerial(&app);
-    uv_uc->sendCommand(20);
-
 
     QQmlApplicationEngine engine;
+
+    engine.rootContext()->setContextProperty("uv", uv_uc);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

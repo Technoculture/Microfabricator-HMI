@@ -34,7 +34,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Assets/logo-small.png \
-    Assets/logo.png
+    Assets/logo.png \
+    Drawers/LightEngineOk.qml \
+    Drawers/LightWaferAlignment.qml \
+    Drawers/MaskPlaced.qml \
+    Drawers/SetDuration.qml \
+    Drawers/SetPower.qml \
+    Drawers/TrayClosed.qml \
+    Drawers/VibrationMonitor.qml \
+    Drawers/WaferMaskDistance.qml \
+    Drawers/WaferPlaced.qml
 
 HEADERS += \
     gpio_fan_pump.h \

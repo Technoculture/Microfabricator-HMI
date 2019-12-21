@@ -13,6 +13,7 @@ Item {
     id: _root
     property alias _color: baseRect.color
     property alias _text: statusText.text
+    property alias _text_color: statusText.color
     // =============================================================================================
 
 
@@ -57,11 +58,11 @@ Item {
     // STATE
     states: [
         State { name: "waitingForChecks";
-			PropertyChanges { target: _root; _color: style.grey; _text: "Waiting for checks" } },
+            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: "Waiting for checks" } },
         State { name: "readyToExpose";
-			PropertyChanges { target: _root; _color: style.green;   _text: "Ready to expose" } },
+            PropertyChanges { target: _root; _color: style.green; _text: "Ready to expose" } },
         State { name: "pauseExposure";
-			PropertyChanges { target: _root; _color: style.grey;   _text: "Pause the exposure" } },
+            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: "Pause the exposure" } },
         State { name: "openTray";
 			PropertyChanges { target: _root; _color: style.green;  _text: "Open Tray" } },
         State { name: "closeTray";

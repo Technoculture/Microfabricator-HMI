@@ -4,7 +4,9 @@ QtObject {
     // General
 	readonly property color black: "black"
 	readonly property color green: "lime"
+    readonly property color lightgrey: "lightslategray"
 	readonly property color red: "red"
+    readonly property color yellow: "yellow"
 	readonly property color grey: "lightyellow"
 	readonly property color white: "white"
 
