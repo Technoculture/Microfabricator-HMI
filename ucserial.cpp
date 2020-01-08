@@ -6,8 +6,9 @@ ucSerial::ucSerial(QObject *parent) : QObject(parent)
     openSerialPort();
 }
 
-void ucSerial::setIntensity(int intensity)
+void ucSerial::setIntensity(unsigned short intensity)
 {
+    intensity_ = intensity;
     QByteArray m;
     m.setNum(intensity);
     writeData(m);
@@ -29,7 +30,6 @@ void ucSerial::openSerialPort()
     else
     {
         qDebug() << "NOT CONNECTED!";
-        //Open error
     }
 }
 

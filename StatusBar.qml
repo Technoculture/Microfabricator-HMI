@@ -69,5 +69,9 @@ Item {
 			PropertyChanges { target: _root; _color: style.green;  _text: "Close Tray" } }
     ]
     // =============================================================================================
+
+    transitions: [
+        Transition { ColorAnimation { duration: 100; easing: Easing.InOutExpo }}
+    ]
 }
 

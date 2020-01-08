@@ -4,6 +4,7 @@ Item {
     property alias _text_color: style.white
     property string checklistState: "out"
     state: checklistState == "out" ? "focus" : "onside"
+    //property alias x: baseRect.x
 
     UIStyle { id: style }
 

@@ -21,6 +21,19 @@ Item {
             State { name:  "onscreen"; PropertyChanges { target: exposing; visible: true } },
             State { name:  "offscreen"; PropertyChanges { target: exposing; visible: false } }
         ]
+
+//        transitions: [
+//            Transition {
+//                from: "*"
+//                to: "*"
+
+//                NumberAnimation {
+//                    targets: ["exposing.progress"]
+//                    properties: "x"
+//                    duration: 1000
+//                }
+//            }
+//        ]
     }
 
     StatusBar {

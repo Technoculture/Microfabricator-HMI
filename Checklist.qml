@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 Item {
     id: root
     property alias _state: root.state
-    state: "in"
+    state: "out"
 
     UIStyle { id: style }
 
@@ -96,15 +96,34 @@ Item {
     }
 
     states: [
-        State { name: "in"; PropertyChanges { target: baseRect; y: 65; } },
+        State {
+            name: "in";
+            PropertyChanges { target: baseRect; y: 65; }
+            PropertyChanges { target: drawer; }
+        },
         State {
             name: "out"
             PropertyChanges { target: baseRect; y: 392; }
-            PropertyChanges { target: drawer; visible: false }
+            PropertyChanges { target: drawer; x: drawer.x-15; }
         },
         State {
             name: "off"
-            PropertyChanges { target: drawer; visible: false }
+            PropertyChanges { target: drawer; x: drawer.x-15; }
+        }
+    ]
+
+    transitions: [
+        Transition { from: "in"; to: "*";
+            SequentialAnimation {
+                PropertyAnimation { target: drawer; properties: "x"; duration: 200; easing.type: Easing.OutExpo }
+                NumberAnimation { target: baseRect; property: "y"; duration: 500; easing.type: Easing.OutExpo }
+            }
+        },
+        Transition { from: "out,off"; to: "*";
+            SequentialAnimation {
+                NumberAnimation { target: baseRect; property: "y"; duration: 200; easing.type: Easing.OutExpo }
+                PropertyAnimation { target: drawer; properties: "x"; duration: 500; easing.type: Easing.OutExpo }
+            }
         }
     ]
 }

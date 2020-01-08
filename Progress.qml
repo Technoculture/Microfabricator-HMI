@@ -4,6 +4,7 @@ Item {
     id: _root
     property string checklistState: "out"
     state: checklistState == "in" ? "out" : "in"
+    //property alias Animate_x: baseRect.x
 
     UIStyle {
         id: style

@@ -20,7 +20,7 @@ Window {
 //        onLoadMainApp: { splashscreen.visible = false; mainapp.visible = true }
 //    }
 
-    MainApp { id: mainapp; anchors.fill: bgRect; visible: true }//false }
+    MainApp { id: mainapp; anchors.fill: bgRect; visible: true }
 
 
     // GLOBALS

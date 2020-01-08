@@ -11,7 +11,7 @@ Item {
 
     Timer {
         id: timer
-        interval: 2000; running: true; repeat: true
+        interval: 1000; running: true; repeat: true
         onTriggered: {
             animateIndex++;
             if(animateIndex === 2) { big.destroy() }
@@ -46,8 +46,8 @@ Item {
             from: "*"; to: "*"
             NumberAnimation {
                 properties: "x,y,width,opacity"
-                easing.type: Easing.InQuad
-                duration: 500
+                easing.type: Easing.InOutExpo
+                duration: 300
             }
         }
     ]

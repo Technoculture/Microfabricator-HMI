@@ -52,5 +52,9 @@ Item {
             State { name: "open";   PropertyChanges { target: baseRect; x: 520-267 } },
             State { name: "closed"; PropertyChanges { target: baseRect; x: 305-267 } }
         ]
+
+        transitions: [
+            Transition { from: "*"; to: "*"; NumberAnimation { target: baseRect; property: "x"; duration: 300; easing.type: Easing.InOutExpo; }}
+        ]
     }
 }
