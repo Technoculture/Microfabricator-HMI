@@ -9,12 +9,8 @@ Item {
         id: baseRect
         anchors.fill: _root
 
-        color: "red"
-
         Text {
             id: element
-            x: 225
-            y: 181
             text: qsTr("Text")
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter

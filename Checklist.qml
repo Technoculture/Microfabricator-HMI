@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 
-//import Globals 1.0
-
 Item {
     id: root
     property alias _state: root.state
@@ -76,19 +74,6 @@ Item {
         }
     }
 
-    ListModel {
-        id: checksModel
-        ListElement { name: "Light Engine";             status: "ok";       filename:"LightEngineOk" }
-        ListElement { name: "Wafer Placed";             status: "pending";  filename:"WaferPlaced" }
-        ListElement { name: "Mask Placed";              status: "pending";  filename:"MaskPlaced" }
-        ListElement { name: "Wafer-Mask Distance";      status: "pending";  filename:"WaferaskDistance" }
-        ListElement { name: "Tray Closed";              status: "ok";       filename:"TrayClosed" }
-        ListElement { name: "Light-Wafer Alignment";    status: "ok";       filename:"LightWaferAlignment" }
-        ListElement { name: "Vibration Monitor";        status: "ok";       filename:"VibrationMonitor" }
-        ListElement { name: "Set Power";                status: "pending";  filename:"SetPower" }
-        ListElement { name: "Set Duration";             status: "pending";  filename:"SetDuration" }
-    }
-
     ScrollView {
 		anchors { top: headerRect.bottom; bottom: baseRect.bottom; bottomMargin: 1; left: baseRect.left }
 
@@ -104,9 +89,7 @@ Item {
             delegate: checkItem
 
             onCurrentIndexChanged: {
-                //GloablState.currentIndex = currentIndex
-                drawer.stateColor = (checksModel.get(currentIndex).status) === "ok" ? "darkgreen" : "olive"
-                drawer.stateName = checksModel.get(currentIndex).name
+                globalCurrentIndex = currentIndex
                 drawer.stateComponent = checksModel.get(currentIndex).filename
             }
         }

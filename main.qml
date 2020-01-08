@@ -20,5 +20,36 @@ Window {
 //        onLoadMainApp: { splashscreen.visible = false; mainapp.visible = true }
 //    }
 
-	MainApp { id: mainapp; anchors.fill: bgRect; visible: true }//false }
+    MainApp { id: mainapp; anchors.fill: bgRect; visible: true }//false }
+
+
+    // GLOBALS
+    property int globalCurrentIndex: 0
+
+    ListModel {
+        id: checksModel
+        ListElement { name: "Light Engine";             status: "ok";       filename:"LightEngineOk" }
+        ListElement { name: "Wafer Placed";             status: "pending";  filename:"WaferPlaced" }
+        ListElement { name: "Mask Placed";              status: "pending";  filename:"MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";      status: "pending";  filename:"WaferMaskDistance" }
+        ListElement { name: "Tray Closed";              status: "ok";       filename:"TrayClosed" }
+        ListElement { name: "Light-Wafer Alignment";    status: "ok";       filename:"LightWaferAlignment" }
+        ListElement { name: "Vibration Monitor";        status: "ok";       filename:"VibrationMonitor" }
+        ListElement { name: "Set Power";                status: "pending";  filename:"SetPower" }
+        ListElement { name: "Set Duration";             status: "pending";  filename:"SetDuration" }
+    }
+
+//    property int pendingChecksCount: {
+//        countPendingChecks();
+//    }
+
+//    function countPendingChecks(){
+//        let pendingCount = 0;
+//        if(checksModel.get(i).status === "pending"){
+//            pendingCount++;
+//        }
+//        }
+//        console.log(pendingCount);
+//        return pendingCount;
+//    }
 }

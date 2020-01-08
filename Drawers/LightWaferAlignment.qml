@@ -8,8 +8,6 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-
-        color: "red"
     }
 
     UIStyle { id: style }

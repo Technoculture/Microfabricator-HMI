@@ -21,7 +21,6 @@
         <file>Drawers/WaferMaskDistance.qml</file>
         <file>Drawers/WaferPlaced.qml</file>
         <file>Drawers/Blank.qml</file>
-        <file>GlobalState.qml</file>
         <file>qmldir</file>
     </qresource>
 </RCC>

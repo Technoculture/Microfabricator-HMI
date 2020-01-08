@@ -9,8 +9,6 @@ Item {
         id: baseRect
         anchors.fill: _root
 
-        color: "red"
-
         Text {
             id: element
             x: 280
@@ -32,6 +30,18 @@ Item {
         onValueChanged: {
             uv.intensity = value
             console.log(value.toFixed(0))
+        }
+    }
+
+    Button {
+        id: doneButton
+        text: "\u2714 " + "Done"
+
+        onClicked: {
+            console.log(globalCurrentIndex)
+            console.log(checksModel.get(globalCurrentIndex).status)
+            checksModel.set(globalCurrentIndex, {"status" : "ok"})
+            console.log(checksModel.get(globalCurrentIndex).status)
         }
     }
 }

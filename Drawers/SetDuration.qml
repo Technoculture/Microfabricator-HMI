@@ -9,14 +9,10 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: style.white
+        color: "black"
     }
 
     UIStyle { id: style }
-
-//    GlobalState {
-//        id: checksModel
-//    }
 
     Column {
         anchors.verticalCenter: baseRect.verticalCenter
@@ -24,6 +20,7 @@ Item {
 
         Text {
             text: "Duration: " + (slider.value).toFixed(1)
+            color: style.white
         }
 
         Slider {
@@ -31,10 +28,9 @@ Item {
             value: 0.5
         }
 
-        Text { text: "" }
-
         Text {
             text: "Interval: " +  (slider1.value).toFixed(1)
+            color: style.white
         }
 
         Slider {
@@ -46,12 +42,12 @@ Item {
             id: doneButton
             text: "\u2714 " + "Done"
 
-//            onClicked: {
-//                console.log(checksModel.currentIndex)
-//                console.log(checksModel.checkItemsModel.get(checksModel.currentIndex).status)
-//                checksModel.checkItemsModel.set(checksModel.currentIndex, {"status" : "ok"})
-//                console.log(checksModel.checkItemsModel.get(checksModel.currentIndex).status)
-//            }
+            onClicked: {
+                console.log(globalCurrentIndex)
+                console.log(checksModel.get(globalCurrentIndex).status)
+                checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                console.log(checksModel.get(globalCurrentIndex).status)
+            }
         }
     }
 }

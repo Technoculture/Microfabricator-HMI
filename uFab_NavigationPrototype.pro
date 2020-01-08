@@ -43,7 +43,8 @@ DISTFILES += \
     Drawers/TrayClosed.qml \
     Drawers/VibrationMonitor.qml \
     Drawers/WaferMaskDistance.qml \
-    Drawers/WaferPlaced.qml
+    Drawers/WaferPlaced.qml \
+    onFans.sh
 
 HEADERS += \
     gpio_fan_pump.h \

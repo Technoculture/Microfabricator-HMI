@@ -14,11 +14,11 @@ int main(int argc, char *argv[])
     }
 
 //    // ---GPIO--------------
-//    GPIO_Fan_Pump gpio;
-//    gpio.setState(true);
-//    gpio.setState(true);
-//    gpio.setState(true);
-//    gpio.setState(false);
+    GPIO_Fan_Pump gpio;
+    gpio.setState(true);
+    gpio.setState(true);
+    gpio.setState(true);
+    gpio.setState(false);
 //    // ---------------------
 
     QGuiApplication app(argc, argv);

@@ -8,25 +8,30 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-
-        color: "red"
+        color: style.black
 
         Text {
             id: element
-            x: 308
-            y: 233
             text: "100"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: 28
+            color: style.white
         }
     }
 
     UIStyle { id: style }
+
+    Button {
+        id: doneButton
+        text: "\u2714 " + "Done"
+
+        onClicked: {
+            console.log(globalCurrentIndex)
+            console.log(checksModel.get(globalCurrentIndex).status)
+            checksModel.set(globalCurrentIndex, {"status" : "ok"})
+            console.log(checksModel.get(globalCurrentIndex).status)
+        }
+    }
 }
 
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

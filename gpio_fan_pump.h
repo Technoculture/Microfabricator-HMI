@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QTextStream>
 #include <QVector>
+#include <QProcess>
+//#include "libsoc_gpio.h"
+//#include "libsoc_debug.h"
 
 class GPIO_Fan_Pump : public QObject
 {

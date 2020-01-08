@@ -4,12 +4,12 @@ import QtQuick.Controls 2.12
 import "./Drawers"
 
 Item {
-    property int currentIndex: 0
     property alias state: baseRect.state
 
-    property string stateComponent: "Blank"
-    property color stateColor: "black"
-    property string stateName: "CheckItem"
+    property int currentIndex: globalCurrentIndex
+    property string stateComponent: checksModel.get(currentIndex).filename
+    property color stateColor: checksModel.get(globalCurrentIndex).status=== "ok" ? "darkgreen" : "olive"
+    property string stateName:  checksModel.get(currentIndex).name
 
     UIStyle { id: style }
 
@@ -39,6 +39,7 @@ Item {
         }
 
         Loader {
+            id: loader
             anchors.top: header.bottom
             anchors.bottom: baseRect.bottom
             anchors.left: baseRect.left
