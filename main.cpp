@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "ucserial.h"
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
         QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     }
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     // ===================================
     ucSerial* uv_uc = new ucSerial(&app);

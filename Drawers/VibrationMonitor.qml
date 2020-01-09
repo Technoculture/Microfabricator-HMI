@@ -8,21 +8,35 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-
-        Text {
-            id: element
-            text: qsTr("Text")
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 40
-        }
+        color: style.black
     }
 
     UIStyle { id: style }
+
+    Item {
+        anchors.fill: baseRect
+        Column {
+            anchors.fill: parent
+            anchors.margins: 20
+            spacing: 18
+
+            Text {
+                text: "\u2714"
+                color: style.green
+                font.pointSize: 40
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log(globalCurrentIndex)
+                        console.log(checksModel.get(globalCurrentIndex).status)
+                        checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                        console.log(checksModel.get(globalCurrentIndex).status)
+                    }
+                }
+            }
+        }
+    }
 }
 
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

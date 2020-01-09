@@ -11,7 +11,11 @@ Window {
         id: bgRect
         width: 800; height: 480
         anchors.centerIn: parent
-        color: style.grey
+        color: style.red//style.green//"red"//style.grey
+    }
+
+    VibrationPlot {
+        anchors.fill: bgRect
     }
 
 //    SplashScreen {
@@ -33,7 +37,6 @@ Window {
         ListElement { name: "Mask Placed";              status: "pending";  filename:"MaskPlaced" }
         ListElement { name: "Wafer-Mask Distance";      status: "pending";  filename:"WaferMaskDistance" }
         ListElement { name: "Tray Closed";              status: "ok";       filename:"TrayClosed" }
-        ListElement { name: "Light-Wafer Alignment";    status: "ok";       filename:"LightWaferAlignment" }
         ListElement { name: "Vibration Monitor";        status: "ok";       filename:"VibrationMonitor" }
         ListElement { name: "Set Power";                status: "pending";  filename:"SetPower" }
         ListElement { name: "Set Duration";             status: "pending";  filename:"SetDuration" }

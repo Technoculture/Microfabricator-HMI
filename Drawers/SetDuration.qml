@@ -9,7 +9,7 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: "black"
+        color: style.black
     }
 
     UIStyle { id: style }

@@ -12,7 +12,6 @@
         <file>Assets/logo-small.png</file>
         <file>Assets/logo.png</file>
         <file>Drawers/LightEngineOk.qml</file>
-        <file>Drawers/LightWaferAlignment.qml</file>
         <file>Drawers/MaskPlaced.qml</file>
         <file>Drawers/SetDuration.qml</file>
         <file>Drawers/SetPower.qml</file>
@@ -22,5 +21,7 @@
         <file>Drawers/WaferPlaced.qml</file>
         <file>Drawers/Blank.qml</file>
         <file>qmldir</file>
+        <file>VibrationPlot.qml</file>
+        <file>Assets/tick.gif</file>
     </qresource>
 </RCC>

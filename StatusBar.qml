@@ -26,6 +26,8 @@ Item {
         id: baseRect
         height: 42; width: 644
         anchors.centerIn: parent
+        border.color: style.black
+        border.width: 1
     }
 
     Text {
@@ -71,7 +73,7 @@ Item {
     // =============================================================================================
 
     transitions: [
-        Transition { ColorAnimation { duration: 100; easing: Easing.InOutExpo }}
+        Transition { ColorAnimation { duration: 500; easing.type: Easing.InOutExpo }}
     ]
 }
 

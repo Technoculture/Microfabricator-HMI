@@ -10,15 +10,19 @@ Item {
 
     MouseArea {
         anchors.fill: headerRect
-        onClicked: { root.state === "in" ? root.state = "out" : root.state = "in" }
+        onClicked: {
+            if(root.state === "in") { drawer.state = "hide"; root.state = "out"; }
+            else { root.state = "in"; drawer.state = "closed"; }
+        }
     }
 
     Rectangle {
         id: baseRect
         height: 312; width: 255
         x: 266;
+        color: style.black
 
-		border.color: style.grey
+        border.color: style.black
 		border.width: 1
 
         Drawer {
@@ -42,9 +46,10 @@ Item {
         Rectangle {
             id: baseRect
 			height: 40; width: parent.width - 2
-            color: { status === "pending" ? style.yellow : style.green }
+            color: { status === "pending" ? style.red : style.green }
 
             Rectangle { // Selected Highlight
+                id: highlight
                 anchors.fill: parent
                 color: { listview.currentIndex == index ? style.black : "" }
                 opacity: { listview.currentIndex == index ? 0.6 : 0 }
@@ -79,6 +84,7 @@ Item {
 
         width: baseRect.width
         clip: true
+        ScrollBar.vertical.interactive: true
 
         ListView {
             id: listview
@@ -99,16 +105,12 @@ Item {
         State {
             name: "in";
             PropertyChanges { target: baseRect; y: 65; }
-            PropertyChanges { target: drawer; }
+            PropertyChanges { target: drawer; x: 10; }
         },
         State {
             name: "out"
             PropertyChanges { target: baseRect; y: 392; }
-            PropertyChanges { target: drawer; x: drawer.x-15; }
-        },
-        State {
-            name: "off"
-            PropertyChanges { target: drawer; x: drawer.x-15; }
+            PropertyChanges { target: drawer; x: 0; }
         }
     ]
 

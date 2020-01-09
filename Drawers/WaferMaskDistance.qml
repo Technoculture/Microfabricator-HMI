@@ -22,15 +22,29 @@ Item {
 
     UIStyle { id: style }
 
-    Button {
-        id: doneButton
-        text: "\u2714 " + "Done"
+    Item {
+        anchors.fill: baseRect
+        Column {
+            anchors.fill: parent
+            anchors.margins: 20
+            spacing: 18
 
-        onClicked: {
-            console.log(globalCurrentIndex)
-            console.log(checksModel.get(globalCurrentIndex).status)
-            checksModel.set(globalCurrentIndex, {"status" : "ok"})
-            console.log(checksModel.get(globalCurrentIndex).status)
+            Text {
+                text: "\u2714"
+                color: style.green
+                font.pointSize: 40
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log(globalCurrentIndex)
+                        console.log(checksModel.get(globalCurrentIndex).status)
+                        checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                        console.log(checksModel.get(globalCurrentIndex).status)
+                    }
+                }
+            }
         }
     }
 }

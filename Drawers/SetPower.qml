@@ -8,46 +8,44 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-
-        Text {
-            id: element
-            x: 280
-            y: 144
-            text: qsTr("Text")
-            font.pixelSize: 29
-        }
+        color: style.black
     }
 
     UIStyle { id: style }
 
-    Slider {
-        id: slider
-        anchors.horizontalCenter: baseRect.horizontalCenter
-        anchors.verticalCenter: baseRect.verticalCenter
-        to: 100
-        value: 100
-        stepSize: 1
-        onValueChanged: {
-            uv.intensity = value
-            console.log(value.toFixed(0))
+    Column {
+        anchors.fill: baseRect
+        anchors.margins: 20
+        spacing: 18
+
+        Text {
+            id: element
+            text: slider.value
+            font.pixelSize: 29
+            color: style.white
         }
-    }
 
-    Button {
-        id: doneButton
-        text: "\u2714 " + "Done"
+        Slider {
+            id: slider
+            to: 100
+            value: 100
+            stepSize: 1
+            onValueChanged: {
+                uv.intensity = value.toFixed(0)
+                console.log(value.toFixed(0))
+            }
+        }
 
-        onClicked: {
-            console.log(globalCurrentIndex)
-            console.log(checksModel.get(globalCurrentIndex).status)
-            checksModel.set(globalCurrentIndex, {"status" : "ok"})
-            console.log(checksModel.get(globalCurrentIndex).status)
+        Button {
+            id: doneButton
+            text: "\u2714 " + "Done"
+
+            onClicked: {
+                console.log(globalCurrentIndex)
+                console.log(checksModel.get(globalCurrentIndex).status)
+                checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                console.log(checksModel.get(globalCurrentIndex).status)
+            }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

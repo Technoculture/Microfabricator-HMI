@@ -1,4 +1,4 @@
-QT += quick serialport
+QT += quick serialport charts
 
 CONFIG += c++11
 
@@ -34,8 +34,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     Assets/logo-small.png \
     Assets/logo.png \
+    Checklist.qml \
+    Drawer.qml \
     Drawers/LightEngineOk.qml \
-    Drawers/LightWaferAlignment.qml \
     Drawers/MaskPlaced.qml \
     Drawers/SetDuration.qml \
     Drawers/SetPower.qml \
@@ -43,7 +44,15 @@ DISTFILES += \
     Drawers/VibrationMonitor.qml \
     Drawers/WaferMaskDistance.qml \
     Drawers/WaferPlaced.qml \
-    onFans.sh
+    ExposureElapse.qml \
+    GlobalState.qml \
+    MainApp.qml \
+    Progress.qml \
+    SplashScreen.qml \
+    StatusBar.qml \
+    UIStyle.qml \
+    VibrationPlot.qml \
+    main.qml
 
 HEADERS += \
     ucserial.h

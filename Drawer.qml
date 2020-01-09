@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.0
 
 import "./Drawers"
 
@@ -8,7 +9,7 @@ Item {
 
     property int currentIndex: globalCurrentIndex
     property string stateComponent: checksModel.get(currentIndex).filename
-    property color stateColor: checksModel.get(globalCurrentIndex).status=== "ok" ? "darkgreen" : "olive"
+    property color stateColor: checksModel.get(globalCurrentIndex).status=== "ok" ? "darkgreen" : "darkred"
     property string stateName:  checksModel.get(currentIndex).name
 
     UIStyle { id: style }
@@ -50,7 +51,8 @@ Item {
 
         states: [
             State { name: "open";   PropertyChanges { target: baseRect; x: 520-267 } },
-            State { name: "closed"; PropertyChanges { target: baseRect; x: 305-267 } }
+            State { name: "closed"; PropertyChanges { target: baseRect; x: 305-267-5 } },
+            State { name: "hide"; PropertyChanges { target: baseRect; x: 305-267-15 } }
         ]
 
         transitions: [

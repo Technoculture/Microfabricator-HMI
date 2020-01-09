@@ -17,6 +17,10 @@ Item {
         id: doneButton
         text: "\u2714 " + "Done"
 
+        anchors.bottom: baseRect.bottom
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.margins: 20
+
         onClicked: {
             console.log(globalCurrentIndex)
             console.log(checksModel.get(globalCurrentIndex).status)

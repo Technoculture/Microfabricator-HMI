@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import "../"
 
 Item {
@@ -8,20 +9,24 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-
-        Switch {
-            id: element
-            text: qsTr("Switch")
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-        }
+        color: style.black
     }
 
     UIStyle { id: style }
-}
 
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:2;anchors_x:261;anchors_y:220}
+    ColumnLayout {
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.verticalCenter: baseRect.verticalCenter
+
+        DelayButton {
+            id: element
+            text: "Outwards"
+            onClicked: {
+                text = "Inwards"
+            }
+        }
+        DelayButton {
+            text: "Stop"
+        }
+    }
 }
-##^##*/
