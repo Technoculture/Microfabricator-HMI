@@ -1,7 +1,9 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "ucserial.h"
+#include "uvfanpumpcontroller.h"
+#include "slidercontroller.h"
+#include "sensorscontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,13 +17,17 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     // ===================================
-    ucSerial* uv_uc = new ucSerial(&app);
+    UvFanPumpController* UVControl = new UvFanPumpController(&app, "/dev/ttyUSB0");
+    SliderController* SliderControl = new SliderController(&app, "/dev/ttyUSB1");
+    SensorsController* SensorControl = new SensorsController(&app, "/dev/ttyUSB2");
     // ===================================
 
     QQmlApplicationEngine engine;
 
     // CONTEXT PROPERTY ====================================
-    engine.rootContext()->setContextProperty("uv", uv_uc);
+    engine.rootContext()->setContextProperty("uvController", UVControl);
+    engine.rootContext()->setContextProperty("sliderController", SliderControl);
+    engine.rootContext()->setContextProperty("sensorController", SensorControl);
     // =====================================================
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

@@ -1,41 +1,27 @@
 #include "ucserial.h"
 
-ucSerial::ucSerial(QObject *parent) : QObject(parent)
+ucSerial::ucSerial(QObject *parent, const QString& port_name) : QObject(parent)
 {
     serial = new QSerialPort(this);
-    openSerialPort();
+    openSerialPort(port_name);
 }
 
-void ucSerial::setIntensity(unsigned short intensity)
+void ucSerial::openSerialPort(const QString& port_name)
 {
-    intensity_ = intensity;
-    QByteArray m;
-    m.setNum(intensity);
-    writeData(m);
-}
-
-void ucSerial::openSerialPort()
-{
-    serial->setPortName("/dev/ttyUSB0");
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setPortName(port_name);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
 
-    if (serial->open(QIODevice::ReadWrite))
-    {
-        qDebug() << "CONNECTED!";
-    }
-    else
-    {
-        qDebug() << "NOT CONNECTED!";
-    }
+    if (serial->open(QIODevice::ReadWrite)){ qDebug() << port_name << ": CONNECTED!"; }
+    else { qDebug() << port_name << ": NOT CONNECTED!"; }
 }
 
 void ucSerial::writeData(QByteArray &data)
 {
-    const char enter = '\12';
+    constexpr char enter = '\12';
     data.append(enter);
     serial->write(data);
     qDebug() << data;

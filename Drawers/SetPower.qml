@@ -27,13 +27,8 @@ Item {
 
         Slider {
             id: slider
-            to: 100
-            value: 100
-            stepSize: 1
-            onValueChanged: {
-                uv.intensity = value.toFixed(0)
-                console.log(value.toFixed(0))
-            }
+            to: 100; value: 100; stepSize: 1
+            onValueChanged:{uvController.intensity = value.toFixed(0)}
         }
 
         Button {
@@ -41,10 +36,10 @@ Item {
             text: "\u2714 " + "Done"
 
             onClicked: {
-                console.log(globalCurrentIndex)
-                console.log(checksModel.get(globalCurrentIndex).status)
+//                console.log(globalCurrentIndex)
+//                console.log(checksModel.get(globalCurrentIndex).status)
                 checksModel.set(globalCurrentIndex, {"status" : "ok"})
-                console.log(checksModel.get(globalCurrentIndex).status)
+//                console.log(checksModel.get(globalCurrentIndex).status)
             }
         }
     }

@@ -15,7 +15,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        ucserial.cpp
+        sensorscontroller.cpp \
+        slidercontroller.cpp \
+        ucserial.cpp \
+        uvfanpumpcontroller.cpp
 
 RESOURCES += \
     qml.qrc
@@ -55,4 +58,7 @@ DISTFILES += \
     main.qml
 
 HEADERS += \
-    ucserial.h
+    sensorscontroller.h \
+    slidercontroller.h \
+    ucserial.h \
+    uvfanpumpcontroller.h
