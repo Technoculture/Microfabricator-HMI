@@ -3,10 +3,11 @@
 ucSerial::ucSerial(QObject *parent, const QString& port_name) : QObject(parent)
 {
     serial = new QSerialPort(this);
-    openSerialPort(port_name);
+    portName_ = port_name;
+    isConnected_ = openSerialPort(portName_);
 }
 
-void ucSerial::openSerialPort(const QString& port_name)
+bool ucSerial::openSerialPort(const QString& port_name)
 {
     serial->setPortName(port_name);
     serial->setBaudRate(QSerialPort::Baud115200);
@@ -15,8 +16,14 @@ void ucSerial::openSerialPort(const QString& port_name)
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
 
-    if (serial->open(QIODevice::ReadWrite)){ qDebug() << port_name << ": CONNECTED!"; }
-    else { qDebug() << port_name << ": NOT CONNECTED!"; }
+    if (serial->open(QIODevice::ReadWrite)){
+         return true;
+        qDebug() << port_name << ": CONNECTED!";
+    }
+    else {
+        return false;
+        qDebug() << port_name << ": NOT CONNECTED!";
+    }
 }
 
 void ucSerial::writeData(QByteArray &data)

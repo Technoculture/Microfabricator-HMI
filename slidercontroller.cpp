@@ -4,7 +4,7 @@ SliderController::SliderController(QObject *parent, QString port_name) : QObject
     try {
         serial_ = new ucSerial(this, port_name);
     } catch (...) {
-        qDebug() << "Failed to Setup communications with Setup Controller.";
+        qDebug() << "Failed to Setup communications with SliderController.";
     }
 
     states_["MOVE_OUTWARDS"] = 1;
