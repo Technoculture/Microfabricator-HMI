@@ -19,7 +19,7 @@ Window {
 //        }
     }
 
-    VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "red"; opacity: 0 }
+    VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;
@@ -29,21 +29,38 @@ Window {
     MainApp { id: mainapp; anchors.fill: bgRect; visible: true
         onChecklistStateChanged: {
             if(checklistState == "in"){
-//                ufab.opacity = 0;
-//                vibration.opacity = 1
+                ufab.state = "notVisible"
+                vibration.opacity = 1
+            } else {
+                ufab.state = "visible"
+                vibration.opacity = 0
             }
         }
     }
 
-//    Text {
-//        id: ufab
-//        anchors.centerIn: parent
-//        text: "uFabricator"
-//        font.pointSize: 88
-//        font.weight: Font.Thin
-//        color: "black"
-//    }
+    Text {
+        id: ufab
+        x: 140; y: 150
+        text: "uFabricator"
+        font.pointSize: 70
+        font.weight: Font.Thin
+        color: "white"
 
+        states: [
+            State { name: "visible"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
+            State { name: "notVisible"; PropertyChanges { target: ufab; opacity: 0.0 } PropertyChanges { target: ufab; y: -100 }}
+        ]
+
+        transitions: [
+            Transition { from: "*"; to: "*";
+                NumberAnimation {
+                    target: ufab
+                    properties: "opacity,y"
+                    duration: 500
+                    easing.type: Easing.OutExpo
+                }}
+        ]
+    }
 
     // GLOBALS
     property int globalCurrentIndex: 0
