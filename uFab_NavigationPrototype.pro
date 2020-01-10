@@ -14,13 +14,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        lightsensor.cpp \
         main.cpp \
         sensorscontroller.cpp \
         slidercontroller.cpp \
         ucserial.cpp \
-        uvfanpumpcontroller.cpp \
-        vibrationsensor.cpp
+        uvfanpumpcontroller.cpp
 
 RESOURCES += \
     qml.qrc
@@ -60,9 +58,7 @@ DISTFILES += \
     main.qml
 
 HEADERS += \
-    lightsensor.h \
     sensorscontroller.h \
     slidercontroller.h \
     ucserial.h \
-    uvfanpumpcontroller.h \
-    vibrationsensor.h
+    uvfanpumpcontroller.h

@@ -3,6 +3,9 @@ import QtCharts 2.0
 
 Item {
     anchors.fill: parent
+    Text {
+        text: sensorController.serialData
+    }
     Canvas {
         width: 800; height: 200
         contextType: "2d"

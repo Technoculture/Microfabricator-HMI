@@ -9,39 +9,30 @@ SensorsController::SensorsController(QObject *parent, QString port_name) : QObje
     modes_["SIT_IDLE"]              = 4;
 
     idleMode_ = modes_["VIBRATION_SENSOR"];
-    mode_ = modes_["VIBRATION_SENSOR"]; //qDebug() << "IDLE MODE: " << idleMode_;
+    mode("VIBRATION_SENSOR");
 
-    vSensor = new VibrationSensor(this);
-    lSensor = new LightSensor(this);
-//    tSensor = new TemperatureSensor(this);
-
-    connect(serial_->serial, SIGNAL(readyRead()),
-            vSensor, SLOT(readIncommingData()));
+    connect(serial_->serial, SIGNAL(readyRead()), this, SLOT(readIncommingData()));
 }
 
-void SensorsController::modeChanged(){
-    disconnect(serial_->serial, SIGNAL(readyRead()));
-    switch (modes_[mode_]) {
-    case 1:
-        connect(serial_->serial, SIGNAL(readyRead()),
-                lSensor, SLOT(readIncommingData()));
-        break;
-    case 2:
-        connect(serial_->serial, SIGNAL(readyRead()),
-                vSensor, SLOT(readIncommingData()));
-        break;
-    case 3: // connect(serial_->serial, SIGNAL(readyRead()), tSensor, SLOT(readIncommingData())); break;
-    default:
-        break;
-    }
+void SensorsController::readIncommingData(){
+    QStringList buffer_split = serialBuffer_.split(";");
+    if(buffer_split.length() < 2){ // no pased value yet so continue accumulating bytes from serial in the buffer.
+        incommingData_ = (serial_->serial)->readAll();
+        serialBuffer_ = serialBuffer_ + QString::fromStdString(incommingData_.toStdString());
+        incommingData_.clear(); }
+    else{ // the second element of buffer_split is parsed correctly, update the temperature value on temp_lcdNumber
+        serialBuffer_ = "";
+        parsedData_ = buffer_split[1];
+        updateSerialData(); }
 }
 
-void SensorsController::mode(const QString m) {
+void SensorsController::mode(QString m) {
     if(modes_.keys().contains(m)){
+        mode_ = m;
         unsigned short command = modes_.value(mode_);
         QByteArray m;
         m.setNum(command);
-        try { serial_->writeData(m); mode_ = m; modeChanged(); }
+        try { serial_->writeData(m); }
         catch (...) { qDebug() << "Transmission Failed: " << QString(m); }}
     else { qDebug() << "Invalid State: " << QString(m); }
 }

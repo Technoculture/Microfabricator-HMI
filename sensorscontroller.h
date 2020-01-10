@@ -5,8 +5,6 @@
 #include <QHash>
 #include <QByteArray>
 #include "ucserial.h"
-#include "vibrationsensor.h"
-#include "lightsensor.h"
 
 class SensorsController : public QObject
 {
@@ -21,12 +19,12 @@ public:
     QString mode() const{ return mode_; }
     QHash<QString, unsigned short> modes_;
 
-    void modeChanged();
+    QString serialData(){ return parsedData_; }
 
-    QString serialData(){ return serialData_; }
 
 public slots:
-    void serialData(QString data){ serialData_ = data; updateSerialData(); }
+    void readIncommingData();
+    void serialData(QString data){ parsedData_ = data; qDebug() << "SensorsController:serialData -> New Data -> " << data; updateSerialData(); }
 
 signals:
     void updateSerialData();
@@ -35,11 +33,11 @@ private:
     QString mode_;
     QString idleMode_;
 
-    VibrationSensor* vSensor;
-    LightSensor* lSensor;
-
     ucSerial* serial_;
-    QString serialData_;
+
+    QByteArray incommingData_;
+    QString serialBuffer_;
+    QString parsedData_;
 };
 
 #endif // SENSORSCONTROLLER_H

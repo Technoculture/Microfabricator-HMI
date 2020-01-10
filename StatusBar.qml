@@ -39,13 +39,24 @@ Item {
     // =============================================================================================
 
     CheckBox {
+        id: fan
         text: "Fan"
         checked: true
         anchors.right: baseRect.left
         anchors.verticalCenter: baseRect.verticalCenter
-
+        onCheckStateChanged: { uvController.fanState = checked }
+    }
+    CheckBox {
+        text: "Mode"
+        checked: true
+        anchors.right: baseRect.left
+        anchors.bottom: fan.top
         onCheckStateChanged: {
-            uvController.fanState = checked
+            if(checked){
+                sensorController.mode = "VIBRATION_SENSOR"
+            } else {
+                sensorController.mode = "LIGHT_SENSOR"
+            }
         }
     }
 

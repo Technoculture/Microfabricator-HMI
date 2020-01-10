@@ -16,7 +16,7 @@ Item {
     }
 
     Image { id: big; source: "Assets/logo.png" }
-    Image { id: small; source: "Assets/logo-small.png"; x: -75; y: 202; }
+    Image { id: small; source: "Assets/logo-small.png"; x: 50; y: 35; }
 
     states: [
         State { name: "a"; when: animateIndex === 0;
