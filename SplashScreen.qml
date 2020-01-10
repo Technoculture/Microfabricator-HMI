@@ -30,6 +30,6 @@ Item {
     ]
 
     transitions: [
-        Transition { from: "*"; to: "*"; NumberAnimation { properties: "x,y,width,opacity"; easing.type: Easing.OutExpo; duration: 1000 } }
+        Transition { from: "*"; to: "*"; NumberAnimation { properties: "x,y,width,opacity"; easing.type: Easing.OutSine; duration: 1000 } }
     ]
 }

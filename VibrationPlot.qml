@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtCharts 2.0
 
 Item {
+    property color lineColor: Qt.rgba(0,0,0);
     anchors.fill: parent
     Text {
         text: sensorController.serialData
@@ -83,7 +84,7 @@ Item {
         }
 
         onPaint: {
-            context.strokeStyle = Qt.rgba(0,0,0);
+            context.strokeStyle = lineColor
             //context.strokeStyle = Qt.rgba(1,1,1);
             context.path = myPath;
             context.stroke();
