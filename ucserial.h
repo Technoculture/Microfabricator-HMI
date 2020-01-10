@@ -16,10 +16,10 @@ public:
     void writeData(QByteArray&);
     bool retryConnecting(){ return openSerialPort(portName_); }
     bool isConnected(){ return isConnected_; }
+    QSerialPort* serial;
 signals:
 
 private:
-    QSerialPort* serial;
     QString portName_ = "";
     bool isConnected_ = false;
     bool openSerialPort(const QString&);

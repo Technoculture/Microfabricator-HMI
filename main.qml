@@ -3,7 +3,7 @@ import QtQuick.Window 2.12
 
 Window {
     id: window; visible: true
-    width: 800; height: 480// minimumWidth: 800; maximumWidth: 800; minimumHeight: 480; maximumHeight: 480;
+    minimumWidth: 800; maximumWidth: 800; minimumHeight: 480; maximumHeight: 480;
 
     UIStyle { id: style }
 
@@ -14,13 +14,7 @@ Window {
         color: style.red//style.green//"red"//style.grey
     }
 
-    VibrationPlot {
-        anchors.fill: bgRect
-        Component.onCompleted: {
-            sensorController.mode = "LIGHT_SENSOR"
-        }
-    }
-
+    VibrationPlot { anchors.fill: bgRect }
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;

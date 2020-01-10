@@ -1,8 +1,7 @@
 #include "slidercontroller.h"
 
 SliderController::SliderController(QObject *parent, QString port_name) : QObject(parent){
-    try { serial_ = new ucSerial(this, port_name); }
-    catch (...) { qDebug() << "Failed to Setup communications with SliderController."; }
+    serial_ = new ucSerial(this, port_name);
 
     states_["MOVE_OUTWARDS"]    = 1;
     states_["MOVE_INWARDS"]     = 2;

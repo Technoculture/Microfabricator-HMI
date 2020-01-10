@@ -1,9 +1,7 @@
 #include "uvfanpumpcontroller.h"
 
-UvFanPumpController::UvFanPumpController(QObject *parent, QString port_name)
-    : QObject(parent){
-    try { serial_ = new ucSerial(this, port_name); }
-    catch (...) { qDebug() << "Failed to Setup communications with UvFanPumpController."; }
+UvFanPumpController::UvFanPumpController(QObject *parent, QString port_name): QObject(parent){
+    serial_ = new ucSerial(this, port_name);
 }
 
 void UvFanPumpController::fanState(bool state){
