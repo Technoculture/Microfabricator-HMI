@@ -27,7 +27,7 @@ Item {
 
         Slider {
             id: slider
-            to: 100; value: 100; stepSize: 1
+            to: 100; value: 0; stepSize: 1
             onValueChanged:{uvController.intensity = value.toFixed(0)}
         }
 

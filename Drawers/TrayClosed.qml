@@ -19,14 +19,25 @@ Item {
         anchors.verticalCenter: baseRect.verticalCenter
 
         DelayButton {
-            id: element
-            text: "Outwards"
+            id: outButton
+            text: "Move Outwards"
             onClicked: {
-                text = "Inwards"
+                sliderController.state = "MOVE_OUTWARDS"
             }
         }
         DelayButton {
+            id: inButton
+            text: "Move Inwards"
+            onClicked: {
+                sliderController.state = "MOVE_INWARDS"
+            }
+        }
+        DelayButton {
+            id: stopButton
             text: "Stop"
+            onClicked: {
+                sliderController.state = "STOP_MIDWAY"
+            }
         }
     }
 }

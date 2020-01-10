@@ -17,12 +17,12 @@ bool ucSerial::openSerialPort(const QString& port_name)
     serial->setFlowControl(QSerialPort::NoFlowControl);
 
     if (serial->open(QIODevice::ReadWrite)){
-         return true;
         qDebug() << port_name << ": CONNECTED!";
+        return true;
     }
     else {
-        return false;
         qDebug() << port_name << ": NOT CONNECTED!";
+        return false;
     }
 }
 

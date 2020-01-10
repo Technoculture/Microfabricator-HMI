@@ -2,11 +2,11 @@
 
 SensorsController::SensorsController(QObject *parent, QString port_name)
     : QObject(parent){
-//    try {
-//        serial_ = new ucSerial(this, port_name);
-//    } catch (...) {
-//        qDebug() << "Failed to Setup communications with SensorsController.";
-//    }
+    try {
+        serial_ = new ucSerial(this, port_name);
+    } catch (...) {
+        qDebug() << "Failed to Setup communications with SensorsController.";
+    }
 
     modes_["LIGHT_SENSOR"] = 1;
     modes_["VIBRATION_SENSOR"] = 2;

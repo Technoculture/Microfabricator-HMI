@@ -13,19 +13,22 @@ Item {
 
     UIStyle { id: style }
 
-    Button {
-        id: doneButton
-        text: "\u2714 " + "Done"
-
-        anchors.bottom: baseRect.bottom
-        anchors.horizontalCenter: baseRect.horizontalCenter
+    Column {
+        anchors.fill: baseRect
         anchors.margins: 20
+        spacing: 20
 
-        onClicked: {
-            console.log(globalCurrentIndex)
-            console.log(checksModel.get(globalCurrentIndex).status)
-            checksModel.set(globalCurrentIndex, {"status" : "ok"})
-            console.log(checksModel.get(globalCurrentIndex).status)
+        CheckBox {
+            onCheckedChanged: {
+                uvController.pumpState = checked
+            }
+        }
+
+        Button {
+            id: doneButton
+            text: "\u2714 " + "Done"
+
+            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
         }
     }
 }

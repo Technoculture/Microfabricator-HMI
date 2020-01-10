@@ -15,27 +15,21 @@ Item {
     UIStyle { id: style }
 
     Column {
-        anchors.verticalCenter: baseRect.verticalCenter
-        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.fill: baseRect
+        anchors.margins: 20
+        spacing: 18
 
         Text {
-            text: "Duration: " + (slider.value).toFixed(1)
+            id: element
+            text: durationSlider.value
+            font.pixelSize: 29
             color: style.white
         }
 
         Slider {
-            id: slider
-            value: 0.5
-        }
-
-        Text {
-            text: "Interval: " +  (slider1.value).toFixed(1)
-            color: style.white
-        }
-
-        Slider {
-            id: slider1
-            value: 0.5
+            id: durationSlider
+            to: 1200; value: 0; stepSize: 5
+            onValueChanged:{}
         }
 
         Button {
@@ -43,10 +37,7 @@ Item {
             text: "\u2714 " + "Done"
 
             onClicked: {
-                console.log(globalCurrentIndex)
-                console.log(checksModel.get(globalCurrentIndex).status)
                 checksModel.set(globalCurrentIndex, {"status" : "ok"})
-                console.log(checksModel.get(globalCurrentIndex).status)
             }
         }
     }

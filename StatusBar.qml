@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.12
 
 Item {
     // PUBLIC INTERFACE
@@ -37,6 +38,16 @@ Item {
     }
     // =============================================================================================
 
+    CheckBox {
+        text: "Fan"
+        checked: true
+        anchors.right: baseRect.left
+        anchors.verticalCenter: baseRect.verticalCenter
+
+        onCheckStateChanged: {
+            uvController.fanState = checked
+        }
+    }
 
     // INTERACTIONS
     property int _stateIndex: 0
