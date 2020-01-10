@@ -18,18 +18,18 @@ bool ucSerial::openSerialPort(const QString& port_name)
 
     if (serial->open(QIODevice::ReadWrite)){
         qDebug() << port_name << ": CONNECTED!";
-        return true;
-    }
+        return true; }
     else {
         qDebug() << port_name << ": NOT CONNECTED!";
-        return false;
-    }
+        return false; }
 }
 
 void ucSerial::writeData(QByteArray &data)
 {
-    constexpr char enter = '\12';
-    data.append(enter);
-    serial->write(data);
-    qDebug() << data;
+    if(isConnected_){
+        constexpr char enter = '\12';
+        data.append(enter);
+        serial->write(data);
+        qDebug() << data;
+    } else { qDebug() << "Failed to transmit data: " << data; }
 }
