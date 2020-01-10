@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
     // ===================================
     UvFanPumpController* UVControl = new UvFanPumpController(&app, "/dev/ttyUSB0");
-    SliderController* SliderControl = new SliderController(&app, "/dev/ttyUSB1");
-    SensorsController* SensorControl = new SensorsController(&app, "/dev/ttyUSB2");
+    SliderController* SliderControl = new SliderController(&app, "/dev/ttyUSB12");
+    SensorsController* SensorControl = new SensorsController(&app, "/dev/ttyUSB1");
     // ===================================
 
     QQmlApplicationEngine engine;
