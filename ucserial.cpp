@@ -31,5 +31,5 @@ void ucSerial::writeData(QByteArray &data)
         data.append(enter);
         serial->write(data);
         qDebug() << data;
-    } else { qDebug() << "Failed to transmit data: " << data; }
+    } else { qDebug() << "Failed to transmit command: " << data; }
 }

@@ -2,11 +2,8 @@
 
 UvFanPumpController::UvFanPumpController(QObject *parent, QString port_name)
     : QObject(parent){
-    try {
-        serial_ = new ucSerial(this, port_name);
-    } catch (...) {
-        qDebug() << "Failed to Setup communications with UvFanPumpController.";
-    }
+    try { serial_ = new ucSerial(this, port_name); }
+    catch (...) { qDebug() << "Failed to Setup communications with UvFanPumpController."; }
 }
 
 void UvFanPumpController::fanState(bool state){

@@ -70,7 +70,6 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     listview.currentIndex = index;
-                    console.log(index + " : " + drawer.currentIndex) //DEBUG
                     if (drawer.state === "closed") { drawer.state = "open" }
                     else { if (drawer.currentIndex === index) { drawer.state = "closed" } }
                     drawer.currentIndex = index

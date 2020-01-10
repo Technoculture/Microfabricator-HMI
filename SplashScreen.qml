@@ -26,6 +26,7 @@ Item {
     Image {
         id: small;
         source: "Assets/logo-small.png"
+        x: -75; y: 202;
     }
 
     states: [
@@ -36,7 +37,7 @@ Item {
             PropertyChanges { target: big; x: 75; y: 202; width: 10; opacity: 0 }
             PropertyChanges { target: small; x: 75; y: 202; opacity: 1 } },
         State { name: "c"; when: animateIndex === 2;
-            PropertyChanges { target: small; x: 75; y: 334 }
+            //PropertyChanges { target: small; x: 75; y: 334 }
         },
         State { name: "d"; when: animateIndex === 3; PropertyChanges { target: timer; running: false } }
     ]
@@ -46,8 +47,8 @@ Item {
             from: "*"; to: "*"
             NumberAnimation {
                 properties: "x,y,width,opacity"
-                easing.type: Easing.InOutExpo
-                duration: 300
+                easing.type: Easing.OutExpo
+                duration: 1000
             }
         }
     ]

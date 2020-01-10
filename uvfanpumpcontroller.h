@@ -27,7 +27,6 @@ private:
     bool fanState_;
     bool pumpState_;
     unsigned short lightIntensity_;
-
 };
 
 #endif // UVFANPUMPCONTROLLER_H

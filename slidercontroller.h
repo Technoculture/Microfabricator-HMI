@@ -14,7 +14,7 @@ public:
 
     void state(const QString);
     QString state() const{ return state_; }
-    QHash<QString, int> states_;
+    QHash<QString, unsigned short> states_;
 signals:
 
 private:

@@ -16,15 +16,18 @@ Window {
 
     VibrationPlot {
         anchors.fill: bgRect
+        Component.onCompleted: {
+            sensorController.mode = "LIGHT_SENSOR"
+        }
     }
 
-//    SplashScreen {
-//        id: splashscreen
-//        anchors.fill: bgRect;
-//        onLoadMainApp: { splashscreen.visible = false; mainapp.visible = true }
-//    }
+    SplashScreen {
+        id: splashscreen
+        anchors.fill: bgRect;
+        onLoadMainApp: { mainapp.visible = true; }//splashscreen.visible = false; }
+    }
 
-    MainApp { id: mainapp; anchors.fill: bgRect; visible: true }
+    MainApp { id: mainapp; anchors.fill: bgRect; visible: true}//false }
 
 
     // GLOBALS

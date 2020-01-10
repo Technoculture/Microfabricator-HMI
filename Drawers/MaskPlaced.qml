@@ -28,12 +28,7 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        console.log(globalCurrentIndex)
-                        console.log(checksModel.get(globalCurrentIndex).status)
-                        checksModel.set(globalCurrentIndex, {"status" : "ok"})
-                        console.log(checksModel.get(globalCurrentIndex).status)
-                    }
+                    onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
                 }
             }
         }

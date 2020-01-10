@@ -35,10 +35,7 @@ Item {
         Button {
             id: doneButton
             text: "\u2714 " + "Done"
-
-            onClicked: {
-                checksModel.set(globalCurrentIndex, {"status" : "ok"})
-            }
+            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
         }
     }
 }

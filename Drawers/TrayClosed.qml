@@ -21,23 +21,17 @@ Item {
         DelayButton {
             id: outButton
             text: "Move Outwards"
-            onClicked: {
-                sliderController.state = "MOVE_OUTWARDS"
-            }
+            onClicked: { sliderController.state = "MOVE_OUTWARDS" }
         }
         DelayButton {
             id: inButton
             text: "Move Inwards"
-            onClicked: {
-                sliderController.state = "MOVE_INWARDS"
-            }
+            onClicked: { sliderController.state = "MOVE_INWARDS" }
         }
         DelayButton {
             id: stopButton
             text: "Stop"
-            onClicked: {
-                sliderController.state = "STOP_MIDWAY"
-            }
+            onClicked: { sliderController.state = "STOP_MIDWAY" }
         }
     }
 }
