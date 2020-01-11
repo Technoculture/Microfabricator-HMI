@@ -47,15 +47,22 @@ Item {
         onCheckStateChanged: { uvController.fanState = checked }
     }
     CheckBox {
-        text: "Mode"
+        id: sensormode
+        tristate: true
         checked: true
-        anchors.right: baseRect.left
+        text: "Vibration"
+        anchors.left: fan.left
         anchors.bottom: fan.top
         onCheckStateChanged: {
-            if(checked){
-                sensorController.mode = "VIBRATION_SENSOR"
-            } else {
+            if(checkState == Qt.Unchecked){
+                sensormode.text = "Temperature"
+                sensorController.mode = "TEMPERATURE_SENSOR"
+            } else if(checkState == Qt.PartiallyChecked) {
+                sensormode.text = "UV Intensity"
                 sensorController.mode = "LIGHT_SENSOR"
+            } else if(checkState == Qt.Checked){
+                sensormode.text = "Vibration"
+                sensorController.mode = "VIBRATION_SENSOR"
             }
         }
     }
@@ -93,3 +100,9 @@ Item {
     ]
 }
 
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/

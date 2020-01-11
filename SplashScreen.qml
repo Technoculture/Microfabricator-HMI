@@ -20,16 +20,16 @@ Item {
 
     states: [
         State { name: "a"; when: animateIndex === 0;
-            PropertyChanges { target: big; x: 321; y: 202 }
-            PropertyChanges { target: small; x: 321; y: 202; opacity: 0 } },
+            PropertyChanges { target: big; x: 321; y: 180 }
+            PropertyChanges { target: small; x: 321; y: 180; opacity: 0 } },
         State { name: "b"; when: animateIndex === 1;
-            PropertyChanges { target: big; x: 75; y: 202; width: 10; opacity: 0 }
-            PropertyChanges { target: small; x: 75; y: 202; opacity: 1 } },
+            PropertyChanges { target: big; x: 75; y: 180; width: 10; opacity: 0 }
+            PropertyChanges { target: small; x: 75; y: 180; opacity: 1 } },
         State { name: "c"; when: animateIndex === 2; },
         State { name: "d"; when: animateIndex === 3; PropertyChanges { target: timer; running: false } }
     ]
 
     transitions: [
-        Transition { from: "*"; to: "*"; NumberAnimation { properties: "x,y,width,opacity"; easing.type: Easing.OutSine; duration: 1000 } }
+        Transition { from: "*"; to: "*"; NumberAnimation { properties: "x,y,width,opacity"; easing.type: Easing.OutExpo; duration: 1000 } }
     ]
 }

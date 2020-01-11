@@ -5,6 +5,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QByteArray>
+#include <QHash>
 #include <QDebug>
 
 class ucSerial : public QObject
@@ -17,12 +18,14 @@ public:
     bool retryConnecting(){ return openSerialPort(portName_); }
     bool isConnected(){ return isConnected_; }
     QSerialPort* serial;
+    QHash<QString, QString> USB_DEVICES;
 signals:
 
 private:
     QString portName_ = "";
     bool isConnected_ = false;
     bool openSerialPort(const QString&);
+    QString findPortName(const QString&);
 };
 
 #endif

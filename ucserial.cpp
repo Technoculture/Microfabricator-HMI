@@ -1,10 +1,22 @@
 #include "ucserial.h"
 
-ucSerial::ucSerial(QObject *parent, const QString& port_name) : QObject(parent)
+ucSerial::ucSerial(QObject *parent, const QString& DEVICE_NAME) : QObject(parent)
 {
+    USB_DEVICES["SENSORS_CONTROLLER"]    = "/dev/com_sensors";
+    USB_DEVICES["SLIDER_CONTROLLER"]     = "/dev/com_slider";
+    USB_DEVICES["UVFANPUMP_CONTROLLER"]  = "/dev/com_uvfanpump";
+
+    portName_ = findPortName(DEVICE_NAME);
     serial = new QSerialPort(this);
-    portName_ = port_name;
-    isConnected_ = openSerialPort(portName_);
+    if(portName_ != ""){ isConnected_ = openSerialPort(portName_); }
+}
+
+QString ucSerial::findPortName(const QString& device_name){
+    // TODO: If DEVICE_NAME in QHash USB_DEVICES
+    // TODO: Get its port adress from linux and mutate portName_ with it
+    if(USB_DEVICES.contains(device_name)){
+        return USB_DEVICES[device_name];
+    } else { qDebug() << "USB DEVICE not name found."; return ""; }
 }
 
 bool ucSerial::openSerialPort(const QString& port_name)

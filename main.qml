@@ -40,11 +40,12 @@ Window {
 
     Text {
         id: ufab
-        x: 140; y: 150
+        x: 140;
         text: "uFabricator"
         font.pointSize: 70
         font.weight: Font.Thin
         color: "white"
+        state: "notVisible"
 
         states: [
             State { name: "visible"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
@@ -52,13 +53,8 @@ Window {
         ]
 
         transitions: [
-            Transition { from: "*"; to: "*";
-                NumberAnimation {
-                    target: ufab
-                    properties: "opacity,y"
-                    duration: 500
-                    easing.type: Easing.OutExpo
-                }}
+            Transition { from: "visible"; to: "notVisible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.OutExpo }},
+            Transition { from: "notVisible"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.InExpo }}
         ]
     }
 

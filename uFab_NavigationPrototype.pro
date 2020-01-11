@@ -52,6 +52,7 @@ DISTFILES += \
     MainApp.qml \
     Progress.qml \
     SplashScreen.qml \
+    StaticUsbPortsSetup(Note).md \
     StatusBar.qml \
     UIStyle.qml \
     VibrationPlot.qml \
