@@ -19,7 +19,7 @@ Item {
 
 
     // INITIALIZATION
-    state: "waitingForChecks"
+    state: allChecksDone ? "readyToExpose" : "waitingForChecks"
     UIStyle { id: style }
 
     // COMPONENTS
@@ -47,15 +47,22 @@ Item {
         onCheckStateChanged: { uvController.fanState = checked }
     }
     CheckBox {
-        text: "Mode"
+        id: sensormode
+        tristate: true
         checked: true
-        anchors.right: baseRect.left
+        text: "Vibration"
+        anchors.left: fan.left
         anchors.bottom: fan.top
         onCheckStateChanged: {
-            if(checked){
-                sensorController.mode = "VIBRATION_SENSOR"
-            } else {
+            if(checkState == Qt.Unchecked){
+                sensormode.text = "Temperature"
+                sensorController.mode = "TEMPERATURE_SENSOR"
+            } else if(checkState == Qt.PartiallyChecked) {
+                sensormode.text = "UV Intensity"
                 sensorController.mode = "LIGHT_SENSOR"
+            } else if(checkState == Qt.Checked){
+                sensormode.text = "Vibration"
+                sensorController.mode = "VIBRATION_SENSOR"
             }
         }
     }
@@ -65,17 +72,11 @@ Item {
     MouseArea {
         anchors.fill: baseRect
         onClicked: {
-            _stateIndex++;
-            switch(_stateIndex % 5){
-            case 0: _root.state = 'waitingForChecks';    break;
-            case 1: _root.state = 'readyToExpose';       break;
-            case 2: _root.state = 'pauseExposure';
-                expose(); break;
-            case 3: _root.state = 'openTray';
-                exposureComplete(); break;
-            case 4: _root.state = 'closeTray';
-                openTray(); break;
-            } //    console.log("stateIndex(" + _stateIndex%4 + ") -> " + root.state)
+            if(state === "waitingForChecks") {}
+            else if(state === "readyToExpose") {}
+            else if(state === "pauseExposure") {}
+            else if(state === "openTray") {}
+            else if(state === "closeTray") {}
         }
     }
 
@@ -95,7 +96,13 @@ Item {
     // =============================================================================================
 
     transitions: [
-        Transition { ColorAnimation { duration: 500; easing.type: Easing.InOutExpo }}
+        Transition { ColorAnimation { duration: 500; easing.type: Easing.InOutElastic }}
     ]
 }
 
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/

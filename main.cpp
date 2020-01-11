@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     // ===================================
-    UvFanPumpController* UVControl = new UvFanPumpController(&app, "/dev/ttyUSB0");
-    SliderController* SliderControl = new SliderController(&app, "/dev/ttyUSB12");
-    SensorsController* SensorControl = new SensorsController(&app, "/dev/ttyUSB1");
+    UvFanPumpController* UVControl = new UvFanPumpController(&app, "UVFANPUMP_CONTROLLER");
+    SliderController* SliderControl = new SliderController(&app, "SLIDER_CONTROLLER");
+    SensorsController* SensorControl = new SensorsController(&app, "SENSORS_CONTROLLER");
     // ===================================
 
     QQmlApplicationEngine engine;

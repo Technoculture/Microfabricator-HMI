@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item {
     id: _root
+    property alias checklistState: checklist.state
 
     Checklist {
         id: checklist

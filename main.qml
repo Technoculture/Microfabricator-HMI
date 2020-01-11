@@ -11,18 +11,52 @@ Window {
         id: bgRect
         width: 800; height: 480
         anchors.centerIn: parent
-        color: style.red//style.green//"red"//style.grey
+        color: allChecksDone ? "green" : style.red
+//        gradient: Gradient {
+//            id: grad
+//            GradientStop {id: startStop; position: pendingChecksCount(); color: Qt.rgba(1-2*pendingChecksCount(),1-pendingChecksCount(),0)}
+//            GradientStop {id: endStop; position: 1.0; color: Qt.rgba(0,1-pendingChecksCount(),0)}
+//        }
     }
 
-    VibrationPlot { anchors.fill: bgRect }
+    VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;
         onLoadMainApp: { mainapp.visible = true; }//splashscreen.visible = false; }
     }
 
-    MainApp { id: mainapp; anchors.fill: bgRect; visible: true}//false }
+    MainApp { id: mainapp; anchors.fill: bgRect; visible: true
+        onChecklistStateChanged: {
+            if(checklistState == "in"){
+                ufab.state = "notVisible"
+                vibration.opacity = 1
+            } else {
+                ufab.state = "visible"
+                vibration.opacity = 0
+            }
+        }
+    }
 
+    Text {
+        id: ufab
+        x: 140;
+        text: "uFabricator"
+        font.pointSize: 70
+        font.weight: Font.Thin
+        color: "white"
+        state: "notVisible"
+
+        states: [
+            State { name: "visible"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
+            State { name: "notVisible"; PropertyChanges { target: ufab; opacity: 0.0 } PropertyChanges { target: ufab; y: -100 }}
+        ]
+
+        transitions: [
+            Transition { from: "visible"; to: "notVisible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.OutExpo }},
+            Transition { from: "notVisible"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.InExpo }}
+        ]
+    }
 
     // GLOBALS
     property int globalCurrentIndex: 0
@@ -39,17 +73,18 @@ Window {
         ListElement { name: "Set Duration";             status: "pending";  filename:"SetDuration" }
     }
 
-//    property int pendingChecksCount: {
-//        countPendingChecks();
-//    }
+    property bool allChecksDone: {(pendingChecksCount() === 0.0) ? true : false}
 
-//    function countPendingChecks(){
-//        let pendingCount = 0;
-//        if(checksModel.get(i).status === "pending"){
-//            pendingCount++;
-//        }
-//        }
-//        console.log(pendingCount);
-//        return pendingCount;
-//    }
+    ListModel{
+        id: pendingChecksModel
+    }
+
+    function pendingChecksCount() {
+        let pendingCount = 0;
+        for(let i = 0; i < checksModel.count;i++) {
+            if(checksModel.get(i).status === "pending"){
+                pendingChecksModel.append(checksModel.get(i)); pendingCount++; }
+        }
+        return pendingCount/checksModel.count;
+    }
 }

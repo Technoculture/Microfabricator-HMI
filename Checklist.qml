@@ -116,14 +116,14 @@ Item {
     transitions: [
         Transition { from: "in"; to: "*";
             SequentialAnimation {
-                PropertyAnimation { target: drawer; properties: "x"; duration: 200; easing.type: Easing.OutExpo }
-                NumberAnimation { target: baseRect; property: "y"; duration: 500; easing.type: Easing.OutExpo }
+                PropertyAnimation { target: drawer; properties: "x"; duration: 200; easing.type: Easing.InOutExpo }
+                NumberAnimation { target: baseRect; property: "y"; duration: 500; easing.type: Easing.InOutExpo }
             }
         },
         Transition { from: "out,off"; to: "*";
             SequentialAnimation {
-                NumberAnimation { target: baseRect; property: "y"; duration: 200; easing.type: Easing.OutExpo }
-                PropertyAnimation { target: drawer; properties: "x"; duration: 500; easing.type: Easing.OutExpo }
+                NumberAnimation { target: baseRect; property: "y"; duration: 200; easing.type: Easing.InOutExpo }
+                PropertyAnimation { target: drawer; properties: "x"; duration: 500; easing.type: Easing.InOutExpo }
             }
         }
     ]
