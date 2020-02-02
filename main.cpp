@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("uvController", UVControl);
     engine.rootContext()->setContextProperty("sliderController", SliderControl);
     engine.rootContext()->setContextProperty("sensorController", SensorControl);
+    // WARNING: ContextProperty replace with RegisterType
     // =====================================================
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

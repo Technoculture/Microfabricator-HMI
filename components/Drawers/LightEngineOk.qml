@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtCharts 2.3
 import "../"
+import "../../"
 
 Item {
     id: _root
