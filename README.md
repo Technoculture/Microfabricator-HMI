@@ -1,3 +1,3 @@
 # Microfabricator Human Machine Interface
 
-This program is written using the commercial version of Qt5.
+This program is written in C++, with the intended purpose of providing a touch screen interface for the Microfabricator 4S machine.
