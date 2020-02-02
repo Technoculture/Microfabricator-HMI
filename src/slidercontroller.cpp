@@ -1,4 +1,4 @@
-#include "slidercontroller.h"
+#include "include/slidercontroller.h"
 
 SliderController::SliderController(QObject *parent, QString port_name) : QObject(parent){
     serial_ = new ucSerial(this, port_name);

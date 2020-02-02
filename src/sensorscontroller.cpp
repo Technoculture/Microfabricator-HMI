@@ -1,4 +1,4 @@
-#include "sensorscontroller.h"
+#include "include/sensorscontroller.h"
 
 SensorsController::SensorsController(QObject *parent, QString port_name) : QObject(parent) {
     serial_ = new ucSerial(this, port_name);

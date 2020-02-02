@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import "./components"
 
 Window {
     id: window; visible: true
@@ -12,11 +13,6 @@ Window {
         width: 800; height: 480
         anchors.centerIn: parent
         color: allChecksDone ? "green" : style.red
-//        gradient: Gradient {
-//            id: grad
-//            GradientStop {id: startStop; position: pendingChecksCount(); color: Qt.rgba(1-2*pendingChecksCount(),1-pendingChecksCount(),0)}
-//            GradientStop {id: endStop; position: 1.0; color: Qt.rgba(0,1-pendingChecksCount(),0)}
-//        }
     }
 
     VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }

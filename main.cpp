@@ -1,9 +1,9 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "uvfanpumpcontroller.h"
-#include "slidercontroller.h"
-#include "sensorscontroller.h"
+#include "include/uvfanpumpcontroller.h"
+#include "include/slidercontroller.h"
+#include "include/sensorscontroller.h"
 
 int main(int argc, char *argv[])
 {

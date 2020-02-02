@@ -1,4 +1,4 @@
-#include "ucserial.h"
+#include "include/ucserial.h"
 
 ucSerial::ucSerial(QObject *parent, const QString& DEVICE_NAME) : QObject(parent)
 {

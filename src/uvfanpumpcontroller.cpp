@@ -1,4 +1,4 @@
-#include "uvfanpumpcontroller.h"
+#include "include/uvfanpumpcontroller.h"
 
 UvFanPumpController::UvFanPumpController(QObject *parent, QString port_name): QObject(parent){
     serial_ = new ucSerial(this, port_name);

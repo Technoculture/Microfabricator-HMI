@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "./Drawers"
 
 Item {
     id: _root
@@ -15,8 +16,8 @@ Item {
             else if(animateIndex === 3) { loadMainApp() } }
     }
 
-    Image { id: big; source: "Assets/logo.png" }
-    Image { id: small; source: "Assets/logo-small.png"; x: 50; y: 35; }
+    Image { id: big; source: "../Assets/logo.png" }
+    Image { id: small; source: "../Assets/logo-small.png"; x: 50; y: 35; }
 
     states: [
         State { name: "a"; when: animateIndex === 0;

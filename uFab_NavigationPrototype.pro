@@ -15,10 +15,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        sensorscontroller.cpp \
-        slidercontroller.cpp \
-        ucserial.cpp \
-        uvfanpumpcontroller.cpp
+        src/sensorscontroller.cpp \
+        src/slidercontroller.cpp \
+        src/ucserial.cpp \
+        src/uvfanpumpcontroller.cpp
 
 RESOURCES += \
     qml.qrc
@@ -34,32 +34,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    Assets/logo-small.png \
-    Assets/logo.png \
-    Checklist.qml \
-    Drawer.qml \
-    Drawers/LightEngineOk.qml \
-    Drawers/MaskPlaced.qml \
-    Drawers/SetDuration.qml \
-    Drawers/SetPower.qml \
-    Drawers/TrayClosed.qml \
-    Drawers/VibrationMonitor.qml \
-    Drawers/WaferMaskDistance.qml \
-    Drawers/WaferPlaced.qml \
-    ExposureElapse.qml \
-    GlobalState.qml \
-    MainApp.qml \
-    Progress.qml \
-    SplashScreen.qml \
-    StaticUsbPortsSetup(Note).md \
-    StatusBar.qml \
-    UIStyle.qml \
-    VibrationPlot.qml \
-    main.qml
+DISTFILES +=
 
 HEADERS += \
-    sensorscontroller.h \
-    slidercontroller.h \
-    ucserial.h \
-    uvfanpumpcontroller.h
+    include/sensorscontroller.h \
+    include/slidercontroller.h \
+    include/ucserial.h \
+    include/uvfanpumpcontroller.h

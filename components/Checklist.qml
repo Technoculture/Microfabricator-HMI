@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import "../"
 
 Item {
     id: root
@@ -27,6 +28,7 @@ Item {
 
         Drawer {
             id: drawer;
+            Component.onCompleted: {  console.log(Qt.resolvedUrl(".")) }
         }
     }
 
@@ -95,6 +97,7 @@ Item {
 
             onCurrentIndexChanged: {
                 globalCurrentIndex = currentIndex
+                console.log(checksModel.get(currentIndex).filename)
                 drawer.stateComponent = checksModel.get(currentIndex).filename
             }
         }
