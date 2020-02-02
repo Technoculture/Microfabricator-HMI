@@ -22,5 +22,6 @@
         <file>components/Drawer.qml</file>
         <file>components/UIStyle.qml</file>
         <file>components/MainApp.qml</file>
+        <file>Assets/microfabricator.png</file>
     </qresource>
 </RCC>
