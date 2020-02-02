@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import "../"
 
 Item {
     property alias _text_color: style.white

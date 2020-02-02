@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>UIStyle.qml</file>
-        <file>MainApp.qml</file>
         <file>Assets/logo-small.png</file>
         <file>Assets/logo.png</file>
         <file>Assets/tick.gif</file>
@@ -22,5 +20,7 @@
         <file>components/Drawers/WaferMaskDistance.qml</file>
         <file>components/Drawers/WaferPlaced.qml</file>
         <file>components/Drawer.qml</file>
+        <file>components/UIStyle.qml</file>
+        <file>components/MainApp.qml</file>
     </qresource>
 </RCC>

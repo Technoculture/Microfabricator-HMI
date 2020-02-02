@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "./components"
+import "."
 
 Item {
     id: _root
