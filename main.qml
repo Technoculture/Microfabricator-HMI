@@ -19,10 +19,11 @@ Window {
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;
-        onLoadMainApp: { mainapp.visible = true; }//splashscreen.visible = false; }
+        onLoadMainApp: { mainapp.visible = true; } //splashscreen.visible = false; }
     }
 
     MainApp { id: mainapp; anchors.fill: bgRect; visible: true
+        ufabState: ufab.state
         onChecklistStateChanged: {
             if(checklistState == "in"){
                 ufab.state = "notVisible"
@@ -36,7 +37,7 @@ Window {
 
     Text {
         id: ufab
-        x: 140;
+        x: 150;
         text: "uFabricator"
         font.pointSize: 70
         font.weight: Font.Thin
@@ -59,14 +60,14 @@ Window {
 
     ListModel {
         id: checksModel
-        ListElement { name: "Light Engine";             status: "ok";       filename:"LightEngineOk" }
-        ListElement { name: "Wafer Placed";             status: "pending";  filename:"WaferPlaced" }
-        ListElement { name: "Mask Placed";              status: "pending";  filename:"MaskPlaced" }
-        ListElement { name: "Wafer-Mask Distance";      status: "pending";  filename:"WaferMaskDistance" }
+        ListElement { name: "Light Engine";             status: "pending";       filename:"LightEngineOk" }
+        ListElement { name: "Wafer Placed";             status: "ok";  filename:"WaferPlaced" }
+        ListElement { name: "Mask Placed";              status: "ok";  filename:"MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";      status: "ok";  filename:"WaferMaskDistance" }
         ListElement { name: "Tray Closed";              status: "ok";       filename:"TrayClosed" }
         ListElement { name: "Vibration Monitor";        status: "ok";       filename:"VibrationMonitor" }
-        ListElement { name: "Set Power";                status: "pending";  filename:"SetPower" }
-        ListElement { name: "Set Duration";             status: "pending";  filename:"SetDuration" }
+        ListElement { name: "Set Power";                status: "ok";  filename:"SetPower" }
+        ListElement { name: "Set Duration";             status: "ok";  filename:"SetDuration" }
     }
 
     property bool allChecksDone: {(pendingChecksCount() === 0.0) ? true : false}

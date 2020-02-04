@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+        src/globalstate.cpp \
         src/sensorscontroller.cpp \
         src/slidercontroller.cpp \
         src/ucserial.cpp \
@@ -37,7 +38,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
+    include/globalstate.h \
     include/sensorscontroller.h \
     include/slidercontroller.h \
     include/ucserial.h \
-    include/uvfanpumpcontroller.h
+    include/uvfanpumpcontroller.h \
+    src/globalstate.h

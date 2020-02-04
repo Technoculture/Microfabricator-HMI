@@ -72,11 +72,15 @@ Item {
     MouseArea {
         anchors.fill: baseRect
         onClicked: {
+            console.log("STATUS CLICKED")
+            console.log(_root.state)
             if(state === "waitingForChecks") {}
-            else if(state === "readyToExpose") {}
-            else if(state === "pauseExposure") {}
-            else if(state === "openTray") {}
-            else if(state === "closeTray") {}
+            else if(_root.state === "readyToExpose") {
+                baseRect.color = "red"
+            }
+            else if(_root.state === "pauseExposure") {}
+            else if(_root.state === "openTray") {}
+            else if(_root.state === "closeTray") {}
         }
     }
 
@@ -99,10 +103,3 @@ Item {
         Transition { ColorAnimation { duration: 500; easing.type: Easing.InOutElastic }}
     ]
 }
-
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

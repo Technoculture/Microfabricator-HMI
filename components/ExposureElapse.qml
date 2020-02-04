@@ -1,64 +1,81 @@
 import QtQuick 2.0
 
 Item {
-    property alias _text_color: style.white
-    property string checklistState: "out"
-    state: checklistState == "out" ? "focus" : "onside"
-    //property alias x: baseRect.x
-
-    UIStyle { id: style }
+    state: "offscreen"
 
     Rectangle {
         id: baseRect
-        height: 253; width: 253
-        x: 426; y: 86
-        color: style.black;
-    }
-    Column {
-        anchors.centerIn: baseRect
+        anchors.fill: parent
 
         Text {
-            text: "01:18:11"
-            font { pointSize: 25 }
-            color: _text_color
+            id: timeLabel
+            text: "Time Remaining"
+            color: "black"
+            font.pixelSize: 18
+            x: 155; y: 245
         }
         Text {
-            text: "02:30:00"
-            font { pointSize: 20 }
-            color: _text_color
+            id: time
+            anchors.top: timeLabel.bottom
+            anchors.left: timeLabel.left
+            text: "02:20:34"
+            color: "white"
+            font.pixelSize: 22
         }
         Text {
-            text: "0.2W"
-            font { pointSize: 20 }
-            color: _text_color
+            anchors.top: timeLabel.bottom
+            anchors.left: time.right
+            text: " / 03:00:00"
+            color: "#003f00"
+            font.pixelSize: 22
         }
-        Rectangle {
-            id: button
-            height: 40; width: 180
-            color: "red"
-            Text {
-                text: "Stop"
-                anchors.centerIn: parent
-                color: _text_color
-            }
+        Text {
+            id: percent
+            text: "78"
+            font.pixelSize: 90
+            color: "#00c302"
+            x: 615
+            y: 35
+        }
+        Text {
+            anchors.left: percent.right
+            anchors.bottom: percent.bottom
+            anchors.bottomMargin: 12
+            color: "#00c302"
+            text: "%"
+            font.pixelSize: 30
+        }
+        Text {
+            id: intensityLabel
+            text: "Intensity"
+            color: "black"
+            x: 535; y: 242
+            font.pixelSize: 18
+        }
+        Text {
+            id: energy
+            anchors.top: intensityLabel.bottom
+            anchors.right: intensityLabel.right
+            text: " ~1.45mJ"
+            color: "#003f00"
+            font.pixelSize: 22
+        }
+        Text {
+            anchors.right: energy.left
+            anchors.bottom: energy.bottom
+            text: "80%"
+            color: "white"
+            font.pixelSize: 22
         }
     }
 
     states: [
-        State {
-            name: "focus"
-            PropertyChanges { target: button; visible: true }
-            PropertyChanges { target: baseRect; x: 426; y: 86 }
-        },
-        State {
-            name: "onside"
-            PropertyChanges { target: button; visible: true }
-            PropertyChanges { target: baseRect; x: 538; y: 86 }
-        },
-        State {
-            name: "center";
-            PropertyChanges { target: button; visible: false }
-            PropertyChanges { target: baseRect; x: 274; y: 114 }
-        }
+        State { name:  "onscreen"; PropertyChanges { target: baseRect; opacity: 1.0 } },
+        State { name:  "offscreen"; PropertyChanges { target: baseRect; opacity: 0.0 } }
+    ]
+
+    transitions: [
+        Transition { from: "*"; to: "onscreen"; NumberAnimation { properties: "opacity"; duration: 800; easing.type: Easing.InExpo } },
+        Transition { from: "*"; to: "offscreen"; NumberAnimation { properties: "opacity"; duration: 100; easing.type: Easing.OutExpo } }
     ]
 }

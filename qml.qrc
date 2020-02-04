@@ -5,8 +5,6 @@
         <file>Assets/logo.png</file>
         <file>Assets/tick.gif</file>
         <file>components/Checklist.qml</file>
-        <file>components/ExposureElapse.qml</file>
-        <file>components/Progress.qml</file>
         <file>components/SplashScreen.qml</file>
         <file>components/StatusBar.qml</file>
         <file>components/VibrationPlot.qml</file>
@@ -23,5 +21,6 @@
         <file>components/UIStyle.qml</file>
         <file>components/MainApp.qml</file>
         <file>Assets/microfabricator.png</file>
+        <file>components/ExposureElapse.qml</file>
     </qresource>
 </RCC>

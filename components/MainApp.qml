@@ -4,43 +4,38 @@ import "."
 Item {
     id: _root
     property alias checklistState: checklist.state
+    property string ufabState: ""
+
+    onUfabStateChanged: {
+        if(statusbar.state === "readyToExpose"){
+            if(ufabState === "notVisible"){
+                exposureelapse.state = "offscreen"
+            } else if(ufabState === "visible"){
+                exposureelapse.state = "onscreen"
+            }
+        }
+    }
 
     Checklist {
         id: checklist
 		anchors.fill: parent
-        onStateChanged: { if(exposing.state == "onscreen") { state = "off" } }
+        onStateChanged: { if(exposureelapse.state == "onscreen") { state = "off" } }
     }
 
-    Item {
-        id: exposing
-        anchors.fill: parent
-        state: "offscreen"
-
-        Progress { id: progress; checklistState: checklist._state }
-        ExposureElapse { id: exposureelapse; checklistState: checklist._state }
-
-        states: [
-            State { name:  "onscreen"; PropertyChanges { target: exposing; visible: true } },
-            State { name:  "offscreen"; PropertyChanges { target: exposing; visible: false } }
-        ]
-
-//        transitions: [
-//            Transition {
-//                from: "*"
-//                to: "*"
-
-//                NumberAnimation {
-//                    targets: ["exposing.progress"]
-//                    properties: "x"
-//                    duration: 1000
-//                }
-//            }
-//        ]
+    ExposureElapse {
+        id: exposureelapse
     }
 
     StatusBar {
+        id: statusbar
         anchors { bottom: _root.bottom; horizontalCenter: _root.horizontalCenter; bottomMargin: statusHeight/2 }
-        onExpose: { checklist.state = "out"; exposing.state = "onscreen" }
-        onExposureComplete: { checklist.visible = false; exposureelapse.state = "center"; progress.state = "off" }
+//        onExpose: { checklist.state = "out"; exposing.state = "onscreen" }
+//        onExposureComplete: { checklist.visible = false; exposureelapse.state = "center"; }
+        onStateChanged: {
+            if(state === "readyToExpose"){
+                checklist.state = "out";
+                exposureelapse.state = "onscreen";
+            }
+        }
     }
 }

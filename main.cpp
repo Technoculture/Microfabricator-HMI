@@ -1,6 +1,8 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+
+#include "include/globalstate.h"
 #include "include/uvfanpumpcontroller.h"
 #include "include/slidercontroller.h"
 #include "include/sensorscontroller.h"
@@ -17,6 +19,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     // ===================================
+    globalState* state = new globalState(&app);
+
     UvFanPumpController* UVControl = new UvFanPumpController(&app, "UVFANPUMP_CONTROLLER");
     SliderController* SliderControl = new SliderController(&app, "SLIDER_CONTROLLER");
     SensorsController* SensorControl = new SensorsController(&app, "SENSORS_CONTROLLER");
@@ -28,6 +32,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("uvController", UVControl);
     engine.rootContext()->setContextProperty("sliderController", SliderControl);
     engine.rootContext()->setContextProperty("sensorController", SensorControl);
+//    engine.rootContext()->setContextProperty("globalState", state);
     // WARNING: ContextProperty replace with RegisterType
     // =====================================================
 

@@ -12,7 +12,7 @@ Item {
     MouseArea {
         anchors.fill: headerRect
         onClicked: {
-            if(root.state === "in") { drawer.state = "hide"; root.state = "out"; }
+            if(root.state === "in") { root.state = "out"; }
             else { root.state = "in"; drawer.state = "closed"; }
         }
     }
@@ -26,10 +26,7 @@ Item {
         border.color: style.black
 		border.width: 1
 
-        Drawer {
-            id: drawer;
-            Component.onCompleted: {  console.log(Qt.resolvedUrl(".")) }
-        }
+        Drawer { id: drawer; }
     }
 
     Rectangle { // Header Box
@@ -97,7 +94,6 @@ Item {
 
             onCurrentIndexChanged: {
                 globalCurrentIndex = currentIndex
-                console.log(checksModel.get(currentIndex).filename)
                 drawer.stateComponent = checksModel.get(currentIndex).filename
             }
         }
@@ -113,6 +109,7 @@ Item {
             name: "out"
             PropertyChanges { target: baseRect; y: 392; }
             PropertyChanges { target: drawer; x: 0; }
+            PropertyChanges { target: drawer; state: "hide"; }
         }
     ]
 
