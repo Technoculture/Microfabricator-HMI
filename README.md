@@ -1,3 +1,5 @@
 # Microfabricator Human Machine Interface
 
+![image](Assets/microfabricator.png)
+
 This program is written in C++, with the intended purpose of providing a touch screen interface for the Microfabricator 4S machine.
