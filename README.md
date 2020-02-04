@@ -1,4 +1,4 @@
-# Microfabricator Human Machine Interface
+# Microfabricator (Human Machine Interface)
 
 ![image](Assets/Screenshot.png)
 
