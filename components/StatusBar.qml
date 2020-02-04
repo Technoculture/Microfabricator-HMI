@@ -3,12 +3,13 @@ import QtQuick.Controls 2.12
 
 Item {
     // PUBLIC INTERFACE
-    signal expose
-    signal exposureComplete
-    signal openTray
+    signal startExposure
+    signal pauseExposure
+    signal goHome
+//    signal exposureComplete
 
     readonly property alias statusHeight: baseRect.height
-    property alias state: _root.state
+//    property alias state: _root.state
 
     // PRIVATE
     id: _root
@@ -19,7 +20,7 @@ Item {
 
 
     // INITIALIZATION
-    state: allChecksDone ? "readyToExpose" : "waitingForChecks"
+    state: { allChecksDone ? "readyToExpose" : "waitingForChecks" }
     UIStyle { id: style }
 
     // COMPONENTS
@@ -76,11 +77,33 @@ Item {
             console.log(_root.state)
             if(state === "waitingForChecks") {}
             else if(_root.state === "readyToExpose") {
-                baseRect.color = "red"
+                startExposure()
+                uvController.intensity = pwmIntensity
+                _root.state = "pauseExposure"
             }
-            else if(_root.state === "pauseExposure") {}
-            else if(_root.state === "openTray") {}
-            else if(_root.state === "closeTray") {}
+            else if(_root.state === "pauseExposure") {
+                exposureTimer.stop()
+                uvController.intensity = 0
+                _root.state = "resumeExposure"
+            }
+            else if(_root.state === "resumeExposure") {
+                exposureTimer.start()
+                uvController.intensity = pwmIntensity
+                _root.state = "pauseExposure"
+            }
+            else if(_root.state === "exposureComplete") {
+                uvController.intensity = 0
+                goHome()
+                _root.state = "waitingForChecks"
+            }
+//            else if(_root.state === "openTray") {
+//                sliderController.state = "MOVE_OUTWARDS"
+//                _root.state = "closeTray"
+//            }
+//            else if(_root.state === "closeTray") {
+//                sliderController.state = "MOVE_INWARDS"
+//                _root.state = "waitingForChecks"
+//            }
         }
     }
 
@@ -89,17 +112,17 @@ Item {
         State { name: "waitingForChecks";
             PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: "Waiting for checks" } },
         State { name: "readyToExpose";
-            PropertyChanges { target: _root; _color: style.green; _text: "Ready to expose" } },
+            PropertyChanges { target: _root; _color: style.green; _text: "Press to Initiate Exposure" } },
         State { name: "pauseExposure";
-            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: "Pause the exposure" } },
-        State { name: "openTray";
-			PropertyChanges { target: _root; _color: style.green;  _text: "Open Tray" } },
-        State { name: "closeTray";
-			PropertyChanges { target: _root; _color: style.green;  _text: "Close Tray" } }
+            PropertyChanges { target: _root; _color: style.yellow; _text_color: style.black; _text: "Pause the Exposure" } },
+        State { name: "resumeExposure";
+            PropertyChanges { target: _root; _color: style.green; _text: "Resume the Exposure" } },
+        State { name: "exposureComplete";
+            PropertyChanges { target: _root; _color: style.green; _text: "Exposure is Complete" } }
     ]
     // =============================================================================================
 
     transitions: [
-        Transition { ColorAnimation { duration: 500; easing.type: Easing.InOutElastic }}
+        Transition { ColorAnimation { duration: 500; easing.type: Easing.OutElastic }}
     ]
 }

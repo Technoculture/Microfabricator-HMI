@@ -19,7 +19,8 @@ SOURCES += \
         src/sensorscontroller.cpp \
         src/slidercontroller.cpp \
         src/ucserial.cpp \
-        src/uvfanpumpcontroller.cpp
+        src/uvfanpumpcontroller.cpp \
+        src/vibrationmodel.cpp
 
 RESOURCES += \
     qml.qrc
@@ -43,4 +44,5 @@ HEADERS += \
     include/slidercontroller.h \
     include/ucserial.h \
     include/uvfanpumpcontroller.h \
-    src/globalstate.h
+    include/globalstate.h \
+    include/vibrationmodel.h

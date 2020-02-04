@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtCharts 2.3
+import QtQuick.Layouts 1.12
 import "../"
 import "../../"
 
@@ -20,130 +21,81 @@ Item {
 
     UIStyle { id: style }
 
-    SwipeView {
-        id: view
-        anchors.fill: baseRect
-        interactive: true
-        currentIndex: 0
-        clip: true
+    ColumnLayout {
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.bottom: baseRect.bottom
+        anchors.bottomMargin: 20
 
-        Item {
-            Column {
-                anchors.fill: parent
-                anchors.margins: 20
-                spacing: 18
+        Rectangle {
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 95
+            color: "white"
+            opacity: 0.1
+        }
 
-                Text {
-                    text: "\u2714"
-                    color: textColor_Values
-                    font.pointSize: 40
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
-                    }
-                }
-
-                Row {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    spacing: 15
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "\u2713"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Critical\u0394"
-                        color: textColor_Titles
-                        font.pointSize: fontSize_Titles
-                    }
-                    Text {
-                        text: "-2%"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                }
-                Row {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    spacing: 15
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "\u2713"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Subcritical\u0394"
-                        color: textColor_Titles
-                        font.pointSize: fontSize_Titles
-                    }
-                    Text {
-                        text: "+1%"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                }
-
-                Row {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    spacing: 15
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "\u2713"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Dominant\u0394"
-                        color: textColor_Titles
-                        font.pointSize: fontSize_Titles
-                    }
-                    Text {
-                        text: "-1%"
-                        color: textColor_Values
-                        font.pointSize: fontSize_Values
-                    }
-                }
+        RowLayout {
+            spacing: 15
+            Text {
+                text: "\u2713"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
+            }
+            Text {
+                text: "Critical\u0394"
+                color: textColor_Titles
+                font.pointSize: fontSize_Titles
+            }
+            Text {
+                text: "-2%"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
             }
         }
-        Item {
-            Canvas {
-                anchors.fill: parent
-                contextType: "2d"
-                Path {
-                    id: myPath2
-                    startX: 30; startY: 90
-
-                    PathCurve { x: 30; y: 100 }
-                    PathCurve { x: 50; y: 120 }
-                    PathCurve { x: 70; y: 129 }
-                    PathCurve { x: 90; y: 100 }
-                    PathCurve { x: 110; y: 115 }
-                    PathCurve { x: 130; y: 90 }
-                    PathCurve { x: 150; y: 120 }
-                    PathCurve { x: 170; y: 100 }
-                }
-
-                onPaint: {
-                    context.strokeStyle = Qt.rgba(1,1,1);
-                    context.path = myPath2;
-                    context.stroke();
-                }
+        RowLayout {
+            spacing: 15
+            Text {
+                text: "\u2713"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
+            }
+            Text {
+                text: "Subcritical\u0394"
+                color: textColor_Titles
+                font.pointSize: fontSize_Titles
+            }
+            Text {
+                text: "+1%"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
             }
         }
-    }
-    PageIndicator {
-        count: view.count
-        currentIndex: view.currentIndex
-        anchors.bottom: view.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+
+        RowLayout {
+            spacing: 15
+            Text {
+                text: "\u2713"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
+            }
+            Text {
+                text: "Dominant\u0394"
+                color: textColor_Titles
+                font.pointSize: fontSize_Titles
+            }
+            Text {
+                text: "-1%"
+                color: textColor_Values
+                font.pointSize: fontSize_Values
+            }
+        }
+
+        RoundButton {
+            id: doneButton
+            text: "\u2714 Light Engine is OK"
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 30
+
+            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
+        }
     }
 }

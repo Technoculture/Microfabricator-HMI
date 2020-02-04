@@ -1,6 +1,11 @@
 import QtQuick 2.0
 
 Item {
+    id: _root
+    property int timeRemaining: { exposureDuration - elapsedDuration }
+    property int totalTime: exposureDuration
+    property int intensity: pwmIntensity
+
     state: "offscreen"
 
     Rectangle {
@@ -12,59 +17,67 @@ Item {
             text: "Time Remaining"
             color: "black"
             font.pixelSize: 18
-            x: 155; y: 245
+            x: 170; y: 245
         }
         Text {
             id: time
             anchors.top: timeLabel.bottom
             anchors.left: timeLabel.left
-            text: "02:20:34"
+            text: printTime(timeRemaining) //}// "02:20:34" //{
             color: "white"
             font.pixelSize: 22
         }
         Text {
             anchors.top: timeLabel.bottom
             anchors.left: time.right
-            text: " / 03:00:00"
+            text: " / " + printTime(totalTime)//" / 03:00:00" //{ " / " + totalTime }
             color: "#003f00"
             font.pixelSize: 22
         }
         Text {
-            id: percent
-            text: "78"
-            font.pixelSize: 90
-            color: "#00c302"
-            x: 615
-            y: 35
+            anchors.right: percentSign.left
+            anchors.bottom: percentSign.bottom
+            anchors.bottomMargin: -15
+            text: {
+                if(totalTime === 0){
+                    return 0
+                } else {
+                    return (elapsedDuration/totalTime * 100).toFixed(0)
+                }
+            }
+            font.pixelSize: 70
+            font.weight: Font.Thin
+            color: "#00c302" // "black"//
         }
         Text {
-            anchors.left: percent.right
-            anchors.bottom: percent.bottom
+            id: percentSign
             anchors.bottomMargin: 12
-            color: "#00c302"
+            color: "#00c302" // "black"//
             text: "%"
             font.pixelSize: 30
+            x: 735
+            y: 70
         }
         Text {
             id: intensityLabel
             text: "Intensity"
             color: "black"
-            x: 535; y: 242
+            x: 550; y: 242
             font.pixelSize: 18
         }
         Text {
             id: energy
             anchors.top: intensityLabel.bottom
             anchors.right: intensityLabel.right
-            text: " ~1.45mJ"
-            color: "#003f00"
+            text: " ~" + equivalentEnergy(intensity) + "mJ" //" ~1.45mJ" // { equivalentEnergy() }
+            color: "white"
             font.pixelSize: 22
         }
         Text {
             anchors.right: energy.left
             anchors.bottom: energy.bottom
-            text: "80%"
-            color: "white"
+            text: intensity + "%"
+            color: "#003f00"
             font.pixelSize: 22
         }
     }
@@ -75,7 +88,7 @@ Item {
     ]
 
     transitions: [
-        Transition { from: "*"; to: "onscreen"; NumberAnimation { properties: "opacity"; duration: 800; easing.type: Easing.InExpo } },
+        Transition { from: "*"; to: "onscreen"; NumberAnimation { properties: "opacity"; duration: 500; easing.type: Easing.InExpo } },
         Transition { from: "*"; to: "offscreen"; NumberAnimation { properties: "opacity"; duration: 100; easing.type: Easing.OutExpo } }
     ]
 }

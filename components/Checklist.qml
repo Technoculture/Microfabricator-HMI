@@ -11,6 +11,13 @@ Item {
 
     MouseArea {
         anchors.fill: headerRect
+        onContainsMouseChanged: {
+            if(containsMouse){
+                headerRect.color = "darkgreen"
+            } else {
+                headerRect.color = "black"
+            }
+        }
         onClicked: {
             if(root.state === "in") { root.state = "out"; }
             else { root.state = "in"; drawer.state = "closed"; }
@@ -26,7 +33,10 @@ Item {
         border.color: style.black
 		border.width: 1
 
-        Drawer { id: drawer; }
+        Drawer {
+            id: drawer;
+            opacity: { root.opacity < 0.2 ? 0 : 1 }
+        }
     }
 
     Rectangle { // Header Box
@@ -45,7 +55,15 @@ Item {
         Rectangle {
             id: baseRect
 			height: 40; width: parent.width - 2
-            color: { status === "pending" ? style.red : style.green }
+            color: {
+                if(status === "utility"){
+                    style.yellow
+                } else if(status === "pending"){
+                    style.red
+                } else {
+                    style.green
+                }
+            }
 
             Rectangle { // Selected Highlight
                 id: highlight

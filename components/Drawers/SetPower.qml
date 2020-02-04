@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import "../"
 import "../../"
 
@@ -14,28 +15,44 @@ Item {
 
     UIStyle { id: style }
 
-    Column {
-        anchors.fill: baseRect
-        anchors.margins: 20
-        spacing: 18
+    ColumnLayout {
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.bottom: baseRect.bottom
+        anchors.bottomMargin: 20
 
         Text {
-            id: element
-            text: slider.value
-            font.pixelSize: 29
+            id: percentage
+            text: slider.value + "%"
+            font.pixelSize: 70
+            color: style.grey
+        }
+
+        Text {
+            id: energy
+            font.pixelSize: 20
+            text: "~ " + slider.value/100 + "mJ/cm^2"
             color: style.white
         }
 
         Slider {
             id: slider
-            to: 100; value: 0; stepSize: 1
-            onValueChanged:{uvController.intensity = value.toFixed(0)}
+            to: 100; value: { pwmIntensity }
+            stepSize: 1
         }
 
-        Button {
+        RoundButton {
             id: doneButton
             text: "\u2714 " + "Done"
-            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 30
+            enabled: {
+                if(slider.value === 0){ false }
+                else { true }
+            }
+            onClicked: {
+                checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                pwmIntensity = slider.value.toFixed(0)
+            }
         }
     }
 }

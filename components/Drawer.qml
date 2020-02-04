@@ -9,7 +9,7 @@ Item {
 
     property int currentIndex: globalCurrentIndex
     property string stateComponent: checksModel.get(currentIndex).filename
-    property color stateColor: checksModel.get(globalCurrentIndex).status=== "ok" ? "darkgreen" : "darkred"
+    property color stateColor: { checksModel.get(globalCurrentIndex).status === "ok" ? "darkgreen" : (checksModel.get(globalCurrentIndex).status === "pending" ? "darkred" : style.yellow) }
     property string stateName:  checksModel.get(currentIndex).name
 
     UIStyle { id: style }
@@ -35,7 +35,10 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
-                color: "white"
+                color: {
+                    if(stateColor === style.yellow){ "black" }
+                    else { "white" }
+                }
             }
         }
 

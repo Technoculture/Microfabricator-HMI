@@ -1,11 +1,12 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import "../"
 import "../../"
 
 Item {
     id: _root
-    signal durationSet()
+    property int durationSeconds: { minSlider.value*60 + secSlider.value }
 
     Rectangle {
         id: baseRect
@@ -15,28 +16,44 @@ Item {
 
     UIStyle { id: style }
 
-    Column {
-        anchors.fill: baseRect
-        anchors.margins: 20
-        spacing: 18
+    ColumnLayout {
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.bottom: baseRect.bottom
+        anchors.bottomMargin: 20
 
         Text {
             id: element
-            text: durationSlider.value
-            font.pixelSize: 29
+            text: { printTime(_root.durationSeconds) }
+            font.pixelSize: 60
+            font.weight: Font.ExtraLight
             color: style.white
         }
 
         Slider {
-            id: durationSlider
-            to: 1200; value: 0; stepSize: 5
-            onValueChanged:{}
+            id: minSlider
+            to: 19; value: {(exposureDuration / 60).toFixed(0)}
+            stepSize: 1
         }
 
-        Button {
+        Slider {
+            id: secSlider
+            to: 59; value: {exposureDuration % 60}
+            stepSize: 5
+        }
+
+        RoundButton {
             id: doneButton
             text: "\u2714 " + "Done"
-            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 30
+            enabled: {
+                if(durationSeconds < 1){ false }
+                else { true }
+            }
+            onClicked: {
+                checksModel.set(globalCurrentIndex, {"status" : "ok"})
+                exposureDuration = _root.durationSeconds
+            }
         }
     }
 }

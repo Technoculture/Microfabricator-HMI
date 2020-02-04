@@ -20,7 +20,7 @@ Item {
         anchors.horizontalCenter: baseRect.horizontalCenter
         anchors.bottom: baseRect.bottom
         anchors.bottomMargin: 20
-        state: "close"
+        state: "open"
 
         Image {
             id: illustration
@@ -31,28 +31,29 @@ Item {
 
         RoundButton {
             id: inButton
-            text: "Close the Tray"
+            text: "Open the Tray"
             Layout.preferredWidth: 200
             Layout.preferredHeight: 30
             onClicked: {
-                sliderController.state = "MOVE_INWARDS"
+                sliderController.state = "MOVE_OUTWARDS"
                 buttons.state = "stop"
             }
-        }
 
+        }
         RoundButton {
             id: stopButton
             text: "Stop"
             Layout.preferredWidth: 200
             Layout.preferredHeight: 30
+            visible: false
             onClicked: {
                 sliderController.state = "STOP_MIDWAY"
-                buttons.state = "close"
+                buttons.state = "open"
             }
         }
 
         states: [
-            State { name: "close";
+            State { name: "open";
                 PropertyChanges { target: inButton; visible: true }
                 PropertyChanges { target: stopButton; visible: false }
             },

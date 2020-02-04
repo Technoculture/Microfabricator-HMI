@@ -22,5 +22,8 @@
         <file>components/MainApp.qml</file>
         <file>Assets/microfabricator.png</file>
         <file>components/ExposureElapse.qml</file>
+        <file>components/Drawers/TrayOpen.qml</file>
+        <file>components/Drawers/Assets/microfabricator.png</file>
+        <file>components/Drawers/Assets/tick.gif</file>
     </qresource>
 </RCC>

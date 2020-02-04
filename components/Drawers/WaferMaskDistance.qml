@@ -31,14 +31,23 @@ Item {
             spacing: 18
 
             Text {
+                id: tick
                 text: "\u2714"
                 color: style.green
                 font.pointSize: 40
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 MouseArea {
+                    id: tickMouse
                     anchors.fill: parent
                     onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
+                    onHoveredChanged: {
+                        if(tickMouse.containsMouse) {
+                            tick.color = Qt.lighter(tick.color)
+                        } else {
+                            tick.color = style.green
+                        }
+                    }
                 }
             }
         }
