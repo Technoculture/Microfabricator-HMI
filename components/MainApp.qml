@@ -57,7 +57,7 @@ Item {
         }
         onGoHome: {
             checklist.enabled = true
-            exposureelapse.destroy()
+            exposureelapse.state = "offscreen"
             checklist._state = "in"
             checksModel.set(2, {"status": "pending"})
             checksModel.set(3, {"status": "pending"})

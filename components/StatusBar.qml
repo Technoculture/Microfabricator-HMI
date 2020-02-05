@@ -6,10 +6,8 @@ Item {
     signal startExposure
     signal pauseExposure
     signal goHome
-//    signal exposureComplete
 
     readonly property alias statusHeight: baseRect.height
-//    property alias state: _root.state
 
     // PRIVATE
     id: _root
@@ -94,7 +92,8 @@ Item {
             else if(_root.state === "exposureComplete") {
                 uvController.intensity = 0
                 goHome()
-                _root.state = "waitingForChecks"
+//                _root.state = "waitingForChecks"
+                _root.state = Qt.binding(function(){ if(allChecksDone){return "readyToExpose"} else{return "waitingForChecks"} })
             }
 //            else if(_root.state === "openTray") {
 //                sliderController.state = "MOVE_OUTWARDS"
