@@ -7,40 +7,34 @@ Item {
     property string ufabState: ""
     property bool exposureComplete: false
 
+    state: "notVisible"
+
     onExposureCompleteChanged: {
         if(exposureComplete){
             statusbar.state = "exposureComplete"
             mainapp.exposureComplete = false
             elapsedDuration = 0
-//            exposureDuration = 5
-//            pwmIntensity = 100
         }
     }
 
     onUfabStateChanged: {
         if(statusbar.state === "readyToExpose"){
-            if(ufabState === "notVisible"){
-                exposureelapse.state = "offscreen"
-            } else if(ufabState === "visibleNotSplash"){
-                exposureelapse.state = "onscreen"
-            }
+            if(ufabState === "notVisible"){ exposureelapse.state = "offscreen" }
+            else if(ufabState === "visibleNotSplash"){ exposureelapse.state = "onscreen" }
         }
     }
 
     Checklist {
         id: checklist
-		anchors.fill: parent
+        anchors { top: parent.top; bottom: parent.bottom; left: parent.left; right: parent.right }
         onStateChanged: { if(exposureelapse.state == "onscreen") { state = "off" } }
         onEnabledChanged: {
-            if(!checklist.enabled){
-                checklist.opacity = 0.1
-            } else { checklist.opacity = 1 }
+            if(!checklist.enabled){ checklist.opacity = 0.1 }
+            else { checklist.opacity = 1 }
         }
     }
 
-    ExposureElapse {
-        id: exposureelapse
-    }
+    ExposureElapse { id: exposureelapse }
 
     StatusBar {
         id: statusbar
@@ -58,12 +52,26 @@ Item {
         onGoHome: {
             checklist.enabled = true
             exposureelapse.state = "offscreen"
-            checklist._state = "in"
-            checksModel.set(2, {"status": "pending"})
-            checksModel.set(3, {"status": "pending"})
-            checksModel.set(4, {"status": "pending"})
-            checksModel.set(7, {"status": "pending"})
-            checksModel.set(8, {"status": "pending"})
+            checklist._state = "off"
+            let checksIndex = [2, 3, 4, 7, 8]
+            checksIndex.map(index=>checksModel.set(index, {"status": "pending"}))
         }
     }
+
+    states: [
+        State { name: "visible";
+            PropertyChanges { target: statusbar; anchors.bottomMargin: statusHeight/2 }
+            PropertyChanges { target: checklist; state: "out" }
+        },
+        State { name: "notVisible";
+            PropertyChanges { target: statusbar; anchors.bottomMargin: -statusHeight/2 }
+            PropertyChanges { target: checklist; state: "notVisible" }
+        }
+    ]
+
+    transitions: [
+        Transition { from: "*"; to: "*";
+            NumberAnimation { targets: statusbar; properties: "anchors.bottomMargin"; duration: 300; easing.type: Easing.InOutExpo }
+        }
+    ]
 }

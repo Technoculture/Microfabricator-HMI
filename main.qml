@@ -20,40 +20,43 @@ Window {
         }
 
         states: [
-            State { name: "UVON"; PropertyChanges { target: bgRect; color: "blue" } },
+            State { name: "UVON"; PropertyChanges { target: bgRect; color: "blue"; } },
             State { name: "ALLCHECKDONE"; PropertyChanges { target: bgRect; color: "green" } }
         ]
 
         transitions: [
-            Transition { from: "*"; to: "*";
-                ColorAnimation {
-                    duration: 800;
-                    easing.type: Easing.OutExpo
-                } }
+            Transition { from: "*"; to: "*"; ColorAnimation { duration: 800; easing.type: Easing.OutExpo } }
         ]
     }
+
+    PowerOnSelfTest { id: post; anchors.fill: bgRect }
 
     VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;
-        onLoadMainApp: { mainapp.visible = true; }
+        waitForCalliberation: !post.calliberationDone
+
+        onLoadMainApp: {
+            post.visible = false
+            mainapp.checklistState = "out"
+            mainapp.state = "visible"
+            ufab.state = "visible"
+        }
     }
 
-    MainApp { id: mainapp; anchors.fill: bgRect; visible: true
+    MainApp { id: mainapp; anchors.fill: bgRect;
         ufabState: ufab.state
-        onChecklistStateChanged: {
-            if(checklistState == "in"){
-                ufab.state = "notVisible"
-                vibration.opacity = 1
-            } else {
-                if(allChecksDone){
-                    ufab.state = "visibleNotSplash"
+        onChecklistStateChanged: { // FIXME: Here fix ufab text timing
+            if(post.calliberationDone){
+                if(checklistState == "in"){
+                    ufab.state = "notVisible"
+                    vibration.opacity = 1
                 } else {
-                    ufab.state = "visible"
+                    if(allChecksDone){ ufab.state = "visibleNotSplash" }
+                    else { ufab.state = "visible" }
+                    vibration.opacity = 0
                 }
-
-                vibration.opacity = 0
             }
         }
     }
@@ -75,7 +78,7 @@ Window {
 
         transitions: [
             Transition { from: "*"; to: "notVisible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.OutExpo }},
-            Transition { from: "*"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 1400; easing.type: Easing.InExpo }},
+            Transition { from: "*"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.InExpo }},
             Transition { from: "*"; to: "visibleNotSplash"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 550; easing.type: Easing.InExpo }}
         ]
     }
@@ -97,22 +100,21 @@ Window {
     Timer {
         id: exposureTimer
         interval: 1000
-        running: false
-        repeat: true
+        running: false; repeat: true
         onTriggered: { elapsedDuration += 1 }
     }
 
     ListModel {
         id: checksModel
-        ListElement { name: "Light Engine";             status: "pending";       filename:"LightEngineOk" }
-        ListElement { name: "Open Tray";             status: "utility";       filename:"TrayOpen" }
-        ListElement { name: "Wafer Placed";             status: "ok";  filename:"WaferPlaced" }
-        ListElement { name: "Mask Placed";              status: "ok";  filename:"MaskPlaced" }
-        ListElement { name: "Wafer-Mask Distance";      status: "ok";  filename:"WaferMaskDistance" }
-        ListElement { name: "Close Tray";              status: "utility";       filename:"TrayClosed" }
-        ListElement { name: "Vibration Monitor";        status: "ok";       filename:"VibrationMonitor" }
-        ListElement { name: "Set Power";                status: "ok";  filename:"SetPower" }
-        ListElement { name: "Set Duration";             status: "ok";  filename:"SetDuration" }
+        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
+        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
+        ListElement { name: "Wafer Placed";          status: "ok";        filename:"WaferPlaced" }
+        ListElement { name: "Mask Placed";           status: "ok";        filename:"MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename:"WaferMaskDistance" }
+        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
+        ListElement { name: "Vibration Monitor";     status: "ok";        filename:"VibrationMonitor" }
+        ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
+        ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
     }
 
     property bool allChecksDone: {(pendingChecksCount() === 0.0) ? true : false}

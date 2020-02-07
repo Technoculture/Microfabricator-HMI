@@ -1,4 +1,7 @@
+//pragma Singleton
 import QtQml 2.12
+import QtQuick 2.0
+import "../vendor"
 
 QtObject {
     // General
@@ -16,4 +19,6 @@ QtObject {
 
     // StatusBar
 	readonly property color bg_statusbar: "deepskyblue" // lightgreen and brightgreen: are in: General
+
+//    FontAwesome{}
 }

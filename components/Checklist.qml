@@ -68,20 +68,24 @@ Item {
             Rectangle { // Selected Highlight
                 id: highlight
                 anchors.fill: parent
-                color: { listview.currentIndex == index ? style.black : "" }
-                opacity: { listview.currentIndex == index ? 0.6 : 0 }
+                gradient: Gradient { GradientStop { position: 0.0; color: "darkblue" } GradientStop { position: 0.5; color: "black" } GradientStop { position: 1.0; color: "darkblue" } }
+                opacity: { listview.currentIndex == index ? 0.4 : 0 }
             }
             Text {
                 id: checkItemStatus
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                text: { status === "pending" ? "\u2718" : "\u2714" }
+                text: {
+                    if(index === listview.currentIndex){ "\u2794" }
+                    else if( status === "pending"){ "\u2718"}
+                    else { "\u2714" }
+                }
                 color: { listview.currentIndex == index ? "white" : "" }
             }
             Text {
                 id: checkItemName
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 30 }
                 text: name
-                color: { listview.currentIndex == index ? "white" : "" }
+                color: { listview.currentIndex === index ? "white" : "" }
             }
             MouseArea {
                 anchors.fill: parent
@@ -105,10 +109,13 @@ Item {
         ListView {
             id: listview
             anchors.fill: parent
-			leftMargin: 1
-			rightMargin: 1
+            leftMargin: 1
+            rightMargin: 1
             model: checksModel
             delegate: checkItem
+            highlight: highlight
+            highlightFollowsCurrentItem: false
+            focus: true
 
             onCurrentIndexChanged: {
                 globalCurrentIndex = currentIndex
@@ -128,6 +135,12 @@ Item {
             PropertyChanges { target: baseRect; y: 392; }
             PropertyChanges { target: drawer; x: 0; }
             PropertyChanges { target: drawer; state: "hide"; }
+        },
+        State {
+            name: "notVisible"
+            PropertyChanges { target: baseRect; y: 500; }
+            PropertyChanges { target: drawer; x: 0; }
+            PropertyChanges { target: drawer; state: "hide"; }
         }
     ]
 
@@ -138,9 +151,12 @@ Item {
                 NumberAnimation { target: baseRect; property: "y"; duration: 500; easing.type: Easing.InOutExpo }
             }
         },
-        Transition { from: "out,off"; to: "*";
+        Transition { from: "out,off"; to: "in";
+            NumberAnimation { target: baseRect; property: "y"; duration: 200; easing.type: Easing.InOutExpo }
+        },
+        Transition { from: "notVisible"; to: "out";
             SequentialAnimation {
-                NumberAnimation { target: baseRect; property: "y"; duration: 200; easing.type: Easing.InOutExpo }
+                NumberAnimation { target: baseRect; property: "y"; duration: 300; easing.type: Easing.InOutExpo }
                 PropertyAnimation { target: drawer; properties: "x"; duration: 500; easing.type: Easing.InOutExpo }
             }
         }

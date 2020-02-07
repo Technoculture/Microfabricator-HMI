@@ -25,5 +25,8 @@
         <file>components/Drawers/TrayOpen.qml</file>
         <file>components/Drawers/Assets/microfabricator.png</file>
         <file>components/Drawers/Assets/tick.gif</file>
+        <file>components/PowerOnSelfTest.qml</file>
+        <file>vendor/fontawesome-webfont.ttf</file>
+        <file>vendor/FontAwesome.qml</file>
     </qresource>
 </RCC>

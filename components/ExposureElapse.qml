@@ -55,14 +55,13 @@ Item {
             color: "#00c302" // "black"//
             text: "%"
             font.pixelSize: 30
-            x: 735
-            y: 70
+            x: 735; y: 70
         }
         Text {
             id: intensityLabel
             text: "Intensity"
             color: "black"
-            x: 550; y: 242
+            x: 565; y: 242
             font.pixelSize: 18
         }
         Text {

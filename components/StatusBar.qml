@@ -37,6 +37,7 @@ Item {
     }
     // =============================================================================================
 
+
     CheckBox {
         id: fan
         text: "Fan"
@@ -50,8 +51,7 @@ Item {
         tristate: true
         checked: true
         text: "Vibration"
-        anchors.left: fan.left
-        anchors.bottom: fan.top
+        anchors { left: fan.left; bottom: fan.top }
         onCheckStateChanged: {
             if(checkState == Qt.Unchecked){
                 sensormode.text = "Temperature"
@@ -73,7 +73,7 @@ Item {
         onClicked: {
             console.log("STATUS CLICKED")
             console.log(_root.state)
-            if(state === "waitingForChecks") {}
+            if(_root.state === "waitingForChecks") {}
             else if(_root.state === "readyToExpose") {
                 startExposure()
                 uvController.intensity = pwmIntensity
@@ -92,7 +92,6 @@ Item {
             else if(_root.state === "exposureComplete") {
                 uvController.intensity = 0
                 goHome()
-//                _root.state = "waitingForChecks"
                 _root.state = Qt.binding(function(){ if(allChecksDone){return "readyToExpose"} else{return "waitingForChecks"} })
             }
 //            else if(_root.state === "openTray") {
@@ -109,7 +108,7 @@ Item {
     // STATE
     states: [
         State { name: "waitingForChecks";
-            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: "Waiting for checks" } },
+            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: style.check + " Waiting for checks" } },
         State { name: "readyToExpose";
             PropertyChanges { target: _root; _color: style.green; _text: "Press to Initiate Exposure" } },
         State { name: "pauseExposure";
