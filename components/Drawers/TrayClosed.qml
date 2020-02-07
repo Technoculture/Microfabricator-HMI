@@ -10,10 +10,8 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: style.black
+        color: Style.black
     }
-
-    UIStyle { id: style }
 
     ColumnLayout {
         id: buttons

@@ -10,10 +10,8 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: style.black
+        color: Style.black
     }
-
-    UIStyle { id: style }
 
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
@@ -24,14 +22,14 @@ Item {
             id: percentage
             text: slider.value + "%"
             font.pixelSize: 70
-            color: style.grey
+            color: Style.grey
         }
 
         Text {
             id: energy
             font.pixelSize: 20
             text: "~ " + slider.value/100 + "mJ/cm^2"
-            color: style.white
+            color: Style.white
         }
 
         Slider {

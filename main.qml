@@ -1,18 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import "./components"
+import "."
 
 Window {
     id: window; visible: true
     minimumWidth: 800; maximumWidth: 800; minimumHeight: 480; maximumHeight: 480;
 
-    UIStyle { id: style }
-
     Rectangle {
         id: bgRect
         width: 800; height: 480
         anchors.centerIn: parent
-        color: style.red
+        color: Style.red
         state: {
             if(exposureTimer.running){ "UVON" }
             else if(allChecksDone){ "ALLCHECKDONE" }

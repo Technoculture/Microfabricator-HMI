@@ -9,7 +9,7 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: style.black
+        color: Style.black
 
         Text {
             id: element
@@ -17,11 +17,9 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: 28
-            color: style.white
+            color: Style.white
         }
     }
-
-    UIStyle { id: style }
 
     Item {
         anchors.fill: baseRect
@@ -33,7 +31,7 @@ Item {
             Text {
                 id: tick
                 text: "\u2714"
-                color: style.green
+                color: Style.green
                 font.pointSize: 40
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -45,7 +43,7 @@ Item {
                         if(tickMouse.containsMouse) {
                             tick.color = Qt.lighter(tick.color)
                         } else {
-                            tick.color = style.green
+                            tick.color = Style.green
                         }
                     }
                 }

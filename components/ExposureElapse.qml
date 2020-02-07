@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "../vendor"
 
 Item {
     id: _root
@@ -8,15 +9,17 @@ Item {
 
     state: "offscreen"
 
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+
     Rectangle {
         id: baseRect
         anchors.fill: parent
 
         Text {
             id: timeLabel
-            text: "Time Remaining"
+            text: icons.icons.fa_clock_o + " Time Remaining"
             color: "black"
-            font.pixelSize: 18
+            font { pixelSize: 18; family: icons.family }
             x: 170; y: 245
         }
         Text {
@@ -59,10 +62,10 @@ Item {
         }
         Text {
             id: intensityLabel
-            text: "Intensity"
+            text: (icons.icons.fa_lightbulb_o) + " Intensity"
             color: "black"
-            x: 565; y: 242
-            font.pixelSize: 18
+            x: 545; y: 242
+            font { pixelSize: 18; family: icons.family }
         }
         Text {
             id: energy

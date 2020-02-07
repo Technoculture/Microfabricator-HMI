@@ -11,10 +11,8 @@ Item {
     Rectangle {
         id: baseRect
         anchors.fill: _root
-        color: style.black
+        color: Style.black
     }
-
-    UIStyle { id: style }
 
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
@@ -26,7 +24,7 @@ Item {
             text: { printTime(_root.durationSeconds) }
             font.pixelSize: 60
             font.weight: Font.ExtraLight
-            color: style.white
+            color: Style.white
         }
 
         Slider {

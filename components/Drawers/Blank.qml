@@ -11,6 +11,4 @@ Item {
 
         color: "blue"
     }
-
-    UIStyle { id: style }
 }

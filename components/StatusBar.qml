@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import "../"
+import "../vendor"
 
 Item {
     // PUBLIC INTERFACE
@@ -12,28 +14,31 @@ Item {
     // PRIVATE
     id: _root
     property alias _color: baseRect.color
-    property alias _text: statusText.text
+    property string _text: ""
+    property string _icon: ""
     property alias _text_color: statusText.color
     // =============================================================================================
 
 
     // INITIALIZATION
     state: { allChecksDone ? "readyToExpose" : "waitingForChecks" }
-    UIStyle { id: style }
+
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
     // COMPONENTS
     Rectangle {
         id: baseRect
         height: 42; width: 644
         anchors.centerIn: parent
-        border.color: style.black
+        border.color: Style.black
         border.width: 1
     }
 
     Text {
         id: statusText
         anchors.centerIn: baseRect
-        font { pixelSize: 18; family: "Helvetica" }
+        font { pixelSize: 18; family: icons.family }
+        text: /*_icon + " " +*/ _text
     }
     // =============================================================================================
 
@@ -108,15 +113,15 @@ Item {
     // STATE
     states: [
         State { name: "waitingForChecks";
-            PropertyChanges { target: _root; _color: style.black; _text_color: style.white; _text: style.check + " Waiting for checks" } },
+            PropertyChanges { target: _root; _color: Style.black; _text_color: Style.white; _text: " Waiting for checks"; _icon: icons.icons.fa_bars; } },
         State { name: "readyToExpose";
-            PropertyChanges { target: _root; _color: style.green; _text: "Press to Initiate Exposure" } },
+            PropertyChanges { target: _root; _color: Style.green; _text: "Press to Initiate Exposure"; _icon: icons.icons.fa_play } },
         State { name: "pauseExposure";
-            PropertyChanges { target: _root; _color: style.yellow; _text_color: style.black; _text: "Pause the Exposure" } },
+            PropertyChanges { target: _root; _color: Style.yellow; _text_color: Style.black; _text: "Pause the Exposure"; _icon: icons.icons.fa_pause } },
         State { name: "resumeExposure";
-            PropertyChanges { target: _root; _color: style.green; _text: "Resume the Exposure" } },
+            PropertyChanges { target: _root; _color: Style.green; _text: "Resume the Exposure"; _icon: icons.icons.fa_play } },
         State { name: "exposureComplete";
-            PropertyChanges { target: _root; _color: style.green; _text: "Exposure is Complete" } }
+            PropertyChanges { target: _root; _color: Style.green; _text: "Exposure is Complete"; _icon: icons.icons.fa_check } }
     ]
     // =============================================================================================
 

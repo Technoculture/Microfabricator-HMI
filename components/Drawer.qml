@@ -2,17 +2,19 @@ import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
 
+import "../"
 import "./Drawers"
+import "../vendor"
 
 Item {
     property alias state: baseRect.state
 
     property int currentIndex: globalCurrentIndex
     property string stateComponent: checksModel.get(currentIndex).filename
-    property color stateColor: { checksModel.get(globalCurrentIndex).status === "ok" ? "darkgreen" : (checksModel.get(globalCurrentIndex).status === "pending" ? "darkred" : style.yellow) }
+    property color stateColor: { checksModel.get(globalCurrentIndex).status === "ok" ? "darkgreen" : (checksModel.get(globalCurrentIndex).status === "pending" ? "darkred" : Style.yellow) }
     property string stateName:  checksModel.get(currentIndex).name
 
-    UIStyle { id: style }
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRect
@@ -31,12 +33,13 @@ Item {
 
             Text {
                 id: headerText
-                text: stateName
+                text: icons.icons.fa_ell + " " + stateName
+                font.family: icons.family
                 anchors.left: parent.left
                 anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
                 color: {
-                    if(stateColor === style.yellow){ "black" }
+                    if(stateColor === Style.yellow){ "black" }
                     else { "white" }
                 }
             }

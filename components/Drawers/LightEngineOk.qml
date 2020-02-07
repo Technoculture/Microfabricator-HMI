@@ -4,22 +4,23 @@ import QtCharts 2.3
 import QtQuick.Layouts 1.12
 import "../"
 import "../../"
+import "../../vendor"
 
 Item {
     id: _root
-    property color bgColor: style.black
-    property color textColor_Values: style.green
+    property color bgColor: Style.black
+    property color textColor_Values: Style.green
     property color textColor_Titles: "gainsboro"
     property int fontSize_Values: 14
     property int fontSize_Titles: 11
+
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRect
         anchors.fill: _root
         color: bgColor
     }
-
-    UIStyle { id: style }
 
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
@@ -36,7 +37,8 @@ Item {
         RowLayout {
             spacing: 15
             Text {
-                text: "\u2713"
+                text: icons.icons.fa_check_circle_o
+                font.family: icons.family
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -46,7 +48,7 @@ Item {
                 font.pointSize: fontSize_Titles
             }
             Text {
-                text: "-2%"
+                text: "\u00b1 2%"
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -54,7 +56,8 @@ Item {
         RowLayout {
             spacing: 15
             Text {
-                text: "\u2713"
+                text: icons.icons.fa_check_circle_o
+                font.family: icons.family
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -64,7 +67,7 @@ Item {
                 font.pointSize: fontSize_Titles
             }
             Text {
-                text: "+1%"
+                text: "\u00b1 1%"
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -73,7 +76,8 @@ Item {
         RowLayout {
             spacing: 15
             Text {
-                text: "\u2713"
+                text: icons.icons.fa_check_circle_o
+                font.family: icons.family
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -83,7 +87,7 @@ Item {
                 font.pointSize: fontSize_Titles
             }
             Text {
-                text: "-1%"
+                text: "\u00b1 1%"
                 color: textColor_Values
                 font.pointSize: fontSize_Values
             }
@@ -91,7 +95,8 @@ Item {
 
         RoundButton {
             id: doneButton
-            text: "\u2714 Light Engine is OK"
+            text: icons.icons.fa_check_circle + " Light Engine is OK"
+            font.family: icons.family
             Layout.preferredWidth: 200
             Layout.preferredHeight: 30
 

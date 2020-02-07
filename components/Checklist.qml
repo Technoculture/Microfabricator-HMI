@@ -1,23 +1,20 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import "."
+import "../"
+import "../vendor"
 
 Item {
     id: root
     property alias _state: root.state
     state: "out"
 
-    UIStyle { id: style }
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
     MouseArea {
+        id: headerRectMArea
         anchors.fill: headerRect
-        onContainsMouseChanged: {
-            if(containsMouse){
-                headerRect.color = "darkgreen"
-            } else {
-                headerRect.color = "black"
-            }
-        }
+        onContainsMouseChanged: { headerRect.opacity = (headerRectMArea.containsMouse ? Style.clickOpacity : 1.0) }
         onClicked: {
             if(root.state === "in") { root.state = "out"; }
             else { root.state = "in"; drawer.state = "closed"; }
@@ -28,9 +25,9 @@ Item {
         id: baseRect
         height: 312; width: 255
         x: 266;
-        color: style.black
+        color: Style.black
 
-        border.color: style.black
+        border.color: Style.black
 		border.width: 1
 
         Drawer {
@@ -42,12 +39,13 @@ Item {
     Rectangle { // Header Box
         id: headerRect
 		anchors { top: baseRect.top; left: baseRect.left; topMargin: 1; bottomMargin: 1; leftMargin: 1; rightMargin: 1 }
-		color: style.black; height: 40; width: baseRect.width - 2
+        color: Style.black; height: 40; width: baseRect.width - 2
     }
     Text { // Header
-        anchors { verticalCenter: headerRect.verticalCenter; left: headerRect.left; leftMargin: 20 }
-        text: "Exposure checklist"
-		color: style.white
+        anchors { verticalCenter: headerRect.verticalCenter; left: headerRect.left; leftMargin: 15 }
+        text: icons.icons.fa_bars + "  Exposure checklist"
+        font.family: icons.family
+        color: Style.white
     }
 
     Component {
@@ -57,11 +55,11 @@ Item {
 			height: 40; width: parent.width - 2
             color: {
                 if(status === "utility"){
-                    style.yellow
+                    Style.yellow
                 } else if(status === "pending"){
-                    style.red
+                    Style.red
                 } else {
-                    style.green
+                    Style.green
                 }
             }
 
@@ -69,15 +67,25 @@ Item {
                 id: highlight
                 anchors.fill: parent
                 gradient: Gradient { GradientStop { position: 0.0; color: "darkblue" } GradientStop { position: 0.5; color: "black" } GradientStop { position: 1.0; color: "darkblue" } }
-                opacity: { listview.currentIndex == index ? 0.4 : 0 }
+                opacity: { listview.currentIndex == index ? 0.2 : 0 }
             }
             Text {
                 id: checkItemStatus
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                font.family: icons.family
                 text: {
-                    if(index === listview.currentIndex){ "\u2794" }
-                    else if( status === "pending"){ "\u2718"}
-                    else { "\u2714" }
+                    if( status === "pending"){ icons.icons.fa_times_circle }
+                    else { icons.icons.fa_check_circle }
+                }
+                color: { listview.currentIndex == index ? "white" : "" }
+            }
+            Text {
+                id: checkItemActive
+                anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
+                font.family: icons.family
+                text: {
+                    if(index === listview.currentIndex){ icons.icons.fa_arrow_circle_right }
+                    else{ "" }
                 }
                 color: { listview.currentIndex == index ? "white" : "" }
             }
@@ -85,6 +93,7 @@ Item {
                 id: checkItemName
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 30 }
                 text: name
+                font.weight: { listview.currentIndex == index ? Font.DemiBold : Font.Normal }
                 color: { listview.currentIndex === index ? "white" : "" }
             }
             MouseArea {
