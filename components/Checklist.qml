@@ -84,7 +84,8 @@ Item {
                 anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
                 font.family: icons.family
                 text: {
-                    if(index === listview.currentIndex){ icons.icons.fa_arrow_circle_right }
+                    if(index === listview.currentIndex){
+                        drawer.state === "open" ? icons.icons.fa_angle_right : icons.icons.fa_angle_down }
                     else{ "" }
                 }
                 color: { listview.currentIndex == index ? "white" : "" }

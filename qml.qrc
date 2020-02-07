@@ -32,5 +32,6 @@
         <file>vendor/controls/Variables.qml</file>
         <file>qmldir</file>
         <file>Style.qml</file>
+        <file>components/Drawers/DoneButton.qml</file>
     </qresource>
 </RCC>

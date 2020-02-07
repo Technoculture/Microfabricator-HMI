@@ -17,7 +17,7 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
         anchors.bottom: baseRect.bottom
-        anchors.bottomMargin: 20
+        anchors.bottomMargin: 10
 
         Text {
             id: element
@@ -39,19 +39,9 @@ Item {
             stepSize: 5
         }
 
-        RoundButton {
-            id: doneButton
-            text: "\u2714 " + "Done"
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 30
-            enabled: {
-                if(durationSeconds < 1){ false }
-                else { true }
-            }
-            onClicked: {
-                checksModel.set(globalCurrentIndex, {"status" : "ok"})
-                exposureDuration = _root.durationSeconds
-            }
+        DoneButton {
+            enabled: { durationSeconds < 1 ? false : true }
+            onClicked: { exposureDuration = _root.durationSeconds }
         }
     }
 }

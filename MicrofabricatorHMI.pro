@@ -35,22 +35,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-  vendor/font/awesome/pri/FontAwesome/FontAwesome.qml \
-  vendor/font/awesome/pri/FontAwesome/Object.qml \
-  vendor/font/awesome/pri/FontAwesome/fontawesome-webfont.ttf \
-  vendor/font/awesome/pri/FontAwesome/qmldir \
-  vendor/font/awesome/pri/LICENSE \
-  vendor/font/awesome/pri/README.md \
-  vendor/font/awesome/pri/docs/designmode.png \
-  vendor/font/awesome/pri/fontawesome.pri \
-  vendor/font/awesome/pri/preview/MainForm.ui.qml \
-  vendor/font/awesome/pri/preview/main.qml \
-  vendor/font/awesome/pri/qpm.json \
-  vendor/font/awesome/pri/scripts/convert.js \
-  vendor/font/awesome/pri/scripts/template \
-  vendor/font/awesome/pri/scripts/update.sh \
-  vendor/vendor.pri
+DISTFILES +=
 
 HEADERS += \
     include/sensorscontroller.h \
@@ -59,5 +44,4 @@ HEADERS += \
     include/uvfanpumpcontroller.h \
     include/vibrationmodel.h
 
-SUBDIRS += \
-  vendor/font/awesome/pri/preview/preview.pro
+SUBDIRS +=

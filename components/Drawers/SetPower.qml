@@ -16,7 +16,7 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
         anchors.bottom: baseRect.bottom
-        anchors.bottomMargin: 20
+        anchors.bottomMargin: 10
 
         Text {
             id: percentage
@@ -38,19 +38,9 @@ Item {
             stepSize: 1
         }
 
-        RoundButton {
-            id: doneButton
-            text: "\u2714 " + "Done"
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 30
-            enabled: {
-                if(slider.value === 0){ false }
-                else { true }
-            }
-            onClicked: {
-                checksModel.set(globalCurrentIndex, {"status" : "ok"})
-                pwmIntensity = slider.value.toFixed(0)
-            }
+        DoneButton {
+            enabled: { slider.value === 0 ? false : true }
+            onClicked: { pwmIntensity = slider.value.toFixed(0) }
         }
     }
 }

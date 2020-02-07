@@ -1,12 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 import "../"
 import "./Drawers"
 import "../vendor"
 
 Item {
+    id: _root
     property alias state: baseRect.state
 
     property int currentIndex: globalCurrentIndex
@@ -15,6 +16,13 @@ Item {
     property string stateName:  checksModel.get(currentIndex).name
 
     FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+
+    Rectangle {
+        id: baseRectOverlay
+        anchors.fill: baseRect
+        color: "red"
+        z: 100
+    }
 
     Rectangle {
         id: baseRect
@@ -33,7 +41,7 @@ Item {
 
             Text {
                 id: headerText
-                text: icons.icons.fa_ell + " " + stateName
+                text: icons.icons.fa_edit + " " + stateName
                 font.family: icons.family
                 anchors.left: parent.left
                 anchors.leftMargin: 10
@@ -51,18 +59,17 @@ Item {
             anchors.bottom: baseRect.bottom
             anchors.left: baseRect.left
             anchors.right: baseRect.right
-
             source: ("./Drawers/" + stateComponent + ".qml")
         }
 
         states: [
-            State { name: "open";   PropertyChanges { target: baseRect; x: 520-267 } },
-            State { name: "closed"; PropertyChanges { target: baseRect; x: 305-267-5 } },
-            State { name: "hide"; PropertyChanges { target: baseRect; x: 305-267-15 } }
+            State { name: "open";   PropertyChanges { target: baseRect; x: 520-267 } PropertyChanges { target: baseRectOverlay; opacity: 0 } },
+            State { name: "closed"; PropertyChanges { target: baseRect; x: 305-267-5 } PropertyChanges { target: baseRectOverlay; opacity: 0.5 } },
+            State { name: "hide"; PropertyChanges { target: baseRect; x: 305-267-15 } PropertyChanges { target: baseRectOverlay; opacity: 1 } }
         ]
 
         transitions: [
-            Transition { from: "*"; to: "*"; NumberAnimation { target: baseRect; property: "x"; duration: 300; easing.type: Easing.InOutExpo; }}
+            Transition { from: "*"; to: "*"; NumberAnimation { target: baseRect; property: "x"; duration: 300; easing.type: Easing.InOutExpo; } NumberAnimation { target: baseRectOverlay; property: "opacity"; duration: 200; easing.type: Easing.InExpo; } }
         ]
     }
 }

@@ -16,7 +16,7 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: baseRect.horizontalCenter
         anchors.bottom: baseRect.bottom
-        anchors.bottomMargin: 20
+        anchors.bottomMargin: 10
 
         Image {
             id: illustration
@@ -36,13 +36,6 @@ Item {
             }
         }
 
-        RoundButton {
-            id: doneButton
-            text: "\u2714 " + "Wafer is Placed"
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 30
-
-            onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
-        }
+        DoneButton { buttonText: "Wafer is Placed" }
     }
 }

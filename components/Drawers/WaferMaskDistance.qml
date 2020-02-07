@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import "../"
 import "../../"
 
@@ -10,45 +11,26 @@ Item {
         id: baseRect
         anchors.fill: _root
         color: Style.black
+    }
+
+    ColumnLayout {
+        anchors.horizontalCenter: baseRect.horizontalCenter
+        anchors.bottom: baseRect.bottom
+        anchors.bottomMargin: 10
 
         Text {
             id: element
-            text: "100"
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 28
+            text: progress.value*200 +  "\u00B5m"
+            font { pixelSize: 45; weight: Font.ExtraLight }
             color: Style.white
         }
-    }
 
-    Item {
-        anchors.fill: baseRect
-        Column {
-            anchors.fill: parent
-            anchors.margins: 20
-            spacing: 18
-
-            Text {
-                id: tick
-                text: "\u2714"
-                color: Style.green
-                font.pointSize: 40
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                MouseArea {
-                    id: tickMouse
-                    anchors.fill: parent
-                    onClicked: { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
-                    onHoveredChanged: {
-                        if(tickMouse.containsMouse) {
-                            tick.color = Qt.lighter(tick.color)
-                        } else {
-                            tick.color = Style.green
-                        }
-                    }
-                }
-            }
+        ProgressBar {
+            id: progress
+            value: 0.05
         }
+
+        DoneButton {}
     }
 }
 

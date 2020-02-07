@@ -17,7 +17,7 @@ Item {
         id: buttons
         anchors.horizontalCenter: baseRect.horizontalCenter
         anchors.bottom: baseRect.bottom
-        anchors.bottomMargin: 20
+        anchors.bottomMargin: 10
         state: "close"
 
         Image {
