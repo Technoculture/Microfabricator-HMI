@@ -34,5 +34,6 @@
         <file>Style.qml</file>
         <file>components/Drawers/IconButton.qml</file>
         <file>components/ProgressIndicator.qml</file>
+        <file>components/ShuttingDown.qml</file>
     </qresource>
 </RCC>

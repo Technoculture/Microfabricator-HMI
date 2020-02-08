@@ -56,7 +56,13 @@ Item {
             let checksIndex = [2, 3, 4, 7, 8]
             checksIndex.map(index=>checksModel.set(index, {"status": "pending"}))
         }
+        onShutDown: {
+            shutDown.shutstate = "onScreen"
+            ufabState = "notVisible"
+        }
     }
+
+    ShuttingDown { id: shutDown }
 
     states: [
         State { name: "visible";

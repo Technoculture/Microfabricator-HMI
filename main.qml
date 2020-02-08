@@ -58,6 +58,9 @@ Window {
                 }
             }
         }
+        onUfabStateChanged: {
+            ufab.state = ufabState
+        }
     }
 
     Text {

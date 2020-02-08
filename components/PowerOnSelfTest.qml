@@ -13,11 +13,10 @@ Item {
     }
 
     Timer {
-        interval: 100
+        interval: 1000
         running: true; repeat: true
 
         onTriggered: {
-//            console.log(testCaseIndex)
             if(testCaseIndex < 3) {
                 if(testCaseIndex > 0) {
                     getLightReading(testCaseIndex-1)
@@ -39,7 +38,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 120
-        anchors.horizontalCenterOffset: 15
+        anchors.horizontalCenterOffset: 12
         width: testsColumn.width + 20; height: testsColumn.height + 20
         color: Qt.rgba(0,0,0,0.0)
 
@@ -59,10 +58,29 @@ Item {
                 Text {
                     id: textlabel
                     anchors.centerIn: parent
-                    font.family: icons.family
-                    text: "Self Calliberation " + icons.icons.fa_spinner
+                    text: "Self Calliberation "
                     color: "darkred"
                     font.pixelSize: 18
+                }
+
+                Text {
+                    id: iconlabel
+                    anchors.verticalCenter: textlabel.verticalCenter
+                    anchors.left: textlabel.right
+                    font.family: icons.family
+                    text: icons.icons.fa_spinner
+                    color: "darkred"
+                    font.pixelSize: 18
+                    rotation: 0
+                }
+
+                Timer {
+                    id: spinnerTimer
+                    interval: 300
+                    onTriggered: {
+                        icons.rotation = 50
+                        iconlabel.rotation = iconlabel.rotation + 10
+                    }
                 }
             }
 
