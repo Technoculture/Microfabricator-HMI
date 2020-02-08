@@ -32,6 +32,7 @@
         <file>vendor/controls/Variables.qml</file>
         <file>qmldir</file>
         <file>Style.qml</file>
-        <file>components/Drawers/DoneButton.qml</file>
+        <file>components/Drawers/IconButton.qml</file>
+        <file>components/ProgressIndicator.qml</file>
     </qresource>
 </RCC>

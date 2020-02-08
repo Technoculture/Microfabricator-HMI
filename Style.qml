@@ -20,5 +20,5 @@ QtObject {
     // StatusBar
 	readonly property color bg_statusbar: "deepskyblue" // lightgreen and brightgreen: are in: General
 
-    readonly property double clickOpacity: 0.5
+    readonly property double clickOpacity: 0.8
 }

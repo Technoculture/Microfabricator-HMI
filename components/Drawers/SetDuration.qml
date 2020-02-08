@@ -39,7 +39,7 @@ Item {
             stepSize: 5
         }
 
-        DoneButton {
+        IconButton {
             enabled: { durationSeconds < 1 ? false : true }
             onClicked: { exposureDuration = _root.durationSeconds }
         }

@@ -18,19 +18,43 @@ Item {
         anchors.bottom: baseRect.bottom
         anchors.bottomMargin: 10
 
-        Text {
-            id: element
-            text: progress.value*200 +  "\u00B5m"
-            font { pixelSize: 45; weight: Font.ExtraLight }
-            color: Style.white
+        RowLayout {
+            spacing: 10
+
+            ProgressIndicator {
+                id: distance
+                Layout.preferredHeight: 160
+                Layout.preferredWidth: 30
+            }
+
+            Text {
+                id: perc_text
+                Layout.alignment: Qt.AlignTop
+                text: distance.percentage*500 +  "\u00B5m"
+                font { pixelSize: 40; weight: Font.ExtraLight }
+                color: Style.white
+            }
         }
 
-        ProgressBar {
-            id: progress
-            value: 0.05
+        IconButton { id: cal; icon: "Refresh"; buttonText: "Calliberate"; action: ""
+            onClicked: {
+                let invisible_comps = [distance, cal, done]
+                let visible_comps = [perc_text, cal_0, cal_max, cal_cancel]
+                visible_comps.map((comp)=>{comp.visible=true})
+                invisible_comps.map((comp)=>{comp.visible=false})
+            }
         }
+        IconButton { id: done }
+        IconButton { id: cal_0; icon: "Refresh"; buttonText: "Calliberate As Zero"; action: ""; visible: false }
+        IconButton { id: cal_max; icon: "Refresh"; buttonText: "Calliberate As Max"; action: ""; visible: false }
+        IconButton { id: cal_cancel; icon: "Back"; buttonText: "Cancel Calliberation"; action: ""; visible: false
+            onClicked: { toggleCalliberate() }
+        }
+    }
 
-        DoneButton {}
+    function toggleCalliberate(){
+        let comps = [distance, perc_text, cal, done, cal_0, cal_max, cal_cancel]
+        comps.map((comp)=>{comp.visible = !comp.visible})
     }
 }
 

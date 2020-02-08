@@ -38,7 +38,7 @@ Item {
             stepSize: 1
         }
 
-        DoneButton {
+        IconButton {
             enabled: { slider.value === 0 ? false : true }
             onClicked: { pwmIntensity = slider.value.toFixed(0) }
         }

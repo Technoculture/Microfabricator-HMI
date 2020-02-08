@@ -26,7 +26,7 @@ Item {
             source: "Assets/microfabricator.png"
         }
 
-        DoneButton {
+        IconButton {
             buttonText: "Vibration Level is OK"
         }
     }

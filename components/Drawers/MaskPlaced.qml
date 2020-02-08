@@ -26,7 +26,7 @@ Item {
             source: "Assets/microfabricator.png"
         }
 
-        DoneButton { buttonText: "Mask is Placed" }
+        IconButton { buttonText: "Mask is Placed" }
     }
 }
 

@@ -56,9 +56,8 @@ Item {
             spacing: 15
             Text {
                 text: icons.icons.fa_check_circle_o
-                font.family: icons.family
                 color: textColor_Values
-                font.pointSize: fontSize_Values
+                font { pointSize: fontSize_Values; family: icons.family }
             }
             Text {
                 text: "Subcritical\u0394"
@@ -93,7 +92,7 @@ Item {
             }
         }
 
-        DoneButton {
+        IconButton {
             buttonText: "Light Engine is Ok"
         }
     }

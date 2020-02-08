@@ -26,16 +26,10 @@ Item {
             source: "Assets/microfabricator.png"
         }
 
-        RoundButton {
-            text: "Toggle Wafer Clamp"
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 30
-            checkable: true
-            onCheckedChanged: {
-                uvController.pumpState = checked
-            }
+        IconButton { icon: "Down"; buttonText: "Toggle Wafer Clamp"; action: "";
+            canToggle: true
+            onClicked: { uvController.pumpState = checked }
         }
-
-        DoneButton { buttonText: "Wafer is Placed" }
+        IconButton { buttonText: "Wafer is Placed" }
     }
 }
