@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import "../"
 import "../vendor"
 
@@ -75,6 +76,61 @@ Item {
             else { powerRect.opacity = 1; adviceText.opacity = 0 }
         }
         onPressAndHold: { shutDown() }
+    }
+
+    Rectangle {
+        id: infoRect
+        anchors.left: baseRect.right
+        anchors.top: baseRect.top
+        width: baseRect.height; height: baseRect.height
+        color: Qt.rgba(0,0,0,0.5)
+        Text {
+            anchors.centerIn: parent
+            font.family: icons.family
+            text: icons.icons.fa_info
+            color: Style.white
+        }
+    }
+    Rectangle {
+        id: infoBoundsRect
+        anchors { bottom: infoRect.top; right: infoRect.right; bottomMargin: 5 }
+        height: info.height + 30
+        width: info.width + 30
+        color: "black"
+        opacity: 0
+    }
+
+    ColumnLayout{
+        id: info
+        anchors.centerIn: infoBoundsRect
+        opacity: infoBoundsRect.opacity
+
+        Text {
+            id: infoTitleText
+            text:  icons.icons.fa_cog + " Summary"
+            font.family: icons.family
+            Layout.alignment: Qt.AlignHCenter
+            color: Style.white
+            Layout.bottomMargin: 10
+        }
+
+        Text {
+            id: infoText
+            text: "Exposure Duration: " + printTime(exposureDuration) + "min\nIntensity: " + pwmIntensity + "% (" + equivalentEnergy(pwmIntensity) + "mJ/cm2)\nFans: " + "\nNumber of Checks Pending: " + (pendingChecksCount()).toFixed(1) *10 + "\n"
+            horizontalAlignment: Text.AlignLeft
+            color: Style.white
+        }
+
+        Behavior on opacity { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
+    }
+
+    MouseArea {
+        id: infoRectMArea
+        anchors.fill: infoRect
+        onContainsMouseChanged: {
+            if(infoRectMArea.containsMouse){ infoRect.opacity = 0.5; infoBoundsRect.opacity = 0.9; }
+            else { infoRect.opacity = 1; infoBoundsRect.opacity = 0 }
+        }
     }
 
 //    CheckBox {

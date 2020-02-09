@@ -26,7 +26,7 @@ Item {
             }
 
             Behavior on opacity {
-                NumberAnimation { duration: 1000; easing.type: Easing.OutCirc }
+                NumberAnimation { duration: 1000; easing.type: Easing.Linear }
             }
         }
 

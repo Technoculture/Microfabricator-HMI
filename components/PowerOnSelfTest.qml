@@ -13,7 +13,7 @@ Item {
     }
 
     Timer {
-        interval: 1000
+        interval: 100
         running: true; repeat: true
 
         onTriggered: {
@@ -53,7 +53,6 @@ Item {
                 width: parent.width
                 height: 30
                 color: "black"
-//                radius: height / 2
 
                 Text {
                     id: textlabel
@@ -65,22 +64,23 @@ Item {
 
                 Text {
                     id: iconlabel
+                    property int rot_angle: 0.0
                     anchors.verticalCenter: textlabel.verticalCenter
                     anchors.left: textlabel.right
                     font.family: icons.family
                     text: icons.icons.fa_spinner
                     color: "darkred"
                     font.pixelSize: 18
-                    rotation: 0
+                    opacity: 0.6
+                    transform: Rotation { origin.x: iconlabel.width/2; origin.y: iconlabel.height/2; angle: iconlabel.rot_angle}
+                    Behavior on rot_angle { NumberAnimation { duration: 1000; easing.type: Easing.Linear} }
                 }
 
                 Timer {
                     id: spinnerTimer
-                    interval: 300
-                    onTriggered: {
-                        icons.rotation = 50
-                        iconlabel.rotation = iconlabel.rotation + 10
-                    }
+                    interval: 1000
+                    running: true; repeat: true
+                    onTriggered: { iconlabel.rot_angle = (iconlabel.rot_angle + 45) }
                 }
             }
 
