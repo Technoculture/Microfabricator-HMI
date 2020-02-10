@@ -19,8 +19,9 @@ Item {
 
     onUfabStateChanged: {
         if(statusbar.state === "readyToExpose"){
-            if(ufabState === "notVisible"){ exposureelapse.state = "offscreen" }
-            else if(ufabState === "visibleNotSplash"){ exposureelapse.state = "onscreen" }
+            console.log(ufabState)
+            if(ufabState === "notVisible"/* || ufabState === "visibleAtEdge"*/){ exposureelapse.state = "offscreen" }
+            else if(ufabState === "visibleNotSplash" || ufabState === "visibleIsBack"){ exposureelapse.state = "onscreen" }
         }
     }
 
@@ -67,11 +68,11 @@ Item {
     states: [
         State { name: "visible";
             PropertyChanges { target: statusbar; anchors.bottomMargin: statusHeight/2 }
-            PropertyChanges { target: checklist; state: "out" }
+            PropertyChanges { target: checklist; _state: "out" }
         },
         State { name: "notVisible";
             PropertyChanges { target: statusbar; anchors.bottomMargin: -statusHeight/2 }
-            PropertyChanges { target: checklist; state: "notVisible" }
+            PropertyChanges { target: checklist; _state: "notVisible" }
         }
     ]
 

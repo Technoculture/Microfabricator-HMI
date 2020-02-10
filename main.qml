@@ -75,13 +75,17 @@ Window {
         states: [
             State { name: "visible"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
             State { name: "visibleNotSplash"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
-            State { name: "notVisible"; PropertyChanges { target: ufab; opacity: 0.0 } PropertyChanges { target: ufab; y: -100 }}
+            State { name: "visibleIsBack"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
+            State { name: "notVisible"; PropertyChanges { target: ufab; opacity: 0.0 } PropertyChanges { target: ufab; y: -100 }},
+            State { name: "visibleAtEdge"; PropertyChanges { target: ufab; opacity: 0.3 } PropertyChanges { target: ufab; y: 10 } PropertyChanges { target: ufab; scale: 0.3 }}
         ]
 
         transitions: [
             Transition { from: "*"; to: "notVisible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.OutExpo }},
             Transition { from: "*"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.InExpo }},
-            Transition { from: "*"; to: "visibleNotSplash"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 550; easing.type: Easing.InExpo }}
+            Transition { from: "*"; to: "visibleNotSplash"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 550; easing.type: Easing.InExpo }},
+            Transition { from: "*"; to: "visibleAtEdge"; NumberAnimation { target: ufab; properties: "opacity,y,scale"; duration: 100; easing.type: Easing.OutExpo }},
+            Transition { from: "*"; to: "visibleIsBack"; NumberAnimation { target: ufab; properties: "opacity,y,scale"; duration: 200; easing.type: Easing.OutExpo }}
         ]
     }
 
@@ -118,6 +122,19 @@ Window {
         ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
         ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
     }
+
+//    ListModel {
+//        id: checksModel
+//        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
+//        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
+//        ListElement { name: "Wafer Placed";          status: "pending";        filename:"WaferPlaced" }
+//        ListElement { name: "Mask Placed";           status: "pending";        filename:"MaskPlaced" }
+//        ListElement { name: "Wafer-Mask Distance";   status: "pending";        filename:"WaferMaskDistance" }
+//        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
+//        ListElement { name: "Vibration Monitor";     status: "pending";        filename:"VibrationMonitor" }
+//        ListElement { name: "Set Power";             status: "pending";        filename:"SetPower" }
+//        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
+//    }
 
     property bool allChecksDone: {(pendingChecksCount() === 0.0) ? true : false}
 
