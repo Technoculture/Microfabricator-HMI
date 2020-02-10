@@ -18,12 +18,11 @@ Item {
         anchors.bottom: baseRect.bottom
         anchors.bottomMargin: 10
 
-        Image {
-            id: illustration
+        VibrationPlot { id: vibration;
             Layout.preferredWidth: 200
             Layout.preferredHeight: 180
-            fillMode: Image.PreserveAspectCrop
-            source: "Assets/microfabricator.png"
+            lineColor: "black"; opacity: 1
+            inDrawer: true
         }
 
         IconButton {

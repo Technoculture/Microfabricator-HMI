@@ -4,12 +4,9 @@ import QtCharts 2.0
 Item {
     id: _root
     property color lineColor: Qt.rgba(0,0,0,0.3);
-    anchors.fill: parent
+    property bool inDrawer: false
+    clip: true
 
-    Rectangle {
-        id: bgRect
-        anchors.fill: _root
-    }
     Text {
         text: sensorController.serialData
     }
@@ -19,16 +16,17 @@ Item {
         antialiasing: true
         anchors { fill: parent; margins: -50 }
         margins { right: 0; bottom: 0; left: 0; top: 0 }
-        plotAreaColor: "red";// Qt.rgba(1,1,1,0)
+        plotAreaColor: _root.inDrawer ? "black" : "red";
 
         SplineSeries {
             id: vibrLine
-            color: Qt.rgba(0,0,0,0.3)
+            color: _root.inDrawer ? Qt.rgba(1,1,1,1) : Qt.rgba(0,0,0,0.3)
             width: 1
 
             axisX: ValueAxis { labelsVisible: false; gridVisible: false; lineVisible: false }
             axisY: ValueAxis { labelsVisible: false; gridVisible: false; lineVisible: false
-                min: 3; max: 10;
+                min: 3;
+                max: _root.inDrawer ? 6 : 10;
             }
 
 //            Component.onCompleted: {

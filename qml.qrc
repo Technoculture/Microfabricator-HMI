@@ -35,5 +35,9 @@
         <file>components/Drawers/IconButton.qml</file>
         <file>components/ProgressIndicator.qml</file>
         <file>components/ShuttingDown.qml</file>
+        <file>components/PowerButton.qml</file>
+        <file>components/InfoButton.qml</file>
+        <file>components/InfoOverlay.qml</file>
+        <file>components/InfoOverlayWide.qml</file>
     </qresource>
 </RCC>
