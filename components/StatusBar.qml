@@ -48,6 +48,7 @@ Item {
         anchors.right: baseRect.left
         anchors.top: baseRect.top
         width: baseRect.height; height: baseRect.height
+        z: 101
     }
 
     InfoButton {
@@ -56,31 +57,31 @@ Item {
         width: baseRect.height; height: baseRect.height
     }
 
-    CheckBox {
-        id: fan
-        text: "Fan"
-        checked: true
-        anchors { left: baseRect.left; bottom: baseRect.top; leftMargin: -48 }
-        onCheckStateChanged: { uvController.fanState = checked }
-    }
-    CheckBox {
-        id: sensormode
-        tristate: true; checked: true
-        text: "Vibration"
-        anchors { left: fan.left; bottom: fan.top }
-        onCheckStateChanged: {
-            if(checkState == Qt.Unchecked){
-                sensormode.text = "Temperature"
-                sensorController.mode = "TEMPERATURE_SENSOR"
-            } else if(checkState == Qt.PartiallyChecked) {
-                sensormode.text = "UV Intensity"
-                sensorController.mode = "LIGHT_SENSOR"
-            } else if(checkState == Qt.Checked){
-                sensormode.text = "Vibration"
-                sensorController.mode = "VIBRATION_SENSOR"
-            }
-        }
-    }
+//    CheckBox {
+//        id: fan
+//        text: "Fan"
+//        checked: true
+//        anchors { left: baseRect.left; bottom: baseRect.top; leftMargin: -48 }
+//        onCheckStateChanged: { uvController.fanState = checked }
+//    }
+//    CheckBox {
+//        id: sensormode
+//        tristate: true; checked: true
+//        text: "Vibration"
+//        anchors { left: fan.left; bottom: fan.top }
+//        onCheckStateChanged: {
+//            if(checkState == Qt.Unchecked){
+//                sensormode.text = "Temperature"
+//                sensorController.mode = "TEMPERATURE_SENSOR"
+//            } else if(checkState == Qt.PartiallyChecked) {
+//                sensormode.text = "UV Intensity"
+//                sensorController.mode = "LIGHT_SENSOR"
+//            } else if(checkState == Qt.Checked){
+//                sensormode.text = "Vibration"
+//                sensorController.mode = "VIBRATION_SENSOR"
+//            }
+//        }
+//    }
 
     // INTERACTIONS
     property int _stateIndex: 0

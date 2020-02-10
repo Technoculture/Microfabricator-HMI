@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.12
 import "../"
 
 Item {
@@ -13,23 +14,56 @@ Item {
             color: Style.white
         }
     }
-    Text {
-        id: adviceText
-        anchors { bottom: powerRect.top; left: powerRect.left; bottomMargin: 5 }
-        text: "Hold on to Shut Down"
-        color: Style.white
-        opacity: 0
 
-        Behavior on opacity {
-             NumberAnimation { duration: 500; easing.type: Easing.OutExpo }
+    Item {
+        id: adviceText
+        opacity: 0
+        anchors { bottom: powerRect.top; left: powerRect.left; bottomMargin: 50 }
+
+        property int counter: 0
+
+        Column {
+            id: content
+            anchors.fill: parent
+            spacing: 10
+
+            Text {
+                text: "Hold on to Shut Down"
+                color: Style.white
+            }
+            ProgressBar {
+                to: powerRectMArea.pressAndHoldInterval
+                value: progressTimer.interval * adviceText.counter
+
+                Timer {
+                    id: progressTimer
+                    interval: powerRectMArea.pressAndHoldInterval / 100
+                    repeat: true
+
+                    onTriggered: { adviceText.counter++ }
+                }
+            }
         }
+
+        Behavior on opacity { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
     }
+
     MouseArea {
         id: powerRectMArea
         anchors.fill: powerRect
+        Component.onCompleted: { powerRectMArea.pressAndHoldInterval = 2000 }
         onContainsMouseChanged: {
-            if(powerRectMArea.containsMouse){ powerRect.opacity = 0.5; adviceText.opacity = 0.7; }
-            else { powerRect.opacity = 1; adviceText.opacity = 0 }
+            if(powerRectMArea.containsMouse){
+                powerRect.opacity = 0.5;
+                adviceText.opacity = 0.7;
+                progressTimer.running = true;
+            }
+            else {
+                powerRect.opacity = 1;
+                adviceText.opacity = 0;
+                progressTimer.stop()
+                adviceText.counter = 0;
+            }
         }
         onPressAndHold: { shutDown() }
     }

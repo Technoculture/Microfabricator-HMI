@@ -5,22 +5,8 @@ import "../"
 Item {
     id: _root
     property bool isPressed: false
-
     onIsPressedChanged: { handleState() }
-
-    Timer {
-        id: infoTimeOut
-        interval: 4000
-        onTriggered: {
-//            console.log(_root.isPressed + " -> " + infoTimeOut.running)
-            if(infoTimeOut.running){ }
-            else {
-                infoTimeOut.stop()
-                _root.isPressed = false
-                handleState()
-            }
-        }
-    }
+    z: 200
 
     Rectangle {
         id: infoRect
@@ -36,34 +22,30 @@ Item {
 
     InfoOverlayWide {
         id: overlay
-        anchors { bottom: infoRect.top; right: infoRect.right; rightMargin: -31; bottomMargin: 5 }
+        anchors { bottom: infoRect.top; right: infoRect.right; rightMargin: -31; bottomMargin: -42 }
+        onClose: {
+            _root.isPressed = !_root.isPressed
+            handleState()
+        }
     }
 
     MouseArea {
         id: infoRectMArea
         anchors.fill: infoRect
-        onClicked: {  _root.isPressed = !_root.isPressed }
+        onClicked: { overlay.close() }
     }
 
     function handleState(){
-//        console.log(ufabState)
-//        console.log(checklistState)
         if(isPressed) {
-            infoTimeOut.running = true
             overlay.state = "onScreen"
-            if(checklistState === "in"){ ufabState = "notVisible"}
+            if(checklistState === "in") { ufabState = "notVisible"}
             else { ufabState = "visibleAtEdge"; }
         }
         else {
-            infoTimeOut.stop()
             infoRect.opacity = 1.0;
             overlay.state = "offScreen"
-            if(ufabState === "visibleAtEdge" || checklistState !== "in"){
-                ufabState = "visibleIsBack";
-            } else {
-                ufabState = "notVisible"
-            }
+            if(ufabState === "visibleAtEdge" || checklistState !== "in"){ ufabState = "visibleIsBack"; }
+            else { ufabState = "notVisible" }
         }
-//        console.log("--> " + ufabState)
     }
 }

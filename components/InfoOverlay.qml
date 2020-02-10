@@ -6,6 +6,7 @@ Item {
     height: info.height + 30
     width: info.width + 30
     opacity: 0
+    z: 101
 
     Rectangle {
         id: infoBoundsRect
