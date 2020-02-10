@@ -20,7 +20,7 @@ Item {
     Rectangle {
         id: baseRectOverlay
         anchors.fill: baseRect
-        color: "red"
+        color: stateColor
         z: 100
     }
 

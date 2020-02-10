@@ -3,6 +3,9 @@ import QtQuick.Controls 2.12
 import "../"
 
 Item {
+    enabled: !exposing
+    opacity: exposing ? 0.2 : 1
+
     Rectangle {
         id: powerRect
         anchors.fill: parent
@@ -18,22 +21,30 @@ Item {
     Item {
         id: adviceText
         opacity: 0
-        anchors { bottom: powerRect.top; left: powerRect.left; bottomMargin: 50 }
+        anchors { bottom: powerRect.top; left: powerRect.left; bottomMargin: (adviceRect.height+6) }
 
         property int counter: 0
 
+        Rectangle {
+            id: adviceRect
+            height: 120; width: text.width + 50
+            color: "black"
+        }
+
         Column {
             id: content
-            anchors.fill: parent
-            spacing: 10
+            anchors.centerIn: adviceRect
+            spacing: 25
 
             Text {
+                id: text
                 text: "Hold on to Shut Down"
                 color: Style.white
             }
             ProgressBar {
                 to: powerRectMArea.pressAndHoldInterval
                 value: progressTimer.interval * adviceText.counter
+                implicitWidth: text.width
 
                 Timer {
                     id: progressTimer
@@ -45,7 +56,7 @@ Item {
             }
         }
 
-        Behavior on opacity { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
+        Behavior on opacity { NumberAnimation { duration: 800; easing.type: Easing.OutExpo } }
     }
 
     MouseArea {
@@ -55,7 +66,7 @@ Item {
         onContainsMouseChanged: {
             if(powerRectMArea.containsMouse){
                 powerRect.opacity = 0.5;
-                adviceText.opacity = 0.7;
+                adviceText.opacity = 1;
                 progressTimer.running = true;
             }
             else {

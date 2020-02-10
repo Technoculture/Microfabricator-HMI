@@ -24,38 +24,30 @@ Item {
         }
         Text {
             id: time
-            anchors.top: timeLabel.bottom
-            anchors.left: timeLabel.left
-            text: printTime(timeRemaining) //}// "02:20:34" //{
+            anchors { top: timeLabel.bottom; left: timeLabel.left }
+            text: printTime(timeRemaining)
             color: "white"
             font.pixelSize: 22
         }
         Text {
-            anchors.top: timeLabel.bottom
-            anchors.left: time.right
-            text: " / " + printTime(totalTime)//" / 03:00:00" //{ " / " + totalTime }
+            anchors { top: timeLabel.bottom; left: time.right }
+            text: " / " + printTime(totalTime)
             color: "#003f00"
             font.pixelSize: 22
         }
         Text {
-            anchors.right: percentSign.left
-            anchors.bottom: percentSign.bottom
-            anchors.bottomMargin: -15
+            anchors { right: percentSign.left; bottom: percentSign.bottom; bottomMargin: -15 }
             text: {
-                if(totalTime === 0){
-                    return 0
-                } else {
-                    return (elapsedDuration/totalTime * 100).toFixed(0)
-                }
+                if(totalTime === 0){ return 0 }
+                else { return (elapsedDuration/totalTime * 100).toFixed(0) }
             }
-            font.pixelSize: 70
-            font.weight: Font.Thin
-            color: "#00c302" // "black"//
+            font { pixelSize: 70; weight: Font.Thin }
+            color: "#00c302"
         }
         Text {
             id: percentSign
             anchors.bottomMargin: 12
-            color: "#00c302" // "black"//
+            color: "#00c302"
             text: "%"
             font.pixelSize: 30
             x: 735; y: 70
@@ -69,15 +61,13 @@ Item {
         }
         Text {
             id: energy
-            anchors.top: intensityLabel.bottom
-            anchors.right: intensityLabel.right
-            text: " ~" + equivalentEnergy(intensity) + "mJ" //" ~1.45mJ" // { equivalentEnergy() }
+            anchors { top: intensityLabel.bottom; right: intensityLabel.right }
+            text: " ~" + equivalentEnergy(intensity) + "mJ"
             color: "white"
             font.pixelSize: 22
         }
         Text {
-            anchors.right: energy.left
-            anchors.bottom: energy.bottom
+            anchors { right: energy.left; bottom: energy.bottom }
             text: intensity + "%"
             color: "#003f00"
             font.pixelSize: 22

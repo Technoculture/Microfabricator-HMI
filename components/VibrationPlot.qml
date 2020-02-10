@@ -16,7 +16,7 @@ Item {
         antialiasing: true
         anchors { fill: parent; margins: -50 }
         margins { right: 0; bottom: 0; left: 0; top: 0 }
-        plotAreaColor: _root.inDrawer ? "black" : "red";
+        plotAreaColor: _root.inDrawer ? "black" : allChecksDone ? "green" : "red";
 
         SplineSeries {
             id: vibrLine

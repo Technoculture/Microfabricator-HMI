@@ -23,14 +23,12 @@ Window {
             State { name: "ALLCHECKDONE"; PropertyChanges { target: bgRect; color: "green" } }
         ]
 
-        transitions: [
-            Transition { from: "*"; to: "*"; ColorAnimation { duration: 800; easing.type: Easing.OutExpo } }
-        ]
+        transitions: [ Transition { from: "*"; to: "*"; ColorAnimation { duration: 800; easing.type: Easing.OutExpo } } ]
     }
 
     PowerOnSelfTest { id: post; anchors.fill: bgRect }
-
     VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }
+
     SplashScreen {
         id: splashscreen
         anchors.fill: bgRect;
@@ -40,35 +38,34 @@ Window {
             post.visible = false
             mainapp.checklistState = "out"
             mainapp.state = "visible"
-            ufab.state = "visible"
+            mainapp.ufabState = "visible"
         }
     }
 
     MainApp { id: mainapp; anchors.fill: bgRect;
         ufabState: ufab.state
         onChecklistStateChanged: { // FIXME: Here fix ufab text timing
+            console.log(post.calliberationDone)
             if(post.calliberationDone){
                 if(checklistState == "in"){
-                    ufab.state = "notVisible"
+//                    console.log("-> in")
+                    ufabState = "notVisible"
                     vibration.opacity = 1
                 } else {
-                    if(allChecksDone){ ufab.state = "visibleNotSplash" }
-                    else { ufab.state = "visible" }
+                    if(allChecksDone){/* console.log("-> ACD");*/ ufabState = "visibleNotSplash" }
+                    else { /*console.log("-> vIB");*/ ufabState = "visible" }
                     vibration.opacity = 0
                 }
             }
         }
-        onUfabStateChanged: {
-            ufab.state = ufabState
-        }
+        onUfabStateChanged: { ufab.state = ufabState }
     }
 
     Text {
         id: ufab
         x: 165;
         text: "uFabricator"
-        font.pointSize: 70
-        font.weight: Font.Thin
+        font { pointSize: 70; weight: Font.Thin }
         color: "white"
         state: "notVisible"
 
@@ -77,7 +74,7 @@ Window {
             State { name: "visibleNotSplash"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
             State { name: "visibleIsBack"; PropertyChanges { target: ufab; opacity: 1.0 } PropertyChanges { target: ufab; y: 150 }},
             State { name: "notVisible"; PropertyChanges { target: ufab; opacity: 0.0 } PropertyChanges { target: ufab; y: -100 }},
-            State { name: "visibleAtEdge"; PropertyChanges { target: ufab; opacity: 0.3 } PropertyChanges { target: ufab; y: 10 } PropertyChanges { target: ufab; scale: 0.3 }}
+            State { name: "visibleAtEdge"; PropertyChanges { target: ufab; opacity: 0.3 } PropertyChanges { target: ufab; y: 50 } PropertyChanges { target: ufab; scale: 0.3 }}
         ]
 
         transitions: [
@@ -92,6 +89,7 @@ Window {
     // GLOBALS
     property int globalCurrentIndex: 0
 
+    property bool exposing: false
     property int elapsedDuration: 0
     property int exposureDuration: 5
     property int pwmIntensity: 100
@@ -99,14 +97,16 @@ Window {
     onElapsedDurationChanged: {
         if(exposureDuration === elapsedDuration){
             exposureTimer.stop()
+            exposing = false
+//            console.log("E " + exposing)
             mainapp.exposureComplete = true
         }
     }
 
     Timer {
-        id: exposureTimer
+        id: exposureTimer; running: false; repeat: true
         interval: 1000
-        running: false; repeat: true
+        onRunningChanged: { if(running){ exposing = true } /*else { exposing = false } console.log("E " + exposing) }*/}
         onTriggered: { elapsedDuration += 1 }
     }
 
@@ -136,7 +136,7 @@ Window {
 //        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
 //    }
 
-    property bool allChecksDone: {(pendingChecksCount() === 0.0) ? true : false}
+    property bool allChecksDone: {(pendingChecksCount() === 0) ? true : false}
 
     ListModel{ id: pendingChecksModel }
 
@@ -147,7 +147,7 @@ Window {
                 pendingChecksModel.append(checksModel.get(i)); pendingCount++; }
         }
         console.log(pendingCount/checksModel.count)
-        return pendingCount/checksModel.count;
+        return (pendingCount/checksModel.count.toFixed(1))
     }
 
     function printTime(time) {

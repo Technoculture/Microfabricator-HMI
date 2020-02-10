@@ -8,7 +8,6 @@
         <file>components/SplashScreen.qml</file>
         <file>components/StatusBar.qml</file>
         <file>components/VibrationPlot.qml</file>
-        <file>components/Drawers/Blank.qml</file>
         <file>components/Drawers/LightEngineOk.qml</file>
         <file>components/Drawers/MaskPlaced.qml</file>
         <file>components/Drawers/SetDuration.qml</file>
@@ -37,7 +36,6 @@
         <file>components/ShuttingDown.qml</file>
         <file>components/PowerButton.qml</file>
         <file>components/InfoButton.qml</file>
-        <file>components/InfoOverlay.qml</file>
         <file>components/InfoOverlayWide.qml</file>
     </qresource>
 </RCC>

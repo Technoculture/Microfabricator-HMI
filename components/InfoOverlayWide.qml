@@ -7,12 +7,13 @@ Item {
     state: "offScreen"
     signal close
 
-    width: 790
+    width: 790//728
 
     Rectangle {
         id: infoBoundsRect
         anchors.fill: parent
         color: "black"
+//        opacity: 0.2
     }
 
     MouseArea {
@@ -60,7 +61,7 @@ Item {
     }
 
     states: [
-        State { name: "onScreen"; PropertyChanges { target: _root; height: 300; opacity: 0.95; } PropertyChanges { target: mousearea; width: 790 } },
+        State { name: "onScreen"; PropertyChanges { target: _root; height: 320; opacity: 0.95; } PropertyChanges { target: mousearea; width: 790 } },
         State { name: "offScreen"; PropertyChanges { target: _root; height: 42; opacity: 0; } PropertyChanges { target: mousearea; width: 42 } }
     ]
 

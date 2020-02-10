@@ -32,8 +32,6 @@ Item {
         id: baseRect
         height: 42; width: 644
         anchors.centerIn: parent
-        border.color: Style.black
-        border.width: 1
     }
 
     Text {
@@ -88,8 +86,8 @@ Item {
     MouseArea {
         anchors.fill: baseRect
         onClicked: {
-            console.log("STATUS CLICKED")
-            console.log(_root.state)
+//            console.log("STATUS CLICKED")
+//            console.log(_root.state)
             if(_root.state === "waitingForChecks") {}
             else if(_root.state === "readyToExpose") {
                 startExposure()

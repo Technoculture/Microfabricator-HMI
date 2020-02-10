@@ -22,7 +22,7 @@ Item {
 
     InfoOverlayWide {
         id: overlay
-        anchors { bottom: infoRect.top; right: infoRect.right; rightMargin: -31; bottomMargin: -42 }
+        anchors { bottom: infoRect.top; right: infoRect.right; rightMargin: -31; bottomMargin: -42 } // Remove "rightMargin: -31;"
         onClose: {
             _root.isPressed = !_root.isPressed
             handleState()

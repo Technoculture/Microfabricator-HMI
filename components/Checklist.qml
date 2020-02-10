@@ -26,9 +26,7 @@ Item {
         height: 312; width: 255
         x: 266;
         color: Style.black
-
-        border.color: Style.black
-		border.width: 1
+        border { color: Style.black; width: 1 }
 
         Drawer {
             id: drawer;
@@ -54,13 +52,9 @@ Item {
             id: baseRect
 			height: 40; width: parent.width - 2
             color: {
-                if(status === "utility"){
-                    Style.yellow
-                } else if(status === "pending"){
-                    Style.red
-                } else {
-                    Style.green
-                }
+                if(status === "utility"){ Style.yellow }
+                else if(status === "pending"){ Style.red }
+                else { Style.green }
             }
 
             Rectangle { // Selected Highlight
@@ -84,8 +78,7 @@ Item {
                 anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
                 font.family: icons.family
                 text: {
-                    if(index === listview.currentIndex){
-                        drawer.state === "open" ? icons.icons.fa_angle_right : icons.icons.fa_angle_down }
+                    if(index === listview.currentIndex){ drawer.state === "open" ? icons.icons.fa_angle_right : icons.icons.fa_angle_down }
                     else{ "" }
                 }
                 color: { listview.currentIndex == index ? "white" : "" }
@@ -144,12 +137,14 @@ Item {
             name: "out"
             PropertyChanges { target: baseRect; y: 392; }
             PropertyChanges { target: drawer; x: 0; }
+            // FIXME: QML StateGroup: Can't apply a state change as part of a state definition.
             PropertyChanges { target: drawer; state: "hide"; }
         },
         State {
             name: "notVisible"
             PropertyChanges { target: baseRect; y: 500; }
             PropertyChanges { target: drawer; x: 0; }
+            // FIXME: QML StateGroup: Can't apply a state change as part of a state definition.
             PropertyChanges { target: drawer; state: "hide"; }
         }
     ]
