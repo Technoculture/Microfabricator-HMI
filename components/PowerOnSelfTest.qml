@@ -8,12 +8,11 @@ Item {
 
     FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
-    onCalliberationDoneChanged: {
-        sensorController.mode = "VIBRATION_SENSOR"
-    }
+    Component.onCompleted: { sensorController.mode = "LIGHT_SENSOR" }
+    onCalliberationDoneChanged: { sensorController.mode = "VIBRATION_SENSOR" }
 
     Timer {
-        interval: 100
+        interval: 1000
         running: true; repeat: true
 
         onTriggered: {
@@ -38,7 +37,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 120
-        anchors.horizontalCenterOffset: 12
+        anchors.horizontalCenterOffset: { (calliberationModel.get(0).status === "ok") ? -10 : 12}
         width: testsColumn.width + 20; height: testsColumn.height + 20
         color: Qt.rgba(0,0,0,0.0)
 
@@ -49,7 +48,7 @@ Item {
             Rectangle {
                 id: textlabelrect
                 Layout.alignment: Qt.AlignLeft//Center
-                Layout.leftMargin: 95
+                Layout.leftMargin: 112//{ (calliberationModel.get(0).status === "ok") ? 112 : 95}
                 width: parent.width
                 height: 30
                 color: "black"
@@ -87,10 +86,11 @@ Item {
             Repeater {
                 model: 3
                 Layout.alignment: Qt.AlignLeft
+
                 Rectangle {
                     id: labelrect
                     Layout.alignment: Qt.AlignLeft
-                    width: testTextRow.width* 1.2
+                    width: testTextRow.width* 1.1
                     height: testTextRow.height * 1.5
                     color: Qt.rgba(0,0,0,0.4)
                     radius: height / 2
@@ -103,8 +103,7 @@ Item {
 
                         Text {
                             id: labelStatus
-                            font.pixelSize: 18
-                            font.family: icons.family
+                            font { pixelSize: 18; family: icons.family }
                             color: testTextRow.textColor
                             text: { (calliberationModel.get(index).status === "ok" ? (icons.icons.fa_check_circle + " ") : (icons.icons.fa_exclamation_triangle + " ")) }
                             Layout.leftMargin: 10
@@ -112,8 +111,11 @@ Item {
                         Text {
                             id: label
                             color: testTextRow.textColor
-                            font.pixelSize: 16
-                            text: { String(calliberationModel.get(index).name) }
+                            font { family: icons.family; pixelSize: 16 }
+                            text: {
+                                if(calliberationModel.get(index).status === "ok") { String(calliberationModel.get(index).name) + " " + icons.icons.fa_long_arrow_right + " " + String(calliberationModel.get(index).value) }
+                                else { String(calliberationModel.get(index).name) }
+                            }
                         }
                     }
                 }
@@ -123,7 +125,6 @@ Item {
 
     function setLightForReading(i) {
         uvController.intensity = calliberationModel.get(i).intensity
-        sensorController.mode = "LIGHT_SENSOR"
     }
 
     function getLightReading(i) {

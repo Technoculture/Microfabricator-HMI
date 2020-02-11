@@ -6,7 +6,11 @@ import "../../"
 
 Item {
     id: _root
-    property int durationSeconds: { minSlider.value*60 + secSlider.value }
+    property int durationSeconds: { (minSlider.value*60) + secSlider.value }
+
+    onDurationSecondsChanged: {
+        console.log(durationSeconds)
+    }
 
     Rectangle {
         id: baseRect
@@ -29,13 +33,13 @@ Item {
 
         Slider {
             id: minSlider
-            to: 19; value: {(exposureDuration / 60).toFixed(0)}
+            to: 9; value: { (exposureDuration / 60).toFixed(0) }
             stepSize: 1
         }
 
         Slider {
             id: secSlider
-            to: 59; value: {exposureDuration % 60}
+            to: 55; value: {exposureDuration % 60}
             stepSize: 5
         }
 

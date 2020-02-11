@@ -13,7 +13,6 @@ Item {
         id: infoBoundsRect
         anchors.fill: parent
         color: "black"
-//        opacity: 0.2
     }
 
     MouseArea {

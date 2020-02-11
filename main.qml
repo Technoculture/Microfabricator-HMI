@@ -45,7 +45,7 @@ Window {
     MainApp { id: mainapp; anchors.fill: bgRect;
         ufabState: ufab.state
         onChecklistStateChanged: { // FIXME: Here fix ufab text timing
-            console.log(post.calliberationDone)
+//            console.log(post.calliberationDone)
             if(post.calliberationDone){
                 if(checklistState == "in"){
 //                    console.log("-> in")
@@ -81,7 +81,7 @@ Window {
             Transition { from: "*"; to: "notVisible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.OutExpo }},
             Transition { from: "*"; to: "visible"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 500; easing.type: Easing.InExpo }},
             Transition { from: "*"; to: "visibleNotSplash"; NumberAnimation { target: ufab; properties: "opacity,y"; duration: 550; easing.type: Easing.InExpo }},
-            Transition { from: "*"; to: "visibleAtEdge"; NumberAnimation { target: ufab; properties: "opacity,y,scale"; duration: 100; easing.type: Easing.OutExpo }},
+            Transition { from: "*"; to: "visibleAtEdge"; NumberAnimation { target: ufab; properties: "opacity,y,scale"; duration: 250; easing.type: Easing.OutExpo }},
             Transition { from: "*"; to: "visibleIsBack"; NumberAnimation { target: ufab; properties: "opacity,y,scale"; duration: 200; easing.type: Easing.OutExpo }}
         ]
     }
@@ -110,31 +110,31 @@ Window {
         onTriggered: { elapsedDuration += 1 }
     }
 
-    ListModel {
-        id: checksModel
-        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
-        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
-        ListElement { name: "Wafer Placed";          status: "ok";        filename:"WaferPlaced" }
-        ListElement { name: "Mask Placed";           status: "ok";        filename:"MaskPlaced" }
-        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename:"WaferMaskDistance" }
-        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
-        ListElement { name: "Vibration Monitor";     status: "ok";        filename:"VibrationMonitor" }
-        ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
-        ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
-    }
-
 //    ListModel {
 //        id: checksModel
 //        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
 //        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
-//        ListElement { name: "Wafer Placed";          status: "pending";        filename:"WaferPlaced" }
-//        ListElement { name: "Mask Placed";           status: "pending";        filename:"MaskPlaced" }
-//        ListElement { name: "Wafer-Mask Distance";   status: "pending";        filename:"WaferMaskDistance" }
+//        ListElement { name: "Wafer Placed";          status: "ok";        filename:"WaferPlaced" }
+//        ListElement { name: "Mask Placed";           status: "ok";        filename:"MaskPlaced" }
+//        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename:"WaferMaskDistance" }
 //        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
-//        ListElement { name: "Vibration Monitor";     status: "pending";        filename:"VibrationMonitor" }
-//        ListElement { name: "Set Power";             status: "pending";        filename:"SetPower" }
-//        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
+//        ListElement { name: "Vibration Monitor";     status: "ok";        filename:"VibrationMonitor" }
+//        ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
+//        ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
 //    }
+
+    ListModel {
+        id: checksModel
+        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
+        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
+        ListElement { name: "Wafer Placed";          status: "pending";        filename:"WaferPlaced" }
+        ListElement { name: "Mask Placed";           status: "pending";        filename:"MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";   status: "pending";        filename:"WaferMaskDistance" }
+        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
+        ListElement { name: "Vibration Monitor";     status: "pending";        filename:"VibrationMonitor" }
+        ListElement { name: "Set Power";             status: "pending";        filename:"SetPower" }
+        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
+    }
 
     property bool allChecksDone: {(pendingChecksCount() === 0) ? true : false}
 
@@ -146,7 +146,7 @@ Window {
             if(checksModel.get(i).status === "pending"){
                 pendingChecksModel.append(checksModel.get(i)); pendingCount++; }
         }
-        console.log(pendingCount/checksModel.count)
+//        console.log(pendingCount/checksModel.count)
         return (pendingCount/checksModel.count.toFixed(1))
     }
 

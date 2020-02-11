@@ -1,10 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import "../"
+import "../vendor"
 
 Item {
     enabled: !exposing
     opacity: exposing ? 0.2 : 1
+
+    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: powerRect
@@ -21,13 +24,14 @@ Item {
     Item {
         id: adviceText
         opacity: 0
+        z: 300
         anchors { bottom: powerRect.top; left: powerRect.left; bottomMargin: (adviceRect.height+6) }
 
         property int counter: 0
 
         Rectangle {
             id: adviceRect
-            height: 120; width: text.width + 50
+            height: 400; width: text.width + 75
             color: "black"
         }
 
@@ -36,6 +40,13 @@ Item {
             anchors.centerIn: adviceRect
             spacing: 25
 
+            Text {
+                id: icon
+                text: icons.icons.fa_power_off
+                font { family: icons.family; pixelSize: 60 }
+                color: Style.white
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
             Text {
                 id: text
                 text: "Hold on to Shut Down"
@@ -62,7 +73,7 @@ Item {
     MouseArea {
         id: powerRectMArea
         anchors.fill: powerRect
-        Component.onCompleted: { powerRectMArea.pressAndHoldInterval = 2000 }
+        Component.onCompleted: { powerRectMArea.pressAndHoldInterval = 5000 }
         onContainsMouseChanged: {
             if(powerRectMArea.containsMouse){
                 powerRect.opacity = 0.5;
@@ -77,6 +88,18 @@ Item {
             }
         }
         onPressAndHold: { shutDown() }
+
+        onEntered: {
+            if(ufabState === "visible" || ufabState === "visibleNotSplash" || ufabState === "visibleIsBack"){
+                ufabState = "visibleAtEdge"
+            }
+            console.log(ufabState)
+        }
+        onExited: {
+            if(ufabState === "visibleAtEdge"){ ufabState = "visibleIsBack" }
+//            else if(ufabState === "notVisible") { }
+//            console.log(ufabState)
+        }
     }
 
 }

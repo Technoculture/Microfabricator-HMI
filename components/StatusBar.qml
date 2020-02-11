@@ -38,7 +38,7 @@ Item {
         id: statusText
         anchors.centerIn: baseRect
         font { pixelSize: 18; family: icons.family }
-        text: /*_icon + " " +*/ _text
+        text: _icon + " " + _text
     }
     // =============================================================================================
 
