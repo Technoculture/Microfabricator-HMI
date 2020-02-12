@@ -25,7 +25,7 @@ Item {
     // INITIALIZATION
     state: { allChecksDone ? "readyToExpose" : "waitingForChecks" }
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     // COMPONENTS
     Rectangle {
@@ -55,31 +55,31 @@ Item {
         width: baseRect.height; height: baseRect.height
     }
 
-//    CheckBox {
-//        id: fan
-//        text: "Fan"
-//        checked: true
-//        anchors { left: baseRect.left; bottom: baseRect.top; leftMargin: -48 }
-//        onCheckStateChanged: { uvController.fanState = checked }
-//    }
-//    CheckBox {
-//        id: sensormode
-//        tristate: true; checked: true
-//        text: "Vibration"
-//        anchors { left: fan.left; bottom: fan.top }
-//        onCheckStateChanged: {
-//            if(checkState == Qt.Unchecked){
-//                sensormode.text = "Temperature"
-//                sensorController.mode = "TEMPERATURE_SENSOR"
-//            } else if(checkState == Qt.PartiallyChecked) {
-//                sensormode.text = "UV Intensity"
-//                sensorController.mode = "LIGHT_SENSOR"
-//            } else if(checkState == Qt.Checked){
-//                sensormode.text = "Vibration"
-//                sensorController.mode = "VIBRATION_SENSOR"
-//            }
-//        }
-//    }
+    CheckBox {
+        id: fan
+        text: "Fan"
+        checked: true
+        anchors { left: baseRect.left; bottom: baseRect.top; leftMargin: -48 }
+        onCheckStateChanged: { uvController.fanState = checked }
+    }
+    CheckBox {
+        id: sensormode
+        tristate: true; checked: true
+        text: "Vibration"
+        anchors { left: fan.left; bottom: fan.top }
+        onCheckStateChanged: {
+            if(checkState == Qt.Unchecked){
+                sensormode.text = "Temperature"
+                sensorController.mode = "TEMPERATURE_SENSOR"
+            } else if(checkState == Qt.PartiallyChecked) {
+                sensormode.text = "UV Intensity"
+                sensorController.mode = "LIGHT_SENSOR"
+            } else if(checkState == Qt.Checked){
+                sensormode.text = "Vibration"
+                sensorController.mode = "VIBRATION_SENSOR"
+            }
+        }
+    }
 
     // INTERACTIONS
     property int _stateIndex: 0
@@ -106,17 +106,17 @@ Item {
             }
             else if(_root.state === "exposureComplete") {
                 uvController.intensity = 0
-                goHome()
-                _root.state = Qt.binding(function(){ if(allChecksDone){return "readyToExpose"} else{return "waitingForChecks"} })
+                _root.state = "openTray"
             }
-//            else if(_root.state === "openTray") {
-//                sliderController.state = "MOVE_OUTWARDS"
-//                _root.state = "closeTray"
-//            }
-//            else if(_root.state === "closeTray") {
-//                sliderController.state = "MOVE_INWARDS"
-//                _root.state = "waitingForChecks"
-//            }
+            else if(_root.state === "openTray") {
+                sliderController.state = "MOVE_OUTWARDS"
+                _root.state = "closeTray"
+            }
+            else if(_root.state === "closeTray") {
+                sliderController.state = "MOVE_INWARDS"
+                _root.state = Qt.binding(function(){ if(allChecksDone){return "readyToExpose"} else{return "waitingForChecks"} })
+                goHome()
+            }
         }
     }
 
@@ -131,11 +131,15 @@ Item {
         State { name: "resumeExposure";
             PropertyChanges { target: _root; _color: Style.green; _text: "Resume the Exposure"; _icon: icons.icons.fa_play } },
         State { name: "exposureComplete";
-            PropertyChanges { target: _root; _color: Style.green; _text: "Exposure is Complete"; _icon: icons.icons.fa_check } }
+            PropertyChanges { target: _root; _color: Style.green; _text: "Exposure is Complete"; _icon: icons.icons.fa_check } },
+        State { name: "openTray";
+            PropertyChanges { target: _root; _color: Style.yellow; _text_color: Style.black; _text: "Press to Open the Tray"; _icon: icons.icons.fa_eject } },
+        State { name: "closeTray";
+            PropertyChanges { target: _root; _color: Style.red; _text_color: Style.white; _text: "Press to Close the Tray"; _icon: icons.icons.fa_eject } }
     ]
     // =============================================================================================
 
     transitions: [
-        Transition { ColorAnimation { duration: 500; easing.type: Easing.OutElastic }}
+        Transition { ColorAnimation { duration: 1000; easing.type: Easing.InOutExpo }}
     ]
 }

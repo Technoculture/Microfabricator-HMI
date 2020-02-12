@@ -17,16 +17,34 @@ Item {
             id: shutDownText
             anchors.centerIn: parent
             anchors.verticalCenterOffset: 100
-            text: "Shutting Down ..."
+            text: "Shutting Down"
+            color: "white"
+        }
+
+        Text {
+            id: shutDownDots
+            anchors.verticalCenter: shutDownText.verticalCenter
+            anchors.left: shutDownText.right
+            text: " ..."
             color: "white"
             opacity: 1.0
 
-            Timer { id: fadingTImer; interval: 1000; repeat: true; running: true
-                onTriggered: { shutDownText.opacity = (shutDownText.opacity === 0.0 ? 1.0 : 0.0) }
+            Timer { id: fadingTImer; interval: 1000; repeat: true; running: false
+                property int ticks: 0
+                onTriggered: {
+                    ticks += 1
+                    shutDownDots.opacity = (shutDownDots.opacity === 0.0 ? 1.0 : 0.0)
+                    if(fadingTImer.ticks >= 15){
+                        shutDownText.visible = false
+                        shutDownDots.visible = false
+                        fadingTImer.stop()
+                        cleanupHardwareResources()
+                    }
+                }
             }
 
             Behavior on opacity {
-                NumberAnimation { duration: 1000; easing.type: Easing.Linear }
+                NumberAnimation { duration: 500; easing.type: Easing.Linear }
             }
         }
 
@@ -36,7 +54,7 @@ Item {
     }
 
     states: [
-        State { name: "onScreen"; PropertyChanges { target: shutDownRect; opacity: 1.0 } },
+        State { name: "onScreen"; PropertyChanges { target: shutDownRect; opacity: 1.0 } PropertyChanges { target: fadingTImer; running: true }  },
         State { name: "offScreen"; PropertyChanges { target: shutDownRect; opacity: 0.0 } }
     ]
 }

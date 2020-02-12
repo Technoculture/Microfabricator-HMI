@@ -19,14 +19,16 @@ Window {
         }
 
         states: [
-            State { name: "UVON"; PropertyChanges { target: bgRect; color: "blue"; } },
+            State { name: "UVON"; PropertyChanges { target: bgRect; color: "dodgerblue"; } },
             State { name: "ALLCHECKDONE"; PropertyChanges { target: bgRect; color: "green" } }
         ]
 
         transitions: [ Transition { from: "*"; to: "*"; ColorAnimation { duration: 800; easing.type: Easing.OutExpo } } ]
     }
 
-    PowerOnSelfTest { id: post; anchors.fill: bgRect }
+    PowerOnSelfTest { id: post; anchors.fill: bgRect
+        Component.onCompleted: { cleanupHardwareResources() }
+    }
     VibrationPlot { id: vibration; anchors.fill: bgRect; lineColor: "black"; opacity: 0 }
 
     SplashScreen {
@@ -110,31 +112,31 @@ Window {
         onTriggered: { elapsedDuration += 1 }
     }
 
-//    ListModel {
-//        id: checksModel
-//        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
-//        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
-//        ListElement { name: "Wafer Placed";          status: "ok";        filename:"WaferPlaced" }
-//        ListElement { name: "Mask Placed";           status: "ok";        filename:"MaskPlaced" }
-//        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename:"WaferMaskDistance" }
-//        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
-//        ListElement { name: "Vibration Monitor";     status: "ok";        filename:"VibrationMonitor" }
-//        ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
-//        ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
-//    }
-
     ListModel {
         id: checksModel
         ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
         ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
-        ListElement { name: "Wafer Placed";          status: "pending";        filename:"WaferPlaced" }
-        ListElement { name: "Mask Placed";           status: "pending";        filename:"MaskPlaced" }
-        ListElement { name: "Wafer-Mask Distance";   status: "pending";        filename:"WaferMaskDistance" }
+        ListElement { name: "Wafer Placed";          status: "ok";        filename:"WaferPlaced" }
+        ListElement { name: "Mask Placed";           status: "ok";        filename:"MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename:"WaferMaskDistance" }
         ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
-        ListElement { name: "Vibration Monitor";     status: "pending";        filename:"VibrationMonitor" }
-        ListElement { name: "Set Power";             status: "pending";        filename:"SetPower" }
-        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
+        ListElement { name: "Vibration Monitor";     status: "ok";        filename:"VibrationMonitor" }
+        ListElement { name: "Set Power";             status: "ok";        filename:"SetPower" }
+        ListElement { name: "Set Duration";          status: "ok";        filename:"SetDuration" }
     }
+
+//    ListModel {
+//        id: checksModel
+//        ListElement { name: "Light Engine";          status: "pending";   filename:"LightEngineOk" }
+//        ListElement { name: "Open Tray";             status: "utility";   filename:"TrayOpen" }
+//        ListElement { name: "Wafer Placed";          status: "pending";        filename:"WaferPlaced" }
+//        ListElement { name: "Mask Placed";           status: "pending";        filename:"MaskPlaced" }
+//        ListElement { name: "Wafer-Mask Distance";   status: "pending";        filename:"WaferMaskDistance" }
+//        ListElement { name: "Close Tray";            status: "utility";   filename:"TrayClosed" }
+//        ListElement { name: "Vibration Monitor";     status: "pending";        filename:"VibrationMonitor" }
+//        ListElement { name: "Set Power";             status: "pending";        filename:"SetPower" }
+//        ListElement { name: "Set Duration";          status: "pending";        filename:"SetDuration" }
+//    }
 
     property bool allChecksDone: {(pendingChecksCount() === 0) ? true : false}
 
@@ -146,7 +148,6 @@ Window {
             if(checksModel.get(i).status === "pending"){
                 pendingChecksModel.append(checksModel.get(i)); pendingCount++; }
         }
-//        console.log(pendingCount/checksModel.count)
         return (pendingCount/checksModel.count.toFixed(1))
     }
 
@@ -163,5 +164,12 @@ Window {
     function equivalentEnergy(percentageDuty){
         let energy = (pwmEnergy_Multiplier * percentageDuty) + pwmEnergy_Offset
         return energy.toFixed(2).toString()
+    }
+
+    function cleanupHardwareResources(){
+        uvController.fanState = false
+        uvController.pumpState = false
+        uvController.intensity = 0
+//        sliderController.state = "MOVE_INWARDS"
     }
 }

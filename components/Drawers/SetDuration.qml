@@ -10,6 +10,7 @@ Item {
 
     onDurationSecondsChanged: {
         console.log(durationSeconds)
+        exposureDuration = _root.durationSeconds
     }
 
     Rectangle {

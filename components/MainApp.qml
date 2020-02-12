@@ -51,9 +51,10 @@ Item {
             checklist.state = "out";
         }
         onGoHome: {
-            checklist.enabled = true
             exposureelapse.state = "offscreen"
             checklist._state = "out"
+            checklist.enabled = true
+
             let checksIndex = [2, 3, 4, 7, 8]
             checksIndex.map(index=>checksModel.set(index, {"status": "pending"}))
         }

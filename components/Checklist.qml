@@ -9,7 +9,7 @@ Item {
     property alias _state: root.state
     state: "out"
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     MouseArea {
         id: headerRectMArea
@@ -61,7 +61,7 @@ Item {
                 id: highlight
                 anchors.fill: parent
                 gradient: Gradient { GradientStop { position: 0.0; color: "darkblue" } GradientStop { position: 0.5; color: "black" } GradientStop { position: 1.0; color: "darkblue" } }
-                opacity: { listview.currentIndex == index ? 0.2 : 0 }
+                opacity: { listview.currentIndex == index ? 0.1 : 0 }
             }
             Text {
                 id: checkItemStatus
@@ -87,7 +87,7 @@ Item {
                 id: checkItemName
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 30 }
                 text: name
-                font.weight: { listview.currentIndex == index ? Font.DemiBold : Font.Normal }
+//                font.weight: { listview.currentIndex == index ? Font.Normal : Font.Thin }
                 color: { listview.currentIndex === index ? "white" : "" }
             }
             MouseArea {

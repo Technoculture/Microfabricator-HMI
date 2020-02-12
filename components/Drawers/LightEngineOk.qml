@@ -13,7 +13,7 @@ Item {
     property int fontSize_Values: 14
     property int fontSize_Titles: 11
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRect

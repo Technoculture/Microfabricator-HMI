@@ -16,7 +16,7 @@ Item {
     Layout.preferredHeight: 30
     Layout.preferredWidth: 200
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     RoundButton {
         contentItem: Text {

@@ -7,12 +7,12 @@ Item {
     enabled: !exposing
     opacity: exposing ? 0.2 : 1
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: powerRect
         anchors.fill: parent
-        color: Qt.rgba(0,0,0,0.5)
+        color: Qt.rgba(0,0,0,0.8)
         Text {
             anchors.centerIn: parent
             font.family: icons.family
@@ -31,7 +31,7 @@ Item {
 
         Rectangle {
             id: adviceRect
-            height: 400; width: text.width + 75
+            height: 400; width: text.width + 50
             color: "black"
         }
 

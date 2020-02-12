@@ -37,5 +37,6 @@
         <file>components/PowerButton.qml</file>
         <file>components/InfoButton.qml</file>
         <file>components/InfoOverlayWide.qml</file>
+        <file>vendor/fontawesome-webfont.ttf</file>
     </qresource>
 </RCC>

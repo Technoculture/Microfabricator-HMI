@@ -11,7 +11,7 @@ Item {
     Rectangle {
         id: infoRect
         anchors.fill: parent
-        color: Qt.rgba(0,0,0,0.5)
+        color: Qt.rgba(0,0,0,0.8)
         Text {
             anchors.centerIn: parent
             font.family: icons.family

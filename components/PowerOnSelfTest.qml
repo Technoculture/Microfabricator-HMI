@@ -6,7 +6,7 @@ Item {
     property bool calliberationDone: false
     property int testCaseIndex: 0
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Component.onCompleted: { sensorController.mode = "LIGHT_SENSOR" }
     onCalliberationDoneChanged: { sensorController.mode = "VIBRATION_SENSOR" }
@@ -128,7 +128,8 @@ Item {
     }
 
     function getLightReading(i) {
-        calliberationModel.set(i, {value: 10})//parseInt(sensorController.serialData)})
+        let v = parseFloat((parseInt(sensorController.serialData)/1024).toFixed(2))
+        calliberationModel.set(i, {value: v})
         // TODO: Check if the value is acceptable
         calliberationModel.set(i, {status: "ok"})
     }

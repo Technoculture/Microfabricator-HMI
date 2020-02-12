@@ -28,7 +28,7 @@ Item {
         Text {
             id: energy
             font.pixelSize: 20
-            text: "~ " + slider.value/100 + "mJ/cm^2"
+            text: "~ " + slider.value/100 + "mJ/cm\u00B2"
             color: Style.white
         }
 
@@ -36,6 +36,9 @@ Item {
             id: slider
             to: 100; value: { pwmIntensity }
             stepSize: 1
+            onValueChanged: {
+                pwmIntensity = slider.value.toFixed(0)
+            }
         }
 
         IconButton {

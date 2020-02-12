@@ -8,7 +8,7 @@ import "../../vendor"
 Item {
     id: _root
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRect
@@ -37,7 +37,7 @@ Item {
             }
         }
 
-        IconButton { id: stopButton; icon: "Stop"; buttonText: "Close the Tray"; action: "";
+        IconButton { id: stopButton; icon: "Stop"; buttonText: "Stop"; action: "";
             onClicked: {
                 sliderController.state = "STOP_MIDWAY"
                 buttons.state = "close"

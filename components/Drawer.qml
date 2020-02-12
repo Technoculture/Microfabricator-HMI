@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
-//import QtGraphicalEffects 1.0
 
 import "../"
 import "./Drawers"
@@ -15,7 +14,7 @@ Item {
     property color stateColor: { checksModel.get(globalCurrentIndex).status === "ok" ? "darkgreen" : (checksModel.get(globalCurrentIndex).status === "pending" ? "darkred" : Style.yellow) }
     property string stateName:  checksModel.get(currentIndex).name
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRectOverlay

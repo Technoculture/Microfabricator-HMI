@@ -9,7 +9,7 @@ Item {
 
     state: "offscreen"
 
-    FontAwesome { id: icons; resource: "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" }
+    FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     Rectangle {
         id: baseRect
@@ -62,7 +62,7 @@ Item {
         Text {
             id: energy
             anchors { top: intensityLabel.bottom; right: intensityLabel.right }
-            text: " ~" + equivalentEnergy(intensity) + "mJ"
+            text: " ~" + equivalentEnergy(intensity) + "mJ/cm\u00B2"
             color: "white"
             font.pixelSize: 22
         }

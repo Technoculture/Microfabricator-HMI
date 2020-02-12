@@ -7,24 +7,24 @@ Item {
     property bool inDrawer: false
     clip: true
 
-    Text {
-        text: sensorController.serialData
-    }
+//    Text {
+//        text: sensorController.serialData
+//    }
     ChartView {
         anchors.fill: parent
         legend.visible: false
         antialiasing: true
         anchors { fill: parent; margins: -50 }
         margins { right: 0; bottom: 0; left: 0; top: 0 }
-        plotAreaColor: _root.inDrawer ? "black" : allChecksDone ? "green" : "red";
+        plotAreaColor: _root.inDrawer ? "black" : /*allChecksDone ? "green" :*/ "white";
 
         SplineSeries {
             id: vibrLine
-            color: _root.inDrawer ? Qt.rgba(1,1,1,1) : Qt.rgba(0,0,0,0.3)
+            color: _root.inDrawer ? Qt.rgba(1,1,1,1) : Qt.rgba(0,0,0,0.5)
             width: 1
 
             axisX: ValueAxis { labelsVisible: false; gridVisible: false; lineVisible: false }
-            axisY: ValueAxis { labelsVisible: false; gridVisible: false; lineVisible: false
+            axisY: ValueAxis { labelsVisible: false; gridVisible: false; lineVisible: false;
                 min: 3;
                 max: _root.inDrawer ? 6 : 10;
             }
