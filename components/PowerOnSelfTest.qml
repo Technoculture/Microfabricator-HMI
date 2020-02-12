@@ -113,7 +113,7 @@ Item {
                             color: testTextRow.textColor
                             font { family: icons.family; pixelSize: 16 }
                             text: {
-                                if(calliberationModel.get(index).status === "ok") { String(calliberationModel.get(index).name) + " " + icons.icons.fa_long_arrow_right + " " + String(calliberationModel.get(index).value) }
+                                if(calliberationModel.get(index).status === "ok") { String(calliberationModel.get(index).name) + " " + icons.icons.fa_long_arrow_right + " " + String(calliberationModel.get(index).value) + "%" }
                                 else { String(calliberationModel.get(index).name) }
                             }
                         }
@@ -128,7 +128,7 @@ Item {
     }
 
     function getLightReading(i) {
-        let v = parseFloat((parseInt(sensorController.serialData)/1024).toFixed(2))
+        let v = parseFloat(((parseInt(sensorController.serialData)/1024)*100).toFixed(0))
         calliberationModel.set(i, {value: v})
         // TODO: Check if the value is acceptable
         calliberationModel.set(i, {status: "ok"})

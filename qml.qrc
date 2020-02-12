@@ -38,5 +38,7 @@
         <file>components/InfoButton.qml</file>
         <file>components/InfoOverlayWide.qml</file>
         <file>vendor/fontawesome-webfont.ttf</file>
+        <file>components/Drawers/Assets/MOVE_INWARDS.mp4</file>
+        <file>components/Drawers/Assets/MOVE_OUTWARDS.mp4</file>
     </qresource>
 </RCC>

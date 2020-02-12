@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtMultimedia 5.14
 import "../"
 import "../../"
 import "../../vendor"
@@ -22,12 +23,15 @@ Item {
         anchors.bottom: baseRect.bottom
         anchors.bottomMargin: 10
         state: "close"
+        spacing: 5
 
-        Image {
-            id: illustration
-            height: 180
-            width: 200
-            source: "Assets/microfabricator.png"
+        Video {
+            id: video
+            height: 205; width: 200
+            source: "qrc:/components/Drawers/Assets/MOVE_INWARDS.mp4"
+            autoLoad: true
+            autoPlay: true
+            loops: MediaPlayer.Infinite
         }
 
         IconButton { id: inButton; icon: "Eject"; buttonText: "Close the Tray"; action: "";

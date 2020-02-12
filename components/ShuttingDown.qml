@@ -1,4 +1,5 @@
 import QtQuick 2.0
+//import QtQuick3D 1.0
 
 Item {
     id: _root
@@ -12,6 +13,33 @@ Item {
         anchors.fill: parent
         color: "black"
         opacity: 0
+
+//        View3D {
+//            anchors.fill: parent
+
+////            Node { // Scene to view
+////              id: rootscene
+
+////              PointLight {}
+
+////              OrthographicCamera {
+////                id: camera
+////                z: -600
+////              }
+
+////              Model {
+////                id: cubeModel
+////                // #Cube is one of the "built-in" primitive meshes // #Cone, #Sphere, #Cylinder, #Rectangle
+////                source: "#Cube"
+////                materials: [
+////                  DefaultMaterial {
+////                    id: cubeMaterial
+////                    diffuseColor: "red"
+////                  }
+////                ]
+////              }
+////            }
+//        }
 
         Text {
             id: shutDownText
