@@ -7,6 +7,8 @@ import "../../vendor"
 
 Item {
     id: _root
+    signal shutDrawer
+
     property color bgColor: Style.black
     property color textColor_Values: Style.green
     property color textColor_Titles: "gainsboro"

@@ -40,5 +40,8 @@
         <file>vendor/fontawesome-webfont.ttf</file>
         <file>components/Drawers/Assets/MOVE_INWARDS.mp4</file>
         <file>components/Drawers/Assets/MOVE_OUTWARDS.mp4</file>
+        <file>components/Drawers/Assets/WaferPlaced.mp4</file>
+        <file>components/Drawers/Assets/MaskPlaced.mp4</file>
+        <file>components/Drawers/Assets/MaskWaferAlignment.mp4</file>
     </qresource>
 </RCC>

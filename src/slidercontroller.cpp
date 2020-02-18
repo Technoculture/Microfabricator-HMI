@@ -7,6 +7,8 @@ SliderController::SliderController(QObject *parent, QString port_name) : QObject
     states_["MOVE_INWARDS"]     = 2;
     states_["STOP_MIDWAY"]      = 3;
     states_["SIT_IDLE"]         = 4;
+
+    connect(serial_->serial, SIGNAL(readyRead()), this, SLOT(readIncommingHardwareState()) );
 }
 
 void SliderController::state(const QString s){
@@ -18,4 +20,12 @@ void SliderController::state(const QString s){
         try { serial_->writeData(m); }
         catch (...) { qDebug() << "Transmission Failed: " << QString(m); }
     } else { qDebug() << "Invalid State: " << QString(s); }
+}
+
+void SliderController::readIncommingHardwareState(){
+    incomingSerialBuffer_ = (serial_->serial)->readAll();
+    hardwareState_ = QString::fromStdString(incomingSerialBuffer_.toStdString());
+    qDebug() << "HARDWARE STATE: " << incomingSerialBuffer_;
+    incomingSerialBuffer_.clear();
+    updateHardwareState();
 }

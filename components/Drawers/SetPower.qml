@@ -6,6 +6,7 @@ import "../../"
 
 Item {
     id: _root
+    signal shutDrawer
 
     Rectangle {
         id: baseRect

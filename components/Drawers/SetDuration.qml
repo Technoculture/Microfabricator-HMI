@@ -6,6 +6,8 @@ import "../../"
 
 Item {
     id: _root
+    signal shutDrawer
+
     property int durationSeconds: { (minSlider.value*60) + secSlider.value }
 
     onDurationSecondsChanged: {

@@ -170,6 +170,6 @@ Window {
         uvController.fanState = false
         uvController.pumpState = false
         uvController.intensity = 0
-//        sliderController.state = "MOVE_INWARDS"
+        sliderController.state = "MOVE_INWARDS"
     }
 }

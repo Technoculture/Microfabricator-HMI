@@ -7,6 +7,7 @@ import "../vendor"
 
 Item {
     id: _root
+
     property alias state: baseRect.state
 
     property int currentIndex: globalCurrentIndex
@@ -59,6 +60,11 @@ Item {
             anchors.left: baseRect.left
             anchors.right: baseRect.right
             source: ("./Drawers/" + stateComponent + ".qml")
+
+            Connections {
+                target: loader.item
+                onShutDrawer: { state = "closed" }
+            }
         }
 
         states: [
@@ -68,7 +74,8 @@ Item {
         ]
 
         transitions: [
-            Transition { from: "*"; to: "*"; NumberAnimation { target: baseRect; property: "x"; duration: 300; easing.type: Easing.InOutExpo; } NumberAnimation { target: baseRectOverlay; property: "opacity"; duration: 200; easing.type: Easing.InExpo; } }
+            Transition { from: "*"; to: "*"; NumberAnimation { target: baseRect; property: "x"; duration: 300; easing.type: Easing.InOutExpo; } NumberAnimation { target: baseRectOverlay; property: "opacity"; duration: 200; easing.type: Easing.InExpo; } },
+            Transition { from: "*"; to: "closed"; NumberAnimation { target: baseRect; property: "x"; duration: 800; easing.type: Easing.OutExpo; } NumberAnimation { target: baseRectOverlay; property: "opacity"; duration: 600; easing.type: Easing.OutExpo; } }
         ]
     }
 }

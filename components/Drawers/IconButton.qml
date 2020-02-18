@@ -11,6 +11,7 @@ Item {
     property string icon: "Done"
     property string action: "Done" // Preconfigured Actions
     property bool canToggle: false
+    property alias checked: rb.checked
     signal clicked // Overwrittable signal to be fired at click
 
     Layout.preferredHeight: 30
@@ -19,6 +20,7 @@ Item {
     FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
     RoundButton {
+        id: rb
         contentItem: Text {
             text: getIcon() + "  " + buttonText
             font { family: icons.family; pixelSize: 14 }
@@ -46,7 +48,7 @@ Item {
 
     function doAction(){
         let act = _root.action
-        if(act === "Done") { checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
+        if(act === "Done") { shutDrawer(); checksModel.set(globalCurrentIndex, {"status" : "ok"}) }
         else if(act === "") {}
     }
 

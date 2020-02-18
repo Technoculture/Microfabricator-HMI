@@ -8,12 +8,24 @@ Item {
 
     FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
-    Component.onCompleted: { sensorController.mode = "LIGHT_SENSOR" }
+    Component.onCompleted: {
+        sliderController.state = "MOVE_INWARDS"
+        sensorController.mode = "LIGHT_SENSOR"
+    }
     onCalliberationDoneChanged: { sensorController.mode = "VIBRATION_SENSOR" }
 
     Timer {
+        id: sliderDelay
+        interval: 13000
+        running: true; repeat: false
+
+        onTriggered: { ldrtimer.running = true; }
+    }
+
+    Timer {
+        id: ldrtimer
         interval: 1000
-        running: true; repeat: true
+        running: false; repeat: true
 
         onTriggered: {
             if(testCaseIndex < 3) {

@@ -8,6 +8,7 @@ import "../../vendor"
 
 Item {
     id: _root
+    signal shutDrawer
 
     FontAwesome { id: icons; resource: "qrc:/vendor/fontawesome-webfont.ttf" }
 
@@ -19,9 +20,7 @@ Item {
 
     ColumnLayout {
         id: buttons
-        anchors.horizontalCenter: baseRect.horizontalCenter
-        anchors.bottom: baseRect.bottom
-        anchors.bottomMargin: 10
+        anchors { horizontalCenter: baseRect.horizontalCenter; bottom: baseRect.bottom; bottomMargin: 10 }
         state: "close"
         spacing: 5
 
@@ -29,8 +28,7 @@ Item {
             id: video
             height: 205; width: 200
             source: "qrc:/components/Drawers/Assets/MOVE_INWARDS.mp4"
-            autoLoad: true
-            autoPlay: true
+            autoLoad: true; autoPlay: true
             loops: MediaPlayer.Infinite
         }
 
@@ -38,14 +36,24 @@ Item {
             onClicked: {
                 sliderController.state = "MOVE_INWARDS"
                 buttons.state = "stop"
+                checkTargetReached.running = true
+            }
+        }
+
+        Timer {
+            id: checkTargetReached
+            running: false; repeat: true;
+            interval: 300
+            onTriggered: {
+                if(sliderController.hardwareState === "f\r\n"){
+                    shutDrawer()
+                    checkTargetReached.stop()
+                }
             }
         }
 
         IconButton { id: stopButton; icon: "Stop"; buttonText: "Stop"; action: "";
-            onClicked: {
-                sliderController.state = "STOP_MIDWAY"
-                buttons.state = "close"
-            }
+            onClicked: { sliderController.state = "STOP_MIDWAY" }
         }
 
         states: [

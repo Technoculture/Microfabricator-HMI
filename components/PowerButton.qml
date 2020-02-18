@@ -73,7 +73,7 @@ Item {
     MouseArea {
         id: powerRectMArea
         anchors.fill: powerRect
-        Component.onCompleted: { powerRectMArea.pressAndHoldInterval = 5000 }
+        Component.onCompleted: { powerRectMArea.pressAndHoldInterval = 3000 }
         onContainsMouseChanged: {
             if(powerRectMArea.containsMouse){
                 powerRect.opacity = 0.5;
