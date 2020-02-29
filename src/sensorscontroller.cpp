@@ -20,7 +20,7 @@ void SensorsController::readIncommingData(){
         incommingData_ = (serial_->serial)->readAll();
         serialBuffer_ = serialBuffer_ + QString::fromStdString(incommingData_.toStdString());
         incommingData_.clear(); }
-    else{ // the second element of buffer_split is parsed correctly, update the temperature value on temp_lcdNumber
+    else{ // the second element of buffer_split is parsed correctly, update the value
         serialBuffer_ = "";
         parsedData_ = buffer_split[1];
         updateSerialData(); }

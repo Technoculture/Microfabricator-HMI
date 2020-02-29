@@ -27,6 +27,7 @@ Item {
                 id: distance
                 Layout.preferredHeight: 160
                 Layout.preferredWidth: 30
+//                value: parseInt(distsenseController.serialData)
             }
 
             ColumnLayout {
@@ -43,7 +44,7 @@ Item {
 
                 Text {
                     id: perc_text
-                    text: distance.percentage*500 +  "\u00B5m"
+                    text: parseInt(distsenseController.serialData) +  "\u00B5m"
                     font { pixelSize: 40; weight: Font.ExtraLight }
                     color: Style.white
                 }

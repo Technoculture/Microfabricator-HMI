@@ -10,6 +10,7 @@
    KERNEL=="ttyUSB*", KERNELS=="1-1.2:1.0", SYMLINK+="com_slider"
    KERNEL=="ttyUSB*", KERNELS=="1-1.5:1.0", SYMLINK+="com_uvfanpump"       
    KERNEL=="ttyUSB*", KERNELS=="1-1.4:1.0", SYMLINK+="com_sensors"
+   KERNEL=="ttyUSB*", KERNELS=="1-1.3:1.0", SYMLINK+="com_com_distsense"
    ```
 
 2. Reload the rules file: `udevadm control --reload-rules`

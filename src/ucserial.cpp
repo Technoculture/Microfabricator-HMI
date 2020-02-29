@@ -5,6 +5,7 @@ ucSerial::ucSerial(QObject *parent, const QString& DEVICE_NAME) : QObject(parent
     USB_DEVICES["SENSORS_CONTROLLER"]    = "/dev/com_sensors";
     USB_DEVICES["SLIDER_CONTROLLER"]     = "/dev/com_slider";
     USB_DEVICES["UVFANPUMP_CONTROLLER"]  = "/dev/com_uvfanpump";
+    USB_DEVICES["DISTSENSE_CONTROLLER"]  = "/dev/com_distsense";
 
     portName_ = findPortName(DEVICE_NAME);
     serial = new QSerialPort(this);

@@ -125,7 +125,11 @@ Item {
                             color: testTextRow.textColor
                             font { family: icons.family; pixelSize: 16 }
                             text: {
-                                if(calliberationModel.get(index).status === "ok") { String(calliberationModel.get(index).name) + " " + icons.icons.fa_long_arrow_right + " " + String(calliberationModel.get(index).value) + "%" }
+                                const val = calliberationModel.get(index).value
+                                if(calliberationModel.get(index).status === "ok") {
+                                    if(isNan(val)){ String(calliberationModel.get(index).name) }
+                                    else { String(calliberationModel.get(index).name) + " " + icons.icons.fa_long_arrow_right + " " + String(val) + "%" }
+                                }
                                 else { String(calliberationModel.get(index).name) }
                             }
                         }
