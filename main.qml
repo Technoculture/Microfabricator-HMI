@@ -111,7 +111,7 @@ Window {
 
     ListModel {
         id: checksModel
-        ListElement { name: "Light Engine";          status: "pending";   filename: "LightEngineOk" }
+        ListElement { name: "Light Engine";          status: "ok";        filename: "LightEngineOk" }
         ListElement { name: "Open Tray";             status: "utility";   filename: "TrayOpen" }
         ListElement { name: "Calliberate Distance";  status: "pending";   filename: "CalliberateDistance" }
         ListElement { name: "Wafer Placed";          status: "ok";        filename: "WaferPlaced" }
