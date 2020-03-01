@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQml.Models 2.2
 import "."
 import "../"
 import "../vendor"
@@ -46,60 +47,77 @@ Item {
         color: Style.white
     }
 
-    Component {
-        id: checkItem
-        Rectangle {
-            id: baseRect
-			height: 40; width: parent.width - 2
-            color: {
-                if(status === "utility"){ Style.yellow }
-                else if(status === "pending"){ Style.red }
-                else { Style.green }
-            }
+    DelegateModel {
+        id: visualModel
+        model: checksModel
+        filterOnGroup: "available"
 
-            Rectangle { // Selected Highlight
-                id: highlight
-                anchors.fill: parent
-                gradient: Gradient { GradientStop { position: 0.0; color: "darkblue" } GradientStop { position: 0.5; color: "black" } GradientStop { position: 1.0; color: "darkblue" } }
-                opacity: { listview.currentIndex == index ? 0.1 : 0 }
-            }
-            Text {
-                id: checkItemStatus
-                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                font.family: icons.family
-                text: {
-                    if( status === "pending"){ icons.icons.fa_times_circle }
-                    else { icons.icons.fa_check_circle }
-                }
-                color: { listview.currentIndex == index ? "white" : "" }
-            }
-            Text {
-                id: checkItemActive
-                anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
-                font.family: icons.family
-                text: {
-                    if(index === listview.currentIndex){ drawer.state === "open" ? icons.icons.fa_angle_right : icons.icons.fa_angle_down }
-                    else{ "" }
-                }
-                color: { listview.currentIndex == index ? "white" : "" }
-            }
-            Text {
-                id: checkItemName
-                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 30 }
-                text: name
-//                font.weight: { listview.currentIndex == index ? Font.Normal : Font.Thin }
-                color: { listview.currentIndex === index ? "white" : "" }
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    listview.currentIndex = index;
-                    if (drawer.state === "closed") { drawer.state = "open" }
-                    else { if (drawer.currentIndex === index) { drawer.state = "closed" } }
-                    drawer.currentIndex = index
+        groups: [
+            VisualDataGroup { name: "available" }
+        ]
+
+        Component.onCompleted: {
+            let rowCount = checksModel.count;
+            for( let i = 0; i < rowCount; i++ ) {
+                let entry = checksModel.get(i);
+                if(entry.available === "true") {
+                    items.insert(entry, "available");
                 }
             }
         }
+
+        delegate:
+            Rectangle {
+                id: checkItem
+                height: 40; width: parent.width - 2
+                color: {
+                    if (available === "false") { Qt.rgba(1,1,1,0.8) }
+                    else if(status === "utility"){ Style.yellow }
+                    else if(status === "pending"){ Style.red }
+                    else { Style.green }
+                }
+                Rectangle { // Selected Highlight
+                    id: highlight
+                    anchors.fill: parent
+                    gradient: Gradient { GradientStop { position: 0.0; color: "darkblue" } GradientStop { position: 0.5; color: "black" } GradientStop { position: 1.0; color: "darkblue" } }
+                    opacity: { listview.currentIndex == index ? 0.1 : 0 }
+                }
+                Text {
+                    id: checkItemStatus
+                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                    font.family: icons.family
+                    text: {
+                        if( status === "pending"){ icons.icons.fa_times_circle }
+                        else { icons.icons.fa_check_circle }
+                    }
+                    color: { available === "false" ? "grey" : listview.currentIndex == index ? "white" : "" }
+                }
+                Text {
+                    id: checkItemActive
+                    anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
+                    font.family: icons.family
+                    text: {
+                        if(index === listview.currentIndex){ drawer.state === "open" ? icons.icons.fa_angle_right : icons.icons.fa_angle_down }
+                        else{ "" }
+                    }
+                    color: { available === "false" ? "grey" : (listview.currentIndex == index ? "white" : "") }
+                }
+                Text {
+                    id: checkItemName
+                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 30 }
+                    text: name
+                    color: { available === "false" ? "grey" : (listview.currentIndex === index ? "white" : "black") }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        listview.currentIndex = index;
+                        if (drawer.state === "closed") { drawer.state = "open" }
+                        else { if (drawer.currentIndex === index) { drawer.state = "closed" } }
+                        drawer.currentIndex = index
+                    }
+                }
+            }
     }
 
     ScrollView {
@@ -112,13 +130,12 @@ Item {
         ListView {
             id: listview
             anchors.fill: parent
-            leftMargin: 1
-            rightMargin: 1
-            model: checksModel
-            delegate: checkItem
+            leftMargin: 1; rightMargin: 1
+            model: visualModel
             highlight: highlight
             highlightFollowsCurrentItem: false
             focus: true
+            snapMode: ListView.SnapToItem
 
             onCurrentIndexChanged: {
                 globalCurrentIndex = currentIndex

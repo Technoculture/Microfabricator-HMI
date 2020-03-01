@@ -16,7 +16,7 @@ Item {
 
     Timer {
         id: sliderDelay
-        interval: 13000
+        interval: 1//3000
         running: true; repeat: false
 
         onTriggered: { ldrtimer.running = true; }
