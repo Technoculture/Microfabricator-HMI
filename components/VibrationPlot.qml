@@ -7,9 +7,13 @@ Item {
     property bool inDrawer: false
     clip: true
 
-//    Text {
-//        text: sensorController.serialData
-//    }
+    Component.onCompleted: {
+        sensorController.mode = "VIBRATION_SENSOR"
+    }
+
+    Text {
+        text: sensorController.serialData
+    }
     ChartView {
         anchors.fill: parent
         legend.visible: false
@@ -28,13 +32,6 @@ Item {
                 min: 3;
                 max: _root.inDrawer ? 6 : 10;
             }
-
-//            Component.onCompleted: {
-//                for(let i =0; i<=100; i++){
-//                    vibrLine.append(i, Math.random()*5)
-//                }
-//                console.log(vibrLine)
-//            }
 
             XYPoint { x: 0; y: 4.3 }
             XYPoint { x: 1; y: 4.1 }
