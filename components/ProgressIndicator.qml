@@ -7,13 +7,13 @@ Item {
         id: progressBase
         anchors.fill: parent
         width: 30; height: parent.height
-        color: "red"//Qt.rgba(1,1,1,0.1)
+        color: Qt.rgba(1,1,1,0.1)
     }
 
     Rectangle {
         id: progressBar
-        color: "grey"//Qt.rgba(1,1,1,0.3)
-        width: parent.width; height: progressBase.height * (1 - percentage)
+        color: Qt.rgba(1,1,1,0.3)
+        width: parent.width; height: progressBase.height * percentage
         anchors.bottom: progressBase.bottom
     }
 }

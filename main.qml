@@ -111,6 +111,7 @@ Window {
 
     ListModel {
         id: checksModel
+<<<<<<< HEAD
         ListElement { name: "Light Engine";          status: "ok";        available: "true";    dependsOn:"";                      filename: "LightEngineOk" }
         ListElement { name: "Open Tray";             status: "utility";   available: "true";    dependsOn:"";                      filename: "TrayOpen" }
         ListElement { name: "Calliberate Distance";  status: "pending";   available: "true";    dependsOn:"";                      filename: "CalliberateDistance" }
@@ -121,6 +122,18 @@ Window {
         ListElement { name: "Vibration Monitor";     status: "ok";        available: "true";    dependsOn:"";                      filename: "VibrationMonitor" }
         ListElement { name: "Set Power";             status: "ok";        available: "false";   dependsOn:"Light Engine";          filename: "SetPower" }
         ListElement { name: "Set Duration";          status: "ok";        available: "false";   dependsOn:"Light Engine";          filename: "SetDuration" }
+=======
+        ListElement { name: "Light Engine";          status: "pending";   filename: "LightEngineOk" }
+        ListElement { name: "Open Tray";             status: "utility";   filename: "TrayOpen" }
+        ListElement { name: "Calliberate Distance";  status: "pending";   filename: "CalliberateDistance" }
+        ListElement { name: "Wafer Placed";          status: "ok";        filename: "WaferPlaced" }
+        ListElement { name: "Mask Placed";           status: "ok";        filename: "MaskPlaced" }
+        ListElement { name: "Wafer-Mask Distance";   status: "ok";        filename: "WaferMaskDistance" }
+        ListElement { name: "Close Tray";            status: "utility";   filename: "TrayClosed" }
+        ListElement { name: "Vibration Monitor";     status: "ok";        filename: "VibrationMonitor" }
+        ListElement { name: "Set Power";             status: "ok";        filename: "SetPower" }
+        ListElement { name: "Set Duration";          status: "ok";        filename: "SetDuration" }
+>>>>>>> parent of f79c0f2... CalliberateDistance drawer added. ProgressIndicator imporved for
     }
 
 //    ListModel {

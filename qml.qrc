@@ -43,6 +43,5 @@
         <file>components/Drawers/Assets/WaferPlaced.mp4</file>
         <file>components/Drawers/Assets/MaskPlaced.mp4</file>
         <file>components/Drawers/Assets/MaskWaferAlignment.mp4</file>
-        <file>components/Drawers/CalliberateDistance.qml</file>
     </qresource>
 </RCC>

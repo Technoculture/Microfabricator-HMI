@@ -21,13 +21,13 @@ Item {
         anchors.bottomMargin: 10
 
         RowLayout {
-            spacing: 5
+            spacing: 10
 
             ProgressIndicator {
                 id: distance
-                Layout.preferredHeight: 200
+                Layout.preferredHeight: 160
                 Layout.preferredWidth: 30
-                percentage: parseFloat((parseInt(distsenseController.serialData)/1000).toFixed(2))
+//                value: parseInt(distsenseController.serialData)
             }
 
             ColumnLayout {
@@ -50,7 +50,26 @@ Item {
                 }
             }
         }
-        IconButton { id: done; }
+
+        IconButton { id: cal; icon: "Refresh"; buttonText: "Calliberate"; action: ""
+            onClicked: {
+                let invisible_comps = [distance, cal, done, video]
+                let visible_comps = [perc_text, cal_0, cal_max, cal_cancel]
+                visible_comps.map((comp)=>{comp.visible=true})
+                invisible_comps.map((comp)=>{comp.visible=false})
+            }
+        }
+        IconButton { id: done; /*onClicked: shutDrawer()*/ }
+        IconButton { id: cal_0; icon: "Refresh"; buttonText: "Calliberate As 0\u00B5m"; action: ""; visible: false }
+        IconButton { id: cal_max; icon: "Refresh"; buttonText: "Calliberate As 100\u00B5m"; action: ""; visible: false }
+        IconButton { id: cal_cancel; icon: "Back"; buttonText: "Calliberation Complete"; action: ""; visible: false
+            onClicked: { toggleCalliberate() }
+        }
+    }
+
+    function toggleCalliberate(){
+        let comps = [distance, perc_text, cal, done, cal_0, cal_max, cal_cancel, perc_text, video]
+        comps.map((comp)=>{comp.visible = !comp.visible})
     }
 }
 
