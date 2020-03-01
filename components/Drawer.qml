@@ -21,7 +21,7 @@ Item {
         id: baseRectOverlay
         anchors.fill: baseRect
         color: stateColor
-        z: -1
+        z: 100
     }
 
     Rectangle {
@@ -50,11 +50,6 @@ Item {
                     if(stateColor === Style.yellow){ "black" }
                     else { "white" }
                 }
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: { drawer.state = "closed" }
             }
         }
 
