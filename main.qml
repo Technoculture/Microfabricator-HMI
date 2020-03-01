@@ -112,6 +112,7 @@ Window {
     ListModel {
         id: checksModel
 <<<<<<< HEAD
+<<<<<<< HEAD
         ListElement { name: "Light Engine";          status: "ok";        available: "true";    dependsOn:"";                      filename: "LightEngineOk" }
         ListElement { name: "Open Tray";             status: "utility";   available: "true";    dependsOn:"";                      filename: "TrayOpen" }
         ListElement { name: "Calliberate Distance";  status: "pending";   available: "true";    dependsOn:"";                      filename: "CalliberateDistance" }
@@ -123,6 +124,8 @@ Window {
         ListElement { name: "Set Power";             status: "ok";        available: "false";   dependsOn:"Light Engine";          filename: "SetPower" }
         ListElement { name: "Set Duration";          status: "ok";        available: "false";   dependsOn:"Light Engine";          filename: "SetDuration" }
 =======
+=======
+>>>>>>> parent of f79c0f2... CalliberateDistance drawer added. ProgressIndicator imporved for
         ListElement { name: "Light Engine";          status: "pending";   filename: "LightEngineOk" }
         ListElement { name: "Open Tray";             status: "utility";   filename: "TrayOpen" }
         ListElement { name: "Calliberate Distance";  status: "pending";   filename: "CalliberateDistance" }
