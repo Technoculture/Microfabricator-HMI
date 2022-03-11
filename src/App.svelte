@@ -1,37 +1,77 @@
 <script lang="ts">
   import naked from "./assets/mfab-naked.png";
-  import { Icon, InformationCircle, Play } from "svelte-hero-icons";
+  import Play from "./lib/Icons/Play.svelte";
+  import InfoCircle from "./lib/Icons/InfoCircle.svelte";
+  import Card from './lib/Card.svelte';
+  import Progress from "./lib/Progress.svelte";
+  import MetricThumbnail from "./lib/MetricThumbnail.svelte";
 </script>
 
 <main>
-  <div class="w-screen h-screen max-h-[480px] max-w-[800px] bg-gray-100">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-b from-slate-100 to-slate-300">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
-      <div class="row-span-4 col-span-2 rounded-2xl bg-black/50 shadow-xl backdrop-blur-sm ring-1 ring-slate-200">
+      <Card class="row-span-4 col-span-2">
         <img src={naked} alt="" class="pt-12" />
-      </div>
-      <div class="row-span-2 bg-black/50 rounded-xl shadow-xl flex flex-col backdrop-blur-sm">
-        <span class="text-sm p-3 text-white text-thin"> Wafer Mask Distance</span>
-        <div class="grow w-full flex place-content-center bg-black rounded-xl ring-1 ring-white shadow-xl">
-          <span class="text-orange-600 text-xl place-self-center justify-center">2.8um</span>
-        </div>
-      </div>
-      <div class="row-span-2"> Duration </div>
-      <div class="row-span-2"> Clamp </div>
-      <div class="row-span-2"> Vibration </div>
-      <div class="row-span-2"> Access Module </div>
-      <div class="row-span-2"> Light Intensity </div>
-      <div class="row-span-2"></div>
-      <div class="row-span-2"></div>
-      <div class="rounded-xl flex bg-black/50 shadow-xl backdrop-blur-sm ring-1 ring-slate-200"><Icon src="{InformationCircle}" class="h-12 text-white place-self-center"/></div>
-      <div class="bg-black/50 shadow-xl backdrop-blur-sm ring-1 ring-slate-200 rounded-xl">
-        <div class="bg-green-400 w-2 inset-0" />
-      </div>
-      <div>4S</div>
-      <div>365nm</div>
-      <div class="col-span-2 flex bg-black/50 shadow-xl backdrop-blur-sm ring-1 ring-slate-200 text-white rounded-xl place-content-center">
-        <span class="place-self-center text-2xl mr-4">00:00:00</span>
-        <Icon src="{Play}" class="place-self-center h-12 w-12" />
-      </div>
+      </Card>
+
+      <Card title="Wafer Mask Distance">
+        <MetricThumbnail>
+          <span class="place-self-center justify-center">2.8um</span>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Duration">
+        <MetricThumbnail>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Clamp">
+        <MetricThumbnail>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Vibration">
+        <MetricThumbnail>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Access Module">
+        <MetricThumbnail>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Light Intensity">
+        <MetricThumbnail>
+        </MetricThumbnail>
+      </Card>
+
+      <Card class="col-span-2 row-span-2" ></Card>
+
+      <Card class="flex">
+        <InfoCircle class="text-white grow text-center place-self-center"/>
+      </Card>
+
+      <Card class="row-span-1 relative overflow-hidden" >
+        <Progress />
+      </Card>
+
+      <Card class="flex" >
+        <span class="place-self-center grow text-white text-center font-extralight text-xl">
+          4S
+        </span>
+      </Card>
+      <Card class="flex" >
+        <span class="place-self-center grow text-white text-center text-xl font-extralight">
+          365nm
+        </span>
+      </Card>
+
+
+      <Card class="col-span-2 flex text-white px-6" >
+        <span class="place-self-center text-2xl grow pr-4 font-extralight">00:00:00</span>
+        <Play class="place-self-center" />
+      </Card>
+
     </div>
   </div>
 </main>

@@ -1,0 +1,18 @@
+<script lang="ts">
+  let className : string = "row-span-2 flex flex-col";
+  export { className as class };
+  export let title: string = "";
+  export let show: boolean = true;
+
+  let show_class = "";
+  if(show){
+    show_class = "shadow-2xl shadow-neutral-600 bg-black/50 rounded-2xl backdrop-blur-xl ring-1 ring-slate-400 active:ring-orange-400";
+  }
+</script>
+
+<div class={`${className} ${show_class}`} >
+  {#if title !== ""}
+    <span class="p-3 text-white text-sm grow">{ title }</span>
+  {/if}
+  <slot />
+</div>
