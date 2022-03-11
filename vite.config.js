@@ -1,4 +1,4 @@
-import postcss from './postcss.config.js';
+import postcss from './postcss.config.cjs';
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 
