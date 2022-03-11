@@ -9,7 +9,7 @@
   <Counter />
 
   <p>
-    Visit <a href="https://technoculture.io">technoculture.io</a>
+    Visit <a href="http://www.technoculture.io">technoculture.io</a>
   </p>
 </main>
 
