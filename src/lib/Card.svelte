@@ -12,7 +12,7 @@
 
 <div class={`${className} ${show_class}`} >
   {#if title !== ""}
-    <span class="p-3 text-white text-sm grow">{ title }</span>
+    <span class="p-3 text-white text-sm font-extralight grow">{ title }</span>
   {/if}
   <slot />
 </div>
