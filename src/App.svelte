@@ -4,7 +4,7 @@
 </script>
 
 <main>
-  <div class="h-[480px] w-[800px] overflow-hidden">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] overflow-hidden">
     <img src={logo} alt="Svelte Logo" class="h-96" />
 
     <div class="flex flex-col">
