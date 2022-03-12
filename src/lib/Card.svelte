@@ -10,7 +10,7 @@
   }
 </script>
 
-<div class={`${className} ${show_class} bg-gradient-to-r from-black/50 via-slate-900/50 to-black/40`} >
+<div class={`${className} ${show_class} bg-gradient-to-r from-black/40 via-slate-900/40 to-black/40`} >
   {#if title !== ""}
     <span class="p-3 text-white text-sm font-extralight grow">{ title }</span>
   {/if}

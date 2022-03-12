@@ -21,22 +21,48 @@
 
       <Card title="Wafer Mask Distance">
         <MetricThumbnail>
-          <div class="absolute inset-0 w-8 overflow-y-scroll">
+          <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
-              <span class="text-orange-500 flex flex-row h-1.5">--</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-orange-500 flex h-1.5">--</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-white h-1.5">-</span>
-              <span class="text-orange-500 flex h-1.5">--</span>
+              <svg height="100px" width="100px" viewBox="0 0 100 100" stroke="white" stroke-width="1">
+                <path d="M0 0 H15 Z" stroke="orange" />
+                <path d="M0 5 H10 Z" />
+                <path d="M0 10 H10 Z" />
+                <path d="M0 15 H10 Z" />
+                <path d="M0 20 H10 Z" />
+                <path d="M0 25 H15 Z" stroke="orange" />
+                <path d="M0 30 H10 Z" />
+                <path d="M0 35 H10 Z" />
+                <path d="M0 40 H10 Z" />
+                <path d="M0 45 H10 Z" />
+                <path d="M0 50 H15 Z" stroke="orange" />
+                <path d="M0 55 H10 Z" />
+                <path d="M0 60 H10 Z" />
+                <path d="M0 65 H10 Z" />
+                <path d="M0 70 H10 Z" />
+                <path d="M0 75 H15 Z" stroke="orange" />
+                <path d="M0 80 H10 Z" />
+                <path d="M0 85 H10 Z" />
+                <path d="M0 85 H10 Z" />
+                <path d="M0 90 H10 Z" />
+                <path d="M0 95 H15 Z" stroke="orange" />
+                <path d="M0 100 H10 Z" />
+                <path d="M0 105 H10 Z" />
+                <path d="M0 115 H10 Z" />
+                <path d="M0 120 H10 Z" />
+                <path d="M0 125 H15 Z" stroke="orange" />
+                <path d="M0 130 H10 Z" />
+                <path d="M0 135 H10 Z" />
+                <path d="M0 140 H10 Z" />
+                <path d="M0 145 H10 Z" />
+                <path d="M0 150 H15 Z" stroke="orange" />
+                <path d="M0 155 H10 Z" />
+                <path d="M0 160 H10 Z" />
+                <path d="M0 165 H10 Z" />
+                <path d="M0 170 H10 Z" />
+              </svg>
             </div>
           </div>
-          <span class="place-self-center justify-center">
+          <span class="place-self-center w-full">
             2.8um
           </span>
         </MetricThumbnail>
@@ -44,26 +70,87 @@
 
       <Card title="Duration">
         <MetricThumbnail>
+          <div class="absolute left-0 w-full overflow-auto touch-pan-y">
+            <div class="flex flex-col">
+              <svg height="100px" width="100px" viewBox="0 0 100 100" stroke="white" stroke-width="1">
+                <path d="M0 0 H15 Z" stroke="orange" />
+                <path d="M0 5 H10 Z" />
+                <path d="M0 10 H10 Z" />
+                <path d="M0 15 H10 Z" />
+                <path d="M0 20 H10 Z" />
+                <path d="M0 25 H15 Z" stroke="orange" />
+                <path d="M0 30 H10 Z" />
+                <path d="M0 35 H10 Z" />
+                <path d="M0 40 H10 Z" />
+                <path d="M0 45 H10 Z" />
+                <path d="M0 50 H15 Z" stroke="orange" />
+                <path d="M0 55 H10 Z" />
+                <path d="M0 60 H10 Z" />
+                <path d="M0 65 H10 Z" />
+                <path d="M0 70 H10 Z" />
+                <path d="M0 75 H15 Z" stroke="orange" />
+                <path d="M0 80 H10 Z" />
+                <path d="M0 85 H10 Z" />
+                <path d="M0 85 H10 Z" />
+                <path d="M0 90 H10 Z" />
+                <path d="M0 95 H15 Z" stroke="orange" />
+                <path d="M0 100 H10 Z" />
+                <path d="M0 105 H10 Z" />
+                <path d="M0 115 H10 Z" />
+                <path d="M0 120 H10 Z" />
+                <path d="M0 125 H15 Z" stroke="orange" />
+                <path d="M0 130 H10 Z" />
+                <path d="M0 135 H10 Z" />
+                <path d="M0 140 H10 Z" />
+                <path d="M0 145 H10 Z" />
+                <path d="M0 150 H15 Z" stroke="orange" />
+                <path d="M0 155 H10 Z" />
+                <path d="M0 160 H10 Z" />
+                <path d="M0 165 H10 Z" />
+                <path d="M0 170 H10 Z" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex flex-col grow p-2">
+            <span class="place-self-end flex-row">1m 32s</span>
+            <span class="place-self-end text-xl text-white">112s</span> 
+          </div>
         </MetricThumbnail>
       </Card>
 
       <Card title="Clamp">
         <MetricThumbnail>
+          <span class="place-self-center rounded-lg flex px-7 py-5 ring-1 ring-orange-400">OFF</span>
         </MetricThumbnail>
       </Card>
 
       <Card title="Vibration">
         <MetricThumbnail>
+          <svg width="100" height="100"  viewBox="0 0 100 100" stroke="white" stroke-width="1" class="absolute inset-0">
+            <polyline points="
+          		0,100
+          		30,99
+          		60,96
+          		90,91
+          		120,84
+          		150,75
+          		180,64
+          	"></polyline>
+          </svg>
         </MetricThumbnail>
       </Card>
 
       <Card title="Access Module">
         <MetricThumbnail>
+          <span class="place-self-center rounded-lg p-5 ring-1 ring-orange-400">Open</span>
         </MetricThumbnail>
       </Card>
 
       <Card title="Light Intensity">
         <MetricThumbnail>
+          <span class="place-self-center">21%</span>
+          <!-- <span>21mJ/cm2</span>
+          <span></span> -->
         </MetricThumbnail>
       </Card>
 
