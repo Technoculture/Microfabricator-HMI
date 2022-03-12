@@ -21,7 +21,24 @@
 
       <Card title="Wafer Mask Distance">
         <MetricThumbnail>
-          <span class="place-self-center justify-center">2.8um</span>
+          <div class="absolute inset-0 w-8 overflow-y-scroll">
+            <div class="flex flex-col">
+              <span class="text-orange-500 flex flex-row h-1.5">--</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-orange-500 flex h-1.5">--</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-white h-1.5">-</span>
+              <span class="text-orange-500 flex h-1.5">--</span>
+            </div>
+          </div>
+          <span class="place-self-center justify-center">
+            2.8um
+          </span>
         </MetricThumbnail>
       </Card>
 
