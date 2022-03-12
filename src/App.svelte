@@ -1,15 +1,20 @@
 <script lang="ts">
+  // Assets and Icons
   import naked from "./assets/mfab-naked.png";
+  import family from "./assets/family.png"
   import Play from "./lib/Icons/Play.svelte";
+  import Calculator from "./lib/Icons/Calculator.svelte";
   import InfoCircle from "./lib/Icons/InfoCircle.svelte";
+
+  // Components
   import Card from './lib/Card.svelte';
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
 </script>
 
 <main>
-  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-b from-slate-100 to-slate-300 select-none">
-    <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-50 via-pink-50 to-slate-200 select-none">
+    <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10 ">
       <Card class="row-span-4 col-span-2">
         <img src={naked} alt="" class="pt-12" />
       </Card>
@@ -45,31 +50,41 @@
         </MetricThumbnail>
       </Card>
 
-      <Card class="col-span-2 row-span-2" ></Card>
+      <Card class="col-span-2 row-span-2 overflow-hidden flex" >
+        <img src={family} alt="" class="object-cover" />
+      </Card>
 
-      <Card class="flex">
+      <Card class="flex overflow-hidden">
+        <div class="flex flex-grow h-full active:bg-black/20">
         <InfoCircle class="text-white grow text-center place-self-center"/>
+        </div>
       </Card>
 
-      <Card class="row-span-1 relative overflow-hidden" >
+      <Card class="flex overflow-hidden" >
+        <div class="flex flex-grow h-full active:bg-black/20">
+          <Calculator class="text-white grow text-center place-self-center"/>
+        </div>
+      </Card>
+
+      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden" >
+        <div class="flex flex-grow h-full active:bg-black/20">
+          <span class="flex-grow place-self-center">
+            4S
+          </span>
+        </div>
+        <div class="flex flex-grow h-full active:bg-black/20">
+          <span class="flex-grow place-self-center">
+            365nm
+          </span>
+        </div>
+      </Card>
+
+      <Card class="col-span-2 flex text-white overflow-hidden" >
+        <span class="place-self-center text-center text-2xl flex-grow font-extralight">00:00:00</span>
+        <div class="flex flex-grow h-full active:bg-black/20 place-self-center"> 
+          <Play class="place-self-center grow" />
+        </div>
         <Progress />
-      </Card>
-
-      <Card class="flex" >
-        <span class="place-self-center grow text-white text-center font-extralight text-xl">
-          4S
-        </span>
-      </Card>
-      <Card class="flex" >
-        <span class="place-self-center grow text-white text-center text-xl font-extralight">
-          365nm
-        </span>
-      </Card>
-
-
-      <Card class="col-span-2 flex text-white px-6" >
-        <span class="place-self-center text-2xl grow pr-4 font-extralight">00:00:00</span>
-        <Play class="place-self-center" />
       </Card>
 
     </div>
