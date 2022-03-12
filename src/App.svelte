@@ -10,6 +10,7 @@
   import Card from './lib/Card.svelte';
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
+  import Terminal from "./lib/Terminal.svelte";
 
   let show_controls: boolean = true;
 
@@ -162,7 +163,8 @@
       </Card>
 
       <Card class={`${enlarged_pic} overflow-hidden flex`}>
-        <img src={family} alt="" class="object-cover" />
+        <!-- <img src={family} alt="" class="object-cover mix-blend-normal" /> -->
+        <Terminal />
       </Card>
 
       <Card class="flex overflow-hidden">
