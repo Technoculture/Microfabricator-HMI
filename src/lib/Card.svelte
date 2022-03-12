@@ -7,12 +7,16 @@
   let show_class = "";
   if(show){
     show_class = "shadow-2xl shadow-neutral-600 rounded-2xl backdrop-blur-xl ring-1 ring-slate-400 active:ring-orange-400";
+  } else {
+    show_class = "invisible";
   }
 </script>
 
+{#if show}
 <div class={`${className} ${show_class} bg-gradient-to-r from-black/40 via-slate-900/40 to-black/40`} >
   {#if title !== ""}
     <span class="p-3 text-white text-sm font-extralight grow">{ title }</span>
   {/if}
   <slot />
 </div>
+{/if}

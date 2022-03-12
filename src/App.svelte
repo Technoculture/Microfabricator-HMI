@@ -10,16 +10,23 @@
   import Card from './lib/Card.svelte';
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
+
+  let show_controls: boolean = true;
+
+  let enlarged_pic : string = "col-span-2 row-span-2";
+  if(!show_controls) {
+    enlarged_pic = "col-span-4 row-span-4";
+  }
 </script>
 
 <main>
-  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-50 via-pink-50 to-slate-200 select-none">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-50 via-pink-100 to-slate-200 select-none">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10 ">
       <Card class="row-span-4 col-span-2">
         <img src={naked} alt="" class="pt-12" />
       </Card>
 
-      <Card title="Wafer Mask Distance">
+      <Card title="Wafer Mask Distance" show={show_controls}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
@@ -68,7 +75,7 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Duration">
+      <Card title="Duration" show={show_controls}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
@@ -118,13 +125,13 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Clamp">
+      <Card title="Clamp" show={show_controls}>
         <MetricThumbnail>
           <span class="place-self-center rounded-lg flex px-7 py-5 ring-1 ring-orange-400">OFF</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Vibration">
+      <Card title="Vibration" show={show_controls}>
         <MetricThumbnail>
           <svg width="100" height="100"  viewBox="0 0 100 100" stroke="white" stroke-width="1" class="absolute inset-0">
             <polyline points="
@@ -140,13 +147,13 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Access Module">
+      <Card title="Access Module" show={show_controls}>
         <MetricThumbnail>
           <span class="place-self-center rounded-lg p-5 ring-1 ring-orange-400">Open</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Light Intensity">
+      <Card title="Light Intensity" show={show_controls}>
         <MetricThumbnail>
           <span class="place-self-center">21%</span>
           <!-- <span>21mJ/cm2</span>
@@ -154,7 +161,7 @@
         </MetricThumbnail>
       </Card>
 
-      <Card class="col-span-2 row-span-2 overflow-hidden flex" >
+      <Card class={`${enlarged_pic} overflow-hidden flex`}>
         <img src={family} alt="" class="object-cover" />
       </Card>
 
@@ -164,19 +171,19 @@
         </div>
       </Card>
 
-      <Card class="flex overflow-hidden" >
+      <Card class="flex overflow-hidden">
         <div class="flex flex-grow h-full active:bg-black/20">
           <Calculator class="text-white grow text-center place-self-center"/>
         </div>
       </Card>
 
-      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden" >
+      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden">
         <div class="flex flex-grow h-full active:bg-black/20">
           <span class="flex-grow place-self-center">
             4S
           </span>
         </div>
-        <div class="flex flex-grow h-full active:bg-black/20">
+        <div class="flex flex-grow h-full active:bg-black/20" >
           <span class="flex-grow place-self-center">
             365nm
           </span>
@@ -186,7 +193,7 @@
       <Card class="col-span-2 flex flex-col h-full text-white justify-between overflow-hidden" >
         <div class="flex grow h-full">
           <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:00:00</span>
-          <div class="flex flex-grow h-full active:bg-black/20 place-self-center pt-1"> 
+          <div class="flex flex-grow h-full active:bg-black/20 place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_pic = "col-span-4 row-span-4";}}> 
             <Play class="place-self-center grow" />
           </div>
         </div>
