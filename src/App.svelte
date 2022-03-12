@@ -8,7 +8,7 @@
 </script>
 
 <main>
-  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-b from-slate-100 to-slate-300">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-b from-slate-100 to-slate-300 select-none">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
       <Card class="row-span-4 col-span-2">
         <img src={naked} alt="" class="pt-12" />
