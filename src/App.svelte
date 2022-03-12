@@ -79,14 +79,15 @@
         </div>
       </Card>
 
-      <Card class="col-span-2 flex text-white overflow-hidden" >
-        <span class="place-self-center text-center text-2xl flex-grow font-extralight">00:00:00</span>
-        <div class="flex flex-grow h-full active:bg-black/20 place-self-center"> 
-          <Play class="place-self-center grow" />
+      <Card class="col-span-2 flex flex-col h-full text-white justify-between overflow-hidden" >
+        <div class="flex grow h-full">
+          <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:00:00</span>
+          <div class="flex flex-grow h-full active:bg-black/20 place-self-center pt-1"> 
+            <Play class="place-self-center grow" />
+          </div>
         </div>
-        <Progress />
+        <Progress class="flex" />
       </Card>
-
     </div>
   </div>
 </main>
