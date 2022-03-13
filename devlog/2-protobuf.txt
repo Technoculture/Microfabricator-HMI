@@ -2,3 +2,4 @@
 - Enums: https://developers.google.com/protocol-buffers/docs/proto3?hl=en#enum
 - Imports: https://developers.google.com/protocol-buffers/docs/proto3?hl=en
 - https://developers.google.com/protocol-buffers/docs/reference/javascript-generated
+- protobufjs: https://www.npmjs.com/package/protobufjs#installation

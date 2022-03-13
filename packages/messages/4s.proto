@@ -1,7 +1,11 @@
 package microfabricator;
 
 syntax = "proto3";
+
 import "common.proto";
+import "base.proto";
+import "lightengine.proto";
+
 // https://developers.google.com/protocol-buffers/docs/proto3?hl=en#enum
 
 /**

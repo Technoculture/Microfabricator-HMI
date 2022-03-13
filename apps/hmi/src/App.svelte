@@ -18,8 +18,29 @@
     enlarged_pic = "col-span-4 row-span-4";
   }
 
-  var protobuf = require("protobufjs/minimal");
+  // var protobuf = require("protobufjs/minimal");
+  // var protobuf = require("protobufjs/light");
 
+  // protobuf.load("4s.proto")
+  //   .then(function(err, root){
+  //   if (err)
+  //     throw err;
+
+  //   // Obtain a message type
+  //   var message = root.lookupType("microfabricator.ClampRequest");
+
+  //   // Exemplary payload
+  //   var payload = { state: "OFF" };
+
+  //   // Verify the payload
+  //   var errMsg = message.create(payload);
+  //   if(errMsg)
+  //     throw Error(errMsg);
+    
+  //   // var msg = message.create(payload);
+
+  //   console.log([payload, errMsg]);
+  // });
 </script>
 
 <main>

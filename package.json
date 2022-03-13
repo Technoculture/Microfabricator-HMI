@@ -1,31 +1,15 @@
 {
-  "name": "microfabricator-hmi",
+  "packageManager": "yarn@1.22.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "dev": "turbo run dev",
+    "build": "turbo run build"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
-    "@tsconfig/svelte": "^2.0.1",
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
-    "postcss-load-config": "^3.1.1",
-    "svelte": "^3.44.0",
-    "svelte-add": "^2022.2.1-4.0",
-    "svelte-check": "^2.2.7",
-    "svelte-hero-icons": "^4.1.0",
-    "svelte-preprocess": "^4.10.1",
-    "tailwindcss": "^3.0.12",
-    "tslib": "^2.3.1",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0"
+    "turbo": "^1.1.6"
   },
-  "dependencies": {
-    "protobufjs": "^6.11.2"
-  }
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
 }
