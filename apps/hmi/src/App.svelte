@@ -44,7 +44,7 @@
 </script>
 
 <main>
-  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-400 via-blue-200 to-indigo-300 select-none">
+  <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-50 via-blue-100 to-orange-100 select-none">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10 ">
       <Card class="row-span-4 col-span-2">
         <img src={naked} alt="" class="pt-12" />

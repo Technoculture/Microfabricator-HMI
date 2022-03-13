@@ -5,7 +5,9 @@ const config = {
     extend: {},
   },
 
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 };
 
 module.exports = config;
