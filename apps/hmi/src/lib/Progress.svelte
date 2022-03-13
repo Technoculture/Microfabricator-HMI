@@ -11,5 +11,5 @@
 </script>
 
 <div class={`${className} ${show_style} shadow-inner`}>  
-  <div style={`width:${percentage}%; height:8px`} class="bg-gradient-to-r from-green-500 to-green-600/80 shadow-inner"></div>
+  <div style={`width:${percentage}%; height:8px`} class="bg-gradient-to-r from-green-300 to-green-500 shadow-inner"></div>
 </div>

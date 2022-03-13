@@ -6,7 +6,7 @@
 
   let show_class = "";
   if(show){
-    show_class = "shadow-2xl shadow-neutral-600 rounded-2xl active:ring-4 ring-slate-400 active:ring-orange-400";
+    show_class = "shadow-2xl shadow-neutral-800 rounded-2xl active:ring-4 ring-slate-400 active:ring-orange-400";
   } else {
     show_class = "invisible";
   }
@@ -15,6 +15,9 @@
 {#if show}
 <div class={`${className} ${show_class} bg-gradient-to-r from-black/70 via-gray-900/80 to-black/80`} >
   {#if title !== ""}
+    <!-- <div class="relative">
+      <span class="absolute right-2 top-2 inline-flex h-1 w-1 rounded-full bg-orange-500 opacity-75" />
+    </div> -->
     <span class="p-3 text-white text-sm font-extralight grow">{ title }</span>
   {/if}
   <slot />

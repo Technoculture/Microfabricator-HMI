@@ -93,8 +93,10 @@
               </svg>
             </div>
           </div>
-          <span class="place-self-center w-full">
-            2.8um
+          <span class="text-right p-3 w-full flex place-self-center">
+            <span class="grow"></span>
+            <span class="pr-1">2.8</span>
+            <span class="text-white font-extralight text-sm place-self-center">μm</span>
           </span>
         </MetricThumbnail>
       </Card>
@@ -142,21 +144,22 @@
               </svg>
             </div>
           </div>
-          <div class="flex flex-col grow p-2">
-            <span class="place-self-end flex-row">1m 32s</span>
-            <span class="place-self-end text-xl text-white">112s</span> 
+          <div class="flex flex-col grow p-3">
+            <span class="place-self-end text-xl font-mono">112s</span> 
+            <span class="place-self-end flex-row text-sm text-white font-extralight">1m 32s</span>
           </div>
         </MetricThumbnail>
       </Card>
 
       <Card title="Clamp" show={show_controls}>
-        <MetricThumbnail>
-          <span class="place-self-center rounded-xl flex px-7 py-5 ring-1 ring-orange-400">OFF</span>
+        <MetricThumbnail state={false}>
+          <span class="place-self-center">Off</span>
         </MetricThumbnail>
       </Card>
 
       <Card title="Vibration" show={show_controls}>
-        <MetricThumbnail>
+        <MetricThumbnail state={true}>
+          <span class="place-self-center">Ok</span>
           <svg width="100" height="100"  viewBox="0 0 100 100" stroke="white" stroke-width="1" class="absolute inset-0">
             <polyline points="
           		0,100
@@ -172,27 +175,26 @@
       </Card>
 
       <Card title="Access Module" show={show_controls}>
-        <MetricThumbnail>
-          <span class="place-self-center rounded-xl p-5 ring-1 ring-orange-400">Open</span>
+        <MetricThumbnail state={true}>
+          <span class="place-self-center">Open</span>
         </MetricThumbnail>
       </Card>
 
       <Card title="Light Intensity" show={show_controls}>
-        <MetricThumbnail>
-          <span class="place-self-center">21%</span>
-          <!-- <span>21mJ/cm2</span>
-          <span></span> -->
+        <MetricThumbnail class="flex-col grow text-start p-3">
+          <span class="text-xl font-mono">21%</span>
+          <span class="text-white text-sm font-extralight">321 mJ/cm<sup>2</sup></span>
+          <span></span>
         </MetricThumbnail>
       </Card>
 
       <Card class={`${enlarged_pic} overflow-hidden flex`}>
-        <!-- <img src={family} alt="" class="object-cover mix-blend-normal" /> -->
         <Terminal />
       </Card>
 
       <Card class="flex overflow-hidden">
         <div class="flex flex-grow h-full active:bg-black/20">
-        <InfoCircle class="text-white grow text-center place-self-center"/>
+          <InfoCircle class="text-white grow text-center place-self-center"/>
         </div>
       </Card>
 
