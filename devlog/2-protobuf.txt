@@ -3,3 +3,6 @@
 - Imports: https://developers.google.com/protocol-buffers/docs/proto3?hl=en
 - https://developers.google.com/protocol-buffers/docs/reference/javascript-generated
 - protobufjs: https://www.npmjs.com/package/protobufjs#installation
+- Npm Protoc: https://www.npmjs.com/package/@protobuf-ts/protoc
+- https://stackoverflow.com/questions/6912981/google-protocol-buffers-javascript-example
+

@@ -44,6 +44,42 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@protobuf-ts/plugin-framework@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@protobuf-ts/plugin-framework/-/plugin-framework-2.2.2.tgz#e6480ca3e4e6e522aae9ea57543b7d98492e6fc6"
+  integrity sha512-aBqsCgSz5BCrWxjQPAhI8GAae4JV4pZyiLjuVMKA4On4lIGfGtMd4fu6MD6DW/h/fTC3Rkn/hrHlR4bELi+K0A==
+  dependencies:
+    "@protobuf-ts/runtime" "^2.2.2"
+    typescript "^3.9"
+
+"@protobuf-ts/plugin@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@protobuf-ts/plugin/-/plugin-2.2.2.tgz#e5fee67fddf3574a7c04988677f7c65a83c390b1"
+  integrity sha512-l94LTWWfmWIPntNEyJXC1xRqABCF7FC9uEPKWs6/k8Eyfkf+au1wUMomeC6iZDEAKfB43C1yl4DdYj/VoxmGaQ==
+  dependencies:
+    "@protobuf-ts/plugin-framework" "^2.2.2"
+    "@protobuf-ts/protoc" "^2.2.2"
+    "@protobuf-ts/runtime" "^2.2.2"
+    "@protobuf-ts/runtime-rpc" "^2.2.2"
+    typescript "^3.9"
+
+"@protobuf-ts/protoc@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@protobuf-ts/protoc/-/protoc-2.2.2.tgz#10b3c1f34ec5d5400466b033c6c60cf3fef4f486"
+  integrity sha512-zRMx2m89DLXvQ8iIcEuYKMxZ0BVSZ1LDNACAAAaUWwIi9pkdAvhQCkMivpVHrlzSYtDemnpazhbZ+9Kz9+QqBw==
+
+"@protobuf-ts/runtime-rpc@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@protobuf-ts/runtime-rpc/-/runtime-rpc-2.2.2.tgz#4bb36133f9e25cf19d12fd0348dec75dd7948b40"
+  integrity sha512-Fbv4sCyrdl4z67uLdZD8nOE+T06N/rCYQDLroGRUJ/sYhTcua0H3ls2id+RkpYGh/P8rJH3ldHBptsRYShGAyQ==
+  dependencies:
+    "@protobuf-ts/runtime" "^2.2.2"
+
+"@protobuf-ts/runtime@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@protobuf-ts/runtime/-/runtime-2.2.2.tgz#d09c012b766cbc37ab2748e5c307c8fe27821d16"
+  integrity sha512-4tZToEhqCMwMb5PZ04xs7nRDmNGTy4ha8HNBdxmTnmVi4O0Ik/MlCTxX2v5P+OvqTN5CufXAaz7bmldf/fGLjg==
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -1421,6 +1457,11 @@ typescript@*, typescript@^4.5.4, typescript@^4.5.5:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
   integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
+
+typescript@^3.9:
+  version "3.9.10"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
+  integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
 util-deprecate@^1.0.2:
   version "1.0.2"

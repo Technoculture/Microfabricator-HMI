@@ -1,10 +1,12 @@
-package microfabricator;
 syntax = "proto3";
+package microfabricator;
 
 import "common.proto";
 
+// Messsages
 message LightEngineLock {
   enum le_states {
+    NULL_LE_STATE = 0;
     OPEN = 1;
     CLOSE = 2;
   }
@@ -12,11 +14,8 @@ message LightEngineLock {
 }
 
 message ExposureSettings {
-  option allow_alias = true;
   int32 duration_seconds = 1;
-  int32 duration = 1;
   int32 intensity_percent = 2;
-  int32 intensity = 2;
 }
 
 message ExposureInitiate {
@@ -24,4 +23,4 @@ message ExposureInitiate {
   on_off state = 2;
 }
 
-message ProgressResponse { int16 progress_percent = 1; }
+message ProgressResponse { int32 progress_percent = 1; }

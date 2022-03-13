@@ -1,11 +1,9 @@
+syntax = "proto3";
 package microfabricator;
 
-syntax = "proto3";
 import "common.proto";
 
-/**
- * Messages
- */
+// Messages
 message FanRequest { on_off state = 1; }
 message FanResponse { on_off state = 1; }
 
