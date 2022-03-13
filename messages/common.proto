@@ -1,0 +1,12 @@
+package microfabricator;
+
+syntax = "proto3";
+// Must not import anything to avoid circular deps
+
+/**
+ *  Common Types
+ */
+enum on_0ff {
+  ON = 0;
+  OFF = 1;
+}

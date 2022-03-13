@@ -1,7 +1,6 @@
 <script lang="ts">
   // Assets and Icons
   import naked from "./assets/mfab-naked.png";
-  import family from "./assets/family.png"
   import Play from "./lib/Icons/Play.svelte";
   import Calculator from "./lib/Icons/Calculator.svelte";
   import InfoCircle from "./lib/Icons/InfoCircle.svelte";
@@ -18,6 +17,9 @@
   if(!show_controls) {
     enlarged_pic = "col-span-4 row-span-4";
   }
+
+  var protobuf = require("protobufjs/minimal");
+
 </script>
 
 <main>
