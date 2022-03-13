@@ -151,7 +151,7 @@
 
       <Card title="Clamp" show={show_controls}>
         <MetricThumbnail>
-          <span class="place-self-center rounded-lg flex px-7 py-5 ring-1 ring-orange-400">OFF</span>
+          <span class="place-self-center rounded-xl flex px-7 py-5 ring-1 ring-orange-400">OFF</span>
         </MetricThumbnail>
       </Card>
 
@@ -173,7 +173,7 @@
 
       <Card title="Access Module" show={show_controls}>
         <MetricThumbnail>
-          <span class="place-self-center rounded-lg p-5 ring-1 ring-orange-400">Open</span>
+          <span class="place-self-center rounded-xl p-5 ring-1 ring-orange-400">Open</span>
         </MetricThumbnail>
       </Card>
 
@@ -203,12 +203,12 @@
       </Card>
 
       <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden">
-        <div class="flex flex-grow h-full active:bg-black/20">
+        <div class="flex flex-grow h-full active:bg-black/30 ">
           <span class="flex-grow place-self-center">
             4S
           </span>
         </div>
-        <div class="flex flex-grow h-full active:bg-black/20" >
+        <div class="flex flex-grow h-full active:bg-black/30" >
           <span class="flex-grow place-self-center">
             365nm
           </span>

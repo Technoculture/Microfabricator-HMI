@@ -6,7 +6,7 @@
 
   let show_class = "";
   if(show){
-    show_class = "shadow-2xl shadow-neutral-600 rounded-2xl backdrop-blur-xl active:ring-4 ring-slate-400 active:ring-orange-400";
+    show_class = "shadow-2xl shadow-neutral-600 rounded-2xl active:ring-4 ring-slate-400 active:ring-orange-400";
   } else {
     show_class = "invisible";
   }
