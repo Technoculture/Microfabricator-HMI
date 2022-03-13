@@ -13,7 +13,7 @@
 </script>
 
 {#if show}
-<div class={`${className} ${show_class} bg-gradient-to-r from-black/70 via-gray-900/80 to-black/80`} >
+<div class={`${className} ${show_class} bg-gradient-to-r from-black/80 via-gray-900/90 to-black/80`} >
   {#if title !== ""}
     <!-- <div class="relative">
       <span class="absolute right-2 top-2 inline-flex h-1 w-1 rounded-full bg-orange-500 opacity-75" />
