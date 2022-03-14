@@ -1,17 +1,13 @@
 <script lang="ts">
   // Assets and Icons
   import naked from "./assets/mfab-naked.png";
-  import family from "./assets/family.png";
   import Play from "./lib/Icons/Play.svelte";
-  import Calculator from "./lib/Icons/Calculator.svelte";
-  import InfoCircle from "./lib/Icons/InfoCircle.svelte";
 
   // Components
   import Card from './lib/Card.svelte';
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
   import Terminal from "./lib/Terminal.svelte";
-import Tick from "./lib/Icons/Tick.svelte";
 
   let show_controls: boolean = true;
 
@@ -19,30 +15,6 @@ import Tick from "./lib/Icons/Tick.svelte";
   if(!show_controls) {
     enlarged_terminal = "col-span-2 row-span-4";
   }
-
-  // var protobuf = require("protobufjs/minimal");
-  // var protobuf = require("protobufjs/light");
-
-  // protobuf.load("4s.proto")
-  //   .then(function(err, root){
-  //   if (err)
-  //     throw err;
-
-  //   // Obtain a message type
-  //   var message = root.lookupType("microfabricator.ClampRequest");
-
-  //   // Exemplary payload
-  //   var payload = { state: "OFF" };
-
-  //   // Verify the payload
-  //   var errMsg = message.create(payload);
-  //   if(errMsg)
-  //     throw Error(errMsg);
-    
-  //   // var msg = message.create(payload);
-
-  //   console.log([payload, errMsg]);
-  // });
 </script>
 
 <main>
@@ -50,7 +22,7 @@ import Tick from "./lib/Icons/Tick.svelte";
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
       <Card class="row-span-4 col-span-2 flex flex-col">
         <div class="flex snap-center overflow-x-scroll scrollbar-hide snap-x snap-mandatory">
-          <img src={naked} alt="" class="snap-center" />
+          <img src={naked} alt="" class="snap-center object-cover" />
         </div>
 
         <!-- <dev class="flex flex-col w-full h-full text-white font-extralight">
@@ -86,63 +58,63 @@ import Tick from "./lib/Icons/Tick.svelte";
         </div>
       </Card>
 
-      <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={false}>
         <MetricThumbnail state={true}>
-          <span class="place-self-center">Open</span>
+          <span class="place-self-center text-left">Open</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Clamp" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Wafer Clamp" show={show_controls} hasRing={true} disabled={false}>
         <MetricThumbnail state={false}>
           <span class="place-self-center">Off</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Mask Gap" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Wafer Mask Gap" show={show_controls} hasRing={true} disabled={false}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
-            <div class="flex flex-col">
+            <div class="flex">
               <svg height="100px" width="100px" viewBox="0 0 100 100" stroke="white" stroke-width="1">
-                <path d="M0 0 H15 Z" stroke="orange" />
-                <path d="M0 5 H10 Z" />
-                <path d="M0 10 H10 Z" />
-                <path d="M0 15 H10 Z" />
-                <path d="M0 20 H10 Z" />
-                <path d="M0 25 H15 Z" stroke="orange" />
-                <path d="M0 30 H10 Z" />
-                <path d="M0 35 H10 Z" />
-                <path d="M0 40 H10 Z" />
-                <path d="M0 45 H10 Z" />
-                <path d="M0 50 H15 Z" stroke="orange" />
-                <path d="M0 55 H10 Z" />
-                <path d="M0 60 H10 Z" />
-                <path d="M0 65 H10 Z" />
-                <path d="M0 70 H10 Z" />
-                <path d="M0 75 H15 Z" stroke="orange" />
-                <path d="M0 80 H10 Z" />
-                <path d="M0 85 H10 Z" />
-                <path d="M0 85 H10 Z" />
-                <path d="M0 90 H10 Z" />
-                <path d="M0 95 H15 Z" stroke="orange" />
-                <path d="M0 100 H10 Z" />
-                <path d="M0 105 H10 Z" />
-                <path d="M0 115 H10 Z" />
-                <path d="M0 120 H10 Z" />
-                <path d="M0 125 H15 Z" stroke="orange" />
-                <path d="M0 130 H10 Z" />
-                <path d="M0 135 H10 Z" />
-                <path d="M0 140 H10 Z" />
-                <path d="M0 145 H10 Z" />
-                <path d="M0 150 H15 Z" stroke="orange" />
-                <path d="M0 155 H10 Z" />
-                <path d="M0 160 H10 Z" />
-                <path d="M0 165 H10 Z" />
-                <path d="M0 170 H10 Z" />
+                <path d="M100 00 H85 Z" stroke="orange" />
+                <path d="M100 05 H90 Z" />
+                <path d="M100 10 H90 Z" />
+                <path d="M100 15 H90 Z" />
+                <path d="M100 20 H90 Z" />
+                <path d="M100 25 H85 Z" stroke="orange" />
+                <path d="M100 30 H90 Z" />
+                <path d="M100 35 H90 Z" />
+                <path d="M100 40 H90 Z" />
+                <path d="M100 45 H90 Z" />
+                <path d="M100 50 H85 Z" stroke="orange" />
+                <path d="M100 55 H90 Z" />
+                <path d="M100 60 H90 Z" />
+                <path d="M100 65 H90 Z" />
+                <path d="M100 70 H90 Z" />
+                <path d="M100 75 H85 Z" stroke="orange" />
+                <path d="M100 80 H90 Z" />
+                <path d="M100 85 H90 Z" />
+                <path d="M100 95 H90 Z" />
+                <path d="M100 100 H90 Z" />
+                <path d="M100 105 H85 Z" stroke="orange" />
+                <path d="M100 110 H90 Z" />
+                <path d="M100 115 H90 Z" />
+                <path d="M100 120 H90 Z" />
+                <path d="M100 125 H90 Z" />
+                <path d="M100 130 H85 Z" stroke="orange" />
+                <path d="M100 135 H90 Z" />
+                <path d="M100 140 H90 Z" />
+                <path d="M100 145 H90 Z" />
+                <path d="M100 150 H90 Z" />
+                <path d="M100 155 H85 Z" stroke="orange" />
+                <path d="M100 160 H90 Z" />
+                <path d="M100 165 H90 Z" />
+                <path d="M100 170 H90 Z" />
+                <path d="M100 175 H90 Z" />
               </svg>
             </div>
-          </div>
-          <span class="text-right p-3 w-full flex place-self-center">
-            <span class="grow"></span>
+          </div> 
+          <span class="p-3 w-full flex place-self-center">
+            <!-- <span class="grow"></span> -->
             <span class="pr-1">2.8</span>
             <span class="text-white font-extralight text-sm place-self-center">μm</span>
           </span>
@@ -166,7 +138,7 @@ import Tick from "./lib/Icons/Tick.svelte";
         </MetricThumbnail>
       </Card>
 
-      <Card title="Light Intensity" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Light Intensity" show={show_controls} hasRing={true} disabled={false}>
         <MetricThumbnail class="flex-col grow text-start p-3">
           <span class="text-xl font-mono">21%</span>
           <span class="text-white text-sm font-extralight">321 mJ/cm<sup>2</sup></span>
@@ -174,52 +146,52 @@ import Tick from "./lib/Icons/Tick.svelte";
         </MetricThumbnail>
       </Card>
 
-      <Card title="Duration" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Duration" show={show_controls} hasRing={true} disabled={false}>
         <MetricThumbnail>
-          <div class="absolute left-0 w-full overflow-auto touch-pan-y">
-            <div class="flex flex-col">
+          <div class="absolute right-0 w-full overflow-auto touch-pan-y">
+            <div class="flex">
               <svg height="100px" width="100px" viewBox="0 0 100 100" stroke="white" stroke-width="1">
-                <path d="M0 0 H15 Z" stroke="orange" />
-                <path d="M0 5 H10 Z" />
-                <path d="M0 10 H10 Z" />
-                <path d="M0 15 H10 Z" />
-                <path d="M0 20 H10 Z" />
-                <path d="M0 25 H15 Z" stroke="orange" />
-                <path d="M0 30 H10 Z" />
-                <path d="M0 35 H10 Z" />
-                <path d="M0 40 H10 Z" />
-                <path d="M0 45 H10 Z" />
-                <path d="M0 50 H15 Z" stroke="orange" />
-                <path d="M0 55 H10 Z" />
-                <path d="M0 60 H10 Z" />
-                <path d="M0 65 H10 Z" />
-                <path d="M0 70 H10 Z" />
-                <path d="M0 75 H15 Z" stroke="orange" />
-                <path d="M0 80 H10 Z" />
-                <path d="M0 85 H10 Z" />
-                <path d="M0 85 H10 Z" />
-                <path d="M0 90 H10 Z" />
-                <path d="M0 95 H15 Z" stroke="orange" />
-                <path d="M0 100 H10 Z" />
-                <path d="M0 105 H10 Z" />
-                <path d="M0 115 H10 Z" />
-                <path d="M0 120 H10 Z" />
-                <path d="M0 125 H15 Z" stroke="orange" />
-                <path d="M0 130 H10 Z" />
-                <path d="M0 135 H10 Z" />
-                <path d="M0 140 H10 Z" />
-                <path d="M0 145 H10 Z" />
-                <path d="M0 150 H15 Z" stroke="orange" />
-                <path d="M0 155 H10 Z" />
-                <path d="M0 160 H10 Z" />
-                <path d="M0 165 H10 Z" />
-                <path d="M0 170 H10 Z" />
+                <path d="M100 00 H85 Z" stroke="orange" />
+                <path d="M100 05 H90 Z" />
+                <path d="M100 10 H90 Z" />
+                <path d="M100 15 H90 Z" />
+                <path d="M100 20 H90 Z" />
+                <path d="M100 25 H85 Z" stroke="orange" />
+                <path d="M100 30 H90 Z" />
+                <path d="M100 35 H90 Z" />
+                <path d="M100 40 H90 Z" />
+                <path d="M100 45 H90 Z" />
+                <path d="M100 50 H85 Z" stroke="orange" />
+                <path d="M100 55 H90 Z" />
+                <path d="M100 60 H90 Z" />
+                <path d="M100 65 H90 Z" />
+                <path d="M100 70 H90 Z" />
+                <path d="M100 75 H85 Z" stroke="orange" />
+                <path d="M100 80 H90 Z" />
+                <path d="M100 85 H90 Z" />
+                <path d="M100 95 H90 Z" />
+                <path d="M100 100 H90 Z" />
+                <path d="M100 105 H85 Z" stroke="orange" />
+                <path d="M100 110 H90 Z" />
+                <path d="M100 115 H90 Z" />
+                <path d="M100 120 H90 Z" />
+                <path d="M100 125 H90 Z" />
+                <path d="M100 130 H85 Z" stroke="orange" />
+                <path d="M100 135 H90 Z" />
+                <path d="M100 140 H90 Z" />
+                <path d="M100 145 H90 Z" />
+                <path d="M100 150 H90 Z" />
+                <path d="M100 155 H85 Z" stroke="orange" />
+                <path d="M100 160 H90 Z" />
+                <path d="M100 165 H90 Z" />
+                <path d="M100 170 H90 Z" />
+                <path d="M100 175 H90 Z" />
               </svg>
             </div>
           </div>
           <div class="flex flex-col grow p-3">
-            <span class="place-self-end text-xl font-mono">112s</span> 
-            <span class="place-self-end flex-row text-sm text-white font-extralight">1m 32s</span>
+            <span class="place-self-start text-xl font-mono">112s</span> 
+            <span class="place-self-start flex-row text-sm text-white font-extralight">1m 32s</span>
           </div>
         </MetricThumbnail>
       </Card>
