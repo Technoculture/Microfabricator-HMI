@@ -11,12 +11,13 @@
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
   import Terminal from "./lib/Terminal.svelte";
+import Tick from "./lib/Icons/Tick.svelte";
 
   let show_controls: boolean = true;
 
   let enlarged_terminal : string = "col-span-2 row-span-2";
   if(!show_controls) {
-    enlarged_terminal = "col-span-2 row-span-3";
+    enlarged_terminal = "col-span-2 row-span-4";
   }
 
   // var protobuf = require("protobufjs/minimal");
@@ -46,12 +47,12 @@
 
 <main>
   <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-100 via-slate-200 to-slate-400 select-none">
-    <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10 ">
-      <Card class="row-span-4 col-span-2 flex flex-col overflow-hidden ">
-        <div class="flex">
-          <img src={naked} alt="" class="place-self-center" />
-          <img src={naked} alt="" class="" />
+    <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
+      <Card class="row-span-4 col-span-2 flex flex-col">
+        <div class="flex snap-center overflow-x-scroll scrollbar-hide snap-x snap-mandatory">
+          <img src={naked} alt="" class="snap-center" />
         </div>
+
         <!-- <dev class="flex flex-col w-full h-full text-white font-extralight">
           <span class="p-2 px-4 ">Wafer Mask Distance</span>
           <div class="m-2 grow flex flex-col ring-1 rounded-xl ring-white bg-black overflow-hidden">
@@ -59,7 +60,7 @@
           </div>
         </dev> -->
         <div class="flex grow">
-          <Card class="flex overflow-hidden grow rounded-none">
+          <!-- <Card class="flex overflow-hidden grow rounded-none">
           <div class="flex grow active:bg-black">
             <InfoCircle class="text-white grow text-center place-self-center"/>
           </div>
@@ -68,6 +69,18 @@
           <Card class="flex overflow-hidden grow rounded-none bg-slate-800">
             <div class="flex grow h-full active:bg-black">
               <Calculator class="text-white grow text-center place-self-center"/>
+            </div>
+          </Card> -->
+          <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden grow rounded-none" hasRing={true}>
+            <div class="flex flex-grow h-full active:bg-black ">
+              <span class="flex-grow place-self-center">
+                4S
+              </span>
+            </div>
+            <div class="flex flex-grow h-full active:bg-black" >
+              <span class="flex-grow place-self-center">
+                365nm
+              </span>
             </div>
           </Card>
         </div>
@@ -85,7 +98,7 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Mask Distance" show={show_controls} hasRing={true} disabled={true}>
+      <Card title="Wafer Mask Gap" show={show_controls} hasRing={true} disabled={true}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
@@ -215,23 +228,10 @@
         <Terminal />
       </Card>
 
-      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden" hasRing={true}>
-        <div class="flex flex-grow h-full active:bg-black ">
-          <span class="flex-grow place-self-center">
-            4S
-          </span>
-        </div>
-        <div class="flex flex-grow h-full active:bg-black" >
-          <span class="flex-grow place-self-center">
-            365nm
-          </span>
-        </div>
-      </Card>
-
       <Card class="col-span-2 flex flex-col h-full text-white justify-between overflow-hidden" >
         <div class="flex grow h-full">
-          <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:00:00</span>
-          <div class="flex flex-grow h-full active:bg-black place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_pic = "col-span-4 row-span-4";}}> 
+          <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:22:19</span>
+          <div class="flex flex-grow h-full active:bg-black place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_terminal = "col-span-2 row-span-4";}}> 
             <Play class="place-self-center grow" />
           </div>
         </div>
