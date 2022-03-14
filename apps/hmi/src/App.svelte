@@ -8,6 +8,7 @@
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
   import Terminal from "./lib/Terminal.svelte";
+import Slider from "./lib/Slider.svelte";
 
   let show_controls: boolean = true;
 
@@ -208,6 +209,10 @@
           </div>
         </div>
         <Progress class="flex" />
+      </Card>
+
+      <Card class="col-span-4 flex flex-col" show={show_controls}>
+        <Slider />
       </Card>
     </div>
   </div>

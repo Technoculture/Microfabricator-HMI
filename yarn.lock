@@ -23,6 +23,18 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@fouita/slider@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@fouita/slider/-/slider-0.0.4.tgz#af726368068f8d5dfb8e2e6229c50e3715345ece"
+  integrity sha512-ZUayNK1fSlwHmHZVnuwpSYplrEgmv8jAbDvfWmRxE4VkO44hgLCzwkdCuZ9swN3yV3ZGTNr/ejcYdTjD9sZb0g==
+  dependencies:
+    "@fouita/tooltip" "0.0.1"
+
+"@fouita/tooltip@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@fouita/tooltip/-/tooltip-0.0.1.tgz#854a81776dc6b2d02d401a3b2591e3375315862e"
+  integrity sha512-zXlqD/obXQIBE5DANSXtViE4IdSj2Mrj8VxF/WmjDgU6MPL1KXjimUWLrsOaLf6hxR7xYr+uoO0ztOqoritQtA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
