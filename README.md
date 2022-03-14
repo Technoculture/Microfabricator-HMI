@@ -1,3 +1,1 @@
-# Microfabricator-HMI
-HMI for Microfabricator 4S
-
+# Microfabricator HMI and Controls Monorepo
