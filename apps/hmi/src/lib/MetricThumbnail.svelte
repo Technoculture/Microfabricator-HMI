@@ -3,7 +3,7 @@
 
   let state_string : string = "";
   if(state) {
-    state_string = "m-2 ring-1 ring-green-300 rounded-xl text-green-300";
+    state_string = "m-2 ring-1 ring-orange-500 rounded-xl text-orange-500";
   } else {
     state_string = "m-0";
   }

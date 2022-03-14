@@ -1,6 +1,7 @@
 <script lang="ts">
   // Assets and Icons
   import naked from "./assets/mfab-naked.png";
+  import family from "./assets/family.png";
   import Play from "./lib/Icons/Play.svelte";
   import Calculator from "./lib/Icons/Calculator.svelte";
   import InfoCircle from "./lib/Icons/InfoCircle.svelte";
@@ -13,9 +14,9 @@
 
   let show_controls: boolean = true;
 
-  let enlarged_pic : string = "col-span-2 row-span-2";
+  let enlarged_terminal : string = "col-span-2 row-span-2";
   if(!show_controls) {
-    enlarged_pic = "col-span-4 row-span-4";
+    enlarged_terminal = "col-span-2 row-span-3";
   }
 
   // var protobuf = require("protobufjs/minimal");
@@ -46,11 +47,45 @@
 <main>
   <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-100 via-slate-200 to-slate-400 select-none">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10 ">
-      <Card class="row-span-4 col-span-2">
-        <img src={naked} alt="" class="pt-12" />
+      <Card class="row-span-4 col-span-2 flex flex-col overflow-hidden ">
+        <div class="flex">
+          <img src={naked} alt="" class="place-self-center" />
+          <img src={naked} alt="" class="" />
+        </div>
+        <!-- <dev class="flex flex-col w-full h-full text-white font-extralight">
+          <span class="p-2 px-4 ">Wafer Mask Distance</span>
+          <div class="m-2 grow flex flex-col ring-1 rounded-xl ring-white bg-black overflow-hidden">
+            <img src={family} alt="" class="object-cover grow" />
+          </div>
+        </dev> -->
+        <div class="flex grow">
+          <Card class="flex overflow-hidden grow rounded-none">
+          <div class="flex grow active:bg-black">
+            <InfoCircle class="text-white grow text-center place-self-center"/>
+          </div>
+          </Card>
+
+          <Card class="flex overflow-hidden grow rounded-none bg-slate-800">
+            <div class="flex grow h-full active:bg-black">
+              <Calculator class="text-white grow text-center place-self-center"/>
+            </div>
+          </Card>
+        </div>
       </Card>
 
-      <Card title="Wafer Mask Distance" show={show_controls}>
+      <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={true}>
+        <MetricThumbnail state={true}>
+          <span class="place-self-center">Open</span>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Wafer Clamp" show={show_controls} hasRing={true} disabled={true}>
+        <MetricThumbnail state={false}>
+          <span class="place-self-center">Off</span>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Wafer Mask Distance" show={show_controls} hasRing={true} disabled={true}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
@@ -101,7 +136,32 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Duration" show={show_controls}>
+      <Card title="Vibration" show={show_controls} hasRing={true} >
+        <MetricThumbnail state={true}>
+          <span class="place-self-center">Ok</span>
+          <svg width="100" height="100"  viewBox="0 0 100 100" stroke="white" stroke-width="1" class="absolute inset-0">
+            <polyline points="
+          		0,100
+          		30,99
+          		60,96
+          		90,91
+          		120,84
+          		150,75
+          		180,64
+          	"></polyline>
+          </svg>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Light Intensity" show={show_controls} hasRing={true} disabled={true}>
+        <MetricThumbnail class="flex-col grow text-start p-3">
+          <span class="text-xl font-mono">21%</span>
+          <span class="text-white text-sm font-extralight">321 mJ/cm<sup>2</sup></span>
+          <span></span>
+        </MetricThumbnail>
+      </Card>
+
+      <Card title="Duration" show={show_controls} hasRing={true} disabled={true}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex flex-col">
@@ -151,66 +211,17 @@
         </MetricThumbnail>
       </Card>
 
-      <Card title="Clamp" show={show_controls}>
-        <MetricThumbnail state={false}>
-          <span class="place-self-center">Off</span>
-        </MetricThumbnail>
-      </Card>
-
-      <Card title="Vibration" show={show_controls}>
-        <MetricThumbnail state={true}>
-          <span class="place-self-center">Ok</span>
-          <svg width="100" height="100"  viewBox="0 0 100 100" stroke="white" stroke-width="1" class="absolute inset-0">
-            <polyline points="
-          		0,100
-          		30,99
-          		60,96
-          		90,91
-          		120,84
-          		150,75
-          		180,64
-          	"></polyline>
-          </svg>
-        </MetricThumbnail>
-      </Card>
-
-      <Card title="Access Module" show={show_controls}>
-        <MetricThumbnail state={true}>
-          <span class="place-self-center">Open</span>
-        </MetricThumbnail>
-      </Card>
-
-      <Card title="Light Intensity" show={show_controls}>
-        <MetricThumbnail class="flex-col grow text-start p-3">
-          <span class="text-xl font-mono">21%</span>
-          <span class="text-white text-sm font-extralight">321 mJ/cm<sup>2</sup></span>
-          <span></span>
-        </MetricThumbnail>
-      </Card>
-
-      <Card class={`${enlarged_pic} overflow-hidden flex`}>
+      <Card class={`${enlarged_terminal} overflow-hidden flex`} >
         <Terminal />
       </Card>
 
-      <Card class="flex overflow-hidden">
-        <div class="flex flex-grow h-full active:bg-black/20">
-          <InfoCircle class="text-white grow text-center place-self-center"/>
-        </div>
-      </Card>
-
-      <Card class="flex overflow-hidden">
-        <div class="flex flex-grow h-full active:bg-black/20">
-          <Calculator class="text-white grow text-center place-self-center"/>
-        </div>
-      </Card>
-
-      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden">
-        <div class="flex flex-grow h-full active:bg-black/30 ">
+      <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden" hasRing={true}>
+        <div class="flex flex-grow h-full active:bg-black ">
           <span class="flex-grow place-self-center">
             4S
           </span>
         </div>
-        <div class="flex flex-grow h-full active:bg-black/30" >
+        <div class="flex flex-grow h-full active:bg-black" >
           <span class="flex-grow place-self-center">
             365nm
           </span>
@@ -220,7 +231,7 @@
       <Card class="col-span-2 flex flex-col h-full text-white justify-between overflow-hidden" >
         <div class="flex grow h-full">
           <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:00:00</span>
-          <div class="flex flex-grow h-full active:bg-black/20 place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_pic = "col-span-4 row-span-4";}}> 
+          <div class="flex flex-grow h-full active:bg-black place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_pic = "col-span-4 row-span-4";}}> 
             <Play class="place-self-center grow" />
           </div>
         </div>

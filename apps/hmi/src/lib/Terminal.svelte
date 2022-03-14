@@ -6,7 +6,7 @@
   let expanded : boolean = false;
 </script>
 
-<div class="bg-black grow ring-1 ring-white flex flex-col w-full">
+<div class="bg-black grow flex flex-col w-full">
   <div class="bg-white/10">
     <div class="text-white font-light flex">
       <span class="grow p-2 px-4">Log</span>

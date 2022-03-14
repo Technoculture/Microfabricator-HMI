@@ -6,10 +6,10 @@
 
   let show_style = "";
   if(percentage >= 0) {
-    show_style = "bg-green-200/40";
+    show_style = "bg-orange-200/40";
   }
 </script>
 
 <div class={`${className} ${show_style} shadow-inner`}>  
-  <div style={`width:${percentage}%; height:8px`} class="bg-gradient-to-r from-green-300 to-green-500 shadow-inner"></div>
+  <div style={`width:${percentage}%; height:8px`} class="bg-gradient-to-r from-orange-300 to-orange-500 shadow-inner"></div>
 </div>
