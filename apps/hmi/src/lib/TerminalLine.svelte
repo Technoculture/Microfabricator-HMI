@@ -35,15 +35,15 @@
     <slot /> 
     {#if isLast}
       {#if isResumable}
-        <button class="bg-cyan-700 px-2 rounded-lg mr-2 text-white">Resume ></button>
+        <button class="bg-cyan-700 active:bg-cyan-500 px-2 rounded-lg mr-2 text-white">Resume ></button>
       {/if}
       {#if isPausable}
-        <button class="bg-orange-600 px-2 rounded-lg mr-1 text-white">Pause ></button>
-        <button class="bg-red-800 px-2 rounded-lg text-white">Stop ></button>
+        <button class="bg-orange-600 active:bg-orange-400 px-2 rounded-lg mr-1 text-white">Pause ></button>
+        <button class="bg-red-800 active:bg-orange-600 px-2 rounded-lg text-white">Stop ></button>
       {/if}
     {/if}
     {#if isComplete}
-      <button class="bg-green-600 px-2 rounded-lg text-white">Redo ></button>
+      <button class="bg-green-700 active:bg-green-500 px-2 rounded-lg text-white">Redo ></button>
     {/if}
   </span>
 </div>
