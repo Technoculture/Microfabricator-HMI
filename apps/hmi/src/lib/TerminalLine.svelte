@@ -1,12 +1,46 @@
 <script lang="ts">
+  // export let isStoppable : boolean = false;
+  export let isPausable : boolean = false;
+  export let isComplete : boolean = false;
+  export let isResumable : boolean = false;
+
+  enum linetype {
+    INFO,
+    WARN,
+    ERROR,
+    SUCCESS
+  };
+  export let type : linetype = linetype.INFO;
+
+  let type_style : string = "";
+  switch (type) {
+    case linetype.INFO:
+      type_style = "text-gray-400";
+      break;
+    case linetype.WARN:
+      type_style = "text-yellow-400";
+    default:
+      type_style = "text-white";
+      break;
+  }
   const date_time_text : string = "23:56";
 </script>
 
-<div class="flex gap-2">
-  <span class="text-2xs text-orange-400">
+<div class="flex gap-2 text-xs">
+  <span class="text-orange-400 font-extralight">
     {date_time_text}> 
   </span>
-  <span class="grow text-gray-200">
-    <slot />
+  <span class={`grow ${type_style}`}>
+    <slot /> 
+    {#if isResumable}
+    <button class="bg-green-600 px-2 rounded-lg mr-2 text-white">Continue ></button>
+    {/if}
+    {#if isPausable}
+      <button class="bg-orange-600 px-2 rounded-lg mr-1 text-white">Pause ></button>
+      <button class="bg-red-800 px-2 rounded-lg text-white">Stop ></button>
+    {/if}
+    {#if isComplete}
+      <button class="bg-green-800 px-2 rounded-lg text-white">Redo ></button>
+    {/if}
   </span>
 </div>

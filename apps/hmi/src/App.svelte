@@ -204,16 +204,16 @@ import Slider from "./lib/Slider.svelte";
       <Card class="col-span-2 flex flex-col h-full text-white justify-between overflow-hidden" >
         <div class="flex grow h-full">
           <span class="place-self-center text-center text-2xl flex-grow font-extralight pt-1">00:22:19</span>
-          <div class="flex flex-grow h-full active:bg-black place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_terminal = "col-span-2 row-span-4";}}> 
+          <div class="flex flex-grow h-full active:bg-black place-self-center pt-1" on:click={() => {show_controls = false;  enlarged_terminal = "col-span-4 row-span-4";}}> 
             <Play class="place-self-center grow" />
           </div>
         </div>
         <Progress class="flex" />
       </Card>
 
-      <Card class="col-span-4 flex flex-col" show={show_controls}>
+      <!-- <Card class="col-span-4 flex flex-col" show={show_controls}>
         <Slider />
-      </Card>
+      </Card> -->
     </div>
   </div>
 </main>
