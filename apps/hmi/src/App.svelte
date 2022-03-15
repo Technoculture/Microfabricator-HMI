@@ -1,6 +1,5 @@
 <script lang="ts">
   // Assets and Icons
-  import naked from "./assets/mfab-naked.png";
   import Play from "./lib/Icons/Play.svelte";
 
   // Components
@@ -8,7 +7,7 @@
   import Progress from "./lib/Progress.svelte";
   import MetricThumbnail from "./lib/MetricThumbnail.svelte";
   import Terminal from "./lib/Terminal.svelte";
-import Slider from "./lib/Slider.svelte";
+  import Home from "./lib/screens/Home.svelte";
 
   let show_controls: boolean = true;
 
@@ -22,41 +21,7 @@ import Slider from "./lib/Slider.svelte";
   <div class="w-screen h-screen max-h-[480px] max-w-[800px] shadow-inner bg-gradient-to-br from-slate-100 via-slate-200 to-slate-400 select-none">
     <div class="grid gap-6 grid-cols-6 grid-rows-5 w-full h-full p-10">
       <Card class="row-span-4 col-span-2 flex flex-col">
-        <div class="flex snap-center overflow-x-scroll scrollbar-hide snap-x snap-mandatory">
-          <img src={naked} alt="" class="snap-center object-cover" />
-        </div>
-
-        <!-- <dev class="flex flex-col w-full h-full text-white font-extralight">
-          <span class="p-2 px-4 ">Wafer Mask Distance</span>
-          <div class="m-2 grow flex flex-col ring-1 rounded-xl ring-white bg-black overflow-hidden">
-            <img src={family} alt="" class="object-cover grow" />
-          </div>
-        </dev> -->
-        <div class="flex grow">
-          <!-- <Card class="flex overflow-hidden grow rounded-none">
-          <div class="flex grow active:bg-black">
-            <InfoCircle class="text-white grow text-center place-self-center"/>
-          </div>
-          </Card>
-
-          <Card class="flex overflow-hidden grow rounded-none bg-slate-800">
-            <div class="flex grow h-full active:bg-black">
-              <Calculator class="text-white grow text-center place-self-center"/>
-            </div>
-          </Card> -->
-          <Card class="col-span-2 flex text-white text-center font-extralight text-xl overflow-hidden grow rounded-none" hasRing={true}>
-            <div class="flex flex-grow h-full active:bg-black ">
-              <span class="flex-grow place-self-center">
-                4S
-              </span>
-            </div>
-            <div class="flex flex-grow h-full active:bg-black" >
-              <span class="flex-grow place-self-center">
-                365nm
-              </span>
-            </div>
-          </Card>
-        </div>
+        <Home />
       </Card>
 
       <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={false}>
@@ -71,7 +36,7 @@ import Slider from "./lib/Slider.svelte";
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Mask Gap" show={show_controls} hasRing={true} disabled={false}>
+      <Card title="Wafer Mask Gap" show={show_controls} disabled={false}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex">

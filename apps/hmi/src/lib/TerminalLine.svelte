@@ -3,6 +3,7 @@
   export let isPausable : boolean = false;
   export let isComplete : boolean = false;
   export let isResumable : boolean = false;
+  export let isLast : boolean = false;
 
   enum linetype {
     INFO,
@@ -32,15 +33,17 @@
   </span>
   <span class={`grow ${type_style}`}>
     <slot /> 
-    {#if isResumable}
-    <button class="bg-green-600 px-2 rounded-lg mr-2 text-white">Continue ></button>
-    {/if}
-    {#if isPausable}
-      <button class="bg-orange-600 px-2 rounded-lg mr-1 text-white">Pause ></button>
-      <button class="bg-red-800 px-2 rounded-lg text-white">Stop ></button>
+    {#if isLast}
+      {#if isResumable}
+        <button class="bg-cyan-700 px-2 rounded-lg mr-2 text-white">Resume ></button>
+      {/if}
+      {#if isPausable}
+        <button class="bg-orange-600 px-2 rounded-lg mr-1 text-white">Pause ></button>
+        <button class="bg-red-800 px-2 rounded-lg text-white">Stop ></button>
+      {/if}
     {/if}
     {#if isComplete}
-      <button class="bg-green-800 px-2 rounded-lg text-white">Redo ></button>
+      <button class="bg-green-600 px-2 rounded-lg text-white">Redo ></button>
     {/if}
   </span>
 </div>
