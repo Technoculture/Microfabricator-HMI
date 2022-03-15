@@ -1,0 +1,23 @@
+{
+  "name": "mfab-hardware-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Satyam Tiwary",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^17.0.21",
+    "socket.io": "^4.4.1",
+    "typescript": "^4.6.2",
+    "winston": "^3.6.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "NODE_ENV=production node ./bin/index.js",
+    "dev": "ts-node ./index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}
