@@ -1,16 +1,25 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition';
+
   import Card from "../Card.svelte";
   import LockOpen from "../Icons/LockOpen.svelte";
   import RightArrow from "../Icons/RightArrow.svelte";
   import UpArrow from "../Icons/UpArrow.svelte";
 
   let stageButtonActive = false;
+  let leButtonActive = false;
+
   function toggleStageButton() {
+    if(leButtonActive) {
+      leButtonActive = !leButtonActive;
+    }
     stageButtonActive = !stageButtonActive;
   }
 
-  let leButtonActive = false;
   function toggleLeButton() {
+    if(stageButtonActive) {
+      stageButtonActive = !stageButtonActive;
+    }
     leButtonActive = !leButtonActive;
   }
 </script>
@@ -19,7 +28,7 @@
   <div class="flex flex-col">
     <slot />
     {#if stageButtonActive || leButtonActive}
-      <div class="absolute bottom-0 mb-14 w-full p-4 bg-black flex flex-col">
+      <div transition:slide class="absolute bottom-0 mb-14 w-full p-4 bg-black flex flex-col">
         <span class="text-white py-1 text-xs">
           {#if stageButtonActive}
             Are you sure, this action will unlock the stage module 4S and allow you to remove it out
