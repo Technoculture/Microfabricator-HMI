@@ -1,5 +1,5 @@
-export {} // declare a module
-const { logger } = require('../utils/logger.util');
+export {}; // declare a module
+const { logger } = require("../utils/logger.util");
 
 // Handler for:
 // -----------
@@ -8,14 +8,14 @@ const { logger } = require('../utils/logger.util');
 // DisconnectHandler
 
 const echoHandler = (data: any) => {
-  logger.info(`echo: ${data}`);
+  logger.debug(`echo: ${data}`);
 };
 
 const disconnectHandler = () => {
-  logger.info("Server Disconnected."); 
-}
+  logger.debug("Server Disconnected.");
+};
 
 module.exports = {
   echoHandler,
-  disconnectHandler
-}
+  disconnectHandler,
+};

@@ -19,7 +19,7 @@ const drawerHandler = (data: DrawerRequest) => {
   } else if (data === "CLOSE") {
     logger.verbose("Drawer[Out]: CLOSE");
   } else {
-    logger.error("Invalid Drawer Request");
+    logger.error(`Invalid Drawer Request. ("${data}")`);
   }
 };
 
@@ -33,7 +33,7 @@ const clampHandler = (data: ClampRequest) => {
   } else if (data === "OFF") {
     logger.verbose("Clamp[Out]: OFF");
   } else {
-    logger.error("Invalid Clamp Request");
+    logger.error(`Invalid Clamp Request. ("${data}")`);
   }
 };
 

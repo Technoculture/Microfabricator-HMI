@@ -17,7 +17,7 @@ const fanHandler = (data: FanRequest) => {
   } else if (data === "OFF") {
     logger.verbose("Fan[Out]: OFF");
   } else {
-    logger.error("Invalid Fan Request");
+    logger.error(`Invalid Fan Request. ("${data}")`);
   }
 };
 

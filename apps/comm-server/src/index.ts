@@ -35,5 +35,6 @@ const connectionHandler = (client: any) => {
 };
 
 io.on("connection", connectionHandler);
+
 server.listen(PORT);
 logger.verbose("Server entry point");
