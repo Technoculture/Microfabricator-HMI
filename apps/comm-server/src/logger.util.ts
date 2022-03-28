@@ -1,6 +1,8 @@
+export {}
+
 import winston from "winston";
 
-const appLogger = winston.createLogger({
+const logger = winston.createLogger({
   level: 'verbose',
   defaultMeta: { service: 'mfab-hardware-service' },
   format: winston.format.combine(
@@ -21,10 +23,13 @@ const appLogger = winston.createLogger({
 // If we're not in production then log to the `console` with the format
 //
 if (process.env.NODE_ENV !== 'production') {
-  appLogger.add(new winston.transports.Console({
+  logger.add(new winston.transports.Console({
     level: 'silly',
-    format: winston.format.simple()
+    format:  winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+      )
   }));
 }
 
-module.exports = appLogger;
+module.exports = { logger };
