@@ -1,5 +1,6 @@
 export {}; // declare a module
 const { logger } = require("../utils/logger.util");
+const socket = require("socket.io");
 
 // Handler for:
 // -----------
@@ -7,7 +8,7 @@ const { logger } = require("../utils/logger.util");
 // EchoHandler
 // DisconnectHandler
 
-const echoHandler = (data: any) => {
+const echoHandler = (data: string) => {
   logger.debug(`echo: ${data}`);
 };
 

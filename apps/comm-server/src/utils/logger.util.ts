@@ -3,6 +3,8 @@ export {}; // declare a module
 import winston from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
 
+require("dotenv").config();
+
 const logger = winston.createLogger({
   level: "debug",
   // defaultMeta: { service: "mfab-hardware-service" },
@@ -37,7 +39,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
-      level: "verbose",
+      level: process.env.LOGLEVEL || "verbose",
       format: winston.format.combine(
         winston.format.colorize({ all: true }),
         winston.format.simple()

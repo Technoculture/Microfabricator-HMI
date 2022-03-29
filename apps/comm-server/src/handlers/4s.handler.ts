@@ -12,6 +12,7 @@ const { reqMsg, validReqMsg, invalidReqMsg } = require("../utils/commonmsgs");
 // WaferMaskDistanceUpdate
 
 type DrawerRequest = "OPEN" | "CLOSE";
+type ClampRequest = "ON" | "OFF";
 
 const drawerHandler = (data: DrawerRequest) => {
   reqMsg("drawer", data);
@@ -24,8 +25,6 @@ const drawerHandler = (data: DrawerRequest) => {
     invalidReqMsg("drawer", data);
   }
 };
-
-type ClampRequest = "ON" | "OFF";
 
 const clampHandler = (data: ClampRequest) => {
   reqMsg("clamp", data);

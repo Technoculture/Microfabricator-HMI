@@ -1,5 +1,5 @@
 export {}; // declare a module
-const { logger } = require("../utils/logger.util");
+const { reqMsg, validReqMsg, invalidReqMsg } = require("../utils/commonmsgs");
 
 // Handler for:
 // -----------
@@ -10,14 +10,15 @@ const { logger } = require("../utils/logger.util");
 type FanRequest = "ON" | "OFF";
 
 const fanHandler = (data: FanRequest) => {
-  logger.debug(`Fan[Request]: ${data}`);
+  const mod = "Fan";
+  reqMsg(mod, data);
 
   if (data === "ON") {
-    logger.verbose("Fan[Out]: ON");
+    validReqMsg(mod, "ON");
   } else if (data === "OFF") {
-    logger.verbose("Fan[Out]: OFF");
+    validReqMsg(mod, "OFF");
   } else {
-    logger.error(`Invalid Fan Request. ("${data}")`);
+    invalidReqMsg(mod, data);
   }
 };
 

@@ -11,6 +11,7 @@ const {
   exposureInitiateHandler,
   exposureSettingsHandler,
 } = require("./handlers/lightengine.handler");
+const { startTimers, closeTimers } = require("./handlers/timers");
 
 //
 // DOTENV
@@ -29,9 +30,14 @@ logger.verbose(`Using PORT: ${PORT}`);
 const connectionHandler = (client: any) => {
   logger.info("Server Connected.");
 
+  const timers = startTimers(client);
+
   // Server
   client.on("echo", echoHandler);
-  client.on("disconnect", disconnectHandler);
+  client.on("disconnect", () => {
+    closeTimers(timers);
+    logger.debug("Server Disconnected.");
+  });
 
   // Base Module
   client.on("fan", fanHandler);
@@ -49,4 +55,4 @@ const connectionHandler = (client: any) => {
 io.on("connection", connectionHandler);
 
 server.listen(PORT);
-logger.verbose("Server entry point");
+logger.debug("Server entry point");

@@ -1,6 +1,7 @@
 export {}; // declare a module
-const { logger } = require("../utils/logger.util");
+// const { logger } = require("../utils/logger.util");
 const { clean_json_text } = require("../utils/cleanjson");
+const { reqMsg, validReqMsg, invalidReqMsg } = require("../utils/commonmsgs");
 
 // Handler for:
 // -----------
@@ -51,33 +52,36 @@ class ExposureDuration {
 // Request Handler
 //
 const leLockHandler = (data: "ON" | "OFF") => {
-  logger.debug(`LightEgine[Request]: ${data}`);
+  const mod = "LightEngineLock";
+  reqMsg(mod, data);
 
   if (data === "ON") {
-    logger.info("LightEgineLock[Out]: ON");
+    validReqMsg(mod, data);
   } else if (data === "OFF") {
-    logger.info("LightEgineLock[Out]: OFF");
+    validReqMsg(mod, data);
   } else {
-    logger.error(`Invalid LightEgine Lock Request. ("${data}")`);
+    invalidReqMsg(mod, data);
   }
 };
 
 const exposureInitiateHandler = (data: "ON" | "OFF") => {
-  logger.debug(`ExposureInitiate[Request]: ${data}`);
+  const mod = "LightEngine";
+  reqMsg(mod, data);
 
   if (data === "ON") {
-    logger.info("LightEgine[Out]: ON");
+    validReqMsg(mod, data);
   } else if (data === "OFF") {
-    logger.info("LightEgine[Out]: OFF");
+    validReqMsg(mod, data);
   } else {
-    logger.error(`Invalid LightEgine Request. ("${data}")`);
+    invalidReqMsg(mod, data);
   }
 };
 
 const exposureSettingsHandler = (data: string) => {
-  data = clean_json_text(data); // clean up data
+  const mod = "ExposureSettingsHandler";
 
-  logger.debug(`ExposureSettingsHandler[Request]: ${data}`);
+  data = clean_json_text(data); // clean up data
+  reqMsg(mod, data);
 
   let parsed_data = JSON.parse(data);
   // console.log(parsed_data);
@@ -95,7 +99,7 @@ const exposureSettingsHandler = (data: string) => {
   const power = new ExposurePower(parsed_data.power_percent);
   const duration = new ExposureDuration(parsed_data.duration_in_sec);
 
-  logger.debug(`ExposureInitiate[Request]: ${power.val}% for ${duration.val}s`);
+  validReqMsg(mod, `${power.val}% for ${duration.val}s`);
 };
 
 module.exports = {
