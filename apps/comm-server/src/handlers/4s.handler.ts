@@ -1,5 +1,7 @@
 export {}; // declare a module
-const { logger } = require("../utils/logger.util");
+// const { logger } = require("../utils/logger.util");
+
+const { reqMsg, validReqMsg, invalidReqMsg } = require("../utils/commonmsgs");
 
 // Handler for:
 // -----------
@@ -12,28 +14,28 @@ const { logger } = require("../utils/logger.util");
 type DrawerRequest = "OPEN" | "CLOSE";
 
 const drawerHandler = (data: DrawerRequest) => {
-  logger.debug(`Drawer[Request]: ${data}`);
+  reqMsg("drawer", data);
 
   if (data === "OPEN") {
-    logger.verbose("Drawer[Out]: OPEN");
+    validReqMsg("drawer", "OPEN");
   } else if (data === "CLOSE") {
-    logger.verbose("Drawer[Out]: CLOSE");
+    validReqMsg("drawer", "CLOSE");
   } else {
-    logger.error(`Invalid Drawer Request. ("${data}")`);
+    invalidReqMsg("drawer", data);
   }
 };
 
 type ClampRequest = "ON" | "OFF";
 
 const clampHandler = (data: ClampRequest) => {
-  logger.debug(`Clamp[Request]: ${data}`);
+  reqMsg("clamp", data);
 
   if (data === "ON") {
-    logger.verbose("Clamp[Out]: ON");
+    validReqMsg("clamp", "ON");
   } else if (data === "OFF") {
-    logger.verbose("Clamp[Out]: OFF");
+    validReqMsg("clamp", "OFF");
   } else {
-    logger.error(`Invalid Clamp Request. ("${data}")`);
+    invalidReqMsg("clamp", data);
   }
 };
 

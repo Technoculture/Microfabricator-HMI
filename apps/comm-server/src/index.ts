@@ -12,8 +12,20 @@ const {
   exposureSettingsHandler,
 } = require("./handlers/lightengine.handler");
 
-const PORT = 9443;
+//
+// DOTENV
+require("dotenv").config();
 
+// Setup PORT Variable
+const PORT = process.env.PORT || 9443;
+if (process.env.PORT === undefined) {
+  logger.error(`.env file containing PORT variable not found.`);
+}
+logger.verbose(`Using PORT: ${PORT}`);
+
+//
+// Connection Handlers for SocketIO
+//
 const connectionHandler = (client: any) => {
   logger.info("Server Connected.");
 
