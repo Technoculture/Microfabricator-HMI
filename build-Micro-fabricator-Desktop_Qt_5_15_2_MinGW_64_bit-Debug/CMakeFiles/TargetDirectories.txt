@@ -1,0 +1,9 @@
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Micro-fabricator.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/install.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Micro-fabricator_autogen_timestamp_deps.dir
+D:/QMl-Intern/Microfabricator-HMI/build-Micro-fabricator-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Micro-fabricator_autogen.dir
