@@ -71,3 +71,4 @@ build*/
 *.dll
 *.exe
 
+*.user
