@@ -4,7 +4,7 @@ import QtQuick.Window 2.15
 Window {
     title: "MicroFabricator"
     visible: true
-    width: 800
+    width: 820
     height: 480
     Grid{
         padding: 40
@@ -61,169 +61,51 @@ Window {
                 columns: 4
                 spacing: 24
                 Rectangle{
-                    id: stage
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt1
-                        text: "Wafer Stage"
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t1
-                            text: "Open"
-                            anchors.centerIn: parent
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 104
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Wafer Stage"
+                        body0Text: "Open"
+                        body0X: 22
+                        body0Y: 24
                     }
                 }
                 Rectangle{
-                    id:clamp
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt2
-                        text: "Wafer Clamp"
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t2
-                            text: "Off"
-                            anchors.centerIn: parent
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 104
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Wafer Clamp"
+                        body0Text: "Off"
+                        body0X: 32
+                        body0Y: 24
                     }
                 }
                 Rectangle{
-                    id:maskgap
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt3
-                        text: "Wafer Mask Gap"
-                        width: 80
-                        height: 41.6
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t3
-                            text: "2.8μm"
-                            anchors.centerIn: parent
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 104
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Wafer Mask Gap"
+                        body0Text: "2.8μm"
+                        body0X: 19
+                        body0Y: 24
                     }
                 }
                 Rectangle{
-                    id:vibration
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt4
-                        text: "Vibration"
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t4
-                            text: "Ok"
-                            anchors.centerIn: parent
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 104
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Vibration"
+                        body0Text: "Ok"
+                        body0X: 36
+                        body0Y: 24
                     }
                 }
             }
@@ -231,89 +113,35 @@ Window {
                 columns: 3
                 spacing: 24
                 Rectangle{
-                    id:lightIntensity
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt5
-                        text: "Light Intensity"
-                        width: 76
-                        height: 41.6
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t5
-                            text: "21%"
-                            x:12
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 105
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Light Intensity"
+                        body0Text: "21%"
+                        body0X: 12
+                        body0Y: 15
+                        body1Text: "321 mJ/cm<sup>2</sup>"
+                        body1Visible: true
+                        body1X: 12
+                        body1Y: 44
                     }
                 }
                 Rectangle{
-                    id:duration
-                    width:100
-                    height: 145.6
-                    color:"black"
                     radius: 20
-                    opacity: 0.8
-                    Text {
-                        id: mt6
-                        text: "Duration"
-                        x:10
-                        y:12
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:100
-                        height: 80
-                        color: "black"
-                        Text {
-                            id: t6
-                            text: "112s"
-                            x:12
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    width: 105
+                    height: 145.6
+                    Card{
+                        cardOpacity: 0.8
+                        headText: "Duration"
+                        body0Text: "112s"
+                        body0X: 12
+                        body0Y: 15
+                        body1Text: "1m 32s"
+                        body1Visible: true
+                        body1X: 12
+                        body1Y: 44
                     }
                 }
                 Rectangle{
