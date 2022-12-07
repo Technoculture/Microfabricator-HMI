@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Card.qml</file>
+        <file>OpCard.qml</file>
+        <file>Expand.png</file>
+        <file>play-circle.png</file>
     </qresource>
 </RCC>

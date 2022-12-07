@@ -22,7 +22,7 @@ Window {
             opacity: 0.8
             Text {
                 id: mt0
-                text: "Duration"
+                text: "Carousel"
                 color: "white"
                 font.pixelSize: 24
                 anchors.centerIn: parent
@@ -55,6 +55,7 @@ Window {
             }
         }
         Grid{
+            id:cards
             rows: 2
             spacing: 24
             Grid{
@@ -150,49 +151,46 @@ Window {
                     height: 145.6
                     color:"black"
                     radius: 20
-                    opacity: 0.9
-                    Text {
-                        id: mt7
-                        text: "History"
-                        x:16
-                        y:8
-                        color: "white"
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                    }
-                    Rectangle {
-                        radius: 20
-                        width:224
-                        height: 105.6
-                        color: "black"
-                        Text {
-                            id: t7
-                            text: "History List"
-                            x:12
-                            anchors.centerIn: parent
-                            color: "orange"
-                            font.pixelSize: 22
-                        }
-                        Rectangle {
-                            width: parent.radius
-                            height: parent.radius
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                left: parent.left
-                            }
-                            color: parent.color
-                        }
-                        anchors.bottom: parent.bottom
+                    opacity: 0.7
+                    OpCard{
+                        cardWidth: 224
+                        cardHeight: 145.6
+                        headText: "History"
+                        headSize: 18
+                        headX: 18
+                        headY: 10
+                        headBut: "Expand.png"
+                        headButHeight: 40
+                        headButWidth: 56
+                        headWidth: 28
+                        headHeight: 28
+                        bodyOpacity: 0
+                        bodyTextOpcaity: 0.8
                     }
                 }
             }
         }
         Rectangle{
+            id:play
             width:224
             height: 60.8
             color:"black"
             radius: 20
+            clip: true
+            OpCard{
+                cardWidth: 224
+                cardHeight: 60.8
+                headText: "00:22:19"
+                headSize: 24
+                headX: 20
+                headY: 14
+                headBut: "play-circle.png"
+                headButHeight: 52.8
+                headButWidth: 91.49
+                headWidth: 40
+                headHeight: 40
+                bodyHeight: 8
+            }
         }
     }
 }
