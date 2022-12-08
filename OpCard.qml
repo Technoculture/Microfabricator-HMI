@@ -70,8 +70,12 @@ Item {
             states: State {
                 name: "s1"
                 PropertyChanges {
-                    target: history
-                    scale:1.4
+                    target: historyFull
+                    visible:true
+                }
+                PropertyChanges {
+                    target: cards
+                    visible:false
                 }
             }
         }

@@ -5,5 +5,7 @@
         <file>OpCard.qml</file>
         <file>Expand.png</file>
         <file>play-circle.png</file>
+        <file>Forward.png</file>
+        <file>Padlock.png</file>
     </qresource>
 </RCC>
