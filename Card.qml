@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtGraphicalEffects 1.12
 
 Item {
     id:card
@@ -66,6 +67,14 @@ Item {
                 color: parent.color
             }
             anchors.bottom: parent.bottom
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 8
+                color: "#000000"
+                radius: 40
+                samples: 81
+            }
         }
     }
 }

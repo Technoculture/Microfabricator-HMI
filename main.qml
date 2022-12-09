@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtGraphicalEffects 1.12
 
 Window {
     title: "MicroFabricator"
@@ -20,6 +21,15 @@ Window {
             color:"black"
             radius: 20
             opacity: 0.8
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 7
+                color: "#000000"
+                radius: 50
+                samples: 101
+            }
+
             Text {
                 id: mt0
                 text: "Carousel"
@@ -267,6 +277,14 @@ Window {
                 bodyOpacity: 0
                 bodyTextOpcaity: 0.8
             }
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 10
+                color: "#000000"
+                radius: 40
+                samples: 81
+            }
         }
         Grid{
             id:cards
@@ -382,6 +400,14 @@ Window {
                         bodyOpacity: 0
                         bodyTextOpcaity: 0.8
                     }
+                    layer.enabled: true
+                    layer.effect: DropShadow{
+                        transparentBorder: true
+                        verticalOffset: 8
+                        color: "#000000"
+                        radius: 40
+                        samples: 81
+                    }
                 }
             }
         }
@@ -405,6 +431,15 @@ Window {
                 headWidth: 40
                 headHeight: 40
                 bodyHeight: 8
+            }
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 4
+                color: "#000000"
+                radius: 40
+                samples: 81
+                spread: 0
             }
         }
     }
