@@ -12,8 +12,6 @@ Window {
         spacing: 24
         rows: 2
         columns: 2
-//        Grid.horizontalItemAlignment: Grid.AlignHCenter
-//        Grid.verticalItemAlignment: Grid.AlignVCenter
         Rectangle{
             id:display
             width:224
@@ -21,6 +19,7 @@ Window {
             color:"black"
             radius: 20
             opacity: 0.8
+            clip: true
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
@@ -30,14 +29,57 @@ Window {
                 samples: 101
             }
 
-            Text {
-                id: mt0
-                text: "Carousel"
-                color: "white"
-                font.pixelSize: 24
-                anchors.centerIn: parent
-                wrapMode: Text.WordWrap
+//            Text {
+//                id: mt0
+//                text: "Carousel"
+//                color: "white"
+//                font.pixelSize: 24
+//                anchors.centerIn: parent
+//                wrapMode: Text.WordWrap
+//            }
+            Grid{
+                columns: 3
+                Rectangle{
+                    id:mac1
+                    width: 224
+                    height: 260
+                    color: "transparent"
+                    Image {
+                        id: pic1
+                        source: "mfab-naked.d5f2d608.png"
+                        anchors.centerIn: parent
+                        width: 185
+                        height: 200
+                    }
+                }
+                Rectangle{
+                    id:mac2
+                    width: 224
+                    height: 260
+                    color: "transparent"
+                    Image {
+                        id: pic2
+                        source: "slider.6d5ccd2b.png"
+                        anchors.centerIn: parent
+                        width: 185
+                        height: 200
+                    }
+                }
+                Rectangle{
+                    id:mac3
+                    width: 224
+                    height: 260
+                    color: "transparent"
+                    Image {
+                        id: pic3
+                        source: "le-front.15970e90.png"
+                        anchors.centerIn: parent
+                        width: 185
+                        height: 200
+                    }
+                }
             }
+
             Rectangle{
                 id:over1
                 width: 224
