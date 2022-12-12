@@ -17,6 +17,7 @@ Item {
     property double headHeight
 
     property int bodyHeight
+    property int bodyWidth
     property double bodyOpacity:1
     property double bodyTextOpcaity:0
     Rectangle{
@@ -92,8 +93,7 @@ Item {
                 width: progressTotal.width
                 height: 200
                 radius: 20
-                opacity: 0.6
-                color: "orange"
+                color: "#6e5e4b"
                 clip: true
                 anchors.bottom: parent.bottom
                 Rectangle {
@@ -105,10 +105,21 @@ Item {
 
                     Rectangle {
                         id: clipped1
-                        width: 300
+                        width: 100
                         height: 30
                         radius: 20
-                        color: "orange"
+                        gradient: Gradient{
+                            orientation: Gradient.Horizontal
+                            GradientStop{
+                                position: 0
+                                color: "#ffbb00"
+                            }
+                            GradientStop{
+                                position: 0.8
+                                color: "#ff7b00"
+                            }
+                        }
+//                        color: "#ff7b00"
                         anchors.bottom: parent.bottom
                         anchors.left: parent.left
                     }
@@ -125,11 +136,22 @@ Item {
             radius: 20
             Text {
                 id: t1
-                text: "History List"
-                color: "Orange"
-                font.pixelSize: 24
+                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
+<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
+<font color=\"orange\">23:56></font> Exposure complete <font color=\"green\">Redo</font><br>
+<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+<font color=\"orange\">23:56></font> Exposure complete <font color=\"green\">Redo</font><br>
+<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
+                color: "#9ca3af"
+                font.pixelSize: 12
                 font.bold: true
-                anchors.centerIn: parent
+                lineHeight: 1.2
+                x:8
+                y:18
+                width: card1.bodyWidth
+                wrapMode: Text.WordWrap
+//                anchors.centerIn: parent
             }
             Rectangle {
                 width: parent.radius

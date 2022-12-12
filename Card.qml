@@ -18,9 +18,8 @@ Item {
         id:display
         width: 104
         height: 145.6
-        color: "black"
+        color: "#303030"
         radius: 20
-        opacity: card.cardOpacity
         Text {
             id: mt0
             text: card.headText
@@ -43,7 +42,7 @@ Item {
                 x:card.body0X
                 y:card.body0Y
                 wrapMode: Text.WordWrap
-                color: "orange"
+                color: "#ff7b00"
                 font.pixelSize: 24
             }
             Text {
@@ -71,7 +70,7 @@ Item {
             layer.effect: DropShadow{
                 transparentBorder: true
                 verticalOffset: 8
-                color: "#000000"
+                color: "#303030"
                 radius: 40
                 samples: 81
             }

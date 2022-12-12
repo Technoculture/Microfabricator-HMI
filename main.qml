@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.12
+import QtQuick.Controls 2.4
 
 Window {
     title: "MicroFabricator"
@@ -16,66 +17,71 @@ Window {
             id:display
             width:224
             height: 315.6
-            color:"black"
+            color:"#303030"
             radius: 20
-            opacity: 0.8
             clip: true
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
                 verticalOffset: 7
-                color: "#000000"
+                color: "#303030"
                 radius: 50
                 samples: 101
             }
+            Rectangle{
+                id:mac1
+                width: 224
+                height: 260
+                color: "transparent"
+                clip: true
+                SwipeView {
+                    id: view
+                    currentIndex: indicator.currentIndex
+                    anchors.fill: parent
 
-//            Text {
-//                id: mt0
-//                text: "Carousel"
-//                color: "white"
-//                font.pixelSize: 24
-//                anchors.centerIn: parent
-//                wrapMode: Text.WordWrap
-//            }
-            Grid{
-                columns: 3
-                Rectangle{
-                    id:mac1
-                    width: 224
-                    height: 260
-                    color: "transparent"
-                    Image {
-                        id: pic1
-                        source: "mfab-naked.d5f2d608.png"
-                        anchors.centerIn: parent
-                        width: 185
-                        height: 200
+                    Item {
+                        id: firstPage
+                        Image {
+                            id: pic1
+                            source: "mfab-naked.d5f2d608.png"
+                            anchors.centerIn: parent
+                            width: 224
+                            height: 262
+                        }
+                    }
+                    Item {
+                        id: secondPage
+                        Image {
+                            id: pic2
+                            source: "slider.6d5ccd2b.png"
+                            anchors.centerIn: parent
+                            width: 464
+                            height: 240
+                        }
+                    }
+                    Item {
+                        id: thirdPage
+                        Image {
+                            id: pic3
+                            source: "le-front.15970e90.png"
+                            anchors.centerIn: parent
+                            width: 464
+                            height: 240
+                        }
                     }
                 }
-                Rectangle{
-                    id:mac2
-                    width: 224
-                    height: 260
-                    color: "transparent"
-                    Image {
-                        id: pic2
-                        source: "slider.6d5ccd2b.png"
-                        anchors.centerIn: parent
-                        width: 185
-                        height: 200
-                    }
-                }
-                Rectangle{
-                    id:mac3
-                    width: 224
-                    height: 260
-                    color: "transparent"
-                    Image {
-                        id: pic3
-                        source: "le-front.15970e90.png"
-                        anchors.centerIn: parent
-                        width: 185
-                        height: 200
+                PageIndicator {
+                    id: indicator
+                    count: view.count
+                    currentIndex: view.currentIndex
+                    interactive: true
+                    anchors.bottom: view.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    delegate: Rectangle{
+                        implicitWidth: 12
+                        implicitHeight: 2
+                        color: "white"
+                        opacity: index === indicator.currentIndex ? 1 : pressed ? 0.7 : 0.45
                     }
                 }
             }
@@ -102,7 +108,7 @@ Window {
                     width: 192
                     height: 40
                     radius: 10
-                    color: "red"
+                    color: "#f54949"
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: 72
                     Text {
@@ -143,7 +149,7 @@ Window {
                     width: 192
                     height: 40
                     radius: 10
-                    color: "red"
+                    color: "#f54949"
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: 72
                     Text {
@@ -194,9 +200,9 @@ Window {
                         Text {
                             id: t
                             text: "4S"
-                            x:12
-                            y:10
-                            color: "orange"
+                            x:19
+                            y:13
+                            color: "white"
                             font.pixelSize: 22
                         }
                         Image {
@@ -254,9 +260,9 @@ Window {
                         Text {
                             id: t1
                             text: "365nm"
-                            x:12
-                            y:10
-                            color: "orange"
+                            x:19
+                            y:13
+                            color: "white"
                             font.pixelSize: 22
                         }
 
@@ -300,9 +306,8 @@ Window {
             id:historyFull
             width:472
             height: 315.6
-            color:"black"
+            color:"#303030"
             radius: 20
-            opacity: 0.7
             visible: false
             OpCard{
                 cardWidth: 472
@@ -318,12 +323,13 @@ Window {
                 headHeight: 28
                 bodyOpacity: 0
                 bodyTextOpcaity: 0.8
+                bodyWidth: 456
             }
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
                 verticalOffset: 10
-                color: "#000000"
+                color: "#303030"
                 radius: 40
                 samples: 81
             }
@@ -341,7 +347,6 @@ Window {
                     width: 104
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Wafer Stage"
                         body0Text: "Open"
                         body0X: 22
@@ -353,7 +358,6 @@ Window {
                     width: 104
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Wafer Clamp"
                         body0Text: "Off"
                         body0X: 32
@@ -365,7 +369,6 @@ Window {
                     width: 104
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Wafer Mask Gap"
                         body0Text: "2.8μm"
                         body0X: 19
@@ -377,7 +380,6 @@ Window {
                     width: 104
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Vibration"
                         body0Text: "Ok"
                         body0X: 36
@@ -393,7 +395,6 @@ Window {
                     width: 105
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Light Intensity"
                         body0Text: "21%"
                         body0X: 12
@@ -409,7 +410,6 @@ Window {
                     width: 105
                     height: 145.6
                     Card{
-                        cardOpacity: 0.8
                         headText: "Duration"
                         body0Text: "112s"
                         body0X: 12
@@ -424,9 +424,8 @@ Window {
                     id:history
                     width:224
                     height: 145.6
-                    color:"black"
+                    color:"#303030"
                     radius: 20
-                    opacity: 0.7
                     OpCard{
                         cardWidth: 224
                         cardHeight: 145.6
@@ -441,12 +440,13 @@ Window {
                         headHeight: 28
                         bodyOpacity: 0
                         bodyTextOpcaity: 0.8
+                        bodyWidth: 208
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
                         transparentBorder: true
                         verticalOffset: 8
-                        color: "#000000"
+                        color: "#303030"
                         radius: 40
                         samples: 81
                     }
@@ -457,7 +457,7 @@ Window {
             id:play
             width:224
             height: 60.8
-            color:"black"
+            color:"#303030"
             radius: 20
             clip: true
             OpCard{
@@ -470,15 +470,15 @@ Window {
                 headBut: "play-circle.png"
                 headButHeight: 52.8
                 headButWidth: 91.49
-                headWidth: 40
-                headHeight: 40
+                headWidth: 36
+                headHeight: 36
                 bodyHeight: 8
             }
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
                 verticalOffset: 4
-                color: "#000000"
+                color: "#303030"
                 radius: 40
                 samples: 81
                 spread: 0
