@@ -66,14 +66,14 @@ Item {
                 color: parent.color
             }
             anchors.bottom: parent.bottom
-            layer.enabled: true
-            layer.effect: DropShadow{
-                transparentBorder: true
-                verticalOffset: 8
-                color: "#303030"
-                radius: 40
-                samples: 81
-            }
+        }
+        layer.enabled: true
+        layer.effect: DropShadow{
+            transparentBorder: true
+            verticalOffset: 8
+            color: "#303030"
+            radius: 40
+            samples: 81
         }
     }
 }

@@ -17,7 +17,7 @@ Window {
             id:display
             width:224
             height: 315.6
-            color:"#303030"
+            color:"#323232"
             radius: 20
             clip: true
             layer.enabled: true
@@ -31,7 +31,7 @@ Window {
             Rectangle{
                 id:mac1
                 width: 224
-                height: 260
+                height: 262
                 color: "transparent"
                 clip: true
                 SwipeView {
@@ -81,7 +81,12 @@ Window {
                         implicitWidth: 12
                         implicitHeight: 2
                         color: "white"
-                        opacity: index === indicator.currentIndex ? 1 : pressed ? 0.7 : 0.45
+                        opacity: index === indicator.currentIndex ? 1 : pressed ? 0.5 : 0.3
+                    }
+                    Behavior on opacity{
+                        OpacityAnimator {
+                            duration: 100
+                        }
                     }
                 }
             }
@@ -96,9 +101,9 @@ Window {
                 Text {
                     id: ot1
                     text:"Are you sure, this action will unlock the stage module 4S and allow you to remove it out"
-                    width: 192
+                    width: 196
                     wrapMode: Text.WordWrap
-                    font.pixelSize: 13
+                    font.pixelSize: 14
                     color: "white"
                     y:10
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -137,9 +142,9 @@ Window {
                 Text {
                     id: ot2
                     text:"Are you sure, this action will unlock the light engine module and allow you to remove it out"
-                    width: 192
+                    width: 196
                     wrapMode: Text.WordWrap
-                    font.pixelSize: 13
+                    font.pixelSize: 14
                     color: "white"
                     y:10
                     anchors.horizontalCenter: parent.horizontalCenter
