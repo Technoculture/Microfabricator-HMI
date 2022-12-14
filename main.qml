@@ -8,6 +8,27 @@ Window {
     visible: true
     width: 820
     height: 480
+    Item{
+        id:mygradient
+        width: 820
+        height: 480
+        LinearGradient{
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(mygradient.width, mygradient.height)
+            gradient: Gradient{
+                GradientStop{
+                    position: 0
+                    color: "#ebf3fa"
+                }
+                GradientStop{
+                    position: 1
+                    color: "#8898a6"
+                }
+            }
+        }
+    }
+
     Grid{
         padding: 40
         spacing: 24
@@ -17,7 +38,7 @@ Window {
             id:display
             width:224
             height: 315.6
-            color:"#323232"
+            color:"#262626"
             radius: 20
             clip: true
             layer.enabled: true
@@ -44,7 +65,8 @@ Window {
                         Image {
                             id: pic1
                             source: "mfab-naked.d5f2d608.png"
-                            anchors.centerIn: parent
+                            x:5
+                            y:5
                             width: 224
                             height: 262
                         }
@@ -54,7 +76,8 @@ Window {
                         Image {
                             id: pic2
                             source: "slider.6d5ccd2b.png"
-                            anchors.centerIn: parent
+                            x:-127
+                            y:10
                             width: 464
                             height: 240
                         }
@@ -64,7 +87,8 @@ Window {
                         Image {
                             id: pic3
                             source: "le-front.15970e90.png"
-                            anchors.centerIn: parent
+                            x:-124
+                            y:10
                             width: 464
                             height: 240
                         }
@@ -311,7 +335,7 @@ Window {
             id:historyFull
             width:472
             height: 315.6
-            color:"#303030"
+            color:"#262626"
             radius: 20
             visible: false
             OpCard{
@@ -397,7 +421,7 @@ Window {
                 spacing: 24
                 Rectangle{
                     radius: 20
-                    width: 105
+                    width: 104
                     height: 145.6
                     Card{
                         headText: "Light Intensity"
@@ -412,7 +436,7 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 105
+                    width: 104
                     height: 145.6
                     Card{
                         headText: "Duration"

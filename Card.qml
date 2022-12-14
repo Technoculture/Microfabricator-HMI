@@ -18,8 +18,18 @@ Item {
         id:display
         width: 104
         height: 145.6
-        color: "#303030"
+        color: "#262626"
         radius: 20
+        border.color: "orange"
+        border.width: 0
+        layer.enabled: true
+        layer.effect: DropShadow{
+            transparentBorder: true
+            verticalOffset: 8
+            color: "#303030"
+            radius: 40
+            samples: 81
+        }
         Text {
             id: mt0
             text: card.headText
@@ -67,13 +77,15 @@ Item {
             }
             anchors.bottom: parent.bottom
         }
-        layer.enabled: true
-        layer.effect: DropShadow{
-            transparentBorder: true
-            verticalOffset: 8
-            color: "#303030"
-            radius: 40
-            samples: 81
+        MouseArea{
+            id:mouse1
+            anchors.fill: parent
+            onPressed: {
+                display.border.width=5
+            }
+            onReleased: {
+                display.border.width=0
+            }
         }
     }
 }

@@ -119,7 +119,6 @@ Item {
                                 color: "#ff7b00"
                             }
                         }
-//                        color: "#ff7b00"
                         anchors.bottom: parent.bottom
                         anchors.left: parent.left
                     }
@@ -134,25 +133,6 @@ Item {
             height: card1.cardHeight-card1.headButHeight
             color: "Black"
             radius: 20
-            Text {
-                id: t1
-                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
-<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
-<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo ></font><br>
-<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
-<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo ></font><br>
-<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
-<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume ></font>"
-                color: "#9ca3af"
-                font.pixelSize: 12
-                font.bold: true
-                lineHeight: 1.2
-                x:8
-                y:18
-                width: card1.bodyWidth
-                wrapMode: Text.WordWrap
-//                anchors.centerIn: parent
-            }
             Rectangle {
                 width: parent.radius
                 height: parent.radius
@@ -162,6 +142,25 @@ Item {
                     left: parent.left
                 }
                 color: parent.color
+            }
+            Text {
+                id: t1
+                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
+<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
+<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
+<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
+<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
+                color: "#9ca3af"
+                font.pixelSize: 12
+                font.bold: true
+                lineHeight: 1.2
+                x:8
+                y:10
+                width: card1.bodyWidth
+                wrapMode: Text.WordWrap
+//                anchors.centerIn: parent
             }
             anchors.bottom: parent.bottom
         }
