@@ -3,12 +3,12 @@
         <file>main.qml</file>
         <file>Card.qml</file>
         <file>OpCard.qml</file>
-        <file>Expand.png</file>
-        <file>play-circle.png</file>
         <file>Forward.png</file>
         <file>Padlock.png</file>
         <file>le-front.15970e90.png</file>
         <file>mfab-naked.d5f2d608.png</file>
         <file>slider.6d5ccd2b.png</file>
+        <file>maximize-2.png</file>
+        <file>play-circle.png</file>
     </qresource>
 </RCC>

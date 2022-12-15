@@ -3,6 +3,8 @@ import QtGraphicalEffects 1.12
 
 Item {
     id:card1
+    property int cardX:0
+    property int cardY:0
     property double cardWidth
     property double cardHeight
 
@@ -27,6 +29,8 @@ Item {
         color: "#232323"
         radius: 20
         clip: true
+        x:card1.cardX
+        y:card1.cardY
         Text {
             id: mt0
             text: card1.headText
@@ -133,6 +137,7 @@ Item {
             height: card1.cardHeight-card1.headButHeight
             color: "Black"
             radius: 20
+            clip: true
             Rectangle {
                 width: parent.radius
                 height: parent.radius
@@ -144,7 +149,7 @@ Item {
                 color: parent.color
             }
             Text {
-                id: t1
+                id: t
                 text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
 <font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
 <font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
@@ -154,14 +159,83 @@ Item {
 <font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
                 color: "#9ca3af"
                 font.pixelSize: 12
-                font.bold: true
                 lineHeight: 1.2
-                x:8
-                y:10
                 width: card1.bodyWidth
                 wrapMode: Text.WordWrap
-//                anchors.centerIn: parent
+                font.bold: true
+                x:8
+                y:8
             }
+//            Text {
+//                id: t1
+//                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t2
+//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t3
+//                text: "<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t4
+//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t5
+//                text: "<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t6
+//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
+//            Text {
+//                id: t7
+//                text: "<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
+//                color: "#9ca3af"
+//                font.pixelSize: 12
+//                lineHeight: 1.2
+//                width: card1.bodyWidth
+//                wrapMode: Text.WordWrap
+//                font.bold: true
+//            }
             anchors.bottom: parent.bottom
         }
     }

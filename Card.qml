@@ -20,8 +20,8 @@ Item {
         height: 145.6
         color: "#262626"
         radius: 20
-        border.color: "orange"
-        border.width: 0
+        x:5
+        y:5
         layer.enabled: true
         layer.effect: DropShadow{
             transparentBorder: true
@@ -76,16 +76,6 @@ Item {
                 color: parent.color
             }
             anchors.bottom: parent.bottom
-        }
-        MouseArea{
-            id:mouse1
-            anchors.fill: parent
-            onPressed: {
-                display.border.width=5
-            }
-            onReleased: {
-                display.border.width=0
-            }
         }
     }
 }
