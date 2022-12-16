@@ -15,8 +15,17 @@ Item {
     property string headBut
     property double headButWidth
     property double headButHeight
+    property string headButColor:"transparent"
     property double headWidth
     property double headHeight
+
+    property int m1LogHeight
+    property int m2LogHeight
+    property int m3LogHeight
+    property int m4LogHeight
+    property int m5LogHeight
+    property int m6LogHeight
+    property int m7LogHeight
 
     property int bodyHeight
     property int bodyWidth
@@ -72,6 +81,8 @@ Item {
                     else
                         but.state=''
                 }
+                onPressed: clipped.color=card1.headButColor
+                onReleased: clipped.color="transparent"
             }
             states: State {
                 name: "s1"
@@ -148,93 +159,122 @@ Item {
                 }
                 color: parent.color
             }
-            Text {
-                id: t
-                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
-<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
-<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
-<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
-<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
-<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
-<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
-                color: "#9ca3af"
-                font.pixelSize: 12
-                lineHeight: 1.2
-                width: card1.bodyWidth
-                wrapMode: Text.WordWrap
-                font.bold: true
+            Rectangle{
+                width: text1.width
+                height: text1.height
+                color: "transparent"
                 x:8
                 y:8
+                Column{
+                    Rectangle{
+                        id:m1
+                        width: 220
+                        height: card1.m1LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Light Engine Auto-calliberation"
+//                            messageWidth: card1.bodyWidth
+                        }
+                    }
+                    Rectangle{
+                        id:m2
+                        width: 220
+                        height: card1.m2LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
+//                            messageWidth: card1.bodyWidth
+                        }
+                    }
+                    Rectangle{
+                        id:m3
+                        width: 220
+                        height: card1.m3LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure complete "
+//                            messageWidth: card1.bodyWidth
+                            actionText: "Redo"
+                            actionVisible: true
+                            actionColor: "green"
+                            messageX: 100
+                        }
+                    }
+                    Rectangle{
+                        id:m4
+                        width: 220
+                        height: card1.m4LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
+//                            messageWidth: card1.bodyWidth
+                        }
+                    }
+                    Rectangle{
+                        id:m5
+                        width: 220
+                        height: card1.m5LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure complete "
+//                            messageWidth: card1.bodyWidth
+                            actionText: "Redo"
+                            actionVisible: true
+                            actionColor: "green"
+                            messageX: 100
+                        }
+                    }
+                    Rectangle{
+                        id:m6
+                        width: 220
+                        height: card1.m6LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
+//                            messageWidth: card1.bodyWidth
+                        }
+                    }
+                    Rectangle{
+                        id:m7
+                        width: 220
+                        height: card1.m7LogHeight
+                        color: "transparent"
+                        Action{
+                            time: "23:56"
+                            messageText: "Exposure Paused after 32s of exposure "
+//                            messageWidth: card1.bodyWidth
+                            actionText: "Resume"
+                            actionVisible: true
+                            actionColor: "#5f849c"
+                            messageX: 204
+                        }
+                    }
+                }
             }
+
 //            Text {
-//                id: t1
-//                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>"
+//                id: t
+//                text: "<font color=\"orange\">23:56></font> Light Engine Auto-calliberation<br>
+//<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>
+//<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
+//<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+//<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>
+//<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>
+//<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
 //                color: "#9ca3af"
 //                font.pixelSize: 12
 //                lineHeight: 1.2
 //                width: card1.bodyWidth
 //                wrapMode: Text.WordWrap
 //                font.bold: true
-//            }
-//            Text {
-//                id: t2
-//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 2m 30s at 321mJ/cm2 (21%)<br>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
-//            }
-//            Text {
-//                id: t3
-//                text: "<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
-//            }
-//            Text {
-//                id: t4
-//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
-//            }
-//            Text {
-//                id: t5
-//                text: "<font color=\"orange\">23:56></font> Exposure complete <font color=\"#25b84c\">Redo</font><br>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
-//            }
-//            Text {
-//                id: t6
-//                text: "<font color=\"orange\">23:56></font> Exposure initiated for 1m 10s at 167mJ/cm2 (12%)<br>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
-//            }
-//            Text {
-//                id: t7
-//                text: "<font color=\"orange\">23:56></font> Exposure Paused after 32s of exposure <font color=\"cyan\">Resume</font>"
-//                color: "#9ca3af"
-//                font.pixelSize: 12
-//                lineHeight: 1.2
-//                width: card1.bodyWidth
-//                wrapMode: Text.WordWrap
-//                font.bold: true
+//                x:8
+//                y:8
 //            }
             anchors.bottom: parent.bottom
         }

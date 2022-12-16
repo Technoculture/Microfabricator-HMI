@@ -18,17 +18,32 @@ Item {
         id:display
         width: 104
         height: 145.6
-        color: "#262626"
+//        color: "#262626"
+        gradient: Gradient{
+            orientation: Gradient.Horizontal
+            GradientStop{
+                position: 0
+                color: "#262626"
+            }
+            GradientStop{
+                position: 0.4
+                color: "#181818"
+            }
+            GradientStop{
+                position: 1
+                color: "#262626"
+            }
+        }
         radius: 20
         x:5
         y:5
         layer.enabled: true
         layer.effect: DropShadow{
             transparentBorder: true
-            verticalOffset: 8
-            color: "#303030"
-            radius: 40
-            samples: 81
+            verticalOffset: 5
+            color: "#636363"
+            radius: 30
+            samples: 61
         }
         Text {
             id: mt0

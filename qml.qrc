@@ -10,5 +10,6 @@
         <file>slider.6d5ccd2b.png</file>
         <file>maximize-2.png</file>
         <file>play-circle.png</file>
+        <file>Action.qml</file>
     </qresource>
 </RCC>

@@ -22,7 +22,7 @@ Window {
                     color: "#ffffff"
                 }
                 GradientStop{
-                    position: 0.1
+                    position: 0.4
                     color: "#ebf3fa"
                 }
                 GradientStop{
@@ -47,17 +47,32 @@ Window {
                 id:display
                 width:234
                 height: 325.6
-                color:"#262626"
+//                color:"#262626"
+                gradient: Gradient{
+                    orientation: Gradient.Horizontal
+                    GradientStop{
+                        position: 0
+                        color: "#262626"
+                    }
+                    GradientStop{
+                        position: 0.4
+                        color: "#181818"
+                    }
+                    GradientStop{
+                        position: 1
+                        color: "#262626"
+                    }
+                }
                 radius: 20
                 clip: true
                 anchors.centerIn: parent
                 layer.enabled: true
                 layer.effect: DropShadow{
                     transparentBorder: true
-                    verticalOffset: 7
-                    color: "#303030"
-                    radius: 50
-                    samples: 101
+                    verticalOffset: 8
+                    color: "#636363"
+                    radius: 30
+                    samples: 61
                 }
                 Rectangle{
                     id:mac1
@@ -366,20 +381,28 @@ Window {
                     headY: 10
                     headBut: "maximize-2.png"
                     headButHeight: 40
-                    headButWidth: 66
+                    headButWidth: 70
+                    headButColor: "orange"
                     headWidth: 26
                     headHeight: 26
                     bodyOpacity: 0
-                    bodyTextOpcaity: 0.8
-                    bodyWidth: 456
+                    bodyTextOpcaity: 1
+                    bodyWidth: 320
+                    m1LogHeight: 18
+                    m2LogHeight: 18
+                    m3LogHeight: 18
+                    m4LogHeight: 18
+                    m5LogHeight: 18
+                    m6LogHeight: 18
+                    m7LogHeight: 18
                 }
                 layer.enabled: true
                 layer.effect: DropShadow{
                     transparentBorder: true
                     verticalOffset: 10
-                    color: "#303030"
-                    radius: 40
-                    samples: 81
+                    color: "#636363"
+                    radius: 35
+                    samples: 71
                 }
             }
         }
@@ -557,20 +580,28 @@ Window {
                         headY: 10
                         headBut: "maximize-2.png"
                         headButHeight: 40
-                        headButWidth: 56
+                        headButWidth: 70
+                        headButColor: "orange"
                         headWidth: 26
                         headHeight: 26
                         bodyOpacity: 0
-                        bodyTextOpcaity: 0.8
-                        bodyWidth: 208
+                        bodyTextOpcaity: 1
+                        bodyWidth: 165
+                        m1LogHeight: 32
+                        m2LogHeight: 32
+                        m3LogHeight: 18
+                        m4LogHeight: 32
+                        m5LogHeight: 18
+                        m6LogHeight: 32
+                        m7LogHeight: 18
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
                         transparentBorder: true
                         verticalOffset: 8
-                        color: "#303030"
-                        radius: 40
-                        samples: 81
+                        color: "#636363"
+                        radius: 30
+                        samples: 61
                     }
                 }
             }
@@ -592,6 +623,7 @@ Window {
                 headBut: "play-circle.png"
                 headButHeight: 52.8
                 headButWidth: 91.49
+                headButColor: "black"
                 headWidth: 36
                 headHeight: 36
                 bodyHeight: 8
@@ -599,10 +631,10 @@ Window {
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
-                verticalOffset: 4
-                color: "#303030"
-                radius: 40
-                samples: 81
+                verticalOffset: 5
+                color: "#636363"
+                radius: 30
+                samples: 61
                 spread: 0
             }
         }
