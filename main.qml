@@ -2,12 +2,13 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.4
+import "./components"
+import "./assets"
 
 Window {
     title: "MicroFabricator"
     visible: true
-    width: 860
-    height: 500
+    minimumWidth: 860; maximumWidth: 860; minimumHeight: 500; maximumHeight: 500;
     Item{
         id:mygradient
         width: 860
@@ -89,7 +90,7 @@ Window {
                             id: firstPage
                             Image {
                                 id: pic1
-                                source: "mfab-naked.d5f2d608.png"
+                                source: "assets/image-1.png"
                                 x:10
                                 y:10
                                 width: 224
@@ -100,7 +101,7 @@ Window {
                             id: secondPage
                             Image {
                                 id: pic2
-                                source: "slider.6d5ccd2b.png"
+                                source: "assets/image-2.png"
                                 x:-122
                                 y:15
                                 width: 464
@@ -111,7 +112,7 @@ Window {
                             id: thirdPage
                             Image {
                                 id: pic3
-                                source: "le-front.15970e90.png"
+                                source: "assets/image-3.png"
                                 x:-119
                                 y:15
                                 width: 464
@@ -173,7 +174,7 @@ Window {
                         }
                         Image {
                             id: i1
-                            source: "Padlock.png"
+                            source: "assets/Padlock.png"
                             width: 24
                             height: 24
                             x:150
@@ -214,7 +215,7 @@ Window {
                         }
                         Image {
                             id: i2
-                            source: "Padlock.png"
+                            source: "assets/Padlock.png"
                             width: 24
                             height: 24
                             x:150
@@ -261,7 +262,7 @@ Window {
                             }
                             Image {
                                 id: img
-                                source: "Forward.png"
+                                source: "assets/Forward.png"
                                 width: 26
                                 height: 26
                                 x: 65
@@ -323,7 +324,7 @@ Window {
 
                             Image {
                                 id: img1
-                                source: "Forward.png"
+                                source: "assets/Forward.png"
                                 width: 26
                                 height: 26
                                 x: 97
@@ -379,7 +380,7 @@ Window {
                     headSize: 18
                     headX: 18
                     headY: 10
-                    headBut: "maximize-2.png"
+                    headBut: "assets/maximize-2.png"
                     headButHeight: 40
                     headButWidth: 70
                     headButColor: "orange"
@@ -578,7 +579,7 @@ Window {
                         headSize: 18
                         headX: 18
                         headY: 10
-                        headBut: "maximize-2.png"
+                        headBut: "assets/maximize-2.png"
                         headButHeight: 40
                         headButWidth: 70
                         headButColor: "orange"
@@ -620,7 +621,7 @@ Window {
                 headSize: 24
                 headX: 20
                 headY: 14
-                headBut: "play-circle.png"
+                headBut: "assets/play-circle.png"
                 headButHeight: 52.8
                 headButWidth: 91.49
                 headButColor: "black"

@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
+import "./assets"
 
 Item {
     id:card1
@@ -15,7 +16,7 @@ Item {
     property string headBut
     property double headButWidth
     property double headButHeight
-    property string headButColor:"transparent"
+    property color headButColor:"transparent"
     property double headWidth
     property double headHeight
 

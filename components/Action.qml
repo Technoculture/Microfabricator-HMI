@@ -8,7 +8,7 @@ Item {
     property int messageX
     property int messageY:0
     property string actionText
-    property string actionColor
+    property color actionColor
     property bool actionVisible: false
     Grid{
         columns: 2
