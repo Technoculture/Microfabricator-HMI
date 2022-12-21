@@ -376,26 +376,26 @@ Window {
                 OpCard{
                     cardWidth: 512
                     cardHeight: 325.6
-                    headText: "History"
-                    headSize: 18
-                    headX: 18
-                    headY: 10
-                    headBut: "assets/maximize-2.png"
-                    headButHeight: 40
-                    headButWidth: 70
-                    headButColor: "orange"
-                    headWidth: 26
-                    headHeight: 26
-                    bodyOpacity: 0
-                    bodyTextOpcaity: 1
+                    title: "History"
+                    titleFontSize: 18
+                    titleX: 18
+                    titleY: 10
+                    buttonSource: "assets/maximize-2.png"
+                    buttonHeight: 40
+                    buttonWidth: 70
+                    buttonClickColor: "orange"
+                    iconWidth: 26
+                    iconHeight: 26
+                    progressOpacity: 0
+                    historyOpacity: 1
                     bodyWidth: 320
-                    m1LogHeight: 18
-                    m2LogHeight: 18
-                    m3LogHeight: 18
-                    m4LogHeight: 18
-                    m5LogHeight: 18
-                    m6LogHeight: 18
-                    m7LogHeight: 18
+                    historyLogHeight1: 18
+                    historyLogHeight2: 18
+                    historyLogHeight3: 18
+                    historyLogHeight4: 18
+                    historyLogHeight5: 18
+                    historyLogHeight6: 18
+                    historyLogHeight7: 18
                 }
                 layer.enabled: true
                 layer.effect: DropShadow{
@@ -420,10 +420,10 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Wafer Stage"
-                        body0Text: "Open"
-                        body0X: 22
-                        body0Y: 24
+                        title: "Wafer Stage"
+                        status: "Open"
+                        statusX: 22
+                        statusY: 24
                     }
                     color: "transparent"
                     MouseArea{
@@ -443,10 +443,10 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Wafer Clamp"
-                        body0Text: "Off"
-                        body0X: 32
-                        body0Y: 24
+                        title: "Wafer Clamp"
+                        status: "Off"
+                        statusX: 32
+                        statusY: 24
                     }
                     color: "transparent"
                     MouseArea{
@@ -466,10 +466,10 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Wafer Mask Gap"
-                        body0Text: "2.8μm"
-                        body0X: 19
-                        body0Y: 24
+                        title: "Wafer Mask Gap"
+                        status: "2.8μm"
+                        statusX: 19
+                        statusY: 24
                     }
                     color: "transparent"
                     MouseArea{
@@ -489,10 +489,10 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Vibration"
-                        body0Text: "Ok"
-                        body0X: 36
-                        body0Y: 24
+                        title: "Vibration"
+                        status: "Ok"
+                        statusX: 36
+                        statusY: 24
                     }
                     color: "transparent"
                     MouseArea{
@@ -516,14 +516,14 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Light Intensity"
-                        body0Text: "21%"
-                        body0X: 12
-                        body0Y: 15
-                        body1Text: "321 mJ/cm<sup>2</sup>"
-                        body1Visible: true
-                        body1X: 12
-                        body1Y: 44
+                        title: "Light Intensity"
+                        status: "21%"
+                        statusX: 12
+                        statusY: 15
+                        info: "321 mJ/cm<sup>2</sup>"
+                        infoVisible: true
+                        infoX: 12
+                        infoY: 44
                     }
                     color: "transparent"
                     MouseArea{
@@ -543,14 +543,14 @@ Window {
                     width: 114
                     height: 155.6
                     Card{
-                        headText: "Duration"
-                        body0Text: "112s"
-                        body0X: 12
-                        body0Y: 15
-                        body1Text: "1m 32s"
-                        body1Visible: true
-                        body1X: 12
-                        body1Y: 44
+                        title: "Duration"
+                        status: "112s"
+                        statusX: 12
+                        statusY: 15
+                        info: "1m 32s"
+                        infoVisible: true
+                        infoX: 12
+                        infoY: 44
                     }
                     color: "transparent"
                     MouseArea{
@@ -575,26 +575,26 @@ Window {
                         cardY: 5
                         cardWidth: 244
                         cardHeight: 145.6
-                        headText: "History"
-                        headSize: 18
-                        headX: 18
-                        headY: 10
-                        headBut: "assets/maximize-2.png"
-                        headButHeight: 40
-                        headButWidth: 70
-                        headButColor: "orange"
-                        headWidth: 26
-                        headHeight: 26
-                        bodyOpacity: 0
-                        bodyTextOpcaity: 1
+                        title: "History"
+                        titleFontSize: 18
+                        titleX: 18
+                        titleY: 10
+                        buttonSource: "assets/maximize-2.png"
+                        buttonHeight: 40
+                        buttonWidth: 70
+                        buttonClickColor: "orange"
+                        iconWidth: 26
+                        iconHeight: 26
+                        progressOpacity: 0
+                        historyOpacity: 1
                         bodyWidth: 165
-                        m1LogHeight: 32
-                        m2LogHeight: 32
-                        m3LogHeight: 18
-                        m4LogHeight: 32
-                        m5LogHeight: 18
-                        m6LogHeight: 32
-                        m7LogHeight: 18
+                        historyLogHeight1: 32
+                        historyLogHeight2: 32
+                        historyLogHeight3: 18
+                        historyLogHeight4: 32
+                        historyLogHeight5: 18
+                        historyLogHeight6: 32
+                        historyLogHeight7: 18
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
@@ -617,16 +617,16 @@ Window {
             OpCard{
                 cardWidth: 234
                 cardHeight: 60.8
-                headText: "00:22:19"
-                headSize: 24
-                headX: 20
-                headY: 14
-                headBut: "assets/play-circle.png"
-                headButHeight: 52.8
-                headButWidth: 91.49
-                headButColor: "black"
-                headWidth: 36
-                headHeight: 36
+                title: "00:22:19"
+                titleFontSize: 24
+                titleX: 20
+                titleY: 14
+                buttonSource: "assets/play-circle.png"
+                buttonHeight: 52.8
+                buttonWidth: 91.49
+                buttonClickColor: "black"
+                iconWidth: 36
+                iconHeight: 36
                 bodyHeight: 8
             }
             layer.enabled: true

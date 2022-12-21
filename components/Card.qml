@@ -3,22 +3,19 @@ import QtGraphicalEffects 1.12
 
 Item {
     id:card
-    property double cardOpacity:1
+    property string title
 
-    property string headText
-
-    property string body0Text
-    property int body0X:0
-    property int body0Y:0
-    property string body1Text
-    property int body1X:0
-    property int body1Y:0
-    property bool body1Visible:false
+    property string status
+    property int statusX:0
+    property int statusY:0
+    property string info
+    property int infoX:0
+    property int infoY:0
+    property bool infoVisible:false
     Rectangle{
         id:display
         width: 104
         height: 145.6
-//        color: "#262626"
         gradient: Gradient{
             orientation: Gradient.Horizontal
             GradientStop{
@@ -47,7 +44,7 @@ Item {
         }
         Text {
             id: mt0
-            text: card.headText
+            text: card.title
             color: "white"
             x:11
             y:14
@@ -63,22 +60,22 @@ Item {
             color: "black"
             Text {
                 id: t0
-                text: card.body0Text
-                x:card.body0X
-                y:card.body0Y
+                text: card.status
+                x:card.statusX
+                y:card.statusY
                 wrapMode: Text.WordWrap
                 color: "#ff7b00"
                 font.pixelSize: 24
             }
             Text {
                 id: t1
-                text: card.body1Text
-                x:card.body1X
-                y:card.body1Y
+                text: card.info
+                x:card.infoX
+                y:card.infoY
                 wrapMode: Text.WordWrap
                 color: "white"
                 font.pixelSize: 15
-                visible: card.body1Visible
+                visible: card.infoVisible
             }
             Rectangle {
                 width: parent.radius

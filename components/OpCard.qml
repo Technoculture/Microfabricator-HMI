@@ -9,29 +9,31 @@ Item {
     property double cardWidth
     property double cardHeight
 
-    property string headText
-    property int headX
-    property int headY
-    property int headSize
-    property string headBut
-    property double headButWidth
-    property double headButHeight
-    property color headButColor:"transparent"
-    property double headWidth
-    property double headHeight
+    property string title
+    property int titleX
+    property int titleY
+    property int titleFontSize
 
-    property int m1LogHeight
-    property int m2LogHeight
-    property int m3LogHeight
-    property int m4LogHeight
-    property int m5LogHeight
-    property int m6LogHeight
-    property int m7LogHeight
+    property double iconWidth
+    property double iconHeight
+
+    property string buttonSource
+    property double buttonWidth
+    property double buttonHeight
+    property color buttonClickColor:"transparent"
+
+    property int historyLogHeight1
+    property int historyLogHeight2
+    property int historyLogHeight3
+    property int historyLogHeight4
+    property int historyLogHeight5
+    property int historyLogHeight6
+    property int historyLogHeight7
 
     property int bodyHeight
     property int bodyWidth
-    property double bodyOpacity:1
-    property double bodyTextOpcaity:0
+    property double progressOpacity:1
+    property double historyOpacity:0
     Rectangle{
         id:display
         width: card1.cardWidth
@@ -43,17 +45,17 @@ Item {
         y:card1.cardY
         Text {
             id: mt0
-            text: card1.headText
+            text: card1.title
             color: "white"
-            x:card1.headX
-            y:card1.headY
-            font.pixelSize: card1.headSize
+            x:card1.titleX
+            y:card1.titleY
+            font.pixelSize: card1.titleFontSize
             wrapMode: Text.WordWrap
         }
         Rectangle {
             id: but
-            width: card1.headButWidth
-            height: card1.headButHeight
+            width: card1.buttonWidth
+            height: card1.buttonHeight
             color: "transparent"
             clip: true
             Rectangle {
@@ -66,9 +68,9 @@ Item {
             }
             Image {
                 id: img1
-                source: card1.headBut
-                width: card1.headWidth
-                height: card1.headHeight
+                source: card1.buttonSource
+                width: card1.iconWidth
+                height: card1.iconHeight
                 anchors.centerIn: parent
             }
             anchors.right: parent.right
@@ -82,7 +84,7 @@ Item {
                     else
                         but.state=''
                 }
-                onPressed: clipped.color=card1.headButColor
+                onPressed: clipped.color=card1.buttonClickColor
                 onReleased: clipped.color="transparent"
             }
             states: State {
@@ -103,7 +105,7 @@ Item {
             width: card1.cardWidth
             height: card1.bodyHeight
             clip: true
-            opacity: card1.bodyOpacity
+            opacity: card1.progressOpacity
             Rectangle {
                 id: progress
                 width: progressTotal.width
@@ -144,9 +146,9 @@ Item {
         }
         Rectangle{
             id:text1
-            opacity:card1.bodyTextOpcaity
+            opacity:card1.historyOpacity
             width: card1.cardWidth
-            height: card1.cardHeight-card1.headButHeight
+            height: card1.cardHeight-card1.buttonHeight
             color: "Black"
             radius: 20
             clip: true
@@ -170,7 +172,7 @@ Item {
                     Rectangle{
                         id:m1
                         width: 220
-                        height: card1.m1LogHeight
+                        height: card1.historyLogHeight1
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -181,7 +183,7 @@ Item {
                     Rectangle{
                         id:m2
                         width: 220
-                        height: card1.m2LogHeight
+                        height: card1.historyLogHeight2
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -192,7 +194,7 @@ Item {
                     Rectangle{
                         id:m3
                         width: 220
-                        height: card1.m3LogHeight
+                        height: card1.historyLogHeight3
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -207,7 +209,7 @@ Item {
                     Rectangle{
                         id:m4
                         width: 220
-                        height: card1.m4LogHeight
+                        height: card1.historyLogHeight4
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -218,7 +220,7 @@ Item {
                     Rectangle{
                         id:m5
                         width: 220
-                        height: card1.m5LogHeight
+                        height: card1.historyLogHeight5
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -233,7 +235,7 @@ Item {
                     Rectangle{
                         id:m6
                         width: 220
-                        height: card1.m6LogHeight
+                        height: card1.historyLogHeight6
                         color: "transparent"
                         Action{
                             time: "23:56"
@@ -244,7 +246,7 @@ Item {
                     Rectangle{
                         id:m7
                         width: 220
-                        height: card1.m7LogHeight
+                        height: card1.historyLogHeight7
                         color: "transparent"
                         Action{
                             time: "23:56"

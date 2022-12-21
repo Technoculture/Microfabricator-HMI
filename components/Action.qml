@@ -12,7 +12,6 @@ Item {
     property bool actionVisible: false
     Grid{
         columns: 2
-        columnSpacing: 0
         Text{
             id:mytime
             text: action.time+"> "
