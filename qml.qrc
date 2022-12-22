@@ -18,5 +18,9 @@
         <file>components/assets/image-1.png</file>
         <file>components/assets/image-2.png</file>
         <file>components/assets/image-3.png</file>
+        <file>font/fa-brands-400.ttf</file>
+        <file>font/fa-regular-400.ttf</file>
+        <file>components/font/fa-brands-400.ttf</file>
+        <file>components/font/fa-regular-400.ttf</file>
     </qresource>
 </RCC>

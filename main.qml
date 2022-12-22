@@ -180,6 +180,10 @@ Window {
                             x:150
                             y:8
                         }
+                        MouseArea{
+                            anchors.fill: but1
+                            onClicked: rec1.state=''
+                        }
                     }
                 }
                 Rectangle{
@@ -220,6 +224,10 @@ Window {
                             height: 24
                             x:150
                             y:8
+                        }
+                        MouseArea{
+                            anchors.fill: but2
+                            onClicked: rec2.state=''
                         }
                     }
                 }

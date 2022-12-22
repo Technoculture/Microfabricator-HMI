@@ -89,14 +89,8 @@ Item {
             }
             states: State {
                 name: "s1"
-                PropertyChanges {
-                    target: historyFull
-                    visible:true
-                }
-                PropertyChanges {
-                    target: cards
-                    visible:false
-                }
+                PropertyChanges {target: historyFull;visible:true}
+                PropertyChanges {target: cards;visible:false}
             }
         }
         Rectangle{
@@ -169,90 +163,76 @@ Item {
                 x:8
                 y:8
                 Column{
-                    Rectangle{
+                    Item{
                         id:m1
                         width: 220
                         height: card1.historyLogHeight1
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Light Engine Auto-calliberation"
-//                            messageWidth: card1.bodyWidth
+                            message: "Light Engine Auto-calliberation"
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m2
                         width: 220
                         height: card1.historyLogHeight2
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
-//                            messageWidth: card1.bodyWidth
+                            message: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m3
                         width: 220
                         height: card1.historyLogHeight3
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure complete "
-//                            messageWidth: card1.bodyWidth
-                            actionText: "Redo"
+                            message: "Exposure complete "
+                            action: "Redo"
                             actionVisible: true
                             actionColor: "green"
                             messageX: 100
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m4
                         width: 220
                         height: card1.historyLogHeight4
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
-//                            messageWidth: card1.bodyWidth
+                            message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m5
                         width: 220
                         height: card1.historyLogHeight5
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure complete "
-//                            messageWidth: card1.bodyWidth
-                            actionText: "Redo"
+                            message: "Exposure complete "
+                            action: "Redo"
                             actionVisible: true
                             actionColor: "green"
                             messageX: 100
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m6
                         width: 220
                         height: card1.historyLogHeight6
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
-//                            messageWidth: card1.bodyWidth
+                            message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
                         }
                     }
-                    Rectangle{
+                    Item{
                         id:m7
                         width: 220
                         height: card1.historyLogHeight7
-                        color: "transparent"
                         Action{
                             time: "23:56"
-                            messageText: "Exposure Paused after 32s of exposure "
-//                            messageWidth: card1.bodyWidth
-                            actionText: "Resume"
+                            message: "Exposure Paused after 32s of exposure "
+                            action: "Resume"
                             actionVisible: true
                             actionColor: "#5f849c"
                             messageX: 204

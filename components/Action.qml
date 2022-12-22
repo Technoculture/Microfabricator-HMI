@@ -3,13 +3,18 @@ import QtQuick 2.15
 Item {
     id:action
     property string time
-    property string messageText
+    property string message
     property int messageWidth
     property int messageX
     property int messageY:0
-    property string actionText
+    property string action
     property color actionColor
     property bool actionVisible: false
+//    FontLoader{
+//        id:mainFont
+//        source: "./font/fa-regular-400.ttf"
+//    }
+
     Grid{
         columns: 2
         Text{
@@ -21,24 +26,25 @@ Item {
         }
         Text{
             id:mymessage
-            text: action.messageText+" "
+            text: action.message+" "
             color: "#9ca3af"
             font.pixelSize: 12
             font.bold: true
+//            font.family: mainFont.name
             lineHeight: 1.2
             width: card1.bodyWidth
             Rectangle{
                 id:actionBut
                 color: action.actionColor
-                width: name.width+16
-                height: name.height+3
+                width: actionName.width+16
+                height: actionName.height+3
                 radius: 12
                 x: mymessage.text.length+action.messageX
                 y:action.messageY
                 visible: action.actionVisible
                 Text {
-                    id: name
-                    text: action.actionText+" >"
+                    id: actionName
+                    text: action.action+" >"
                     color: "white"
                     font.pixelSize: 12
                     anchors.centerIn: parent
