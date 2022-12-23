@@ -236,7 +236,11 @@ Window {
                     id:buttons
                     radius: 20
                     width:234
-                    height: 53.2
+                    height: 56.2
+                    border{
+                        color:"transparent"
+                        width: 3
+                    }
                     color: "transparent"
                     Grid{
                         columns: 2
@@ -288,6 +292,8 @@ Window {
                                     else
                                         rec1.state=''
                                 }
+                                onPressed: buttons.border.color="orange"
+                                onReleased: buttons.border.color="transparent"
                             }
                             states: State {
                                 name: "st1"
@@ -297,9 +303,17 @@ Window {
                                 }
                                 PropertyChanges {
                                     target: img
-                                    rotation:270
+                                    rotation:-90
                                 }
                             }
+                            transitions: [
+                                Transition {
+                                    from: ""
+                                    to: "st1"
+                                    reversible: true
+                                    NumberAnimation { properties: "rotation"; duration: 100; easing.type: Easing.InOutQuad }
+                                }
+                            ]
                         }
                         Rectangle{
                             id:rec2
@@ -350,6 +364,8 @@ Window {
                                     else
                                         rec2.state=''
                                 }
+                                onPressed: buttons.border.color="orange"
+                                onReleased: buttons.border.color="transparent"
                             }
                             states: State {
                                 name: "st2"
@@ -359,10 +375,19 @@ Window {
                                 }
                                 PropertyChanges {
                                     target: img1
-                                    rotation:270
+                                    rotation:-90
                                 }
                             }
+                            transitions: [
+                                Transition {
+                                    from: ""
+                                    to: "st2"
+                                    reversible: true
+                                    NumberAnimation { properties: "rotation"; duration: 100; easing.type: Easing.InOutQuad }
+                                }
+                            ]
                         }
+                        anchors.bottom: parent.bottom
                     }
                     anchors.bottom: parent.bottom
                 }
