@@ -15,11 +15,10 @@ Item {
     property int titleFontSize
 
     property double iconWidth
-    property double iconHeight
 
     property string buttonSource
-    property double buttonWidth
-    property double buttonHeight
+    property double buttonWidth:0
+    property double buttonHeight:0
     property color buttonClickColor:"transparent"
 
     property int historyLogHeight1
@@ -52,47 +51,72 @@ Item {
             font.pixelSize: card1.titleFontSize
             wrapMode: Text.WordWrap
         }
-        Rectangle {
+        Button{
             id: but
-            width: card1.buttonWidth
-            height: card1.buttonHeight
-            color: "transparent"
-            clip: true
-            Rectangle {
-                id: clipped
-                width: 200
-                height: 200
-                radius: 20
-                color: "transparent"
-                anchors.right: parent.right
-            }
-            Image {
-                id: img1
-                source: card1.buttonSource
-                width: card1.iconWidth
-                height: card1.iconHeight
-                anchors.centerIn: parent
-            }
+            radius: 20
+            backgroundColor: "#232323"
+            iconImage: card1.buttonSource
+            sidePadding: 20
+            height: card1.buttonHeight!=0? card1.buttonHeight:implicitHeight
+            width: card1.buttonWidth!=0? card1.buttonWidth:implicitWidth
             anchors.right: parent.right
-
-            MouseArea{
-                id:mouseArea
-                anchors.fill: but
-                onClicked: {
-                    if(but.state==='')
-                        but.state='s1'
-                    else
-                        but.state=''
-                }
-                onPressed: clipped.color=card1.buttonClickColor
-                onReleased: clipped.color="transparent"
+            onClicked: {
+                if(but.state==='')
+                    but.state='s1'
+                else
+                    but.state=''
             }
             states: State {
                 name: "s1"
                 PropertyChanges {target: historyFull;visible:true}
                 PropertyChanges {target: cards;visible:false}
             }
+            iconSize: iconWidth!=0?iconWidth:28
+//            onPressed: backgroundColor= card1.buttonClickColor
+//            onReleased: backgroundColor ="transparent"
         }
+
+//        Rectangle {
+//            id: but
+//            width: card1.buttonWidth
+//            height: card1.buttonHeight
+//            color: "transparent"
+//            clip: true
+//            Rectangle {
+//                id: clipped
+//                width: 200
+//                height: 200
+//                radius: 20
+//                color: "transparent"
+//                anchors.right: parent.right
+//            }
+//            Image {
+//                id: img1
+//                source: card1.buttonSource
+//                width: card1.iconWidth
+//                height: card1.iconHeight
+//                anchors.centerIn: parent
+//            }
+//            anchors.right: parent.right
+
+//            MouseArea{
+//                id:mouseArea
+//                anchors.fill: but
+//                onClicked: {
+//                    if(but.state==='')
+//                        but.state='s1'
+//                    else
+//                        but.state=''
+//                }
+//                onPressed: clipped.color=card1.buttonClickColor
+//                onReleased: clipped.color="transparent"
+//            }
+//            states: State {
+//                name: "s1"
+//                PropertyChanges {target: historyFull;visible:true}
+//                PropertyChanges {target: cards;visible:false}
+//            }
+//        }
         Rectangle{
             id:progressTotal
             color: "transparent"
@@ -142,7 +166,7 @@ Item {
             id:text1
             opacity:card1.historyOpacity
             width: card1.cardWidth
-            height: card1.cardHeight-card1.buttonHeight
+            height: card1.cardHeight-but.height
             color: "Black"
             radius: 20
             clip: true

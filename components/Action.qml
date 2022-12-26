@@ -8,7 +8,7 @@ Item {
     property int messageX
     property int messageY:0
     property string action
-    property color actionColor
+    property color actionColor: "green"
     property bool actionVisible: false
 //    FontLoader{
 //        id:mainFont

@@ -418,7 +418,6 @@ Window {
                     buttonWidth: 70
                     buttonClickColor: "orange"
                     iconWidth: 26
-                    iconHeight: 26
                     progressOpacity: 0
                     historyOpacity: 1
                     bodyWidth: 320
@@ -613,11 +612,9 @@ Window {
                         titleX: 18
                         titleY: 10
                         buttonSource: "assets/maximize-2.png"
-                        buttonHeight: 40
-                        buttonWidth: 70
-                        buttonClickColor: "orange"
+                        buttonHeight: 42
                         iconWidth: 26
-                        iconHeight: 26
+                        buttonClickColor: "orange"
                         progressOpacity: 0
                         historyOpacity: 1
                         bodyWidth: 165
@@ -655,11 +652,9 @@ Window {
                 titleX: 20
                 titleY: 14
                 buttonSource: "assets/play-circle.png"
-                buttonHeight: 52.8
-                buttonWidth: 91.49
                 buttonClickColor: "black"
+                buttonWidth: 82
                 iconWidth: 36
-                iconHeight: 36
                 bodyHeight: 8
             }
             layer.enabled: true
@@ -672,5 +667,14 @@ Window {
                 spread: 0
             }
         }
+//        Button{
+//            text: "Eject"
+//            radius: 10
+//            backgroundColor: "orange"
+//            textColor: "black"
+//            iconImage: "assets/Padlock.png"
+//            sidePadding: 26
+//            height: 46
+//        }
     }
 }

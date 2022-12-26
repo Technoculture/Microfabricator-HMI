@@ -20,7 +20,6 @@
         <file>components/assets/image-3.png</file>
         <file>font/fa-brands-400.ttf</file>
         <file>font/fa-regular-400.ttf</file>
-        <file>components/font/fa-brands-400.ttf</file>
-        <file>components/font/fa-regular-400.ttf</file>
+        <file>components/Button.qml</file>
     </qresource>
 </RCC>
