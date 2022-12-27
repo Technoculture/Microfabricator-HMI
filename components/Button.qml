@@ -1,10 +1,10 @@
 import QtQuick 2.15
-import "./assets"
+import "../assets"
 
 Item {
     id: root
     implicitHeight: 52
-    implicitWidth: label.paintedWidth + (iconImage!==""?icon.width+(2*sidePadding):sidePadding) +(label.text!==""?sidePadding:0)
+    implicitWidth: label.paintedWidth + (iconImage!==""?icon.width+(2*sidePadding):sidePadding) +(label.text!==""?3.5*sidePadding:0)
     signal clicked()
     signal pressed()
     signal released()
@@ -25,7 +25,6 @@ Item {
             leftPadding: sidePadding
             font.pixelSize: parent.height * 0.45
             color: root.enabled ? textColor : Qt.darker(textColor)
-//            text: "Button"
             visible: label.text!==""
         }
         Image {

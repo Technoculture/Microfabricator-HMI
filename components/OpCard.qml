@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
-import "./assets"
+import "../assets"
 
 Item {
     id:card1
@@ -19,7 +19,7 @@ Item {
     property string buttonSource
     property double buttonWidth:0
     property double buttonHeight:0
-    property color buttonClickColor:"transparent"
+//    property color buttonClickColor:"transparent"
 
     property int historyLogHeight1
     property int historyLogHeight2
@@ -75,48 +75,6 @@ Item {
 //            onPressed: backgroundColor= card1.buttonClickColor
 //            onReleased: backgroundColor ="transparent"
         }
-
-//        Rectangle {
-//            id: but
-//            width: card1.buttonWidth
-//            height: card1.buttonHeight
-//            color: "transparent"
-//            clip: true
-//            Rectangle {
-//                id: clipped
-//                width: 200
-//                height: 200
-//                radius: 20
-//                color: "transparent"
-//                anchors.right: parent.right
-//            }
-//            Image {
-//                id: img1
-//                source: card1.buttonSource
-//                width: card1.iconWidth
-//                height: card1.iconHeight
-//                anchors.centerIn: parent
-//            }
-//            anchors.right: parent.right
-
-//            MouseArea{
-//                id:mouseArea
-//                anchors.fill: but
-//                onClicked: {
-//                    if(but.state==='')
-//                        but.state='s1'
-//                    else
-//                        but.state=''
-//                }
-//                onPressed: clipped.color=card1.buttonClickColor
-//                onReleased: clipped.color="transparent"
-//            }
-//            states: State {
-//                name: "s1"
-//                PropertyChanges {target: historyFull;visible:true}
-//                PropertyChanges {target: cards;visible:false}
-//            }
-//        }
         Rectangle{
             id:progressTotal
             color: "transparent"
@@ -134,14 +92,13 @@ Item {
                 anchors.bottom: parent.bottom
                 Rectangle {
                     id: progres2
-                    width: 70
+                    width: 0.3*progressTotal.width
                     height: 200
                     color: "transparent"
                     clip: true
-
                     Rectangle {
                         id: clipped1
-                        width: 100
+                        width: progressTotal.width
                         height: 30
                         radius: 20
                         gradient: Gradient{
@@ -163,7 +120,7 @@ Item {
             anchors.bottom: parent.bottom
         }
         Rectangle{
-            id:text1
+            id:historyList
             opacity:card1.historyOpacity
             width: card1.cardWidth
             height: card1.cardHeight-but.height
@@ -181,8 +138,8 @@ Item {
                 color: parent.color
             }
             Rectangle{
-                width: text1.width
-                height: text1.height
+                width: historyList.width
+                height: historyList.height
                 color: "transparent"
                 x:8
                 y:8

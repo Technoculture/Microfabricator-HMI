@@ -46,7 +46,7 @@ Item {
             id: mt0
             text: card.title
             color: "white"
-            x:11
+            anchors.horizontalCenter: parent.horizontalCenter
             y:14
             font.pixelSize: 15
             width: 86

@@ -33,11 +33,21 @@ Item {
 //            font.family: mainFont.name
             lineHeight: 1.2
             width: card1.bodyWidth
+//            Button{
+//                text: action.action+" >"
+//                width: actionName.width+16
+//                height: actionName.height+3
+//                backgroundColor: action.actionColor
+//                radius: 12
+//                x: mymessage.text.length+action.messageX
+//                y:action.messageY
+//                visible: action.actionVisible
+//            }
             Rectangle{
                 id:actionBut
                 color: action.actionColor
                 width: actionName.width+16
-                height: actionName.height+3
+                height: actionName.height+4
                 radius: 12
                 x: mymessage.text.length+action.messageX
                 y:action.messageY

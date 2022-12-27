@@ -78,7 +78,7 @@ Window {
                 Rectangle{
                     id:mac1
                     width: 234
-                    height: 272
+                    height: 267
                     color: "transparent"
                     clip: true
                     SwipeView {
@@ -158,32 +158,18 @@ Window {
                         y:10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
-                    Rectangle{
-                        id:but1
-                        width: 197
-                        height: 40
+                    Button{
+                        text: "Eject"
                         radius: 10
-                        color: "#f54949"
+                        backgroundColor: "#f54949"
+                        textColor: "black"
+                        iconImage: "../assets/Padlock.png"
+                        sidePadding: 25
+                        height: 40
+                        iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
-                        y: 72
-                        Text {
-                            text: "Eject"
-                            x:25
-                            y:8
-                            font.pixelSize: 18
-                        }
-                        Image {
-                            id: i1
-                            source: "assets/Padlock.png"
-                            width: 24
-                            height: 24
-                            x:150
-                            y:8
-                        }
-                        MouseArea{
-                            anchors.fill: but1
-                            onClicked: rec1.state=''
-                        }
+                        y:72
+                        onClicked: rec1.state=''
                     }
                 }
                 Rectangle{
@@ -203,32 +189,18 @@ Window {
                         y:10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
-                    Rectangle{
-                        id:but2
-                        width: 197
-                        height: 40
+                    Button{
+                        text: "Eject"
                         radius: 10
-                        color: "#f54949"
+                        backgroundColor: "#f54949"
+                        textColor: "black"
+                        iconImage: "../assets/Padlock.png"
+                        sidePadding: 25
+                        height: 40
+                        iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
-                        y: 72
-                        Text {
-                            text: "Eject"
-                            x:25
-                            y:8
-                            font.pixelSize: 18
-                        }
-                        Image {
-                            id: i2
-                            source: "assets/Padlock.png"
-                            width: 24
-                            height: 24
-                            x:150
-                            y:8
-                        }
-                        MouseArea{
-                            anchors.fill: but2
-                            onClicked: rec2.state=''
-                        }
+                        y:72
+                        onClicked: rec2.state=''
                     }
                 }
 
@@ -413,10 +385,8 @@ Window {
                     titleFontSize: 18
                     titleX: 18
                     titleY: 10
-                    buttonSource: "assets/maximize-2.png"
-                    buttonHeight: 40
-                    buttonWidth: 70
-                    buttonClickColor: "orange"
+                    buttonSource: "../assets/maximize-2.png"
+//                    buttonClickColor: "orange"
                     iconWidth: 26
                     progressOpacity: 0
                     historyOpacity: 1
@@ -611,10 +581,10 @@ Window {
                         titleFontSize: 18
                         titleX: 18
                         titleY: 10
-                        buttonSource: "assets/maximize-2.png"
+                        buttonSource: "../assets/maximize-2.png"
                         buttonHeight: 42
                         iconWidth: 26
-                        buttonClickColor: "orange"
+//                        buttonClickColor: "orange"
                         progressOpacity: 0
                         historyOpacity: 1
                         bodyWidth: 165
@@ -651,8 +621,8 @@ Window {
                 titleFontSize: 24
                 titleX: 20
                 titleY: 14
-                buttonSource: "assets/play-circle.png"
-                buttonClickColor: "black"
+                buttonSource: "../assets/play-circle.png"
+//                buttonClickColor: "black"
                 buttonWidth: 82
                 iconWidth: 36
                 bodyHeight: 8

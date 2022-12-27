@@ -8,16 +8,9 @@
         <file>components/Action.qml</file>
         <file>components/Card.qml</file>
         <file>components/OpCard.qml</file>
-        <file>components/assets/Forward.png</file>
-        <file>components/assets/maximize-2.png</file>
-        <file>components/assets/Padlock.png</file>
-        <file>components/assets/play-circle.png</file>
         <file>assets/image-1.png</file>
         <file>assets/image-2.png</file>
         <file>assets/image-3.png</file>
-        <file>components/assets/image-1.png</file>
-        <file>components/assets/image-2.png</file>
-        <file>components/assets/image-3.png</file>
         <file>font/fa-brands-400.ttf</file>
         <file>font/fa-regular-400.ttf</file>
         <file>components/Button.qml</file>
