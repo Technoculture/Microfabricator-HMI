@@ -144,6 +144,27 @@ Item {
                 x:8
                 y:8
                 Column{
+//                    property var list: [
+//                                        "Light Engine Auto-calliberation",
+//                                        "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)",
+//                                        "Exposure complete ",
+//                                        "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)",
+//                                        "Exposure complete ",
+//                                        "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)",
+//                                        "Exposure Paused after 32s of exposure "]
+//                    Repeater{
+//                        model: list
+//                        Item{
+//                            id:m1
+//                            width: 220
+//                            height: card1.historyLogHeight1
+//                            Action{
+//                                time: "23:56"
+//                                message: ""
+//                            }
+//                        }
+//                    }
+
                     Item{
                         id:m1
                         width: 220
@@ -170,7 +191,6 @@ Item {
                             time: "23:56"
                             message: "Exposure complete "
                             action: "Redo"
-                            actionVisible: true
                             actionColor: "green"
                             messageX: 100
                         }
@@ -192,7 +212,6 @@ Item {
                             time: "23:56"
                             message: "Exposure complete "
                             action: "Redo"
-                            actionVisible: true
                             actionColor: "green"
                             messageX: 100
                         }
@@ -214,7 +233,6 @@ Item {
                             time: "23:56"
                             message: "Exposure Paused after 32s of exposure "
                             action: "Resume"
-                            actionVisible: true
                             actionColor: "#5f849c"
                             messageX: 204
                         }

@@ -4,7 +4,8 @@ import QtGraphicalEffects 1.12
 Item {
     id:card
     property string title
-
+    signal pressed()
+    signal released()
     property string status
     property int statusX:0
     property int statusY:0
@@ -88,6 +89,11 @@ Item {
                 color: parent.color
             }
             anchors.bottom: parent.bottom
+        }
+        MouseArea{
+            anchors.fill: parent
+            onPressed: card.pressed()
+            onReleased: card.released()
         }
     }
 }

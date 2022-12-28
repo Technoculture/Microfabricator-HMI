@@ -48,7 +48,6 @@ Window {
                 id:display
                 width:234
                 height: 325.6
-//                color:"#262626"
                 gradient: Gradient{
                     orientation: Gradient.Horizontal
                     GradientStop{
@@ -208,10 +207,10 @@ Window {
                     id:buttons
                     radius: 20
                     width:234
-                    height: 56.2
+                    height: 58.2
                     border{
                         color:"transparent"
-                        width: 3
+                        width: 5
                     }
                     color: "transparent"
                     Grid{
@@ -387,6 +386,7 @@ Window {
                     titleY: 10
                     buttonSource: "../assets/maximize-2.png"
 //                    buttonClickColor: "orange"
+                    buttonHeight: 42
                     iconWidth: 26
                     progressOpacity: 0
                     historyOpacity: 1
@@ -426,18 +426,10 @@ Window {
                         status: "Open"
                         statusX: 22
                         statusY: 24
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse1
-                        anchors.fill: parent
-                        onPressed: {
-                            r1.color="orange"
-                        }
-                        onReleased: {
-                            r1.color="transparent"
-                        }
-                    }
                 }
                 Rectangle{
                     id:r2
@@ -449,18 +441,10 @@ Window {
                         status: "Off"
                         statusX: 32
                         statusY: 24
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse2
-                        anchors.fill: parent
-                        onPressed: {
-                            r2.color="orange"
-                        }
-                        onReleased: {
-                            r2.color="transparent"
-                        }
-                    }
                 }
                 Rectangle{
                     id:r3
@@ -472,18 +456,10 @@ Window {
                         status: "2.8μm"
                         statusX: 19
                         statusY: 24
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse3
-                        anchors.fill: parent
-                        onPressed: {
-                            r3.color="orange"
-                        }
-                        onReleased: {
-                            r3.color="transparent"
-                        }
-                    }
                 }
                 Rectangle{
                     id:r4
@@ -495,18 +471,10 @@ Window {
                         status: "Ok"
                         statusX: 36
                         statusY: 24
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse4
-                        anchors.fill: parent
-                        onPressed: {
-                            r4.color="orange"
-                        }
-                        onReleased: {
-                            r4.color="transparent"
-                        }
-                    }
                 }
             }
             Grid{
@@ -526,18 +494,10 @@ Window {
                         infoVisible: true
                         infoX: 12
                         infoY: 44
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse5
-                        anchors.fill: parent
-                        onPressed: {
-                            r5.color="orange"
-                        }
-                        onReleased: {
-                            r5.color="transparent"
-                        }
-                    }
                 }
                 Rectangle{
                     id:r6
@@ -553,18 +513,10 @@ Window {
                         infoVisible: true
                         infoX: 12
                         infoY: 44
+                        onPressed:parent.color="orange"
+                        onReleased:parent.color="transparent"
                     }
                     color: "transparent"
-                    MouseArea{
-                        id:mouse6
-                        anchors.fill: parent
-                        onPressed: {
-                            r6.color="orange"
-                        }
-                        onReleased: {
-                            r6.color="transparent"
-                        }
-                    }
                 }
                 Rectangle{
                     id:history
