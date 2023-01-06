@@ -3,16 +3,11 @@ import QtGraphicalEffects 1.12
 
 Item {
     id:card
-    property string title
+    property alias title: heading.text
     signal pressed()
     signal released()
-    property string status
-    property int statusX:0
-    property int statusY:0
-    property string info
-    property int infoX:0
-    property int infoY:0
-    property bool infoVisible:false
+    property alias status:t0.text
+    property alias info:t1.text
     Rectangle{
         id:display
         width: 104
@@ -44,13 +39,12 @@ Item {
             samples: 61
         }
         Text {
-            id: mt0
-            text: card.title
+            id: heading
             color: "white"
             anchors.horizontalCenter: parent.horizontalCenter
             y:14
             font.pixelSize: 15
-            width: 86
+            width: parent.width-18
             wrapMode: Text.WordWrap
         }
         Rectangle {
@@ -59,25 +53,6 @@ Item {
             width:104
             height: 80
             color: "black"
-            Text {
-                id: t0
-                text: card.status
-                x:card.statusX
-                y:card.statusY
-                wrapMode: Text.WordWrap
-                color: "#ff7b00"
-                font.pixelSize: 24
-            }
-            Text {
-                id: t1
-                text: card.info
-                x:card.infoX
-                y:card.infoY
-                wrapMode: Text.WordWrap
-                color: "white"
-                font.pixelSize: 15
-                visible: card.infoVisible
-            }
             Rectangle {
                 width: parent.radius
                 height: parent.radius
@@ -87,6 +62,22 @@ Item {
                     left: parent.left
                 }
                 color: parent.color
+            }
+            Column{
+                x:12
+                spacing: 5
+                Text {
+                    id: t0
+                    color: "#ff7b00"
+                    font.pixelSize: 22
+                }
+                Text {
+                    id: t1
+                    color: "white"
+                    font.pixelSize: 15
+                    visible: info!==""
+                }
+                anchors.verticalCenter: parent.verticalCenter
             }
             anchors.bottom: parent.bottom
         }

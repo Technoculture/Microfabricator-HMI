@@ -8,7 +8,8 @@ import "./assets"
 Window {
     title: "MicroFabricator"
     visible: true
-    minimumWidth: 860; maximumWidth: 860; minimumHeight: 500; maximumHeight: 500;
+    width: 860
+    height: 500
     Item{
         id:mygradient
         width: 860
@@ -37,8 +38,7 @@ Window {
     Grid{
         padding: 40
         spacing: 24
-        rows: 2
-        columns: 2
+        rows: 2;columns: 2
         Rectangle{
             width:234
             height: 335.6
@@ -382,10 +382,8 @@ Window {
                     cardHeight: 325.6
                     title: "History"
                     titleFontSize: 18
-                    titleX: 18
-                    titleY: 10
                     buttonSource: "../assets/maximize-2.png"
-//                    buttonClickColor: "orange"
+                    buttonClickColor: "#b36705"
                     buttonHeight: 42
                     iconWidth: 26
                     progressOpacity: 0
@@ -424,8 +422,6 @@ Window {
                     Card{
                         title: "Wafer Stage"
                         status: "Open"
-                        statusX: 22
-                        statusY: 24
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -439,8 +435,6 @@ Window {
                     Card{
                         title: "Wafer Clamp"
                         status: "Off"
-                        statusX: 32
-                        statusY: 24
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -454,8 +448,6 @@ Window {
                     Card{
                         title: "Wafer Mask Gap"
                         status: "2.8μm"
-                        statusX: 19
-                        statusY: 24
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -469,8 +461,6 @@ Window {
                     Card{
                         title: "Vibration"
                         status: "Ok"
-                        statusX: 36
-                        statusY: 24
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -488,12 +478,7 @@ Window {
                     Card{
                         title: "Light Intensity"
                         status: "21%"
-                        statusX: 12
-                        statusY: 15
-                        info: "321 mJ/cm<sup>2</sup>"
-                        infoVisible: true
-                        infoX: 12
-                        infoY: 44
+                        info: "321 mJ/cm2"
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -507,12 +492,7 @@ Window {
                     Card{
                         title: "Duration"
                         status: "112s"
-                        statusX: 12
-                        statusY: 15
                         info: "1m 32s"
-                        infoVisible: true
-                        infoX: 12
-                        infoY: 44
                         onPressed:parent.color="orange"
                         onReleased:parent.color="transparent"
                     }
@@ -531,12 +511,10 @@ Window {
                         cardHeight: 145.6
                         title: "History"
                         titleFontSize: 18
-                        titleX: 18
-                        titleY: 10
                         buttonSource: "../assets/maximize-2.png"
                         buttonHeight: 42
                         iconWidth: 26
-//                        buttonClickColor: "orange"
+                        buttonClickColor: "#b36705"
                         progressOpacity: 0
                         historyOpacity: 1
                         bodyWidth: 165
@@ -571,10 +549,7 @@ Window {
                 cardHeight: 60.8
                 title: "00:22:19"
                 titleFontSize: 24
-                titleX: 20
-                titleY: 14
                 buttonSource: "../assets/play-circle.png"
-//                buttonClickColor: "black"
                 buttonWidth: 82
                 iconWidth: 36
                 bodyHeight: 8

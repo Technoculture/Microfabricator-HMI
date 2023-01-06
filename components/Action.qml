@@ -1,12 +1,9 @@
 import QtQuick 2.15
 
 Item {
-    id:action
-    property string time
-    property string message
-    property int messageWidth
-    property int messageX
-    property int messageY:0
+    id:root
+    property string time:"00:00"
+    property string message:""
     property string action:""
     property color actionColor: "green"
 
@@ -14,36 +11,28 @@ Item {
         columns: 2
         Text{
             id:mytime
-            text: action.time+"> "
+            text: time+"> "
             color: "orange"
             font.pixelSize: 12
             font.bold: true
         }
         Text{
             id:mymessage
-            text: action.message+" "
+            text: message+" "
             color: "#9ca3af"
             font.pixelSize: 12
             font.bold: true
-//            font.family: mainFont.name
             lineHeight: 1.2
-            width: card1.bodyWidth
-            Rectangle{
-                id:actionBut
-                color: action.actionColor
-                width: actionName.width+16
-                height: actionName.height+4
+            width: bodyWidth
+            Button{
+                text: action+" >"
                 radius: 12
-                x: mymessage.text.length+action.messageX
-                y:action.messageY
-                visible: action.action!==""
-                Text {
-                    id: actionName
-                    text: action.action+" >"
-                    color: "white"
-                    font.pixelSize: 12
-                    anchors.centerIn: parent
-                }
+                backgroundColor: actionColor
+                height: 18
+                sidePadding: 8
+                labelFontSize: 12
+                x: mymessage.paintedWidth
+                visible: action!==""
             }
             wrapMode: Text.WordWrap
         }

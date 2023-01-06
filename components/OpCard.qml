@@ -3,15 +3,13 @@ import QtGraphicalEffects 1.12
 import "../assets"
 
 Item {
-    id:card1
+    id:root
     property int cardX:0
     property int cardY:0
-    property double cardWidth
-    property double cardHeight
+    property double cardWidth:0
+    property double cardHeight:0
 
-    property string title
-    property int titleX
-    property int titleY
+    property alias title:heading.text
     property int titleFontSize
 
     property double iconWidth
@@ -19,7 +17,7 @@ Item {
     property string buttonSource
     property double buttonWidth:0
     property double buttonHeight:0
-//    property color buttonClickColor:"transparent"
+    property color buttonClickColor:"black"
 
     property int historyLogHeight1
     property int historyLogHeight2
@@ -35,30 +33,29 @@ Item {
     property double historyOpacity:0
     Rectangle{
         id:display
-        width: card1.cardWidth
-        height: card1.cardHeight
+        width: cardWidth
+        height: cardHeight
         color: "#232323"
         radius: 20
         clip: true
-        x:card1.cardX
-        y:card1.cardY
+        x:cardX
+        y:cardY
         Text {
-            id: mt0
-            text: card1.title
+            id: heading
             color: "white"
-            x:card1.titleX
-            y:card1.titleY
-            font.pixelSize: card1.titleFontSize
+            x:19
+            y:10
+            font.pixelSize: titleFontSize
             wrapMode: Text.WordWrap
         }
         Button{
             id: but
             radius: 20
             backgroundColor: "#232323"
-            iconImage: card1.buttonSource
+            iconImage: buttonSource
             sidePadding: 20
-            height: card1.buttonHeight!=0? card1.buttonHeight:implicitHeight
-            width: card1.buttonWidth!=0? card1.buttonWidth:implicitWidth
+            height: buttonHeight!=0? buttonHeight:implicitHeight
+            width: buttonWidth!=0? buttonWidth:implicitWidth
             anchors.right: parent.right
             onClicked: {
                 if(but.state==='')
@@ -72,16 +69,16 @@ Item {
                 PropertyChanges {target: cards;visible:false}
             }
             iconSize: iconWidth!=0?iconWidth:28
-//            onPressed: backgroundColor= card1.buttonClickColor
-//            onReleased: backgroundColor ="transparent"
+            onPressed: backgroundColor= buttonClickColor
+            onReleased: backgroundColor ="transparent"
         }
         Rectangle{
             id:progressTotal
             color: "transparent"
-            width: card1.cardWidth
-            height: card1.bodyHeight
+            width: cardWidth
+            height: bodyHeight
             clip: true
-            opacity: card1.progressOpacity
+            opacity: progressOpacity
             Rectangle {
                 id: progress
                 width: progressTotal.width
@@ -121,9 +118,9 @@ Item {
         }
         Rectangle{
             id:historyList
-            opacity:card1.historyOpacity
-            width: card1.cardWidth
-            height: card1.cardHeight-but.height
+            opacity:historyOpacity
+            width: cardWidth
+            height: cardHeight-but.height
             color: "Black"
             radius: 20
             clip: true
@@ -144,31 +141,10 @@ Item {
                 x:8
                 y:8
                 Column{
-//                    property var list: [
-//                                        "Light Engine Auto-calliberation",
-//                                        "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)",
-//                                        "Exposure complete ",
-//                                        "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)",
-//                                        "Exposure complete ",
-//                                        "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)",
-//                                        "Exposure Paused after 32s of exposure "]
-//                    Repeater{
-//                        model: list
-//                        Item{
-//                            id:m1
-//                            width: 220
-//                            height: card1.historyLogHeight1
-//                            Action{
-//                                time: "23:56"
-//                                message: ""
-//                            }
-//                        }
-//                    }
-
                     Item{
                         id:m1
                         width: 220
-                        height: card1.historyLogHeight1
+                        height: historyLogHeight1
                         Action{
                             time: "23:56"
                             message: "Light Engine Auto-calliberation"
@@ -177,7 +153,7 @@ Item {
                     Item{
                         id:m2
                         width: 220
-                        height: card1.historyLogHeight2
+                        height: historyLogHeight2
                         Action{
                             time: "23:56"
                             message: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
@@ -186,19 +162,18 @@ Item {
                     Item{
                         id:m3
                         width: 220
-                        height: card1.historyLogHeight3
+                        height: historyLogHeight3
                         Action{
                             time: "23:56"
                             message: "Exposure complete "
                             action: "Redo"
                             actionColor: "green"
-                            messageX: 100
                         }
                     }
                     Item{
                         id:m4
                         width: 220
-                        height: card1.historyLogHeight4
+                        height: historyLogHeight4
                         Action{
                             time: "23:56"
                             message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
@@ -207,19 +182,18 @@ Item {
                     Item{
                         id:m5
                         width: 220
-                        height: card1.historyLogHeight5
+                        height: historyLogHeight5
                         Action{
                             time: "23:56"
                             message: "Exposure complete "
                             action: "Redo"
                             actionColor: "green"
-                            messageX: 100
                         }
                     }
                     Item{
                         id:m6
                         width: 220
-                        height: card1.historyLogHeight6
+                        height: historyLogHeight6
                         Action{
                             time: "23:56"
                             message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
@@ -228,13 +202,12 @@ Item {
                     Item{
                         id:m7
                         width: 220
-                        height: card1.historyLogHeight7
+                        height: historyLogHeight7
                         Action{
                             time: "23:56"
                             message: "Exposure Paused after 32s of exposure "
                             action: "Resume"
                             actionColor: "#5f849c"
-                            messageX: 204
                         }
                     }
                 }

@@ -4,11 +4,12 @@ import "../assets"
 Item {
     id: root
     implicitHeight: 52
-    implicitWidth: label.paintedWidth + (iconImage!==""?icon.width+(2*sidePadding):sidePadding) +(label.text!==""?3.5*sidePadding:0)
+    implicitWidth: label.paintedWidth + (iconImage!==""?icon.width+(2*sidePadding):sidePadding) +(label.text!==""?(labelFontSize==root.height * 0.45?3.5*sidePadding:sidePadding):0)
     signal clicked()
     signal pressed()
     signal released()
     property alias text: label.text
+    property int labelFontSize: root.height * 0.45
     property alias radius: background.radius
     property color backgroundColor: "grey"
     property color textColor: "white"
@@ -22,8 +23,8 @@ Item {
         Text {
             id: label
             anchors.verticalCenter: parent.verticalCenter
-            leftPadding: sidePadding
-            font.pixelSize: parent.height * 0.45
+            padding: sidePadding
+            font.pixelSize: labelFontSize
             color: root.enabled ? textColor : Qt.darker(textColor)
             visible: label.text!==""
         }
