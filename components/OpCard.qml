@@ -4,31 +4,26 @@ import "../assets"
 
 Item {
     id:root
-    property int cardX:0
-    property int cardY:0
     property double cardWidth:0
     property double cardHeight:0
 
     property alias title:heading.text
-    property int titleFontSize
+    property int titleFontSize:18
 
-    property double iconWidth
+    property double iconWidth:26
 
-    property string buttonSource
+    property string buttonSource:""
     property double buttonWidth:0
     property double buttonHeight:0
     property color buttonClickColor:"black"
 
-    property int historyLogHeight1
-    property int historyLogHeight2
-    property int historyLogHeight3
-    property int historyLogHeight4
-    property int historyLogHeight5
-    property int historyLogHeight6
-    property int historyLogHeight7
+    property int historyLogHeight1:18
+    property int historyLogHeight2:18
+    property int historyLogHeight4:18
+    property int historyLogHeight6:18
 
-    property int bodyHeight
-    property int bodyWidth
+    property int progressHeight:0
+    property int bodyWidth:0
     property double progressOpacity:1
     property double historyOpacity:0
     Rectangle{
@@ -38,8 +33,8 @@ Item {
         color: "#232323"
         radius: 20
         clip: true
-        x:cardX
-        y:cardY
+        x:(historyOpacity==0 || !cards.visible)?0:5
+        y:historyOpacity==0?0:5
         Text {
             id: heading
             color: "white"
@@ -76,7 +71,7 @@ Item {
             id:progressTotal
             color: "transparent"
             width: cardWidth
-            height: bodyHeight
+            height: progressHeight
             clip: true
             opacity: progressOpacity
             Rectangle {
@@ -141,74 +136,43 @@ Item {
                 x:8
                 y:8
                 Column{
-                    Item{
-                        id:m1
-                        width: 220
+                    Action{
+                        time: "23:56"
+                        message: "Light Engine Auto-calliberation"
                         height: historyLogHeight1
-                        Action{
-                            time: "23:56"
-                            message: "Light Engine Auto-calliberation"
-                        }
                     }
-                    Item{
-                        id:m2
-                        width: 220
+                    Action{
+                        time: "23:56"
+                        message: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
                         height: historyLogHeight2
-                        Action{
-                            time: "23:56"
-                            message: "Exposure initiated for 2m 30s at 321mJ/cm2 (21%)"
-                        }
                     }
-                    Item{
-                        id:m3
-                        width: 220
-                        height: historyLogHeight3
-                        Action{
-                            time: "23:56"
-                            message: "Exposure complete "
-                            action: "Redo"
-                            actionColor: "green"
-                        }
+                    Action{
+                        time: "23:56"
+                        message: "Exposure complete "
+                        action: "Redo"
+                        actionColor: "green"
                     }
-                    Item{
-                        id:m4
-                        width: 220
+                    Action{
+                        time: "23:56"
+                        message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
                         height: historyLogHeight4
-                        Action{
-                            time: "23:56"
-                            message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
-                        }
                     }
-                    Item{
-                        id:m5
-                        width: 220
-                        height: historyLogHeight5
-                        Action{
-                            time: "23:56"
-                            message: "Exposure complete "
-                            action: "Redo"
-                            actionColor: "green"
-                        }
+                    Action{
+                        time: "23:56"
+                        message: "Exposure complete "
+                        action: "Redo"
+                        actionColor: "green"
                     }
-                    Item{
-                        id:m6
-                        width: 220
+                    Action{
+                        time: "23:56"
+                        message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
                         height: historyLogHeight6
-                        Action{
-                            time: "23:56"
-                            message: "Exposure initiated for 1m 10s at 167mJ/cm2 (12%)"
-                        }
                     }
-                    Item{
-                        id:m7
-                        width: 220
-                        height: historyLogHeight7
-                        Action{
-                            time: "23:56"
-                            message: "Exposure Paused after 32s of exposure "
-                            action: "Resume"
-                            actionColor: "#5f849c"
-                        }
+                    Action{
+                        time: "23:56"
+                        message: "Exposure Paused after 32s of exposure "
+                        action: "Resume"
+                        actionColor: "#5f849c"
                     }
                 }
             }

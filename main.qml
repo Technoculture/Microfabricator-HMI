@@ -381,21 +381,12 @@ Window {
                     cardWidth: 512
                     cardHeight: 325.6
                     title: "History"
-                    titleFontSize: 18
                     buttonSource: "../assets/maximize-2.png"
                     buttonClickColor: "#b36705"
                     buttonHeight: 42
-                    iconWidth: 26
                     progressOpacity: 0
                     historyOpacity: 1
                     bodyWidth: 320
-                    historyLogHeight1: 18
-                    historyLogHeight2: 18
-                    historyLogHeight3: 18
-                    historyLogHeight4: 18
-                    historyLogHeight5: 18
-                    historyLogHeight6: 18
-                    historyLogHeight7: 18
                 }
                 layer.enabled: true
                 layer.effect: DropShadow{
@@ -505,26 +496,19 @@ Window {
                     color:"transparent"
                     radius: 20
                     OpCard{
-                        cardX: 5
-                        cardY: 5
                         cardWidth: 244
                         cardHeight: 145.6
                         title: "History"
-                        titleFontSize: 18
                         buttonSource: "../assets/maximize-2.png"
                         buttonHeight: 42
-                        iconWidth: 26
                         buttonClickColor: "#b36705"
                         progressOpacity: 0
                         historyOpacity: 1
                         bodyWidth: 165
                         historyLogHeight1: 32
                         historyLogHeight2: 32
-                        historyLogHeight3: 18
                         historyLogHeight4: 32
-                        historyLogHeight5: 18
                         historyLogHeight6: 32
-                        historyLogHeight7: 18
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
@@ -552,7 +536,7 @@ Window {
                 buttonSource: "../assets/play-circle.png"
                 buttonWidth: 82
                 iconWidth: 36
-                bodyHeight: 8
+                progressHeight: 8
             }
             layer.enabled: true
             layer.effect: DropShadow{
