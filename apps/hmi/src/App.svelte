@@ -24,19 +24,19 @@
         <Home />
       </Card>
 
-      <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={false}>
+      <Card title="Wafer Stage" show={show_controls} hasRing={true} disabled={false} cardOn={true}>
         <MetricThumbnail state={true}>
           <span class="place-self-center text-left">Open</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Clamp" show={show_controls} hasRing={true} disabled={false}>
+      <Card title="Wafer Clamp" show={show_controls} hasRing={true} disabled={true} cardOn={true}>
         <MetricThumbnail state={false}>
           <span class="place-self-center">Off</span>
         </MetricThumbnail>
       </Card>
 
-      <Card title="Wafer Mask Gap" show={show_controls} disabled={false}>
+      <Card title="Wafer Mask Gap" show={show_controls} disabled={true}>
         <MetricThumbnail>
           <div class="absolute left-0 w-full overflow-auto touch-pan-y">
             <div class="flex">

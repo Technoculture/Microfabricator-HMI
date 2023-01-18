@@ -6,21 +6,24 @@
 
   export let hasRing : boolean = false;
   export let disabled : boolean = false;
+  export let cardOn : boolean = false;
 
   let show_class = "";
   if(show){
-    show_class = "shadow-2xl shadow-neutral-800 rounded-2xl ring-slate-400 ";
-    if(disabled){
-    } else {
-      if(hasRing) {
-        show_class = show_class.concat("active:ring-4 active:ring-orange-400");
+    show_class = "shadow-2xl shadow-neutral-800 rounded-2xl ";
+    if(!disabled){
+      if(hasRing){
+        if (cardOn) {
+            console.log("cardOn!!!");
+            show_class += "ring-4 ring-orange-300 ";
+        }
+        show_class += "active:ring-4 active:ring-orange-400";
       }
     }
+    console.log(show_class);
   } else {
     show_class = "invisible";
   }
-
-  // console.log([hasRing, show_class]);
 </script>
 
 {#if show}
@@ -33,7 +36,8 @@
   {/if}
   <slot />
   {#if disabled}
-  <div class="absolute bg-gray-600/80 z-100 h-full w-full" />
+  <div class="absolute bg-gray-400/50 z-100 h-full w-full" />
   {/if}
 </div>
 {/if}
+
