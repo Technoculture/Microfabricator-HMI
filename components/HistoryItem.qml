@@ -4,9 +4,9 @@ Item {
     id:root
     implicitWidth: 220
     implicitHeight: 18
-    property string time:"00:00"
-    property string message:""
-    property string action:""
+    property string time: "00:00"
+    property string message: ""
+    property string action: ""
     property color actionColor: "green"
     Rectangle{
         anchors.fill: parent
@@ -14,15 +14,15 @@ Item {
         Grid{
             columns: 2
             Text{
-                id:mytime
-                text: time+"> "
+                id: timeStamp
+                text: time + "> "
                 color: "orange"
                 font.pixelSize: 12
                 font.bold: true
             }
             Text{
-                id:mymessage
-                text: message+" "
+                id: record
+                text: message + " "
                 color: "#9ca3af"
                 font.pixelSize: 12
                 font.bold: true
@@ -35,8 +35,8 @@ Item {
                     height: 18
                     sidePadding: 8
                     labelFontSize: 12
-                    x: mymessage.paintedWidth
-                    visible: action!==""
+                    x: record.paintedWidth
+                    visible: action !== ""
                 }
                 wrapMode: Text.WordWrap
             }

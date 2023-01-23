@@ -4,7 +4,11 @@ import "../assets"
 Item {
     id: root
     implicitHeight: 52
-    implicitWidth: label.paintedWidth + (iconImage!==""?icon.width+(2*sidePadding):sidePadding) +(label.text!==""?(labelFontSize==root.height * 0.45?3.5*sidePadding:sidePadding):0)
+    //implicitWidth:
+    //this will make width equal to text width +
+    //if icon is not present then add extra padding between them +
+    //if text is not present then giving padding accordingly
+    implicitWidth: label.paintedWidth + (iconImage !== "" ? icon.width + (2*sidePadding) : sidePadding) + (label.text !== "" ? (labelFontSize === root.height * 0.45 ? 3.5*sidePadding : sidePadding) : 0)
     signal clicked()
     signal pressed()
     signal released()
@@ -13,7 +17,7 @@ Item {
     property alias radius: background.radius
     property color backgroundColor: "grey"
     property color textColor: "white"
-    property string iconImage:""
+    property string iconImage: ""
     property int iconSize: 28
     property int sidePadding: 12
     Rectangle {
@@ -26,16 +30,16 @@ Item {
             padding: sidePadding
             font.pixelSize: labelFontSize
             color: root.enabled ? textColor : Qt.darker(textColor)
-            visible: label.text!==""
+            visible: label.text !== ""
         }
         Image {
             id: icon
             source: iconImage
-            x: label.text!=="" ? parent.width-icon.width-sidePadding : sidePadding
+            x: label.text !== "" ? parent.width - icon.width - sidePadding : sidePadding //for adjustment of padding if label is not available
             anchors.verticalCenter: parent.verticalCenter
             width: iconSize
             height: iconSize
-            visible: icon.source!==""
+            visible: icon.source !== ""
         }
         MouseArea {
             id: ma

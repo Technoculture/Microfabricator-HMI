@@ -2,14 +2,14 @@ import QtQuick 2.15
 import QtGraphicalEffects 1.12
 
 Item {
-    id:card
+    id: root
     property alias title: heading.text
     signal pressed()
     signal released()
-    property alias status:t0.text
-    property alias info:t1.text
+    property alias status: t0.text
+    property alias info: t1.text
     Rectangle{
-        id:display
+        id: cardArea
         width: 104
         height: 145.6
         gradient: Gradient{
@@ -28,8 +28,8 @@ Item {
             }
         }
         radius: 20
-        x:5
-        y:5
+        x: 5
+        y: 5
         layer.enabled: true
         layer.effect: DropShadow{
             transparentBorder: true
@@ -42,15 +42,15 @@ Item {
             id: heading
             color: "white"
             anchors.horizontalCenter: parent.horizontalCenter
-            y:14
+            y: 14
             font.pixelSize: 15
             width: parent.width-18
             wrapMode: Text.WordWrap
         }
         Rectangle {
-            id:rec
+            id: content
             radius: 20
-            width:104
+            width: 104
             height: 80
             color: "black"
             Rectangle {
@@ -64,7 +64,7 @@ Item {
                 color: parent.color
             }
             Column{
-                x:12
+                x: 12
                 spacing: 5
                 Text {
                     id: t0
@@ -75,7 +75,7 @@ Item {
                     id: t1
                     color: "white"
                     font.pixelSize: 15
-                    visible: info!==""
+                    visible: info !== ""
                 }
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -83,8 +83,8 @@ Item {
         }
         MouseArea{
             anchors.fill: parent
-            onPressed: card.pressed()
-            onReleased: card.released()
+            onPressed: pressed()
+            onReleased: released()
         }
     }
 }

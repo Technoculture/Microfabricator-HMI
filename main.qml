@@ -11,13 +11,13 @@ Window {
     width: 860
     height: 500
     Item{
-        id:mygradient
+        id:backgroundGradient
         width: 860
         height: 500
         LinearGradient{
             anchors.fill: parent
             start: Qt.point(0, 0)
-            end: Qt.point(mygradient.width, mygradient.height)
+            end: Qt.point(backgroundGradient.width, backgroundGradient.height)
             gradient: Gradient{
                 GradientStop{
                     position: 0
@@ -38,14 +38,14 @@ Window {
     Grid{
         padding: 40
         spacing: 24
-        rows: 2;columns: 2
+        rows: 2; columns: 2
         Rectangle{
-            width:234
+            width: 234
             height: 335.6
             color: "transparent"
             radius: 20
             Rectangle{
-                id:display
+                id: carousel
                 width:234
                 height: 325.6
                 gradient: Gradient{
@@ -75,7 +75,7 @@ Window {
                     samples: 61
                 }
                 Rectangle{
-                    id:mac1
+                    id: carouselItem
                     width: 234
                     height: 267
                     color: "transparent"
@@ -88,8 +88,7 @@ Window {
                         Item {
                             id: firstPage
                             Image {
-                                id: pic1
-                                source: "assets/image-1.png"
+                                source: "assets/Carousel-item-1.png"
                                 x:10
                                 y:10
                                 width: 224
@@ -99,8 +98,7 @@ Window {
                         Item {
                             id: secondPage
                             Image {
-                                id: pic2
-                                source: "assets/image-2.png"
+                                source: "assets/Carousel-item-2.png"
                                 x:-122
                                 y:15
                                 width: 464
@@ -110,8 +108,7 @@ Window {
                         Item {
                             id: thirdPage
                             Image {
-                                id: pic3
-                                source: "assets/image-3.png"
+                                source: "assets/Carousel-item-3.png"
                                 x:-119
                                 y:15
                                 width: 464
@@ -141,14 +138,14 @@ Window {
                 }
 
                 Rectangle{
-                    id:over1
+                    id:overlay1
                     width: 234
                     height: 136
                     anchors.bottom: buttons.top
                     color: "black"
                     visible: false
                     Text {
-                        id: ot1
+                        id: overlayText1
                         text:"Are you sure, this action will unlock the stage module 4S and allow you to remove it out"
                         width: 201
                         wrapMode: Text.WordWrap
@@ -162,7 +159,7 @@ Window {
                         radius: 10
                         backgroundColor: "#f54949"
                         textColor: "black"
-                        iconImage: "../assets/Padlock.png"
+                        iconImage: "../assets/Lock.png"
                         sidePadding: 25
                         height: 40
                         iconSize: 24
@@ -172,14 +169,14 @@ Window {
                     }
                 }
                 Rectangle{
-                    id:over2
+                    id:overlay2
                     width: 234
                     height: 136
                     anchors.bottom: buttons.top
                     color: "black"
                     visible: false
                     Text {
-                        id: ot2
+                        id: overlayText2
                         text:"Are you sure, this action will unlock the light engine module and allow you to remove it out"
                         width: 201
                         wrapMode: Text.WordWrap
@@ -193,7 +190,7 @@ Window {
                         radius: 10
                         backgroundColor: "#f54949"
                         textColor: "black"
-                        iconImage: "../assets/Padlock.png"
+                        iconImage: "../assets/Lock.png"
                         sidePadding: 25
                         height: 40
                         iconSize: 24
@@ -216,7 +213,7 @@ Window {
                     Grid{
                         columns: 2
                         Rectangle{
-                            id:rec1
+                            id:button1
                             width: 98.25
                             height: 53.2
                             color: "black"
@@ -236,7 +233,7 @@ Window {
                                 color: parent.color
                             }
                             Text {
-                                id: t
+                                id: buttonText1
                                 text: "4S"
                                 x:19
                                 y:13
@@ -244,8 +241,8 @@ Window {
                                 font.pixelSize: 22
                             }
                             Image {
-                                id: img
-                                source: "assets/Forward.png"
+                                id: buttonIcon1
+                                source: "assets/Right-arrow.png"
                                 width: 26
                                 height: 26
                                 x: 65
@@ -253,41 +250,41 @@ Window {
                                 anchors.verticalCenter: parent.verticalCenter
                             }
                             MouseArea{
-                                id:ma1
-                                anchors.fill: rec1
+                                id: mouseArea1
+                                anchors.fill: button1
                                 onClicked: {
-                                    if(rec1.state===''){
-                                        rec1.state='st1'
-                                        rec2.state=''
+                                    if(button1.state===''){
+                                        button1.state='overlay1Open'
+                                        button2.state=''
                                     }
                                     else
-                                        rec1.state=''
+                                        button1.state=''
                                 }
                                 onPressed: buttons.border.color="orange"
                                 onReleased: buttons.border.color="transparent"
                             }
                             states: State {
-                                name: "st1"
+                                name: "overlay1Open"
                                 PropertyChanges {
-                                    target: over1
+                                    target: overlay1
                                     visible:true
                                 }
                                 PropertyChanges {
-                                    target: img
+                                    target: buttonIcon1
                                     rotation:-90
                                 }
                             }
                             transitions: [
                                 Transition {
                                     from: ""
-                                    to: "st1"
+                                    to: "overlay1Open"
                                     reversible: true
                                     NumberAnimation { properties: "rotation"; duration: 100; easing.type: Easing.InOutQuad }
                                 }
                             ]
                         }
                         Rectangle{
-                            id:rec2
+                            id:button2
                             width: 135.75
                             height: 53.2
                             color: "black"
@@ -307,7 +304,7 @@ Window {
                                 color: parent.color
                             }
                             Text {
-                                id: t1
+                                id: buttonText2
                                 text: "365nm"
                                 x:19
                                 y:13
@@ -316,8 +313,8 @@ Window {
                             }
 
                             Image {
-                                id: img1
-                                source: "assets/Forward.png"
+                                id: buttonIcon2
+                                source: "assets/Right-arrow.png"
                                 width: 26
                                 height: 26
                                 x: 97
@@ -325,34 +322,34 @@ Window {
                                 anchors.verticalCenter: parent.verticalCenter
                             }
                             MouseArea{
-                                id:ma2
-                                anchors.fill: rec2
+                                id: mouseArea2
+                                anchors.fill: button2
                                 onClicked: {
-                                    if(rec2.state===''){
-                                        rec2.state='st2'
-                                        rec1.state=''
+                                    if(button2.state===''){
+                                        button2.state='overlay2Open'
+                                        button1.state=''
                                     }
                                     else
-                                        rec2.state=''
+                                        button2.state=''
                                 }
                                 onPressed: buttons.border.color="orange"
                                 onReleased: buttons.border.color="transparent"
                             }
                             states: State {
-                                name: "st2"
+                                name: "overlay2Open"
                                 PropertyChanges {
-                                    target: over2
+                                    target: overlay2
                                     visible:true
                                 }
                                 PropertyChanges {
-                                    target: img1
+                                    target: buttonIcon2
                                     rotation:-90
                                 }
                             }
                             transitions: [
                                 Transition {
                                     from: ""
-                                    to: "st2"
+                                    to: "overlay2Open"
                                     reversible: true
                                     NumberAnimation { properties: "rotation"; duration: 100; easing.type: Easing.InOutQuad }
                                 }
@@ -378,10 +375,10 @@ Window {
                 radius: 20
                 anchors.centerIn: parent
                 OpCard{
-                    cardWidth: 512
-                    cardHeight: 325.6
+                    width: 512
+                    height: 325.6
                     title: "History"
-                    buttonSource: "../assets/maximize-2.png"
+                    buttonSource: "../assets/Expand.png"
                     buttonClickColor: "#b36705"
                     buttonHeight: 42
                     progressOpacity: 0
@@ -406,7 +403,6 @@ Window {
                 columns: 4
                 spacing: 24
                 Rectangle{
-                    id:r1
                     radius: 20
                     width: 114
                     height: 155.6
@@ -419,7 +415,6 @@ Window {
                     color: "transparent"
                 }
                 Rectangle{
-                    id:r2
                     radius: 20
                     width: 114
                     height: 155.6
@@ -432,7 +427,6 @@ Window {
                     color: "transparent"
                 }
                 Rectangle{
-                    id:r3
                     radius: 20
                     width: 114
                     height: 155.6
@@ -445,7 +439,6 @@ Window {
                     color: "transparent"
                 }
                 Rectangle{
-                    id:r4
                     radius: 20
                     width: 114
                     height: 155.6
@@ -462,7 +455,6 @@ Window {
                 columns: 3
                 spacing: 24
                 Rectangle{
-                    id:r5
                     radius: 20
                     width: 114
                     height: 155.6
@@ -476,7 +468,6 @@ Window {
                     color: "transparent"
                 }
                 Rectangle{
-                    id:r6
                     radius: 20
                     width: 114
                     height: 155.6
@@ -496,10 +487,10 @@ Window {
                     color:"transparent"
                     radius: 20
                     OpCard{
-                        cardWidth: 244
-                        cardHeight: 145.6
+                        width: 244
+                        height: 145.6
                         title: "History"
-                        buttonSource: "../assets/maximize-2.png"
+                        buttonSource: "../assets/Expand.png"
                         buttonHeight: 42
                         buttonClickColor: "#b36705"
                         progressOpacity: 0
@@ -522,18 +513,18 @@ Window {
             }
         }
         Rectangle{
-            id:play
+            id: progressPlay
             width:224
             height: 70.8
             color:"transparent"
             radius: 20
             clip: true
             OpCard{
-                cardWidth: 234
-                cardHeight: 60.8
+                width: 234
+                height: 60.8
                 title: "00:22:19"
                 titleFontSize: 24
-                buttonSource: "../assets/play-circle.png"
+                buttonSource: "../assets/Play-Run.png"
                 buttonWidth: 82
                 iconWidth: 36
                 progressHeight: 8
@@ -548,14 +539,5 @@ Window {
                 spread: 0
             }
         }
-//        Button{
-//            text: "Eject"
-//            radius: 10
-//            backgroundColor: "orange"
-//            textColor: "black"
-//            iconImage: "assets/Padlock.png"
-//            sidePadding: 26
-//            height: 46
-//        }
     }
 }

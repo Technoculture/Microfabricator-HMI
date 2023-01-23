@@ -1,18 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>assets/Forward.png</file>
-        <file>assets/maximize-2.png</file>
-        <file>assets/Padlock.png</file>
-        <file>assets/play-circle.png</file>
-        <file>components/Action.qml</file>
+        <file>components/HistoryItem.qml</file>
         <file>components/Card.qml</file>
         <file>components/OpCard.qml</file>
-        <file>assets/image-1.png</file>
-        <file>assets/image-2.png</file>
-        <file>assets/image-3.png</file>
         <file>font/fa-brands-400.ttf</file>
         <file>font/fa-regular-400.ttf</file>
         <file>components/Button.qml</file>
+        <file>assets/Carousel-item-1.png</file>
+        <file>assets/Carousel-item-2.png</file>
+        <file>assets/Carousel-item-3.png</file>
+        <file>assets/Expand.png</file>
+        <file>assets/Lock.png</file>
+        <file>assets/Play-Run.png</file>
+        <file>assets/Right-arrow.png</file>
     </qresource>
 </RCC>
