@@ -14,5 +14,6 @@
         <file>assets/Lock.png</file>
         <file>assets/Play-Run.png</file>
         <file>assets/Right-arrow.png</file>
+        <file>components/CustomSlider.qml</file>
     </qresource>
 </RCC>

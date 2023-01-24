@@ -6,6 +6,7 @@ Item {
     property alias title: heading.text
     signal pressed()
     signal released()
+    signal clicked()
     property alias status: t0.text
     property alias info: t1.text
     Rectangle{
@@ -83,8 +84,9 @@ Item {
         }
         MouseArea{
             anchors.fill: parent
-            onPressed: pressed()
-            onReleased: released()
+            onClicked: root.clicked()
+            onPressed: root.pressed()
+            onReleased: root.released()
         }
     }
 }

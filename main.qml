@@ -409,8 +409,8 @@ Window {
                     Card{
                         title: "Wafer Stage"
                         status: "Open"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onPressed: parent.color="orange"
+                        onReleased: parent.color="transparent"
                     }
                     color: "transparent"
                 }
@@ -418,13 +418,15 @@ Window {
                     radius: 20
                     width: 114
                     height: 155.6
+                    enabled: false
                     Card{
                         title: "Wafer Clamp"
                         status: "Off"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onPressed: parent.color="orange"
+                        onReleased: parent.color="transparent"
                     }
                     color: "transparent"
+                    opacity: enabled === false ? 0.5 : 1
                 }
                 Rectangle{
                     radius: 20
@@ -433,9 +435,11 @@ Window {
                     Card{
                         title: "Wafer Mask Gap"
                         status: "2.8μm"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onPressed: parent.color="orange"
+                        onReleased: parent.color="transparent"
                     }
+                    enabled: false
+                    opacity: enabled === false ? 0.5 : 1
                     color: "transparent"
                 }
                 Rectangle{
@@ -445,8 +449,8 @@ Window {
                     Card{
                         title: "Vibration"
                         status: "Ok"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onPressed: parent.color="orange"
+                        onReleased: parent.color="transparent"
                     }
                     color: "transparent"
                 }
@@ -455,6 +459,7 @@ Window {
                 columns: 3
                 spacing: 24
                 Rectangle{
+                    id:lightIntensity
                     radius: 20
                     width: 114
                     height: 155.6
@@ -462,12 +467,28 @@ Window {
                         title: "Light Intensity"
                         status: "21%"
                         info: "321 mJ/cm2"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onClicked: {
+                            if(lightIntensity.state==="")
+                                lightIntensity.state="active1"
+                            else
+                                lightIntensity.state=""
+                        }
+                    }
+                    states: State {
+                        name: "active1"
+                        PropertyChanges {
+                            target: lightIntensity
+                            color: "#f5a262"
+                        }
+                        PropertyChanges {
+                            target: slider1
+                            visible: true
+                        }
                     }
                     color: "transparent"
                 }
                 Rectangle{
+                    id: duration
                     radius: 20
                     width: 114
                     height: 155.6
@@ -475,8 +496,23 @@ Window {
                         title: "Duration"
                         status: "112s"
                         info: "1m 32s"
-                        onPressed:parent.color="orange"
-                        onReleased:parent.color="transparent"
+                        onClicked: {
+                            if(duration.state==="")
+                                duration.state="active2"
+                            else
+                                duration.state=""
+                        }
+                    }
+                    states: State {
+                        name: "active2"
+                        PropertyChanges {
+                            target: duration
+                            color: "#f5a262"
+                        }
+                        PropertyChanges {
+                            target: slider2
+                            visible: true
+                        }
                     }
                     color: "transparent"
                 }
@@ -538,6 +574,18 @@ Window {
                 samples: 61
                 spread: 0
             }
+        }
+        CustomSlider{
+            id: slider1
+            width: 528
+            height: 60.8
+            visible: false
+        }
+        CustomSlider{
+            id: slider2
+            width: 528
+            height: 60.8
+            visible: false
         }
     }
 }
