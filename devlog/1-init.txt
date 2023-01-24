@@ -1,6 +1,0 @@
-svelte
-------
-Prefereable for Embedded applications as it does not use a framework runtime. Compilation would lead to smaller js bundles.
-
-- https://www.section.io/engineering-education/svelte-with-vite-typescript-and-tailwind-css/
-- https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/faq.md#where-should-i-put-my-global-styles
