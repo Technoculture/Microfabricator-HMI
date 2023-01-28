@@ -1,6 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QDir>
+#include <QFile>
+#include <QSqlTableModel>
 
+#include "Settings.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +12,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
+//    qDebug()<<QDir::currentPath();
+    if (!QFile::exists(QStringLiteral("/usr/share/medical-data/medData.db")))
+        db.setDatabaseName(QStringLiteral("%1/Labs/medData.db").arg(QDir::currentPath()));
+    else
+        db.setDatabaseName(QStringLiteral("/usr/share/medical-data/medData.db"));
+    db.open();
+    Settings settings(nullptr,db);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
