@@ -15,7 +15,7 @@ Item {
             columns: 2
             Text{
                 id: timeStamp
-                text: time + "> "
+                text: time + ">  "
                 color: "orange"
                 font.pixelSize: 12
                 font.bold: true
@@ -27,7 +27,7 @@ Item {
                 font.pixelSize: 12
                 font.bold: true
                 lineHeight: 1.2
-                width: bodyWidth
+                width: root.width
                 Button{
                     text: action+" >"
                     radius: 12

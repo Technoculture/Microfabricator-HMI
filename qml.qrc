@@ -15,6 +15,9 @@
         <file>assets/Play-Run.png</file>
         <file>assets/Right-arrow.png</file>
         <file>components/CustomSlider.qml</file>
-        <file>genotyper.db</file>
+        <file>mfab.db</file>
+        <file>components/RunCard.qml</file>
+        <file>assets/Minimize.png</file>
+        <file>assets/Stop.png</file>
     </qresource>
 </RCC>

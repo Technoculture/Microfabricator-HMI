@@ -42,27 +42,27 @@ Slider {
            }
         }
 
-//        ToolTip {
-//            id: valuePreviewer
+        ToolTip {
+            id: valuePreviewer
 
-//            parent: sliderHandle
-//            visible: control.showValue? hovered : false
-//            delay: 500
-//            timeout: 0
+            parent: sliderHandle
+            visible: control.showValue? hovered : false
+            delay: 500
+            timeout: 0
 
-//            contentItem: Text{
-//                topPadding: -8;
-//                bottomPadding: -8;
-//                text: value.toPrecision(2)
-//                font.pixelSize: 7
-//            }
+            contentItem: Text{
+                topPadding: -8;
+                bottomPadding: -4;
+                text: value.toPrecision(2)*100
+                font.pixelSize: 20
+            }
 
-//            opacity: .8
+            opacity: .8
 
-//            background: Rectangle{
-//                color: "Transparent"
-//                radius: width/8
-//            }
-//        }
+            background: Rectangle{
+                color: "Transparent"
+                radius: width/8
+            }
+        }
     }
 }

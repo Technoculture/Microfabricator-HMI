@@ -8,12 +8,12 @@ import "./assets"
 Window {
     title: "MicroFabricator"
     visible: true
-    width: 860
-    height: 500
+    width: 840
+    height: 480
     Item{
         id:backgroundGradient
-        width: 860
-        height: 500
+        width: 840
+        height: 480
         LinearGradient{
             anchors.fill: parent
             start: Qt.point(0, 0)
@@ -37,17 +37,17 @@ Window {
 
     Grid{
         padding: 40
-        spacing: 24
+        spacing: 20
         rows: 2; columns: 2
         Rectangle{
             width: 234
-            height: 335.6
+            height: 327.6
             color: "transparent"
             radius: 20
             Rectangle{
                 id: carousel
                 width:234
-                height: 325.6
+                height: 317.6
                 gradient: Gradient{
                     orientation: Gradient.Horizontal
                     GradientStop{
@@ -165,7 +165,7 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: rec1.state=''
+                        onClicked: button1.state=''
                     }
                 }
                 Rectangle{
@@ -196,7 +196,7 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: rec2.state=''
+                        onClicked: button2.state=''
                     }
                 }
 
@@ -364,13 +364,13 @@ Window {
         Rectangle{
             id:historyFull
             width:522
-            height: 335.6
+            height: 327.6
             color:"transparent"
             radius: 20
             visible: false
             Rectangle{
                 width:512
-                height: 325.6
+                height: 327.6
                 color:"#262626"
                 radius: 20
                 anchors.centerIn: parent
@@ -378,12 +378,9 @@ Window {
                     width: 512
                     height: 325.6
                     title: "History"
-                    buttonSource: "../assets/Expand.png"
+                    buttonSource: "../assets/Minimize.png"
                     buttonClickColor: "#b36705"
                     buttonHeight: 42
-                    progressOpacity: 0
-                    historyOpacity: 1
-                    bodyWidth: 320
                 }
                 layer.enabled: true
                 layer.effect: DropShadow{
@@ -398,13 +395,13 @@ Window {
         Grid{
             id:cards
             rows: 2
-            spacing: 24
+            spacing: 16
             Grid{
                 columns: 4
-                spacing: 24
+                spacing: 16
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Wafer Stage"
@@ -416,7 +413,7 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     enabled: false
                     Card{
@@ -430,7 +427,7 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Wafer Mask Gap"
@@ -444,7 +441,7 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Vibration"
@@ -457,19 +454,23 @@ Window {
             }
             Grid{
                 columns: 3
-                spacing: 24
+                spacing: 16
                 Rectangle{
                     id:lightIntensity
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Light Intensity"
                         status: "21%"
                         info: "321 mJ/cm2"
                         onClicked: {
-                            if(lightIntensity.state==="")
+                            if(lightIntensity.state===""){
                                 lightIntensity.state="active1"
+                                if(duration.state==="active2"){
+                                    duration.state=""
+                                }
+                            }
                             else
                                 lightIntensity.state=""
                         }
@@ -490,15 +491,19 @@ Window {
                 Rectangle{
                     id: duration
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Duration"
                         status: "112s"
                         info: "1m 32s"
                         onClicked: {
-                            if(duration.state==="")
+                            if(duration.state===""){
                                 duration.state="active2"
+                                if(lightIntensity.state==="active1"){
+                                    lightIntensity.state=""
+                                }
+                            }
                             else
                                 duration.state=""
                         }
@@ -529,13 +534,6 @@ Window {
                         buttonSource: "../assets/Expand.png"
                         buttonHeight: 42
                         buttonClickColor: "#b36705"
-                        progressOpacity: 0
-                        historyOpacity: 1
-                        bodyWidth: 165
-                        historyLogHeight1: 32
-                        historyLogHeight2: 32
-                        historyLogHeight4: 32
-                        historyLogHeight6: 32
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
@@ -550,21 +548,11 @@ Window {
         }
         Rectangle{
             id: progressPlay
-            width:224
+            width:234
             height: 70.8
             color:"transparent"
             radius: 20
             clip: true
-            OpCard{
-                width: 234
-                height: 60.8
-                title: "00:22:19"
-                titleFontSize: 24
-                buttonSource: "../assets/Play-Run.png"
-                buttonWidth: 82
-                iconWidth: 36
-                progressHeight: 8
-            }
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
@@ -574,18 +562,42 @@ Window {
                 samples: 61
                 spread: 0
             }
+            RunCard{
+                width: 234
+                height: 60.8
+                title: "00:22:19"
+                titleFontSize: 24
+                buttonWidth: 82
+                iconWidth: 36
+                progressHeight: 8
+            }
         }
-        CustomSlider{
+        Rectangle{
             id: slider1
             width: 528
             height: 60.8
+            color: "#262626"
+            radius: 10
             visible: false
+            CustomSlider{
+                width: 518
+                height: 60.8
+                anchors.centerIn: parent
+            }
         }
-        CustomSlider{
+        Rectangle{
             id: slider2
             width: 528
             height: 60.8
+            color: "#262626"
+            radius: 10
             visible: false
+            CustomSlider{
+                id:durationSlider
+                width: 518
+                height: 60.8
+                anchors.centerIn: parent
+            }
         }
     }
 }

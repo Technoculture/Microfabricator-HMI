@@ -2,9 +2,10 @@
 #include <QQmlApplicationEngine>
 #include <QDir>
 #include <QFile>
+#include <QQmlContext>
 #include <QSqlTableModel>
 
-#include "Settings.h"
+#include "History.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,15 +15,15 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QSqlDatabase db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
-//    qDebug()<<QDir::currentPath();
-    if (!QFile::exists(QStringLiteral("/usr/share/medical-data/medData.db")))
-        db.setDatabaseName(QStringLiteral("%1/Labs/medData.db").arg(QDir::currentPath()));
+    if (!QFile::exists(QStringLiteral("/usr/share/tcr/mfab.db")))
+        db.setDatabaseName(QStringLiteral("%1/mfab.db").arg(QDir::currentPath()));
     else
-        db.setDatabaseName(QStringLiteral("/usr/share/medical-data/medData.db"));
+        db.setDatabaseName(QStringLiteral("/usr/share/tcr/mfab.db"));
     db.open();
-    Settings settings(nullptr,db);
+    History history(nullptr,db);
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("historyTable", &history);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

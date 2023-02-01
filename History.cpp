@@ -1,9 +1,9 @@
-#include "Settings.h"
+#include "History.h"
 
 #include <QSqlRecord>
 #include <QDebug>
 
-Settings::Settings(QObject *parent, QSqlDatabase database)
+History::History(QObject *parent, QSqlDatabase database)
     : QSqlTableModel(parent, database)
 {
     setTable(QStringLiteral("history"));
@@ -11,15 +11,17 @@ Settings::Settings(QObject *parent, QSqlDatabase database)
     select();
 }
 
-QHash<int, QByteArray> Settings::roleNames() const
+QHash<int, QByteArray> History::roleNames() const
 {
     QHash<int, QByteArray> roles;
-    for(int i = 0; i < columnCount(); i++)
+    for(int i = 0; i < columnCount(); i++){
         roles[Qt::UserRole + 1 + i] = headerData(i, Qt::Horizontal).toByteArray();
+//        qDebug()<<roles[Qt::UserRole + 1 + i];
+    }
     return roles;
 }
 
-QVariant Settings::data(const QModelIndex &index, int role) const
+QVariant History::data(const QModelIndex &index, int role) const
 {
     if(index.row() < 0 || index.row() > rowCount() || role < 0 || role > (columnCount() + Qt::UserRole + 1))
         return QVariant();
@@ -29,19 +31,19 @@ QVariant Settings::data(const QModelIndex &index, int role) const
         return QSqlTableModel::data(QSqlTableModel::index(index.row(), role - Qt::UserRole - 1), Qt::DisplayRole);
 }
 
-QVariant Settings::roleFromRow(int row, QString roleName)
+QVariant History::roleFromRow(int row, QString roleName)
 {
     QSqlRecord record = QSqlTableModel::record(row);
     return record.value(roleName);
 }
 
-void Settings::removeRow(int row)
+void History::removeRow(int row)
 {
     removeRows(row, 1, QModelIndex());
     submitAll();
 }
 
-void Settings::addRow(int row, QString newData)
+void History::addRow(int row, QString newData)
 {
     QStringList data = newData.split(";", Qt::KeepEmptyParts);
     QSqlRecord newRecord = record();

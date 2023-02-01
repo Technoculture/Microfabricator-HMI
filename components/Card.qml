@@ -11,7 +11,7 @@ Item {
     property alias info: t1.text
     Rectangle{
         id: cardArea
-        width: 104
+        width: 106
         height: 145.6
         gradient: Gradient{
             orientation: Gradient.Horizontal
@@ -28,7 +28,7 @@ Item {
                 color: "#262626"
             }
         }
-        radius: 20
+        radius: 17
         x: 5
         y: 5
         layer.enabled: true
