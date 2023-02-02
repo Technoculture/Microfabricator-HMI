@@ -38,7 +38,7 @@ Window {
     Grid{
         padding: 40
         spacing: 20
-        rows: 2; columns: 2
+        columns: 2
         Rectangle{
             width: 234
             height: 327.6
@@ -462,7 +462,7 @@ Window {
                     height: 155.6
                     Card{
                         title: "Light Intensity"
-                        status: "21%"
+                        status: intensitySlider.value.toPrecision(2)*100 + "%"
                         info: "321 mJ/cm2"
                         onClicked: {
                             if(lightIntensity.state===""){
@@ -495,7 +495,7 @@ Window {
                     height: 155.6
                     Card{
                         title: "Duration"
-                        status: "112s"
+                        status: durationSlider.value.toPrecision(2)*100 + "s"
                         info: "1m 32s"
                         onClicked: {
                             if(duration.state===""){
@@ -580,6 +580,7 @@ Window {
             radius: 10
             visible: false
             CustomSlider{
+                id: intensitySlider
                 width: 518
                 height: 60.8
                 anchors.centerIn: parent
@@ -593,7 +594,7 @@ Window {
             radius: 10
             visible: false
             CustomSlider{
-                id:durationSlider
+                id: durationSlider
                 width: 518
                 height: 60.8
                 anchors.centerIn: parent

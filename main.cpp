@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 
 #include "History.h"
+#include "ModuleHistory.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,9 +22,11 @@ int main(int argc, char *argv[])
         db.setDatabaseName(QStringLiteral("/usr/share/tcr/mfab.db"));
     db.open();
     History history(nullptr,db);
+    ModuleHistory moduleHistory(nullptr,db);
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("historyTable", &history);
+    engine.rootContext()->setContextProperty("moduleHistoryTable", &moduleHistory);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

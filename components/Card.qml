@@ -64,6 +64,7 @@ Item {
                 }
                 color: parent.color
             }
+            clip: true
             Column{
                 x: 12
                 spacing: 5
