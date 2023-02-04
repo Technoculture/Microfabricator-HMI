@@ -8,11 +8,11 @@ import "./assets"
 Window {
     title: "MicroFabricator"
     visible: true
-    width: 840
+    width: 850
     height: 480
     Item{
         id:backgroundGradient
-        width: 840
+        width: 850
         height: 480
         LinearGradient{
             anchors.fill: parent
@@ -36,12 +36,12 @@ Window {
     }
 
     Grid{
-        padding: 40
-        spacing: 20
+        anchors.centerIn: parent
+        spacing: 26
         columns: 2
         Rectangle{
             width: 234
-            height: 327.6
+            height: 332.6
             color: "transparent"
             radius: 20
             Rectangle{
@@ -77,7 +77,7 @@ Window {
                 Rectangle{
                     id: carouselItem
                     width: 234
-                    height: 267
+                    height: 262
                     color: "transparent"
                     clip: true
                     SwipeView {
@@ -151,7 +151,7 @@ Window {
                         wrapMode: Text.WordWrap
                         font.pixelSize: 14
                         color: "white"
-                        y:10
+                        topPadding: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                     Button{
@@ -182,7 +182,7 @@ Window {
                         wrapMode: Text.WordWrap
                         font.pixelSize: 14
                         color: "white"
-                        y:10
+                        topPadding: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                     Button{
@@ -395,10 +395,10 @@ Window {
         Grid{
             id:cards
             rows: 2
-            spacing: 16
+            spacing: 20
             Grid{
                 columns: 4
-                spacing: 16
+                spacing: 20
                 Rectangle{
                     radius: 20
                     width: 116
@@ -454,7 +454,7 @@ Window {
             }
             Grid{
                 columns: 3
-                spacing: 16
+                spacing: 20
                 Rectangle{
                     id:lightIntensity
                     radius: 20
@@ -462,7 +462,7 @@ Window {
                     height: 155.6
                     Card{
                         title: "Light Intensity"
-                        status: intensitySlider.value.toPrecision(2)*100 + "%"
+                        status: intensitySlider.value.toPrecision(3) + "%"
                         info: "321 mJ/cm2"
                         onClicked: {
                             if(lightIntensity.state===""){
@@ -494,9 +494,15 @@ Window {
                     width: 116
                     height: 155.6
                     Card{
+                        function minutes(t){
+                            var totalTime=parseInt(t);
+                            var minutes=parseInt(totalTime/60);
+                            var seconds=totalTime%60;
+                            return (minutes!==0)?minutes+"m "+seconds+"s":seconds+"s";
+                        }
                         title: "Duration"
-                        status: durationSlider.value.toPrecision(2)*100 + "s"
-                        info: "1m 32s"
+                        status: durationSlider.value + "s"
+                        info: minutes(durationSlider.value)
                         onClicked: {
                             if(duration.state===""){
                                 duration.state="active2"
@@ -523,12 +529,14 @@ Window {
                 }
                 Rectangle{
                     id:history
-                    width:254
+                    width:239
                     height: 155.6
                     color:"transparent"
                     radius: 20
                     OpCard{
-                        width: 244
+                        x:5
+                        y:5
+                        width: 239
                         height: 145.6
                         title: "History"
                         buttonSource: "../assets/Expand.png"
@@ -564,7 +572,7 @@ Window {
             }
             RunCard{
                 width: 234
-                height: 60.8
+                height: 62.8
                 title: "00:22:19"
                 titleFontSize: 24
                 buttonWidth: 82
@@ -574,30 +582,32 @@ Window {
         }
         Rectangle{
             id: slider1
-            width: 528
-            height: 60.8
+            width: 518
+            height: 62.8
             color: "#262626"
-            radius: 10
+            radius: 15
             visible: false
             CustomSlider{
                 id: intensitySlider
-                width: 518
+                width: 508
                 height: 60.8
                 anchors.centerIn: parent
+                from: 0; to: 100;stepSize: 0.1
             }
         }
         Rectangle{
             id: slider2
-            width: 528
-            height: 60.8
+            width: 518
+            height: 62.8
             color: "#262626"
-            radius: 10
+            radius: 15
             visible: false
             CustomSlider{
                 id: durationSlider
-                width: 518
+                width: 508
                 height: 60.8
                 anchors.centerIn: parent
+                from: 0; to: 180;stepSize: 1
             }
         }
     }

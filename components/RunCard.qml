@@ -69,7 +69,6 @@ Item {
             id: heading
             color: "white"
             x: 19
-            y: 10
             font.pixelSize: titleFontSize
             wrapMode: Text.WordWrap
             anchors.verticalCenter: parent.verticalCenter
@@ -77,6 +76,7 @@ Item {
         Button{
             id: runButton
             radius: 20
+            y: 2
             backgroundColor: "#232323"
             iconImage: runButton.state !== 'running' ? "../assets/Play-Run.png" : "../assets/Stop.png"
             sidePadding: 20

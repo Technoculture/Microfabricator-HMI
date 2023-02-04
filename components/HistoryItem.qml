@@ -3,7 +3,7 @@ import QtQuick 2.15
 Item {
     id:root
     implicitWidth: 220
-    implicitHeight: 18
+    implicitHeight: record.paintedHeight
     property string time: "00:00"
     property string message: ""
     property string action: ""
@@ -27,7 +27,8 @@ Item {
                 font.pixelSize: 12
                 font.bold: true
                 lineHeight: 1.2
-                width: root.width
+                width: root.width-timeStamp.paintedWidth-12
+//                height: record.lineHeight
                 Button{
                     text: action+" >"
                     radius: 12
@@ -37,6 +38,7 @@ Item {
                     labelFontSize: 12
                     x: record.paintedWidth
                     visible: action !== ""
+                    anchors.verticalCenter: parent.verticalCenter
                 }
                 wrapMode: Text.WordWrap
             }

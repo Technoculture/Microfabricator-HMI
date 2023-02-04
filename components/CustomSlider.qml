@@ -8,7 +8,6 @@ Slider {
     property color color: 'black'
     property color colorTheme: 'grey'
     property bool showValue: true
-
     background: Rectangle {
 
         x: control.leftPadding ;
@@ -28,7 +27,7 @@ Slider {
         height: width*2-15
         width: control.height/2
 
-        radius: width/8
+        radius: width/5
 
         border{
 
@@ -40,29 +39,6 @@ Slider {
                    duration: 100;
                }
            }
-        }
-
-        ToolTip {
-            id: valuePreviewer
-
-            parent: sliderHandle
-            visible: control.showValue? hovered : false
-            delay: 500
-            timeout: 0
-
-            contentItem: Text{
-                topPadding: -8;
-                bottomPadding: -4;
-                text: value.toPrecision(2)*100
-                font.pixelSize: 20
-            }
-
-            opacity: .8
-
-            background: Rectangle{
-                color: "Transparent"
-                radius: width/8
-            }
         }
     }
 }

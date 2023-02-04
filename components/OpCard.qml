@@ -41,7 +41,10 @@ Item {
             //if not given explicitly then we give default height and width
             anchors.right: parent.right
             onClicked: {
-                if(expandButton.state === '' || expandButton.state === 's2'){
+                if(expandButton.state === ''){
+                    expandButton.state = 's1'
+                }
+                else if(expandButton.state === 's2'){
                     expandButton.state = 's1'
                 }
                 else{
@@ -83,17 +86,15 @@ Item {
                 color: parent.color
             }
             ListView{
-                anchors.margins: 8
+                anchors.leftMargin: 10
+                anchors.topMargin: 6
                 anchors.fill: parent
                 model: historyTable
                 delegate: HistoryItem{
-                    height: 20
-                    width: 220
-                    time: model.time
+                    width: parent.width
+                    time: Qt.formatTime(new Date(),"hh:mm")
                     message: model.message
-                    action: {
-                        model.type==="Initiated"?"Abort":"Redo"
-                    }
+                    action: model.type==="Initiated"?"Abort":"Redo"
                 }
             }
             anchors.bottom: parent.bottom
