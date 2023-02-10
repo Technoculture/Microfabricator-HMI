@@ -7,12 +7,16 @@ Item {
     property alias title: heading.text
     property int titleFontSize: 18
     signal clicked()
+    signal start()
+    signal completed()
+    signal stop()
     property double iconWidth: 26
 
     property double buttonWidth: 0
     property double buttonHeight: 0
     property color buttonClickColor: "black"
     property int progressHeight: 0
+    property double percent: 0
     Rectangle{
         id: cardArea
         anchors.fill: parent
@@ -25,7 +29,7 @@ Item {
             width: parent.width
             height: progressHeight
             clip: true
-            opacity: 0
+            visible: false
             radius: 20
             Rectangle {
                 id: clipped1
@@ -37,7 +41,7 @@ Item {
                 anchors.bottom: parent.bottom
                 Rectangle {
                     id: progress
-                    width: 0.3 * progressBar.width
+                    width: percent * progressBar.width
                     height: 200
                     color: "transparent"
                     clip: true
@@ -84,12 +88,39 @@ Item {
             width: buttonWidth !== 0 ? buttonWidth : implicitWidth
             //if not given explicitly then we give default height and width
             anchors.right: parent.right
-            onClicked: runButton.state === '' ? runButton.state = 'running' : runButton.state = ''
+            Timer{
+                interval: 1000
+                running: true; repeat: true
+                onTriggered: {
+                    if(percent<1 && runButton.state==='running'){
+                        percent+=1/(durationSlider.value);
+                    }
+                    else{
+                        if(percent===1)
+                            completed()
+                        percent=0;
+                        progressBar.visible=false;
+                        runButton.state=''
+                    }
+                }
+            }
+
+            onClicked: {
+                if(runButton.state === ''){
+                    runButton.state = 'running'
+                    start()
+                }
+                else{
+                    runButton.state = ''
+                    if(durationSlider.value!==0)
+                        stop()
+                }
+            }
             // this will expand the history panel and minimize it
             states: [
                 State {
                     name: "running"
-                    PropertyChanges {target: progressBar; opacity:1}
+                    PropertyChanges {target: progressBar; visible:true}
                 }
             ]
             iconSize: iconWidth !== 0 ? iconWidth : 28 //if explicit width given then that width is assigned or else default 28 value is given

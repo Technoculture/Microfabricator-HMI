@@ -6,10 +6,12 @@ import "./components"
 import "./assets"
 
 Window {
+    id:root
     title: "MicroFabricator"
     visible: true
     width: 850
     height: 480
+    property double index: -1
     Item{
         id:backgroundGradient
         width: 850
@@ -235,6 +237,7 @@ Window {
                             Text {
                                 id: buttonText1
                                 text: "4S"
+//                                text: moduleHistoryTable[0].stage
                                 x:19
                                 y:13
                                 color: "white"
@@ -404,6 +407,7 @@ Window {
                     width: 116
                     height: 155.6
                     Card{
+                        id: waferStage
                         title: "Wafer Stage"
                         status: "Open"
                         onPressed: parent.color="orange"
@@ -417,6 +421,7 @@ Window {
                     height: 155.6
                     enabled: false
                     Card{
+                        id: waferClamp
                         title: "Wafer Clamp"
                         status: "Off"
                         onPressed: parent.color="orange"
@@ -430,6 +435,7 @@ Window {
                     width: 116
                     height: 155.6
                     Card{
+                        id: waferMaskGap
                         title: "Wafer Mask Gap"
                         status: "2.8μm"
                         onPressed: parent.color="orange"
@@ -444,6 +450,7 @@ Window {
                     width: 116
                     height: 155.6
                     Card{
+                        id: vibration
                         title: "Vibration"
                         status: "Ok"
                         onPressed: parent.color="orange"
@@ -578,6 +585,30 @@ Window {
                 buttonWidth: 82
                 iconWidth: 36
                 progressHeight: 8
+                function minutes(t){
+                    var totalTime=parseInt(t);
+                    var minutes=parseInt(totalTime/60);
+                    var seconds=totalTime%60;
+                    return (minutes!==0)?minutes+"m "+seconds+"s":seconds+"s";
+                }
+                onStart:{
+                    var data="-1;Exposure initiated for "+minutes(durationSlider.value)+";"+Qt.formatTime(new Date(),"hh:mm")+";";
+                    data+="Initiated;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
+                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
+                    historyTable.addRow(root.index,data)
+                }
+                onCompleted: {
+                    var data="-1;Exposure Completed;"+Qt.formatTime(new Date(),"hh:mm")+";";
+                    data+="Completed;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
+                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
+                    historyTable.addRow(root.index,data)
+                }
+                onStop: {
+                    var data="-1;Exposure Aborted;"+Qt.formatTime(new Date(),"hh:mm")+";";
+                    data+="Aborted;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
+                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
+                    historyTable.addRow(root.index,data)
+                }
             }
         }
         Rectangle{

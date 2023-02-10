@@ -6,9 +6,11 @@
 ModuleHistory::ModuleHistory(QObject *parent, QSqlDatabase database)
     : QSqlTableModel(parent, database)
 {
-    setTable(QStringLiteral("moduleHistory"));
+    setTable(QStringLiteral("module_history"));
     setEditStrategy(QSqlTableModel::OnManualSubmit);
+    setSort(1,Qt::DescendingOrder);// sort against time
     select();
+//    qDebug()<<this->record(1).value("stage").toString();
 }
 
 QHash<int, QByteArray> ModuleHistory::roleNames() const
@@ -16,7 +18,6 @@ QHash<int, QByteArray> ModuleHistory::roleNames() const
     QHash<int, QByteArray> roles;
     for(int i = 0; i < columnCount(); i++){
         roles[Qt::UserRole + 1 + i] = headerData(i, Qt::Horizontal).toByteArray();
-//        qDebug()<<roles[Qt::UserRole + 1 + i];
     }
     return roles;
 }

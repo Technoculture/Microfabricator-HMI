@@ -92,7 +92,7 @@ Item {
                 model: historyTable
                 delegate: HistoryItem{
                     width: parent.width
-                    time: Qt.formatTime(new Date(),"hh:mm")
+                    time: model.time
                     message: model.message
                     action: model.type==="Initiated"?"Abort":"Redo"
                 }

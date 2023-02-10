@@ -26,19 +26,19 @@ Item {
                 color: "#9ca3af"
                 font.pixelSize: 12
                 font.bold: true
-                lineHeight: 1.2
-                width: root.width-timeStamp.paintedWidth-12
-//                height: record.lineHeight
+                lineHeight: 1.4
+                width: root.width-timeStamp.paintedWidth-actionButton.width+20
                 Button{
+                    id: actionButton
                     text: action+" >"
                     radius: 12
                     backgroundColor: actionColor
-                    height: 18
+                    height: 16
                     sidePadding: 8
                     labelFontSize: 12
-                    x: record.paintedWidth
+                    x: record.contentWidth
                     visible: action !== ""
-                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.verticalCenter: parent.verticalCenter
                 }
                 wrapMode: Text.WordWrap
             }
