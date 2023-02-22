@@ -8,7 +8,7 @@ ModuleHistory::ModuleHistory(QObject *parent, QSqlDatabase database)
 {
     setTable(QStringLiteral("module_history"));
     setEditStrategy(QSqlTableModel::OnManualSubmit);
-    setSort(1,Qt::DescendingOrder);// sort against time
+    //setSort(1,Qt::DescendingOrder);// sort against time
     select();
 //    qDebug()<<this->record(1).value("stage").toString();
 }
@@ -35,6 +35,7 @@ QVariant ModuleHistory::data(const QModelIndex &index, int role) const
 QVariant ModuleHistory::roleFromRow(int row, QString roleName)
 {
     QSqlRecord record = QSqlTableModel::record(row);
+    qDebug() << record.value(roleName);
     return record.value(roleName);
 }
 

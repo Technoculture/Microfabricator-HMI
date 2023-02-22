@@ -17,6 +17,7 @@ Item {
     property color buttonClickColor: "black"
     property int progressHeight: 0
     property double percent: 0
+    property int durationValue: durationSlider.value
     Rectangle{
         id: cardArea
         anchors.fill: parent
@@ -72,6 +73,15 @@ Item {
         Text {
             id: heading
             color: "white"
+            function minute(t){
+                var min="0",sec="0"
+                var totalTime=parseInt(t);
+                var minutes=parseInt(totalTime/60);
+                var seconds=totalTime%60;
+                min+=minutes;sec=(seconds<10)?"0"+seconds:seconds;
+                return [min,sec];
+            }
+            text: "00:"+minute(durationValue)[0]+":"+minute(durationValue)[1]
             x: 19
             font.pixelSize: titleFontSize
             wrapMode: Text.WordWrap
@@ -94,9 +104,10 @@ Item {
                 onTriggered: {
                     if(percent<1 && runButton.state==='running'){
                         percent+=1/(durationSlider.value);
+                        durationValue-=1;
                     }
                     else{
-                        if(percent===1)
+                        if(percent>=1)
                             completed()
                         percent=0;
                         progressBar.visible=false;

@@ -11,7 +11,6 @@ Window {
     visible: true
     width: 850
     height: 480
-    property double index: -1
     Item{
         id:backgroundGradient
         width: 850
@@ -167,7 +166,12 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: button1.state=''
+                        onClicked: {
+                            button1.state=''
+                            buttonText1.text=""
+//                            moduleHistoryTable.removeRow(0)
+//                            moduleHistoryTable.addRow("-1;")
+                        }
                     }
                 }
                 Rectangle{
@@ -198,7 +202,11 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: button2.state=''
+                        onClicked: {
+                            button2.state=''
+                            buttonText2.text=""
+                            maintainanceMode.visible=true
+                        }
                     }
                 }
 
@@ -236,8 +244,7 @@ Window {
                             }
                             Text {
                                 id: buttonText1
-                                text: "4S"
-//                                text: moduleHistoryTable[0].stage
+                                text: moduleHistoryTable.roleFromRow(0, "stage")
                                 x:19
                                 y:13
                                 color: "white"
@@ -308,7 +315,7 @@ Window {
                             }
                             Text {
                                 id: buttonText2
-                                text: "365nm"
+                                text: moduleHistoryTable.roleFromRow(0, "light_engine")
                                 x:19
                                 y:13
                                 color: "white"
@@ -580,7 +587,6 @@ Window {
             RunCard{
                 width: 234
                 height: 62.8
-                title: "00:22:19"
                 titleFontSize: 24
                 buttonWidth: 82
                 iconWidth: 36
@@ -591,23 +597,30 @@ Window {
                     var seconds=totalTime%60;
                     return (minutes!==0)?minutes+"m "+seconds+"s":seconds+"s";
                 }
-                onStart:{
-                    var data="-1;Exposure initiated for "+minutes(durationSlider.value)+";"+Qt.formatTime(new Date(),"hh:mm")+";";
-                    data+="Initiated;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
-                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
-                    historyTable.addRow(root.index,data)
+                function dataEntry(Message,Type){
+                    var data="";
+                    data += Message+";";
+                    data += Qt.formatTime(new Date(),"hh:mm:ss")+";";
+                    data += Type+";";
+                    data += waferStage.status+";";
+                    data += waferClamp.status+";";
+                    data += waferMaskGap.status+";";
+                    data += vibration.status+";";
+                    data += minutes(durationSlider.value)+";";
+                    data += intensitySlider.value.toPrecision(3)+"%";
+
+                    historyTable.addRow(-1,data)
+                }
+
+                onStart: {
+//                    historyTable.removeRow(0)
+                    dataEntry("Exposure initiated for "+minutes(durationSlider.value),"Initiated")
                 }
                 onCompleted: {
-                    var data="-1;Exposure Completed;"+Qt.formatTime(new Date(),"hh:mm")+";";
-                    data+="Completed;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
-                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
-                    historyTable.addRow(root.index,data)
+                    dataEntry("Exposure Completed","Completed")
                 }
                 onStop: {
-                    var data="-1;Exposure Aborted;"+Qt.formatTime(new Date(),"hh:mm")+";";
-                    data+="Aborted;"+waferStage.status+";"+waferClamp.status+";"+waferMaskGap.status+";"+vibration.status+";";
-                    data+=minutes(durationSlider.value)+";"+intensitySlider.value.toPrecision(3)+"%;";
-                    historyTable.addRow(root.index,data)
+                    dataEntry("Exposure Aborted","Aborted")
                 }
             }
         }
@@ -639,6 +652,129 @@ Window {
                 height: 60.8
                 anchors.centerIn: parent
                 from: 0; to: 180;stepSize: 1
+            }
+        }
+    }
+    Item{
+        id:maintainanceMode
+        width: 850
+        height: 480
+        visible: false
+        LinearGradient{
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(maintainanceMode.width, maintainanceMode.height)
+            gradient: Gradient{
+                GradientStop{
+                    position: 0
+                    color: "#ffffff"
+                }
+                GradientStop{
+                    position: 0.2
+                    color: "#FFE8D9"
+                }
+                GradientStop{
+                    position: 0.4
+                    color: "#ffffff"
+                }
+                GradientStop{
+                    position: 0.7
+                    color: "#ffffff"
+                }
+                GradientStop{
+                    position: 1
+                    color: "#EDE3D9"
+                }
+            }
+        }
+        Grid{
+            anchors.centerIn: parent
+            columns: 2
+            rows: 2
+            columnSpacing: 50
+            rowSpacing: 10
+            Rectangle{
+                width: 355
+                height: 160
+                color: "transparent"
+                Image {
+                    id: upload
+                    source: "./assets/Upload_module.png"
+                }
+                Text {
+                    id: mainTitle
+                    text: "Awaiting Ejection of the Light Engine"
+                    font.pixelSize: 16
+                    topPadding: 10
+                    anchors.top: extraInfo.bottom
+                }
+                Text {
+                    id: extraInfo
+                    text: "Maintenance Mode"
+                    font.pixelSize: 28
+                    font.bold: true
+                    topPadding: 10
+                    anchors.top: upload.bottom
+                }
+            }
+            Rectangle{
+                width: 355
+                height: 160
+                color: "transparent"
+            }
+            Rectangle{
+                width: 355
+                height: 250
+                color: "transparent"
+            }
+            Rectangle{
+                width: 355
+                height: 250
+                color: "transparent"
+                Text {
+                    id: content1
+                    text: "Remove the light engine module continue the module swapping process.
+
+"
+                    font.pixelSize: 16
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                }
+                Text {
+                    id: content2
+                    text: "Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you.
+
+"
+                    font.pixelSize: 16
+                    anchors.top: content1.bottom
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                }
+                Grid{
+                    anchors.top: content2.bottom
+                    columns: 2
+                    spacing: 10
+                    Button{
+                        text: "Cancel"
+                        radius: 10
+                        backgroundColor: "#FFA487"
+                        textColor: "black"
+                        width: 160
+                        sidePadding: 50
+                        height: 40
+                        onClicked: maintainanceMode.visible=false
+                    }
+                    Button{
+                        text: "Ejected"
+                        radius: 10
+                        backgroundColor: "#98FF87"
+                        textColor: "black"
+                        width: 160
+                        sidePadding: 50
+                        height: 40
+                        onClicked: maintainanceMode.visible=false
+                    }
+                }
             }
         }
     }

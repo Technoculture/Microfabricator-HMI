@@ -53,16 +53,15 @@ void History::addRow(int row, QString newData)
     else
         newRecord = record(row);
 
-    newRecord.setValue(QStringLiteral("id"), data.at(0));
-    newRecord.setValue(QStringLiteral("message"), data.at(1));
-    newRecord.setValue(QStringLiteral("time"), data.at(2));
-    newRecord.setValue(QStringLiteral("type"), data.at(3));
-    newRecord.setValue(QStringLiteral("wafer_stage"), data.at(4));
-    newRecord.setValue(QStringLiteral("wafer_clamp"), data.at(5));
-    newRecord.setValue(QStringLiteral("wafer_mask_gap"), data.at(6));
-    newRecord.setValue(QStringLiteral("vibration"), data.at(7));
-    newRecord.setValue(QStringLiteral("duration"), data.at(8));
-    newRecord.setValue(QStringLiteral("light_intensity"), data.at(9));
+    newRecord.setValue(QStringLiteral("message"), data.at(0));
+    newRecord.setValue(QStringLiteral("time"), data.at(1));
+    newRecord.setValue(QStringLiteral("type"), data.at(2));
+    newRecord.setValue(QStringLiteral("wafer_stage"), data.at(3));
+    newRecord.setValue(QStringLiteral("wafer_clamp"), data.at(4));
+    newRecord.setValue(QStringLiteral("wafer_mask_gap"), data.at(5));
+    newRecord.setValue(QStringLiteral("vibration"), data.at(6));
+    newRecord.setValue(QStringLiteral("duration"), data.at(7));
+    newRecord.setValue(QStringLiteral("light_intensity"), data.at(8));
 
     if (row == -1)
         insertRecord(row, newRecord);
@@ -70,4 +69,5 @@ void History::addRow(int row, QString newData)
         setRecord(row, newRecord);
 
     submitAll();
+    qDebug()<<"Database Updated: " << newRecord;
 }

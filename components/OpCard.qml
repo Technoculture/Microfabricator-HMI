@@ -91,7 +91,7 @@ Item {
                 anchors.fill: parent
                 model: historyTable
                 delegate: HistoryItem{
-                    width: parent.width
+                    width: historyList.width
                     time: model.time
                     message: model.message
                     action: model.type==="Initiated"?"Abort":"Redo"

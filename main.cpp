@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
 
     QSqlDatabase db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
     if (!QFile::exists(QStringLiteral("/usr/share/tcr/mfab.db")))
-        db.setDatabaseName(QStringLiteral("%1/mfab.db").arg(QDir::currentPath()));
+//        db.setDatabaseName(QStringLiteral("%1/mfab.db").arg(QDir::currentPath()));
+        db.setDatabaseName(QStringLiteral("D:/QML_Internship/Micro-fabricator/Microfabricator/mfab.db"));
     else
         db.setDatabaseName(QStringLiteral("/usr/share/tcr/mfab.db"));
     db.open();

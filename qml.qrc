@@ -19,5 +19,6 @@
         <file>assets/Minimize.png</file>
         <file>assets/Stop.png</file>
         <file>mfab.db</file>
+        <file>assets/Upload_module.png</file>
     </qresource>
 </RCC>
