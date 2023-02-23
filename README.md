@@ -9,6 +9,7 @@
 | 'O' | Open Slider |
 | 'C' | Close Slider |
 | 'D' | Done Slider Open/Close |
+| 'T' | Timeout Slider Open./Close |
 | 'E' | Failed to Open/Close Slider |
 | 'G\<gap\>' | Mask Wafer Gap. Example `G28` is 28um Mask Wafer Gap. Max gap 1000um |
 | 'G' | Start Mask Wafer Gap Stream |
