@@ -20,5 +20,13 @@
         <file>assets/Stop.png</file>
         <file>mfab.db</file>
         <file>assets/Upload_module.png</file>
+        <file>components/MaintainanceCard.qml</file>
+        <file>assets/Icon/Download.png</file>
+        <file>assets/Icon/Eject.png</file>
+        <file>assets/Icon/Insert.png</file>
+        <file>assets/Icon/Tick.png</file>
+        <file>assets/Icon/UpdateFail.png</file>
+        <file>assets/Icon/UpdatesSync.png</file>
+        <file>assets/Icon/UpdateTick.png</file>
     </qresource>
 </RCC>

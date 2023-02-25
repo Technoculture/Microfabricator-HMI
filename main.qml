@@ -169,8 +169,7 @@ Window {
                         onClicked: {
                             button1.state=''
                             buttonText1.text=""
-//                            moduleHistoryTable.removeRow(0)
-//                            moduleHistoryTable.addRow("-1;")
+                            maintainanceMode.visible=true
                         }
                     }
                 }
@@ -655,7 +654,7 @@ Window {
             }
         }
     }
-    Item{
+    Rectangle{
         id:maintainanceMode
         width: 850
         height: 480
@@ -667,115 +666,36 @@ Window {
             gradient: Gradient{
                 GradientStop{
                     position: 0
-                    color: "#ffffff"
+                    color: "#EAEAEA"
                 }
                 GradientStop{
-                    position: 0.2
-                    color: "#FFE8D9"
-                }
-                GradientStop{
-                    position: 0.4
-                    color: "#ffffff"
-                }
-                GradientStop{
-                    position: 0.7
-                    color: "#ffffff"
+                    position: 0.5
+                    color: "#D6D6DA"
                 }
                 GradientStop{
                     position: 1
-                    color: "#EDE3D9"
+                    color: "#68657E"
                 }
             }
         }
-        Grid{
+        MaintainanceCard{
             anchors.centerIn: parent
-            columns: 2
-            rows: 2
-            columnSpacing: 50
-            rowSpacing: 10
-            Rectangle{
-                width: 355
-                height: 160
-                color: "transparent"
-                Image {
-                    id: upload
-                    source: "./assets/Upload_module.png"
-                }
-                Text {
-                    id: mainTitle
-                    text: "Awaiting Ejection of the Light Engine"
-                    font.pixelSize: 16
-                    topPadding: 10
-                    anchors.top: extraInfo.bottom
-                }
-                Text {
-                    id: extraInfo
-                    text: "Maintenance Mode"
-                    font.pixelSize: 28
-                    font.bold: true
-                    topPadding: 10
-                    anchors.top: upload.bottom
-                }
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 0
+                color: "#000000"
+                radius: 60
+                samples: 121
             }
-            Rectangle{
-                width: 355
-                height: 160
-                color: "transparent"
-            }
-            Rectangle{
-                width: 355
-                height: 250
-                color: "transparent"
-            }
-            Rectangle{
-                width: 355
-                height: 250
-                color: "transparent"
-                Text {
-                    id: content1
-                    text: "Remove the light engine module continue the module swapping process.
+            iconMode: "Eject"
+            titleText: "Awaiting Ejection of the Light Engine"
+            descriptionText: "Remove the light engine module continue the module swapping process.
 
-"
-                    font.pixelSize: 16
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                }
-                Text {
-                    id: content2
-                    text: "Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you.
-
-"
-                    font.pixelSize: 16
-                    anchors.top: content1.bottom
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                }
-                Grid{
-                    anchors.top: content2.bottom
-                    columns: 2
-                    spacing: 10
-                    Button{
-                        text: "Cancel"
-                        radius: 10
-                        backgroundColor: "#FFA487"
-                        textColor: "black"
-                        width: 160
-                        sidePadding: 50
-                        height: 40
-                        onClicked: maintainanceMode.visible=false
-                    }
-                    Button{
-                        text: "Ejected"
-                        radius: 10
-                        backgroundColor: "#98FF87"
-                        textColor: "black"
-                        width: 160
-                        sidePadding: 50
-                        height: 40
-                        onClicked: maintainanceMode.visible=false
-                    }
-                }
-            }
+Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you."
+            successVisible: true
+            successText: "Ejected"
+            cancelVisible: true
         }
     }
 }
