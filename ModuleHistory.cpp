@@ -47,7 +47,7 @@ void ModuleHistory::removeRow(int row)
 
 void ModuleHistory::addRow(int row, QString newData)
 {
-    QStringList data = newData.split(";", Qt::KeepEmptyParts);
+    QStringList data = newData.split(";", QString::KeepEmptyParts);
     QSqlRecord newRecord = record();
 
     if (row == -1)
