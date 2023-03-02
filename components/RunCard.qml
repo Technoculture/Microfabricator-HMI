@@ -105,6 +105,7 @@ Item {
                     if(percent<1 && runButton.state==='running'){
                         percent+=1/(durationSlider.value);
                         durationValue-=1;
+                        if(durationValue<0)durationValue=0;
                     }
                     else{
                         if(percent>=1)

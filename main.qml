@@ -48,7 +48,7 @@ Window {
             Rectangle{
                 id: carousel
                 width:234
-                height: 317.6
+                height: 332.6
                 gradient: Gradient{
                     orientation: Gradient.Horizontal
                     GradientStop{
@@ -168,7 +168,6 @@ Window {
                         y:72
                         onClicked: {
                             button1.state=''
-                            buttonText1.text=""
                             maintainanceMode.visible=true
                         }
                     }
@@ -203,7 +202,6 @@ Window {
                         y:72
                         onClicked: {
                             button2.state=''
-                            buttonText2.text=""
                             maintainanceMode.visible=true
                         }
                     }
@@ -679,6 +677,7 @@ Window {
             }
         }
         MaintainanceCard{
+            id: maintain
             anchors.centerIn: parent
             layer.enabled: true
             layer.effect: DropShadow{
@@ -696,6 +695,58 @@ Click cancel to cancel the eject process. Click ejected to confirm that the modu
             successVisible: true
             successText: "Ejected"
             cancelVisible: true
+            onCancelation: {
+                maintain.state=""
+                maintainanceMode.visible=false
+            }
+
+            onTransition: {
+                maintain.state="insertPending"
+            }
+            states: [
+                State {
+                    name: "insertPending"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Insert"
+                        titleText: "No Module Inserted. Try Again.No Module Inserted. Try Again."
+                        descriptionText: "Insert a light engine module to finish the module swapping process.
+
+Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you."
+                        successText: "Unlock"
+                        onTransition: maintain.state="insertion"
+                    }
+                },
+                State {
+                    name: "insertion"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Insert"
+                        titleText: "Awaiting Insertion of a Light Engine
+
+
+01:46 Remaining"
+                        successVisible: false
+                        onTransition: maintain.state="swapComplete"
+                    }
+                },
+                State {
+                    name: "swapComplete"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Tick"
+                        titleText: "Light Engine Swap Complete"
+                        descriptionText: "New Light Engine module is detected.
+
+365nm"
+                        successVisible: true
+                        successText: "Ok"
+                        cancelVisible: false
+                        onTransition: maintainanceMode.visible=false
+                    }
+                }
+            ]
         }
+
     }
 }

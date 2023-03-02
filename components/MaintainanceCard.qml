@@ -5,6 +5,9 @@ Item{
     implicitWidth: 730
     implicitHeight: 360
 
+    signal transition()
+    signal cancelation()
+
     property alias titleText: title.text
     property alias descriptionText: description.text
     property string successText: "Ejected"
@@ -70,30 +73,20 @@ Item{
                     anchors.bottom: parent.bottom
                     columns: 2
                     spacing: 20
-                    Button{
+                    ActionButton{
                         id: cancelButton
                         text: "Cancel"
-                        radius: 10
                         backgroundColor: "#FFA487"
-                        textColor: "black"
                         width: successVisible==false?270:125
-                        sidePadding: successVisible == false ? 105 : 37
-                        height: 60
-                        labelFontSize: 18
-                        onClicked: maintainanceMode.visible=false
+                        onClicked: cancelation()
                         visible: cancelVisible
                     }
-                    Button{
+                    ActionButton{
                         id: successButton
                         text: successText
-                        radius: 10
                         backgroundColor: "#98FF87"
-                        textColor: "black"
                         width: cancelVisible==false?270:125
-                        sidePadding: cancelVisible == false ? 100 : 34
-                        height: 60
-                        labelFontSize: 18
-                        onClicked: maintainanceMode.visible=false
+                        onClicked: transition()
                         visible: successVisible
                     }
                 }
