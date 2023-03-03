@@ -11,6 +11,8 @@ Window {
     visible: true
     width: 850
     height: 480
+    property int timeInterval: 124
+    property int stageORlight: 0
     Item{
         id:backgroundGradient
         width: 850
@@ -169,6 +171,7 @@ Window {
                         onClicked: {
                             button1.state=''
                             maintainanceMode.visible=true
+                            stageORlight=1
                         }
                     }
                 }
@@ -203,6 +206,7 @@ Window {
                         onClicked: {
                             button2.state=''
                             maintainanceMode.visible=true
+                            stageORlight=2
                         }
                     }
                 }
@@ -696,12 +700,29 @@ Click cancel to cancel the eject process. Click ejected to confirm that the modu
             successText: "Ejected"
             cancelVisible: true
             onCancelation: {
-                maintain.state=""
                 maintainanceMode.visible=false
             }
 
             onTransition: {
                 maintain.state="insertPending"
+            }
+            function minute(t){
+                var minutes=parseInt(t/60);
+                var seconds=t%60;
+                return "0"+minutes+":"+((seconds<10)?"0"+seconds:seconds);
+            }
+            Timer{
+                running: true; repeat: true
+                onTriggered: {
+//                    if(maintain.state==="insertion")
+//                        start()
+                    if(timeInterval>0){
+                        timeInterval-=1;
+                    }
+                    else{
+                        maintain.state="swapComplete"
+                    }
+                }
             }
             states: [
                 State {
@@ -714,7 +735,15 @@ Click cancel to cancel the eject process. Click ejected to confirm that the modu
 
 Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you."
                         successText: "Unlock"
-                        onTransition: maintain.state="insertion"
+                        onTransition: {
+                            maintain.state="insertion"
+                            timeInterval=120
+                            if(stageORlight==1)buttonText1.text=moduleHistoryTable.roleFromRow(0, "stage")
+                            else buttonText2.text=moduleHistoryTable.roleFromRow(0, "light_engine")
+                        }
+                        onCancelation: {
+                            maintain.state=""
+                        }
                     }
                 },
                 State {
@@ -725,9 +754,11 @@ Click cancel to cancel the eject process. Click ejected to confirm that the modu
                         titleText: "Awaiting Insertion of a Light Engine
 
 
-01:46 Remaining"
+"+minute(timeInterval)+" Remaining"
                         successVisible: false
-                        onTransition: maintain.state="swapComplete"
+                        onCancelation: {
+                            maintain.state="insertPending"
+                        }
                     }
                 },
                 State {
@@ -742,7 +773,12 @@ Click cancel to cancel the eject process. Click ejected to confirm that the modu
                         successVisible: true
                         successText: "Ok"
                         cancelVisible: false
-                        onTransition: maintainanceMode.visible=false
+                        onTransition: {
+                            maintain.state=""
+                            maintainanceMode.visible=false
+                            if(stageORlight==1)buttonText1.text=moduleHistoryTable.roleFromRow(0, "stage")
+                            else buttonText2.text=moduleHistoryTable.roleFromRow(0, "light_engine")
+                        }
                     }
                 }
             ]
