@@ -14,6 +14,15 @@
 | 'G\<gap\>' | Mask Wafer Gap. Example `G28` is 28um Mask Wafer Gap. Max gap 1000um |
 | 'G' | Start Mask Wafer Gap Stream |
 | 'S' | Stop Mask Wafer Gap Stream |
+| 'V' | Start Vibration value stream |
+| 'v' | Stop Vibration value stream |
+| 'X' | Vibration value stream started/stopped |
+| 'V\<vibration\>' | Vibration value |
+| 'L'| Start LDR value stream |
+| 'l' | Stop LDR value stream |
+| 'Y' | LDR value started/stopped |
+| 'L\<value\>' | Current LDR value |
+
 
 ### Sequence Diagram
 [![](https://mermaid.ink/img/pako:eNqFkU1vgzAMhv9KlBPVinaPpl4AcepaDVU7AAeLuDQqJMyEfajqf19oYOtUVfMpsR_H7xufeGUkcsF7fBtQVxgrqAnaQjMX0XYXrlYP62gn2KZDHWwW7JFFjekxiBYsa5RE8qhjRjQm9Y4kWGqsCT4XvuaTrhxeXnpBqA4or_tCN0mw2GgM4nFEQmQoT0rP3IrJLJBla-iP7BX2SC5BCG2eln_UJHp0RzPvIaVrNhXY1vTKKqN9V2NMxzrTNP46xgSGP-Kf8eNO9zzXoRc3V-pS6PL0qYZuNelDLX9NuYbJlBt_6ykr__2pIJl-mi95i9SCkm6lpzFXcHvAFgsu3FECHQte6LPjYLAm-9IVF5YGXPKhk2Dn9XOxh6bH8zeji6VJ?type=png)](https://mermaid.live/edit#pako:eNqFkU1vgzAMhv9KlBPVinaPpl4AcepaDVU7AAeLuDQqJMyEfajqf19oYOtUVfMpsR_H7xufeGUkcsF7fBtQVxgrqAnaQjMX0XYXrlYP62gn2KZDHWwW7JFFjekxiBYsa5RE8qhjRjQm9Y4kWGqsCT4XvuaTrhxeXnpBqA4or_tCN0mw2GgM4nFEQmQoT0rP3IrJLJBla-iP7BX2SC5BCG2eln_UJHp0RzPvIaVrNhXY1vTKKqN9V2NMxzrTNP46xgSGP-Kf8eNO9zzXoRc3V-pS6PL0qYZuNelDLX9NuYbJlBt_6ykr__2pIJl-mi95i9SCkm6lpzFXcHvAFgsu3FECHQte6LPjYLAm-9IVF5YGXPKhk2Dn9XOxh6bH8zeji6VJ)
