@@ -3,7 +3,7 @@ import QtQuick 2.15
 Item {
     id:root
     implicitWidth: 220
-    implicitHeight: 18
+    implicitHeight: record.paintedHeight
     property string time: "00:00"
     property string message: ""
     property string action: ""
@@ -15,7 +15,7 @@ Item {
             columns: 2
             Text{
                 id: timeStamp
-                text: time + "> "
+                text: time + ">  "
                 color: "orange"
                 font.pixelSize: 12
                 font.bold: true
@@ -26,17 +26,19 @@ Item {
                 color: "#9ca3af"
                 font.pixelSize: 12
                 font.bold: true
-                lineHeight: 1.2
-                width: bodyWidth
+                lineHeight: 1.4
+                width: root.width-timeStamp.paintedWidth-actionButton.width+20
                 Button{
+                    id: actionButton
                     text: action+" >"
                     radius: 12
                     backgroundColor: actionColor
-                    height: 18
+                    height: 16
                     sidePadding: 8
                     labelFontSize: 12
-                    x: record.paintedWidth
+                    x: record.contentWidth
                     visible: action !== ""
+//                    anchors.verticalCenter: parent.verticalCenter
                 }
                 wrapMode: Text.WordWrap
             }

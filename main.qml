@@ -6,14 +6,17 @@ import "./components"
 import "./assets"
 
 Window {
+    id:root
     title: "MicroFabricator"
     visible: true
-    width: 860
-    height: 500
+    width: 850
+    height: 480
+    property int timeInterval: 124
+    property int stageORlight: 0
     Item{
         id:backgroundGradient
-        width: 860
-        height: 500
+        width: 850
+        height: 480
         LinearGradient{
             anchors.fill: parent
             start: Qt.point(0, 0)
@@ -36,18 +39,18 @@ Window {
     }
 
     Grid{
-        padding: 40
-        spacing: 24
-        rows: 2; columns: 2
+        anchors.centerIn: parent
+        spacing: 26
+        columns: 2
         Rectangle{
             width: 234
-            height: 335.6
+            height: 332.6
             color: "transparent"
             radius: 20
             Rectangle{
                 id: carousel
                 width:234
-                height: 325.6
+                height: 332.6
                 gradient: Gradient{
                     orientation: Gradient.Horizontal
                     GradientStop{
@@ -77,7 +80,7 @@ Window {
                 Rectangle{
                     id: carouselItem
                     width: 234
-                    height: 267
+                    height: 262
                     color: "transparent"
                     clip: true
                     SwipeView {
@@ -151,7 +154,7 @@ Window {
                         wrapMode: Text.WordWrap
                         font.pixelSize: 14
                         color: "white"
-                        y:10
+                        topPadding: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                     Button{
@@ -165,7 +168,11 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: rec1.state=''
+                        onClicked: {
+                            button1.state=''
+                            maintainanceMode.visible=true
+                            stageORlight=1
+                        }
                     }
                 }
                 Rectangle{
@@ -182,7 +189,7 @@ Window {
                         wrapMode: Text.WordWrap
                         font.pixelSize: 14
                         color: "white"
-                        y:10
+                        topPadding: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                     Button{
@@ -196,7 +203,11 @@ Window {
                         iconSize: 24
                         anchors.horizontalCenter: parent.horizontalCenter
                         y:72
-                        onClicked: rec2.state=''
+                        onClicked: {
+                            button2.state=''
+                            maintainanceMode.visible=true
+                            stageORlight=2
+                        }
                     }
                 }
 
@@ -234,7 +245,7 @@ Window {
                             }
                             Text {
                                 id: buttonText1
-                                text: "4S"
+                                text: moduleHistoryTable.roleFromRow(0, "stage")
                                 x:19
                                 y:13
                                 color: "white"
@@ -305,7 +316,7 @@ Window {
                             }
                             Text {
                                 id: buttonText2
-                                text: "365nm"
+                                text: moduleHistoryTable.roleFromRow(0, "light_engine")
                                 x:19
                                 y:13
                                 color: "white"
@@ -364,13 +375,13 @@ Window {
         Rectangle{
             id:historyFull
             width:522
-            height: 335.6
+            height: 327.6
             color:"transparent"
             radius: 20
             visible: false
             Rectangle{
                 width:512
-                height: 325.6
+                height: 327.6
                 color:"#262626"
                 radius: 20
                 anchors.centerIn: parent
@@ -378,12 +389,9 @@ Window {
                     width: 512
                     height: 325.6
                     title: "History"
-                    buttonSource: "../assets/Expand.png"
+                    buttonSource: "../assets/Minimize.png"
                     buttonClickColor: "#b36705"
                     buttonHeight: 42
-                    progressOpacity: 0
-                    historyOpacity: 1
-                    bodyWidth: 320
                 }
                 layer.enabled: true
                 layer.effect: DropShadow{
@@ -398,15 +406,16 @@ Window {
         Grid{
             id:cards
             rows: 2
-            spacing: 24
+            spacing: 20
             Grid{
                 columns: 4
-                spacing: 24
+                spacing: 20
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
+                        id: waferStage
                         title: "Wafer Stage"
                         status: "Open"
                         onPressed: parent.color="orange"
@@ -416,10 +425,11 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     enabled: false
                     Card{
+                        id: waferClamp
                         title: "Wafer Clamp"
                         status: "Off"
                         onPressed: parent.color="orange"
@@ -430,9 +440,10 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
+                        id: waferMaskGap
                         title: "Wafer Mask Gap"
                         status: "2.8μm"
                         onPressed: parent.color="orange"
@@ -444,9 +455,10 @@ Window {
                 }
                 Rectangle{
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
+                        id: vibration
                         title: "Vibration"
                         status: "Ok"
                         onPressed: parent.color="orange"
@@ -457,19 +469,23 @@ Window {
             }
             Grid{
                 columns: 3
-                spacing: 24
+                spacing: 20
                 Rectangle{
                     id:lightIntensity
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
                         title: "Light Intensity"
-                        status: "21%"
+                        status: intensitySlider.value.toPrecision(3) + "%"
                         info: "321 mJ/cm2"
                         onClicked: {
-                            if(lightIntensity.state==="")
+                            if(lightIntensity.state===""){
                                 lightIntensity.state="active1"
+                                if(duration.state==="active2"){
+                                    duration.state=""
+                                }
+                            }
                             else
                                 lightIntensity.state=""
                         }
@@ -490,15 +506,25 @@ Window {
                 Rectangle{
                     id: duration
                     radius: 20
-                    width: 114
+                    width: 116
                     height: 155.6
                     Card{
+                        function minutes(t){
+                            var totalTime=parseInt(t);
+                            var minutes=parseInt(totalTime/60);
+                            var seconds=totalTime%60;
+                            return (minutes!==0)?minutes+"m "+seconds+"s":seconds+"s";
+                        }
                         title: "Duration"
-                        status: "112s"
-                        info: "1m 32s"
+                        status: durationSlider.value + "s"
+                        info: minutes(durationSlider.value)
                         onClicked: {
-                            if(duration.state==="")
+                            if(duration.state===""){
                                 duration.state="active2"
+                                if(lightIntensity.state==="active1"){
+                                    lightIntensity.state=""
+                                }
+                            }
                             else
                                 duration.state=""
                         }
@@ -518,24 +544,19 @@ Window {
                 }
                 Rectangle{
                     id:history
-                    width:254
+                    width:239
                     height: 155.6
                     color:"transparent"
                     radius: 20
                     OpCard{
-                        width: 244
+                        x:5
+                        y:5
+                        width: 239
                         height: 145.6
                         title: "History"
                         buttonSource: "../assets/Expand.png"
                         buttonHeight: 42
                         buttonClickColor: "#b36705"
-                        progressOpacity: 0
-                        historyOpacity: 1
-                        bodyWidth: 165
-                        historyLogHeight1: 32
-                        historyLogHeight2: 32
-                        historyLogHeight4: 32
-                        historyLogHeight6: 32
                     }
                     layer.enabled: true
                     layer.effect: DropShadow{
@@ -550,21 +571,11 @@ Window {
         }
         Rectangle{
             id: progressPlay
-            width:224
+            width:234
             height: 70.8
             color:"transparent"
             radius: 20
             clip: true
-            OpCard{
-                width: 234
-                height: 60.8
-                title: "00:22:19"
-                titleFontSize: 24
-                buttonSource: "../assets/Play-Run.png"
-                buttonWidth: 82
-                iconWidth: 36
-                progressHeight: 8
-            }
             layer.enabled: true
             layer.effect: DropShadow{
                 transparentBorder: true
@@ -574,18 +585,204 @@ Window {
                 samples: 61
                 spread: 0
             }
+            RunCard{
+                width: 234
+                height: 62.8
+                titleFontSize: 24
+                buttonWidth: 82
+                iconWidth: 36
+                progressHeight: 8
+                function minutes(t){
+                    var totalTime=parseInt(t);
+                    var minutes=parseInt(totalTime/60);
+                    var seconds=totalTime%60;
+                    return (minutes!==0)?minutes+"m "+seconds+"s":seconds+"s";
+                }
+                function dataEntry(Message,Type){
+                    var data="";
+                    data += Message+";";
+                    data += Qt.formatTime(new Date(),"hh:mm:ss")+";";
+                    data += Type+";";
+                    data += waferStage.status+";";
+                    data += waferClamp.status+";";
+                    data += waferMaskGap.status+";";
+                    data += vibration.status+";";
+                    data += minutes(durationSlider.value)+";";
+                    data += intensitySlider.value.toPrecision(3)+"%";
+
+                    historyTable.addRow(-1,data)
+                }
+
+                onStart: {
+//                    historyTable.removeRow(0)
+                    dataEntry("Exposure initiated for "+minutes(durationSlider.value),"Initiated")
+                }
+                onCompleted: {
+                    dataEntry("Exposure Completed","Completed")
+                }
+                onStop: {
+                    dataEntry("Exposure Aborted","Aborted")
+                }
+            }
         }
-        CustomSlider{
+        Rectangle{
             id: slider1
-            width: 528
-            height: 60.8
+            width: 518
+            height: 62.8
+            color: "#262626"
+            radius: 15
             visible: false
+            CustomSlider{
+                id: intensitySlider
+                width: 508
+                height: 60.8
+                anchors.centerIn: parent
+                from: 0; to: 100;stepSize: 0.1
+            }
         }
-        CustomSlider{
+        Rectangle{
             id: slider2
-            width: 528
-            height: 60.8
+            width: 518
+            height: 62.8
+            color: "#262626"
+            radius: 15
             visible: false
+            CustomSlider{
+                id: durationSlider
+                width: 508
+                height: 60.8
+                anchors.centerIn: parent
+                from: 0; to: 180;stepSize: 1
+            }
         }
+    }
+    Rectangle{
+        id:maintainanceMode
+        width: 850
+        height: 480
+        visible: false
+        LinearGradient{
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(maintainanceMode.width, maintainanceMode.height)
+            gradient: Gradient{
+                GradientStop{
+                    position: 0
+                    color: "#EAEAEA"
+                }
+                GradientStop{
+                    position: 0.5
+                    color: "#D6D6DA"
+                }
+                GradientStop{
+                    position: 1
+                    color: "#68657E"
+                }
+            }
+        }
+        MaintainanceCard{
+            id: maintain
+            anchors.centerIn: parent
+            layer.enabled: true
+            layer.effect: DropShadow{
+                transparentBorder: true
+                verticalOffset: 0
+                color: "#000000"
+                radius: 60
+                samples: 121
+            }
+            iconMode: "Eject"
+            titleText: "Awaiting Ejection of the Light Engine"
+            descriptionText: "Remove the light engine module continue the module swapping process.
+
+Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you."
+            successVisible: true
+            successText: "Ejected"
+            cancelVisible: true
+            onCancelation: {
+                maintainanceMode.visible=false
+            }
+
+            onTransition: {
+                maintain.state="insertPending"
+            }
+            function minute(t){
+                var minutes=parseInt(t/60);
+                var seconds=t%60;
+                return "0"+minutes+":"+((seconds<10)?"0"+seconds:seconds);
+            }
+            Timer{
+                running: true; repeat: true
+                onTriggered: {
+//                    if(maintain.state==="insertion")
+//                        start()
+                    if(timeInterval>0){
+                        timeInterval-=1;
+                    }
+                    else{
+                        maintain.state="swapComplete"
+                    }
+                }
+            }
+            states: [
+                State {
+                    name: "insertPending"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Insert"
+                        titleText: "No Module Inserted. Try Again.No Module Inserted. Try Again."
+                        descriptionText: "Insert a light engine module to finish the module swapping process.
+
+Click cancel to cancel the eject process. Click ejected to confirm that the module has been removed by you."
+                        successText: "Unlock"
+                        onTransition: {
+                            maintain.state="insertion"
+                            timeInterval=120
+                            if(stageORlight==1)buttonText1.text=moduleHistoryTable.roleFromRow(0, "stage")
+                            else buttonText2.text=moduleHistoryTable.roleFromRow(0, "light_engine")
+                        }
+                        onCancelation: {
+                            maintain.state=""
+                        }
+                    }
+                },
+                State {
+                    name: "insertion"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Insert"
+                        titleText: "Awaiting Insertion of a Light Engine
+
+
+"+minute(timeInterval)+" Remaining"
+                        successVisible: false
+                        onCancelation: {
+                            maintain.state="insertPending"
+                        }
+                    }
+                },
+                State {
+                    name: "swapComplete"
+                    PropertyChanges {
+                        target: maintain
+                        iconMode: "Tick"
+                        titleText: "Light Engine Swap Complete"
+                        descriptionText: "New Light Engine module is detected.
+
+365nm"
+                        successVisible: true
+                        successText: "Ok"
+                        cancelVisible: false
+                        onTransition: {
+                            maintain.state=""
+                            maintainanceMode.visible=false
+                            if(stageORlight==1)buttonText1.text=moduleHistoryTable.roleFromRow(0, "stage")
+                            else buttonText2.text=moduleHistoryTable.roleFromRow(0, "light_engine")
+                        }
+                    }
+                }
+            ]
+        }
+
     }
 }

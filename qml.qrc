@@ -15,5 +15,18 @@
         <file>assets/Play-Run.png</file>
         <file>assets/Right-arrow.png</file>
         <file>components/CustomSlider.qml</file>
+        <file>components/RunCard.qml</file>
+        <file>assets/Minimize.png</file>
+        <file>assets/Stop.png</file>
+        <file>mfab.db</file>
+        <file>components/MaintainanceCard.qml</file>
+        <file>assets/Icon/Download.png</file>
+        <file>assets/Icon/Eject.png</file>
+        <file>assets/Icon/Insert.png</file>
+        <file>assets/Icon/Tick.png</file>
+        <file>assets/Icon/UpdateFail.png</file>
+        <file>assets/Icon/UpdatesSync.png</file>
+        <file>assets/Icon/UpdateTick.png</file>
+        <file>components/ActionButton.qml</file>
     </qresource>
 </RCC>
